@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head lang="de">
+        <title>Multiple Instances Example</title>
+        <meta charset="UTF-8">
+        <meta name="author" content="Michael Duve">
+        <meta name="description" lang="de" content="">
+        <meta name="keywords" lang="de" content="">
+        <meta name="viewport" content="width=device-width, user-scalable=yes">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="robots" content="index,follow,noarchive">
+
+        <link rel="stylesheet" type="text/css" href="../../dist/styles/mappedJS.css">
+
+        <script src="../../../vendor/js/handlebars-v4.0.5.js"></script>
+
+        <style>
+            body {
+                margin: 0;
+                font-family: Verdana, sans-serif;
+            }
+            body * {
+                box-sizing: border-box;
+            }
+            body,
+            html {
+                width: 100%;
+                height: 100%;
+            }
+            #map-1,
+            #map-2,
+            #map-3 {
+                position: absolute;
+                top: 0;
+                width: 50%;
+                height: 100%;
+            }
+            #map-1 {
+                left: 0;
+            }
+            #map-2 {
+                right: 0;
+                height: 50%;
+            }
+            #map-3 {
+                top: 50%;
+                height: 50%;
+                right: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="map-1" class="mjs">
+
+        </div>
+
+        <div id="map-2" class="mjs">
+
+        </div>
+
+        <div id="map-3" class="mjs">
+
+        </div>
+
+        <script src="../../dist/js/mappedJS.js"></script>
+        <script>
+            var map1 = new de.MappedJS({
+                container: "#map-1",
+                mapData: "mapData.json",
+                markerData: "marker.json",
+                mapSettings: {
+                    "center": {
+                        "lat": 52.5215,
+                        "lng": 13.427
+                    },
+                    "bounds": {
+                        "northWest": [52.777, 12.916],
+                        "southEast": [52.266, 13.938]
+                    },
+                    "centerSmallMap": false,
+                    "level": 1,
+                    "zoom": 1,
+                    "tooltip": {
+                        "templates": {
+                            "image": "../../hbs/image.hbs"
+                        }
+                    }
+                }
+            });
+
+            var map2 = new de.MappedJS({
+                container: "#map-2",
+                mapData: "mapData.json",
+                markerData: "marker.json",
+                mapSettings: {
+                    "center": {
+                        "lat": 52.5215,
+                        "lng": 13.427
+                    },
+                    "bounds": {
+                        "northWest": [52.777, 12.916],
+                        "southEast": [52.266, 13.938]
+                    },
+                    "centerSmallMap": false,
+                    "level": 1,
+                    "zoom": 1,
+                    "tooltip": {
+                        "templates": {
+                            "image": "../../hbs/image.hbs"
+                        }
+                    }
+                }
+            });
+
+            var map3 = new de.MappedJS({
+                container: "#map-3",
+                mapData: "mapData.json",
+                markerData: "marker.json",
+                mapSettings: {
+                    "center": {
+                        "lat": 52.5215,
+                        "lng": 13.427
+                    },
+                    "bounds": {
+                        "northWest": [52.777, 12.916],
+                        "southEast": [52.266, 13.938]
+                    },
+                    "centerSmallMap": false,
+                    "level": 1,
+                    "zoom": 1,
+                    "tooltip": {
+                        "templates": {
+                            "image": "../../hbs/image.hbs"
+                        }
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+/* http://codepen.io/maddesigns/pen/ZWdQjM */
+.mjs-image {
+    margin: (6*$gutter) 0 0 0;
+    height: auto;
+    max-height: 100%;
+    img {
+        max-height: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}

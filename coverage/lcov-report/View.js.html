@@ -1,0 +1,1088 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for View.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> View.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.57% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/137</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/74</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.62% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/136</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Helper} from './Helper.js';
+import {Events} from './Events.js';
+import {Point} from './Point.js';
+import {LatLng} from './LatLng.js';
+import {Bounds} from './Bounds.js';
+import {Rectangle} from './Rectangle.js';
+import {Tile} from './Tile.js';
+import {Drawable} from './Drawable.js';
+&nbsp;
+/**
+ * @author Michael Duve &lt;mduve@designmail.net&gt;
+ * @file represents a level of zoom
+ * @copyright Michael Duve 2016
+ */
+export class View extends Drawable {
+&nbsp;
+    /**
+     * get all visible tiles
+     * @return {array} all tiles that are currently visible
+     */
+    get visibleTiles() <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        return this.tiles.filter(<span class="fstat-no" title="function not covered" >(t) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            const newTile = t.clone.scale(this.zoomFactor).getDistortedRect(this.distortionFactor).translate(this.view.x * this.distortionFactor + this.offsetToCenter, this.view.y);</span>
+<span class="cstat-no" title="statement not covered" >            return this.viewport.intersects(newTile);</span>
+        });
+    }
+&nbsp;
+    /**
+     * @constructor
+     * @param  {Rectangle} viewport = new Rectangle() - current representation of viewport
+     * @param  {Rectangle} currentView = new Rectangle() - current representation of map
+     * @param  {Bounds} bounds = new Bounds() - current bounds of map
+     * @param  {LatLng} center = new LatLng() - current center of map
+     * @param  {LatLng} initialCenter = new LatLng() - initial center of view
+     * @param  {Object} data = {} - tile data of current map
+     * @param  {Object} context = null - canvas context for drawing
+     * @param  {number} maxZoom = 1.5 - maximal zoom of view
+     * @param  {number} currentZoom = 1 - initial zoom of view
+     * @param  {number} minZoom = 0.8 - minimal zoom of view
+     * @param  {number} limitToBounds - where to limit panning
+     * @return {View} instance of View for chaining
+     */
+    constructor({
+        view = new Rectangle(),
+        data = {},
+        context = null,
+        maxZoom = 1.5,
+        minZoom = 0.8,
+        centerSmallMap = false,
+        limitToBounds,
+        id
+    }) {
+        super(id);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.maxZoom = maxZoom;</span>
+<span class="cstat-no" title="statement not covered" >        this.minZoom = minZoom;</span>
+<span class="cstat-no" title="statement not covered" >        this.limitToBounds = limitToBounds;</span>
+<span class="cstat-no" title="statement not covered" >        this.isInitialized = false;</span>
+<span class="cstat-no" title="statement not covered" >        this.centerSmallMap = centerSmallMap;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.originalMapView = view.clone;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            view: view
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.tiles = [];</span>
+<span class="cstat-no" title="statement not covered" >        this.data = data;</span>
+<span class="cstat-no" title="statement not covered" >        this.context = context;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return this.loadThumb();</span>
+    }
+&nbsp;
+    init() {
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            view: this.originalMapView.clone
+        });
+<span class="cstat-no" title="statement not covered" >        this.view.translate(0 - this.offsetToCenter, 0);</span>
+<span class="cstat-no" title="statement not covered" >        this.initializeTiles();</span>
+<span class="cstat-no" title="statement not covered" >        this.isInitialized = true;</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    /**
+     * resets current View to its initial position
+     */
+    reset(position, zoom) {
+<span class="cstat-no" title="statement not covered" >        this.setLatLngToPosition(position, this.viewport.center);</span>
+<span class="cstat-no" title="statement not covered" >        const delta = zoom - this.zoomFactor;</span>
+<span class="cstat-no" title="statement not covered" >        this.zoom(delta, this.view.center);</span>
+    }
+&nbsp;
+    getDistortedView() {
+<span class="cstat-no" title="statement not covered" >        const nw = this.info.convertLatLngToPoint(this.limitToBounds.nw),</span>
+              se = this.info.convertLatLngToPoint(this.limitToBounds.se),
+              limit = new Rectangle(nw.x + this.view.x, nw.y + this.view.y, se.x - nw.x, se.y - nw.y);
+<span class="cstat-no" title="statement not covered" >        return limit.getDistortedRect(this.distortionFactor).translate(this.offsetToCenter, 0);</span>
+    }
+&nbsp;
+    checkBoundaries() {
+<span class="cstat-no" title="statement not covered" >        const offset = new Point();</span>
+<span class="cstat-no" title="statement not covered" >        const equalizedMap = this.getDistortedView();</span>
+<span class="cstat-no" title="statement not covered" >        if (!equalizedMap.containsRect(this.viewport)) {</span>
+<span class="cstat-no" title="statement not covered" >            const distanceLeft = equalizedMap.left - this.viewport.left,</span>
+                  distanceRight = equalizedMap.right - this.viewport.right,
+                  distanceTop = equalizedMap.top - this.viewport.top,
+                  distanceBottom = equalizedMap.bottom - this.viewport.bottom;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            offset.x = this.checkX(distanceLeft, distanceRight, equalizedMap.width, this.viewport.width);</span>
+<span class="cstat-no" title="statement not covered" >            offset.y = this.checkX(distanceTop, distanceBottom, equalizedMap.height, this.viewport.height);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        offset.multiply(1/this.distortionFactor, 1);</span>
+<span class="cstat-no" title="statement not covered" >        this.view.translate(offset.x, offset.y);</span>
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            view: this.view
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (this.viewportIsSmallerThanView(equalizedMap)) {</span>
+<span class="cstat-no" title="statement not covered" >            const diffInHeight = (1 - (equalizedMap.height / this.viewport.height));</span>
+<span class="cstat-no" title="statement not covered" >            const diffInWidth = (1 - (equalizedMap.width / this.viewport.width));</span>
+<span class="cstat-no" title="statement not covered" >            const diff = Helper.clamp(Math.max(diffInHeight, diffInWidth), 0, Number.MAX_VALUE);</span>
+<span class="cstat-no" title="statement not covered" >            this.zoom(diff, this.viewport.center, true);</span>
+        }
+    }
+&nbsp;
+    viewportIsSmallerThanView(view) {
+<span class="cstat-no" title="statement not covered" >        return this.viewport.width &gt; view.width || this.viewport.height &gt; view.height;</span>
+    }
+&nbsp;
+    checkX(left, right, mapWidth, viewWidth) {
+<span class="cstat-no" title="statement not covered" >        let x = 0;</span>
+<span class="cstat-no" title="statement not covered" >        if (mapWidth &gt;= viewWidth) {</span>
+<span class="cstat-no" title="statement not covered" >            if (left &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                x -= left;</span>
+            } else <span class="cstat-no" title="statement not covered" >if (right &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                x -= right;</span>
+            }
+        } else {
+<span class="cstat-no" title="statement not covered" >            if (!this.centerSmallMap) {</span>
+<span class="cstat-no" title="statement not covered" >                if (left &lt; 0 &amp;&amp; right &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    x -= left;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (right &gt; 0 &amp;&amp; left &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    x -= right;</span>
+                }
+            } else {
+<span class="cstat-no" title="statement not covered" >                this.view.setCenterX(this.viewport.center.x);</span>
+<span class="cstat-no" title="statement not covered" >                this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+                    view: this.view
+                });
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return x;</span>
+    }
+&nbsp;
+    checkY(top, bottom, mapHeight, viewHeight) {
+<span class="cstat-no" title="statement not covered" >        let y = 0;</span>
+<span class="cstat-no" title="statement not covered" >        if (mapHeight &gt;= viewHeight) {</span>
+<span class="cstat-no" title="statement not covered" >            if (top &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                y -= top;</span>
+            } else <span class="cstat-no" title="statement not covered" >if (bottom &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                y -= bottom;</span>
+            }
+        } else {
+<span class="cstat-no" title="statement not covered" >            if (!this.centerSmallMap) {</span>
+<span class="cstat-no" title="statement not covered" >                if (top &lt; 0 &amp;&amp; bottom &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    y -= top;</span>
+                } else <span class="cstat-no" title="statement not covered" >if (bottom &gt; 0 &amp;&amp; top &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    y -= bottom;</span>
+                }
+            } else {
+<span class="cstat-no" title="statement not covered" >                this.view.setCenterX(this.viewport.center.x);</span>
+<span class="cstat-no" title="statement not covered" >                this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+                    view: this.view
+                });
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return y;</span>
+    }
+&nbsp;
+    /**
+     * loads thumbnail of view
+     * @return {View} instance of View for chaining
+     */
+    loadThumb() <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        Helper.loadImage(this.data.thumb, <span class="fstat-no" title="function not covered" >(img) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.thumb = img;</span>
+<span class="cstat-no" title="statement not covered" >            this.eventManager.publish(Events.View.THUMB_LOADED);</span>
+        });
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    /**
+     * set specified lat/lng to position x/y
+     * @param {LatLng} latlng - specified latlng to be set Point to
+     * @param {Point} position - specified position to set LatLng to
+     * @return {View} instance of View for chaining
+     */
+    setLatLngToPosition(latlng, position) {
+<span class="cstat-no" title="statement not covered" >        const currentPosition = this.view.topLeft.substract(position).multiply(-1),</span>
+              diff = currentPosition.substract(this.info.convertLatLngToPoint(latlng));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.view.translate(0, diff.y);</span>
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            view: this.view
+        });
+<span class="cstat-no" title="statement not covered" >        this.calculateNewCenter();</span>
+<span class="cstat-no" title="statement not covered" >        this.view.translate(diff.x + this.getDeltaXToCenter(position), 0);</span>
+<span class="cstat-no" title="statement not covered" >        this.calculateNewCenter();</span>
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            view: this.view
+        });
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    /**
+     * receive relative Position to center of viewport
+     * @param  {Point} pos - specified position
+     * @return {number} delta of point to center of viewport
+     */
+    getDeltaXToCenter(pos) {
+<span class="cstat-no" title="statement not covered" >        const diffToCenter = pos.clone.substract(this.viewport.center),</span>
+              distanceToCenter = (diffToCenter.x / this.viewport.center.x),
+              delta = distanceToCenter * this.offsetToCenter;
+<span class="cstat-no" title="statement not covered" >        return delta / this.distortionFactor;</span>
+    }
+&nbsp;
+    /**
+     * zooming handler
+     * @param  {number} factor - increase/decrease factor
+     * @param  {Point} pos - Position to zoom to
+     * @return {View} instance of View for chaining
+     */
+    zoom(factor, pos, automatic = false) <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        const equalizedMap = this.getDistortedView();</span>
+<span class="cstat-no" title="statement not covered" >        const viewportIsSmaller = this.viewportIsSmallerThanView(equalizedMap);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (factor &lt; 0 &amp;&amp; (viewportIsSmaller || this.wasSmallerLastTime)) {</span>
+<span class="cstat-no" title="statement not covered" >            this.wasSmallerLastTime = true;</span>
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (!automatic) {</span>
+<span class="cstat-no" title="statement not covered" >            this.wasSmallerLastTime = false;</span>
+        } else <span class="cstat-no" title="statement not covered" >if (automatic) {</span>
+<span class="cstat-no" title="statement not covered" >            this.wasSmallerLastTime = viewportIsSmaller;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const newZoom = Helper.clamp(this.zoomFactor + factor, this.minZoom, this.maxZoom);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const mapPosition = this.view.topLeft.substract(pos).multiply(-1);</span>
+<span class="cstat-no" title="statement not covered" >        mapPosition.x += this.getDeltaXToCenter(pos);</span>
+<span class="cstat-no" title="statement not covered" >        const latlngPosition = this.info.convertPointToLatLng(mapPosition);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        const newSize = this.originalMapView.clone.scale(newZoom);</span>
+<span class="cstat-no" title="statement not covered" >        this.view.setSize(newSize.width, newSize.height);</span>
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            zoomFactor: newZoom,
+            view: this.view
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setLatLngToPosition(latlngPosition, pos);</span>
+<span class="cstat-no" title="statement not covered" >        this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    changeZoomLevelIfNecessary(factor, viewportIsSmaller) {
+<span class="cstat-no" title="statement not covered" >        if (this.zoomFactor &gt;= this.maxZoom &amp;&amp; factor &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            this.eventManager.publish(Events.TileMap.NEXT_LEVEL);</span>
+        } else <span class="cstat-no" title="statement not covered" >if (this.zoomFactor &lt;= this.minZoom &amp;&amp; factor &lt; 0 &amp;&amp; !viewportIsSmaller) {</span>
+<span class="cstat-no" title="statement not covered" >            this.eventManager.publish(Events.TileMap.PREVIOUS_LEVEL);</span>
+        }
+    }
+&nbsp;
+    /**
+     * update center position of view
+     * @return {View} instance of View for chaining
+     */
+    calculateNewCenter() {
+<span class="cstat-no" title="statement not covered" >        const newCenter = this.info.convertPointToLatLng(this.viewport.center.substract(this.view.topLeft));</span>
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            center: newCenter
+        });
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    /**
+     * moves the view's current position by pos
+     * @param  {Point} pos - specified additional offset
+     * @return {View} instance of View for chaining
+     */
+    moveView(pos) {
+<span class="cstat-no" title="statement not covered" >        this.view.translate(0, pos.y);</span>
+<span class="cstat-no" title="statement not covered" >        this.calculateNewCenter();</span>
+<span class="cstat-no" title="statement not covered" >        this.view.translate(pos.x * (1/this.distortionFactor), 0);</span>
+<span class="cstat-no" title="statement not covered" >        this.eventManager.publish(Events.MapInformation.UPDATE, {</span>
+            view: this.view
+        });
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    /**
+     * Handles draw of visible elements
+     * @return {View} instance of View for chaining
+     */
+    draw() {
+<span class="cstat-no" title="statement not covered" >        return this.drawThumbnail().drawVisibleTiles();</span>
+    }
+&nbsp;
+    /**
+     * draws all visible tiles
+     * @return {View} instance of View for chaining
+     */
+    drawVisibleTiles() {
+<span class="cstat-no" title="statement not covered" >        Helper.forEach(this.visibleTiles, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(tile) =&gt; tile.draw());</span></span></span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    /**
+     * draws the thumbnail
+     * @return {View} instance of View for chaining
+     */
+    drawThumbnail() {
+<span class="cstat-no" title="statement not covered" >        if (this.thumb) {</span>
+<span class="cstat-no" title="statement not covered" >            const rect = this.view.getDistortedRect(this.distortionFactor).translate(this.offsetToCenter, 0);</span>
+<span class="cstat-no" title="statement not covered" >            this.context.drawImage(this.thumb, 0, 0, this.thumb.width, this.thumb.height, rect.x, rect.y, rect.width, rect.height);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+    /**
+     * initializes tiles
+     * @return {View} instance of View for chaining
+     */
+    initializeTiles() <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        const currentLevel = this.data.tiles;</span>
+<span class="cstat-no" title="statement not covered" >        Helper.forEach(currentLevel, <span class="fstat-no" title="function not covered" >(currentTileData) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.tiles.push(new Tile(currentTileData, this.context, this.id));</span>
+        });
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    }
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 21 2016 12:57:52 GMT+0200 (CEST)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

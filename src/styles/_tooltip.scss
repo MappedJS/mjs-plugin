@@ -1,0 +1,88 @@
+$icon-width: (7*$gutter);
+$icon-height: (7*$gutter);
+
+.tooltip-container {
+    position: absolute;
+    bottom: -100%;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    z-index: 200;
+    background: #fff;
+    .close-button {
+        position: absolute;
+        z-index: 1000;
+        top: 5px;
+        right: 20px;
+        display: block;
+        width: $icon-width;
+        height: $icon-height;
+        cursor: pointer;
+        background: {
+            color: map-get($light-theme, popupBg);
+            size: 200%;
+            image: url('../../img/icons.png');
+            position: 0% 0%;
+            repeat: no-repeat;
+        }
+        &:hover {
+            background-position: 100% 0%;
+        }
+    }
+    @at-root .mappedJS.left {
+        .tooltip-container {
+            bottom: -100%;
+            left: -100%;
+            box-shadow: 2px 0 2px 0 rgba(0, 0, 0, .25);
+            width: 40%;
+            transition: left .15s ease;
+        }
+
+        .map-content {
+            overflow: hidden;
+        }
+
+        &.tooltip-open .map-content {
+            left: 40%;
+            width: 60%;
+        }
+
+        &.tooltip-close .map-content {
+            left: 0;
+            width: 100%;
+        }
+
+        &.tooltip-open .tooltip-container {
+            left: 0;
+            bottom: 0;
+        }
+    }
+    @at-root .mappedJS.bottom {
+        .tooltip-container {
+            left: -100%;
+            height: 100%;
+            bottom: -100%;
+            transition: bottom .15s ease;
+        }
+        &.tooltip-open .tooltip-container {
+            left: 0;
+            bottom: 0;
+        }
+    }
+    .tooltip-content {
+        height: 100%;
+        padding: (3*$gutter) (3*$gutter) (3*$gutter);
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        > * {
+            width: 100%;
+        }
+        @import "_tooltip_caption.scss";
+        @import "_tooltip_image.scss";
+        @import "_tooltip_text.scss";
+        @import "_tooltip_headline.scss";
+        @import "_tooltip_crossheading.scss";
+        @import "_tooltip_iframe.scss";
+    }
+}

@@ -1,0 +1,484 @@
+/* line 30, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mappedJS {
+	position: relative;
+	overflow: hidden;
+}
+
+/* line 33, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mappedJS:focus {
+	outline: 0;
+}
+
+/* line 36, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mappedJS * {
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+}
+
+/* line 41, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mappedJS canvas,
+.mappedJS img {
+	display: block;
+}
+
+/* line 45, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mappedJS .map-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* line 5, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container {
+	position: absolute;
+	padding: 5px;
+	border-radius: 3px;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+/* line 10, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container:after {
+	position: absolute;
+	width: 15px;
+	height: 30px;
+	top: 50%;
+	content: "";
+	color: #efefef;
+	cursor: pointer;
+	margin-top: -15px;
+	background: rgba(0, 0, 0, 0.5) url("../../img/icons.png") center center no-repeat;
+	background-size: 320%;
+	border-radius: 3px;
+}
+
+/* line 23, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-right, .mappedJS .info-container.top-right {
+	left: 100%;
+	right: auto;
+	padding-right: 0;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+
+/* line 30, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-right:after, .mappedJS .info-container.top-right:after {
+	right: 100%;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	background-position: 85% 103%;
+}
+
+/* line 36, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-right.active, .mappedJS .info-container.top-right.active {
+	right: 0;
+	left: auto;
+}
+
+/* line 41, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-right {
+	bottom: 3px;
+}
+
+/* line 44, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.top-right {
+	top: 3px;
+}
+
+/* line 47, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-left, .mappedJS .info-container.top-left {
+	right: 100%;
+	left: auto;
+	padding-left: 0;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+}
+
+/* line 54, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-left:after, .mappedJS .info-container.top-left:after {
+	left: 100%;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	background-position: 90% 103%;
+}
+
+/* line 60, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-left.active, .mappedJS .info-container.top-left.active {
+	left: 0;
+	right: auto;
+}
+
+/* line 65, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.bottom-left {
+	bottom: 3px;
+}
+
+/* line 68, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
+.mappedJS .info-container.top-left {
+	top: 3px;
+}
+
+/* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_marker.scss */
+.mappedJS .marker-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+/* line 9, /Users/mduve/repository/mjs/plugin/src/styles/_marker.scss */
+.mappedJS .marker {
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	background-position: center left;
+}
+
+/* line 15, /Users/mduve/repository/mjs/plugin/src/styles/_marker.scss */
+.mappedJS .marker:hover, .mappedJS .marker.active {
+	background-position: center right;
+}
+
+/* line 2, /Users/mduve/repository/mjs/plugin/src/styles/_cluster.scss */
+.mappedJS .cluster {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	color: #555;
+	z-index: 200;
+	text-align: center;
+	background-image: url(data:image/png;base64,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);
+	font-size: 10px;
+	line-height: 47px;
+	margin-left: -32px;
+	margin-top: -32px;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	background-position: center left;
+}
+
+/* line 18, /Users/mduve/repository/mjs/plugin/src/styles/_cluster.scss */
+.mappedJS .cluster:hover, .mappedJS .cluster.active {
+	background-position: center right;
+	line-height: 42px;
+	color: #333;
+}
+
+/* line 5, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container {
+	position: absolute;
+	z-index: 150;
+}
+
+/* line 8, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.bottom-right {
+	bottom: 3px;
+	right: 3px;
+}
+
+/* line 12, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.bottom-left {
+	bottom: 3px;
+	left: 3px;
+}
+
+/* line 16, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.top-left {
+	top: 3px;
+	left: 3px;
+}
+
+/* line 20, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.top-right {
+	top: 3px;
+	right: 3px;
+}
+
+/* line 24, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container .control {
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	border-radius: 3px;
+	background: url("../../img/icons.png") center center no-repeat;
+	background-size: 72px 180px;
+}
+
+/* line 32, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container .zoom-in {
+	border-bottom: 1px solid;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+/* line 37, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container .zoom-out {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+/* line 41, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container .home {
+	margin-bottom: 3px;
+}
+
+/* line 45, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.dark .control {
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 0px 1px rgba(204, 204, 204, 0.2);
+}
+
+/* line 48, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.dark .control:hover {
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* line 52, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.dark .zoom-in {
+	border-bottom-color: #888;
+	background-position: 100% 50%;
+}
+
+/* line 56, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.dark .zoom-out {
+	background-position: 100% 75%;
+}
+
+/* line 59, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.dark .home {
+	background-position: 100% 25%;
+}
+
+/* line 64, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.light .control {
+	background-color: rgba(255, 255, 255, 0.5);
+	box-shadow: 0px 0px 0px 1px rgba(51, 51, 51, 0.2);
+}
+
+/* line 67, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.light .control:hover {
+	background-color: #fff;
+}
+
+/* line 71, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.light .zoom-in {
+	border-bottom-color: #eee;
+	background-position: 0% 50%;
+}
+
+/* line 75, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.light .zoom-out {
+	background-position: 0% 75%;
+}
+
+/* line 78, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
+.mappedJS .control-container.light .home {
+	background-position: 0% 25%;
+}
+
+/* line 4, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS .tooltip-container {
+	position: absolute;
+	bottom: -100%;
+	left: -100%;
+	height: 100%;
+	width: 100%;
+	z-index: 200;
+	background: #fff;
+}
+
+/* line 12, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS .tooltip-container .close-button {
+	position: absolute;
+	z-index: 1000;
+	top: 5px;
+	right: 20px;
+	display: block;
+	width: 21px;
+	height: 21px;
+	cursor: pointer;
+	background-color: white;
+	background-size: 200%;
+	background-image: url("../../img/icons.png");
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+}
+
+/* line 28, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS .tooltip-container .close-button:hover {
+	background-position: 100% 0%;
+}
+
+/* line 33, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS.left .tooltip-container {
+	bottom: -100%;
+	left: -100%;
+	box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.25);
+	width: 40%;
+	-webkit-transition: left .15s ease;
+	-moz-transition: left .15s ease;
+	-o-transition: left .15s ease;
+	transition: left .15s ease;
+}
+
+/* line 41, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS.left .map-content {
+	overflow: hidden;
+}
+
+/* line 45, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS.left.tooltip-open .map-content {
+	left: 40%;
+	width: 60%;
+}
+
+/* line 50, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS.left.tooltip-close .map-content {
+	left: 0;
+	width: 100%;
+}
+
+/* line 55, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS.left.tooltip-open .tooltip-container {
+	left: 0;
+	bottom: 0;
+}
+
+/* line 61, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS.bottom .tooltip-container {
+	left: -100%;
+	height: 100%;
+	bottom: -100%;
+	-webkit-transition: bottom .15s ease;
+	-moz-transition: bottom .15s ease;
+	-o-transition: bottom .15s ease;
+	transition: bottom .15s ease;
+}
+
+/* line 67, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS.bottom.tooltip-open .tooltip-container {
+	left: 0;
+	bottom: 0;
+}
+
+/* line 72, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS .tooltip-container .tooltip-content {
+	height: 100%;
+	padding: 9px 9px 9px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	/* http://codepen.io/maddesigns/pen/ZWdQjM */
+}
+
+/* line 78, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
+.mappedJS .tooltip-container .tooltip-content > * {
+	width: 100%;
+}
+
+/* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_caption.scss */
+.mappedJS .tooltip-container .tooltip-content .caption {
+	display: block;
+	margin: 6px auto 36px auto;
+	font-size: 12px;
+}
+
+/* line 5, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_caption.scss */
+.mappedJS .tooltip-container .tooltip-content .caption .credit {
+	display: block;
+	font-size: 85%;
+	color: #888;
+}
+
+/* line 2, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_image.scss */
+.mappedJS .tooltip-container .tooltip-content .mjs-image {
+	margin: 18px 0 0 0;
+	height: auto;
+	max-height: 100%;
+}
+
+/* line 6, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_image.scss */
+.mappedJS .tooltip-container .tooltip-content .mjs-image img {
+	max-height: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+/* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_text.scss */
+.mappedJS .tooltip-container .tooltip-content p {
+	margin: 0 0 9px 0;
+	font-size: 15px;
+	text-align: justify;
+}
+
+/* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
+.mappedJS .tooltip-container .tooltip-content h2 {
+	margin: 0 0 6px 0;
+	font-size: 24px;
+}
+
+/* line 4, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
+.mappedJS .tooltip-container .tooltip-content h2 > * {
+	display: block;
+}
+
+/* line 7, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
+.mappedJS .tooltip-container .tooltip-content h2 .kicker {
+	font-size: 40%;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+/* line 12, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
+.mappedJS .tooltip-container .tooltip-content h2 .headline {
+	font-size: 100%;
+	font-weight: 700;
+}
+
+/* line 16, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
+.mappedJS .tooltip-container .tooltip-content h2 .subheadline {
+	font-size: 60%;
+	font-style: italic;
+	font-weight: 100;
+}
+
+/* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_crossheading.scss */
+.mappedJS .tooltip-container .tooltip-content h3 {
+	margin: 24px 0 3px 0;
+	font-weight: 700;
+	font-size: 110%;
+}
+
+/* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_iframe.scss */
+.mappedJS .tooltip-container .tooltip-content .mjs-iframe {
+	width: auto;
+	margin: 0 auto;
+}
+
+/* line 4, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_iframe.scss */
+.mappedJS .tooltip-container .tooltip-content .mjs-iframe .embed-content {
+	position: relative;
+	display: block;
+	height: 0;
+	padding: 0;
+	margin: 18px 0 0 0;
+	overflow: hidden;
+}
+
+/* line 11, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_iframe.scss */
+.mappedJS .tooltip-container .tooltip-content .mjs-iframe .embed-content iframe {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}

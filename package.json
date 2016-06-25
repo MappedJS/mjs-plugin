@@ -1,0 +1,48 @@
+{
+    "name": "mjs-plugin",
+    "version": "1.0.0",
+    "author": "Michael Duve",
+    "email": "mduve@designmail.net",
+    "description": "Cross-browser and -device implementation for interactive maps based on equidistant rectangular projection images",
+    "homepage": "http://mappedJS.de",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/MappedJS/mjs-plugin.git"
+    },
+    "keywords": [
+        "map",
+        "plugin",
+        "interactive map"
+    ],
+    "license": "BSD-2-Clause",
+    "engines": {
+        "node": "6.2.1",
+        "npm": "3.9.3"
+    },
+    "devDependencies": {
+        "autoprefixer": "6.3.3",
+        "babel-core": "6.5.2",
+        "babel-loader": "6.2.3",
+        "babel-polyfill": "6.5.0",
+        "babel-preset-es2015": "6.5.0",
+        "classlist-polyfill": "^1.0.3",
+        "cssnano": "3.5.2",
+        "expectations": "^0.6.0",
+        "grunt": "0.4.5",
+        "grunt-cli": "0.1.13",
+        "grunt-contrib-watch": "0.6.1",
+        "grunt-css-statistics": "0.9.7",
+        "grunt-jsdoc-to-markdown": "1.2.0",
+        "grunt-md": "0.0.4",
+        "grunt-postcss": "0.7.2",
+        "grunt-sass": "1.1.0",
+        "grunt-shell": "1.1.2",
+        "grunt-webpack": "1.0.11",
+        "istanbul": "1.0.0-alpha.2",
+        "jsdoc-to-markdown": "1.3.3",
+        "mocha": "2.4.5",
+        "webpack": "2.1.0-beta.13",
+        "webpack-dev-server": "2.0.0-beta"
+    },
+    "dependencies": {}
+}

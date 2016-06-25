@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Helper.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> Helper.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">23.53% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">43.86% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>25/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">23.91% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/46</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @author Michael Duve &lt;mduve@designmail.net&gt;
+ * @file Helper for general purposes
+ * @copyright Michael Duve 2016
+ * @module Helper
+ */
+export const Helper = <span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" >{</span></span></span></span></span></span></span></span></span></span>
+    /**
+     * request json-data from given file and calls callback on success
+     * @function
+     * @memberof module:Helper
+     * @param  {String} filename - path to file
+     * @param  {Helper~requestJSONCallback} callback - function called when data is loaded successfully
+     * @return {Helper} Helper object for chaining
+     */
+    requestJSON(filename, callback) {
+<span class="cstat-no" title="statement not covered" >        Helper.getFile(filename, <span class="fstat-no" title="function not covered" >(jsonFileData) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (callback) <span class="cstat-no" title="statement not covered" >c</span>allback(JSON.parse(jsonFileData));</span>
+        });
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    },
+    /**
+     * find an element in DOM
+     * @function
+     * @memberof module:Helper
+     * @param  {String} elementString = "*" - element to lookup
+     * @param  {HTMLElement} element = null - element to start looking in for
+     * @return {HTMLElement} reference to HTMLElement or null if not found
+     */
+    find(elementString = "*", element = null) <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        return (element || document).querySelector(elementString);</span>
+    },
+    /**
+     * find multiple elements in DOM
+     * @function
+     * @memberof module:Helper
+     * @param  {String} elementString = "*" - element to lookup
+     * @param  {HTMLElement} element = null - element to start looking in for
+     * @return {NodeList} list of found elements
+     */
+    findAll(elementString = "*", element = null) <span class="cstat-no" title="statement not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        return (element || document).querySelectorAll(elementString);</span>
+    },
+    /**
+     * show a HTMLElement
+     * @function
+     * @memberof module:Helper
+     * @param  {HTMLElement} elem - specified element
+     * @return {Helper} reference of Helper for chaining
+     */
+    show(elem) {
+<span class="cstat-no" title="statement not covered" >        elem.style.display = "";</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    },
+    /**
+     * hide a HTMLElement
+     * @function
+     * @memberof module:Helper
+     * @param  {HTMLElement} elem - specified element
+     * @return {Helper} reference of Helper for chaining
+     */
+    hide(elem) {
+<span class="cstat-no" title="statement not covered" >        elem.style.display = "none";</span>
+    },
+    /**
+     * applies css to given HTMLElement
+     * @function
+     * @memberof module:Helper
+     * @param  {HTMLElement} elem - specified element to apply css to
+     * @param  {Object} css - object containing css property and value
+     * @return {Helper} reference of Helper for chaining
+     */
+    css(elem, css) {
+<span class="cstat-no" title="statement not covered" >        for (const property in css) {</span>
+<span class="cstat-no" title="statement not covered" >            elem.style[property] = css[property];</span>
+        }
+    },
+    /**
+     * adds a listener to given HTMLElement
+     * @function
+     * @memberof module:Helper
+     * @param  {HTMLElement} elem - specified element to bind listener to
+     * @param  {String} bindTo - names of events to bind to, seperated by spaces
+     * @param  {Function} fn~addListenerCallback - callback-function for binding
+     * @return {Helper} reference of Helper for chaining
+     */
+    addListener(elem, bindTo, fn) {
+<span class="cstat-no" title="statement not covered" >        bindTo.split(" ").forEach(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e) =&gt; elem.addEventListener(e, fn, false));</span></span></span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    },
+    /**
+     * clamps a value to specified min and max
+     * @function
+     * @memberof module:Helper
+     * @param  {Number} v = 0 - specified value to clamp
+     * @param  {Number} min = v - minimum value to clamp to
+     * @param  {Number} max = v - maximum value to clamp to
+     * @return {Number} clamped value
+     */
+    clamp(v = 0, min = v, max = v) {
+        return Math.min(Math.max(v, min), max);
+    },
+    /**
+     * loads an image and calls callback on success
+     * @function
+     * @memberof module:Helper
+     * @param {Helper~loadImageCallback} cb - callback-function on success
+     * @return {Helper} reference of Helper for chaining
+     */
+    loadImage(path, cb) {
+<span class="cstat-no" title="statement not covered" >        const img = new Image();</span>
+<span class="cstat-no" title="statement not covered" >        img.onload = <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (cb &amp;&amp; typeof cb === "function") <span class="cstat-no" title="statement not covered" >c</span>b(img);</span>
+        };
+<span class="cstat-no" title="statement not covered" >        img.src = path;</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    },
+    /**
+     * request data from given file and calls callback on success
+     * @function
+     * @memberof module:Helper
+     * @param  {string} url - path to file
+     * @param  {Helper~getFileCallback} callback - function called when data is loaded successfully
+     * @return {Helper} reference of Helper for chaining
+     */
+    getFile(url, callback) {
+<span class="cstat-no" title="statement not covered" >        const xhr = new XMLHttpRequest();</span>
+<span class="cstat-no" title="statement not covered" >        xhr.onreadystatechange = <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (xhr.readyState === XMLHttpRequest.DONE) {</span>
+<span class="cstat-no" title="statement not covered" >                i</span>f (xhr.status === 200 &amp;&amp; callback) <span class="cstat-no" title="statement not covered" >callback(xhr.responseText);</span>
+                else <span class="cstat-no" title="statement not covered" >throw new Error("The JSON submitted seems not valid", xhr);</span>
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        xhr.open("GET", url, true);</span>
+<span class="cstat-no" title="statement not covered" >        xhr.send();</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    },
+    /**
+     * loads a js script
+     * @function
+     * @memberof module:Helper
+     * @param  {String} url - url to be loaded
+     * @param  {Helper~loadScriptCallback} callback - function called when script is loaded successfully
+     * @return {Helper} reference of Helper for chaining
+     */
+    loadScript(url, callback) {
+<span class="cstat-no" title="statement not covered" >        const head = Helper.find('head');</span>
+<span class="cstat-no" title="statement not covered" >        const script = document.createElement('script');</span>
+<span class="cstat-no" title="statement not covered" >        script.type = 'text/javascript';</span>
+<span class="cstat-no" title="statement not covered" >        script.src = url;</span>
+<span class="cstat-no" title="statement not covered" >        script.onreadystatechange = callback;</span>
+<span class="cstat-no" title="statement not covered" >        script.onload = callback;</span>
+<span class="cstat-no" title="statement not covered" >        head.appendChild(script);</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
+    },
+    /**
+     * for each helper
+     * @function
+     * @memberof module:Helper
+     * @param  {Object[]} a - array to iterate over each value
+     * @param  {Helper~forEachCallback} cb - callback for each object
+     * @return {Helper} reference of Helper for chaining
+     */
+    forEach(a, cb) {
+        for (const i in a) {
+            if (a[i] !== undefined &amp;&amp; typeof cb === "function") cb(a[i], i);
+        }
+        return this;
+    },
+    /**
+     * convert degree to radian
+     * @function
+     * @memberof module:Helper
+     * @param {Number} degrees - specified degrees
+     * @return {Number} converted radian
+     */
+    toRadians: degrees =&gt; degrees * Math.PI / 180,
+    /**
+     * checks if mouse is possible
+     * @function
+     * @memberof module:Helper
+     * @return {Boolean} if true, mouse is possible
+     */
+    isMouse: () =&gt; ('onmousedown' in window),
+    /**
+     * checks if touch is possible
+     * @function
+     * @memberof module:Helper
+     * @return {Boolean} if true, touch is possible
+     */
+    isTouch: () =&gt; (('ontouchstart' in window) || (navigator.MaxTouchPoints &gt; 0) || (navigator.msMaxTouchPoints &gt; 0)),
+    /**
+     * checks if IE is used
+     * @function
+     * @memberof module:Helper
+     * @return {Boolean} if true, IE is used
+     */
+    isIE: () =&gt; ((navigator.MaxTouchPoints &gt; 0) || (navigator.msMaxTouchPoints &gt; 0)),
+    /**
+     * gets cross-browser scroll-event
+     * @function
+     * @memberof module:Helper
+     * @return {String} name of scroll event
+     */
+    scrollEvent: () =&gt; "onwheel" in document.createElement("div") ? "wheel" : document.onmousewheel !== undefined ? "mousewheel" : "DOMMouseScroll"
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jun 26 2016 01:04:48 GMT+0200 (CEST)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

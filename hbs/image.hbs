@@ -1,0 +1,21 @@
+<figure class="mjs-image">
+    <img src="{{urlPrefix}}{{url}}{{urlSuffix}}" alt="{{altText}}" />
+</figure>
+<p class="caption">
+    {{#if caption}}{{caption}}{{/if}}
+    {{#if caption}}{{credit}}<span class="credit">{{credit}}</span>{{/if}}
+</p>
+<script type="text/javascript">
+    (function() {
+        var images = document.getElementsByClassName("mjs-image"),
+            img = images[images.length-1],
+            image = img.getElementsByTagName("img")[0];
+        var captions = document.getElementsByClassName("caption"),
+            caption = captions[captions.length-1];
+        var resizeImg = function() {
+            caption.style.width = image.width + "px";
+        };
+        image.onload = resizeImg;
+        window.addEventListener("resize", resizeImg, false);
+    }());
+</script>

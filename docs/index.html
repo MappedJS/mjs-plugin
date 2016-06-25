@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html lang="en-us" hola_ext_inject="disabled">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MappedJS by dazlious</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-light.css" media="screen">
+    <style type="text/css"></style>
+</head>
+
+<body>
+    <section class="page-header">
+        <h1 class="project-name">MappedJS</h1>
+        <h2 class="project-tagline"></h2>
+        <a href="https://github.com/dazlious/MappedJS" class="btn">View on GitHub</a>
+        <a href="https://github.com/dazlious/MappedJS/zipball/master" class="btn">Download .zip</a>
+        <a href="https://github.com/dazlious/MappedJS/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+        <h1>
+            Documentation
+        </h1>
+        <h2 id="modules">Modules</h2>
+<dl>
+<dt><a href="#module_DataEnrichment">DataEnrichment</a></dt>
+<dd><p>enriches delivered data with default values</p>
+</dd>
+<dt><a href="#module_Helper">Helper</a></dt>
+<dd><p>Helper for general purposes</p>
+</dd>
+</dl>
+
+<h2 id="classes">Classes</h2>
+<dl>
+<dt><a href="#Bounds">Bounds</a></dt>
+<dd></dd>
+<dt><a href="#Cluster">Cluster</a></dt>
+<dd></dd>
+<dt><a href="#Drawable">Drawable</a></dt>
+<dd></dd>
+<dt><a href="#Interact">Interact</a></dt>
+<dd></dd>
+<dt><a href="#Label">Label</a></dt>
+<dd></dd>
+<dt><a href="#LatLng">LatLng</a></dt>
+<dd></dd>
+<dt><a href="#MappedJS">MappedJS</a></dt>
+<dd></dd>
+<dt><a href="#MapInformation">MapInformation</a></dt>
+<dd></dd>
+<dt><a href="#Marker">Marker</a></dt>
+<dd></dd>
+<dt><a href="#MarkerClusterer">MarkerClusterer</a></dt>
+<dd></dd>
+<dt><a href="#Point">Point</a></dt>
+<dd></dd>
+<dt><a href="#Publisher">Publisher</a></dt>
+<dd></dd>
+<dt><a href="#Rectangle">Rectangle</a></dt>
+<dd></dd>
+<dt><a href="#StateHandler">StateHandler</a></dt>
+<dd></dd>
+<dt><a href="#Tile">Tile</a></dt>
+<dd></dd>
+<dt><a href="#TileMap">TileMap</a></dt>
+<dd></dd>
+<dt><a href="#ToolTip">ToolTip</a></dt>
+<dd></dd>
+<dt><a href="#View">View</a></dt>
+<dd></dd>
+</dl>
+
+<h2 id="objects">Objects</h2>
+<dl>
+<dt><a href="#Events">Events</a> : <code>object</code></dt>
+<dd><p>Helper for naming events</p>
+</dd>
+</dl>
+
+<p><a name="module_DataEnrichment"></a></p>
+<h2 id="dataenrichment">DataEnrichment</h2>
+<p>enriches delivered data with default values</p>
+<p><strong>Author:</strong> Michael Duve <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#109;&#x64;&#117;&#x76;&#x65;&#64;&#100;&#101;&#x73;&#105;&#x67;&#110;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x6e;&#101;&#116;">&#109;&#x64;&#117;&#x76;&#x65;&#64;&#100;&#101;&#x73;&#105;&#x67;&#110;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x6e;&#101;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<ul>
+<li><a href="#module_DataEnrichment">DataEnrichment</a><ul>
+<li><a href="#module_DataEnrichment.marker">.marker(data)</a> ⇒ <code>Object</code></li>
+<li><a href="#module_DataEnrichment.label">.label(data)</a> ⇒ <code>Object</code></li>
+<li><a href="#module_DataEnrichment.mapSettings">.mapSettings(data)</a> ⇒ <code>Object</code></li>
+<li><a href="#module_DataEnrichment.tooltip">.tooltip(data)</a> ⇒ <code>Object</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="module_DataEnrichment.marker"></a></p>
+<h3 id="dataenrichment-marker-data-code-object-code-">DataEnrichment.marker(data) ⇒ <code>Object</code></h3>
+<p>enriches marker data with all needed data</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_DataEnrichment">DataEnrichment</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched marker data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - specified data for marker</li>
+</ul>
+<p><a name="module_DataEnrichment.label"></a></p>
+<h3 id="dataenrichment-label-data-code-object-code-">DataEnrichment.label(data) ⇒ <code>Object</code></h3>
+<p>enriches label data with all needed data</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_DataEnrichment">DataEnrichment</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched label data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - specified data for label</li>
+</ul>
+<p><a name="module_DataEnrichment.mapSettings"></a></p>
+<h3 id="dataenrichment-mapsettings-data-code-object-code-">DataEnrichment.mapSettings(data) ⇒ <code>Object</code></h3>
+<p>enriches map data with all needed data</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_DataEnrichment">DataEnrichment</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched mapsettings data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - specified data for mapsettings</li>
+</ul>
+<p><a name="module_DataEnrichment.tooltip"></a></p>
+<h3 id="dataenrichment-tooltip-data-code-object-code-">DataEnrichment.tooltip(data) ⇒ <code>Object</code></h3>
+<p>enriches tooltip data with all needed data</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_DataEnrichment">DataEnrichment</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched tooltip data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - specified data for tooltip</li>
+</ul>
+<p><a name="module_Helper"></a></p>
+<h2 id="helper">Helper</h2>
+<p>Helper for general purposes</p>
+<p><strong>Author:</strong> Michael Duve <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#x6d;&#100;&#x75;&#x76;&#x65;&#x40;&#100;&#101;&#x73;&#105;&#x67;&#x6e;&#x6d;&#97;&#x69;&#108;&#46;&#110;&#101;&#x74;">&#x6d;&#100;&#x75;&#x76;&#x65;&#x40;&#100;&#101;&#x73;&#105;&#x67;&#x6e;&#x6d;&#97;&#x69;&#108;&#46;&#110;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<ul>
+<li><a href="#module_Helper">Helper</a><ul>
+<li><a href="#module_Helper.requestJSON">.requestJSON(filename, callback)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.find">.find(elementString, element)</a> ⇒ <code>HTMLElement</code></li>
+<li><a href="#module_Helper.findAll">.findAll(elementString, element)</a> ⇒ <code>NodeList</code></li>
+<li><a href="#module_Helper.show">.show(elem)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.hide">.hide(elem)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.css">.css(elem, css)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.addListener">.addListener(elem, bindTo, fn~addListenerCallback)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.clamp">.clamp(v, min, max)</a> ⇒ <code>Number</code></li>
+<li><a href="#module_Helper.loadImage">.loadImage(cb)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.getFile">.getFile(url, callback)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.loadScript">.loadScript(url, callback)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.forEach">.forEach(a, cb)</a> ⇒ <code>Helper</code></li>
+<li><a href="#module_Helper.toRadians">.toRadians(degrees)</a> ⇒ <code>Number</code></li>
+<li><a href="#module_Helper.isMouse">.isMouse()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#module_Helper.isTouch">.isTouch()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#module_Helper.isIE">.isIE()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#module_Helper.scrollEvent">.scrollEvent()</a> ⇒ <code>String</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="module_Helper.requestJSON"></a></p>
+<h3 id="helper-requestjson-filename-callback-code-helper-code-">Helper.requestJSON(filename, callback) ⇒ <code>Helper</code></h3>
+<p>request json-data from given file and calls callback on success</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - Helper object for chaining<br><strong>Params</strong></p>
+<ul>
+<li>filename <code>String</code> - path to file</li>
+<li>callback <code>Helper~requestJSONCallback</code> - function called when data is loaded successfully</li>
+</ul>
+<p><a name="module_Helper.find"></a></p>
+<h3 id="helper-find-elementstring-element-code-htmlelement-code-">Helper.find(elementString, element) ⇒ <code>HTMLElement</code></h3>
+<p>find an element in DOM</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>HTMLElement</code> - reference to HTMLElement or null if not found<br><strong>Params</strong></p>
+<ul>
+<li>elementString <code>String</code> - = &quot;*&quot; - element to lookup</li>
+<li>element <code>HTMLElement</code> - = null - element to start looking in for</li>
+</ul>
+<p><a name="module_Helper.findAll"></a></p>
+<h3 id="helper-findall-elementstring-element-code-nodelist-code-">Helper.findAll(elementString, element) ⇒ <code>NodeList</code></h3>
+<p>find multiple elements in DOM</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>NodeList</code> - list of found elements<br><strong>Params</strong></p>
+<ul>
+<li>elementString <code>String</code> - = &quot;*&quot; - element to lookup</li>
+<li>element <code>HTMLElement</code> - = null - element to start looking in for</li>
+</ul>
+<p><a name="module_Helper.show"></a></p>
+<h3 id="helper-show-elem-code-helper-code-">Helper.show(elem) ⇒ <code>Helper</code></h3>
+<p>show a HTMLElement</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>elem <code>HTMLElement</code> - specified element</li>
+</ul>
+<p><a name="module_Helper.hide"></a></p>
+<h3 id="helper-hide-elem-code-helper-code-">Helper.hide(elem) ⇒ <code>Helper</code></h3>
+<p>hide a HTMLElement</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>elem <code>HTMLElement</code> - specified element</li>
+</ul>
+<p><a name="module_Helper.css"></a></p>
+<h3 id="helper-css-elem-css-code-helper-code-">Helper.css(elem, css) ⇒ <code>Helper</code></h3>
+<p>applies css to given HTMLElement</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>elem <code>HTMLElement</code> - specified element to apply css to</li>
+<li>css <code>Object</code> - object containing css property and value</li>
+</ul>
+<p><a name="module_Helper.addListener"></a></p>
+<h3 id="helper-addlistener-elem-bindto-fn-addlistenercallback-code-helper-code-">Helper.addListener(elem, bindTo, fn~addListenerCallback) ⇒ <code>Helper</code></h3>
+<p>adds a listener to given HTMLElement</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>elem <code>HTMLElement</code> - specified element to bind listener to</li>
+<li>bindTo <code>String</code> - names of events to bind to, seperated by spaces</li>
+<li>fn~addListenerCallback <code>function</code> - callback-function for binding</li>
+</ul>
+<p><a name="module_Helper.clamp"></a></p>
+<h3 id="helper-clamp-v-min-max-code-number-code-">Helper.clamp(v, min, max) ⇒ <code>Number</code></h3>
+<p>clamps a value to specified min and max</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Number</code> - clamped value<br><strong>Params</strong></p>
+<ul>
+<li>v <code>Number</code> - = 0 - specified value to clamp</li>
+<li>min <code>Number</code> - = v - minimum value to clamp to</li>
+<li>max <code>Number</code> - = v - maximum value to clamp to</li>
+</ul>
+<p><a name="module_Helper.loadImage"></a></p>
+<h3 id="helper-loadimage-cb-code-helper-code-">Helper.loadImage(cb) ⇒ <code>Helper</code></h3>
+<p>loads an image and calls callback on success</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>cb <code>Helper~loadImageCallback</code> - callback-function on success</li>
+</ul>
+<p><a name="module_Helper.getFile"></a></p>
+<h3 id="helper-getfile-url-callback-code-helper-code-">Helper.getFile(url, callback) ⇒ <code>Helper</code></h3>
+<p>request data from given file and calls callback on success</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>url <code>string</code> - path to file</li>
+<li>callback <code>Helper~getFileCallback</code> - function called when data is loaded successfully</li>
+</ul>
+<p><a name="module_Helper.loadScript"></a></p>
+<h3 id="helper-loadscript-url-callback-code-helper-code-">Helper.loadScript(url, callback) ⇒ <code>Helper</code></h3>
+<p>loads a js script</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>url <code>String</code> - url to be loaded</li>
+<li>callback <code>Helper~loadScriptCallback</code> - function called when script is loaded successfully</li>
+</ul>
+<p><a name="module_Helper.forEach"></a></p>
+<h3 id="helper-foreach-a-cb-code-helper-code-">Helper.forEach(a, cb) ⇒ <code>Helper</code></h3>
+<p>for each helper</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Helper</code> - reference of Helper for chaining<br><strong>Params</strong></p>
+<ul>
+<li>a <code>Array.&lt;Object&gt;</code> - array to iterate over each value</li>
+<li>cb <code>Helper~forEachCallback</code> - callback for each object</li>
+</ul>
+<p><a name="module_Helper.toRadians"></a></p>
+<h3 id="helper-toradians-degrees-code-number-code-">Helper.toRadians(degrees) ⇒ <code>Number</code></h3>
+<p>convert degree to radian</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Number</code> - converted radian<br><strong>Params</strong></p>
+<ul>
+<li>degrees <code>Number</code> - specified degrees</li>
+</ul>
+<p><a name="module_Helper.isMouse"></a></p>
+<h3 id="helper-ismouse-code-boolean-code-">Helper.isMouse() ⇒ <code>Boolean</code></h3>
+<p>checks if mouse is possible</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Boolean</code> - if true, mouse is possible<br><a name="module_Helper.isTouch"></a></p>
+<h3 id="helper-istouch-code-boolean-code-">Helper.isTouch() ⇒ <code>Boolean</code></h3>
+<p>checks if touch is possible</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Boolean</code> - if true, touch is possible<br><a name="module_Helper.isIE"></a></p>
+<h3 id="helper-isie-code-boolean-code-">Helper.isIE() ⇒ <code>Boolean</code></h3>
+<p>checks if IE is used</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>Boolean</code> - if true, IE is used<br><a name="module_Helper.scrollEvent"></a></p>
+<h3 id="helper-scrollevent-code-string-code-">Helper.scrollEvent() ⇒ <code>String</code></h3>
+<p>gets cross-browser scroll-event</p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_Helper">Helper</a></code><br><strong>Returns</strong>: <code>String</code> - name of scroll event<br><a name="Bounds"></a></p>
+<h2 id="bounds">Bounds</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Bounds">Bounds</a><ul>
+<li><a href="#new_Bounds_new">new Bounds(northWest, southEast)</a></li>
+<li><a href="#Bounds+width">.width</a> ⇒ <code>Number</code></li>
+<li><a href="#Bounds+height">.height</a> ⇒ <code>Number</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Bounds_new"></a></p>
+<h3 id="new-bounds-northwest-southeast-">new Bounds(northWest, southEast)</h3>
+<p><strong>Returns</strong>: <code><a href="#Bounds">Bounds</a></code> - instance of Bounds for chaining<br><strong>Params</strong></p>
+<ul>
+<li>northWest <code>Number</code> - = new LatLng() - representation of northWest boundary</li>
+<li>southEast <code>Number</code> - = new LatLng() - representation of southEast boundary</li>
+</ul>
+<p><a name="Bounds+width"></a></p>
+<h3 id="bounds-width-code-number-code-">bounds.width ⇒ <code>Number</code></h3>
+<p>get width of boundaries</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Bounds">Bounds</a></code><br><strong>Returns</strong>: <code>Number</code> - distance between east and west boundary<br><a name="Bounds+height"></a></p>
+<h3 id="bounds-height-code-number-code-">bounds.height ⇒ <code>Number</code></h3>
+<p>get height of boundaries</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Bounds">Bounds</a></code><br><strong>Returns</strong>: <code>Number</code> - distance between north and south boundary<br><a name="Cluster"></a></p>
+<h2 id="cluster">Cluster</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Cluster">Cluster</a><ul>
+<li><a href="#new_Cluster_new">new Cluster(container, id)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Cluster+init">.init()</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#Cluster+createClusterMarker">.createClusterMarker()</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#Cluster+bindEvents">.bindEvents()</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#Cluster+unbindEvents">.unbindEvents()</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#Cluster+action">.action()</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#Cluster+addMarker">.addMarker(marker)</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#Cluster+removeFromDOM">.removeFromDOM()</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Cluster.count">.count</a> : <code>Number</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Cluster_new"></a></p>
+<h3 id="new-cluster-container-id-">new Cluster(container, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><strong>Params</strong></p>
+<ul>
+<li>container <code>HTMLDivElement</code> - =  null - parent container of</li>
+<li>id <code>Number</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="Cluster+init"></a></p>
+<h3 id="cluster-init-code-cluster-cluster-code-">cluster.init() ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>initialize a cluster</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Cluster">Cluster</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><a name="Cluster+createClusterMarker"></a></p>
+<h3 id="cluster-createclustermarker-code-cluster-cluster-code-">cluster.createClusterMarker() ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>create cluster for markers</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Cluster">Cluster</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><a name="Cluster+bindEvents"></a></p>
+<h3 id="cluster-bindevents-code-cluster-cluster-code-">cluster.bindEvents() ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>bind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Cluster">Cluster</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><a name="Cluster+unbindEvents"></a></p>
+<h3 id="cluster-unbindevents-code-cluster-cluster-code-">cluster.unbindEvents() ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>unbind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Cluster">Cluster</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><a name="Cluster+action"></a></p>
+<h3 id="cluster-action-code-cluster-cluster-code-">cluster.action() ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>execute bound action of cluster</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Cluster">Cluster</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><a name="Cluster+addMarker"></a></p>
+<h3 id="cluster-addmarker-marker-code-cluster-cluster-code-">cluster.addMarker(marker) ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>adds a marker to the cluster</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Cluster">Cluster</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><strong>Params</strong></p>
+<ul>
+<li>marker <code><a href="#Marker">Marker</a></code> - specified marker to be added to the cluster</li>
+</ul>
+<p><a name="Cluster+removeFromDOM"></a></p>
+<h3 id="cluster-removefromdom-code-cluster-cluster-code-">cluster.removeFromDOM() ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>remove this cluster</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Cluster">Cluster</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - instance of Cluster for chaining<br><a name="Cluster.count"></a></p>
+<h3 id="cluster-count-code-number-code-">Cluster.count : <code>Number</code></h3>
+<p>counts all clusters</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Cluster">Cluster</a></code><br><a name="Drawable"></a></p>
+<h2 id="drawable">Drawable</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Drawable">Drawable</a><ul>
+<li><a href="#new_Drawable_new">new Drawable(id, x, y, w, h)</a></li>
+<li><a href="#Drawable+view">.view</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Drawable+level">.level</a> ⇒ <code>Number</code></li>
+<li><a href="#Drawable+viewport">.viewport</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Drawable+distortionFactor">.distortionFactor</a> ⇒ <code>Number</code></li>
+<li><a href="#Drawable+offsetToCenter">.offsetToCenter</a> ⇒ <code>Number</code></li>
+<li><a href="#Drawable+centerPosition">.centerPosition</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#Drawable+zoomFactor">.zoomFactor</a> ⇒ <code>Number</code></li>
+<li><a href="#Drawable+bounds">.bounds</a> ⇒ <code><a href="#Bounds">Bounds</a></code></li>
+<li><a href="#Drawable+draw">.draw()</a> ⇒ <code><a href="#Drawable">Drawable</a></code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Drawable_new"></a></p>
+<h3 id="new-drawable-id-x-y-w-h-">new Drawable(id, x, y, w, h)</h3>
+<p><strong>Returns</strong>: <code><a href="#Drawable">Drawable</a></code> - instance of Drawable for chaining<br><strong>Params</strong></p>
+<ul>
+<li>id <code>Number</code> <code> = 0</code> - = 0 - id of parent instance</li>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - position x of element</li>
+<li>y <code>Number</code> <code> = 0</code> - = 0 - position y of element</li>
+<li>w <code>Number</code> <code> = 0</code> - = 0 - width of element</li>
+<li>h <code>Number</code> <code> = 0</code> - = 0 - height of element</li>
+</ul>
+<p><a name="Drawable+view"></a></p>
+<h3 id="drawable-view-code-rectangle-rectangle-code-">drawable.view ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>stores mapdimension information</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - map<br><a name="Drawable+level"></a></p>
+<h3 id="drawable-level-code-number-code-">drawable.level ⇒ <code>Number</code></h3>
+<p>stores level information</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code>Number</code> - level<br><a name="Drawable+viewport"></a></p>
+<h3 id="drawable-viewport-code-rectangle-rectangle-code-">drawable.viewport ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>stores viewport information</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - viewport<br><a name="Drawable+distortionFactor"></a></p>
+<h3 id="drawable-distortionfactor-code-number-code-">drawable.distortionFactor ⇒ <code>Number</code></h3>
+<p>stores distortion information</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code>Number</code> - distortionFactor<br><a name="Drawable+offsetToCenter"></a></p>
+<h3 id="drawable-offsettocenter-code-number-code-">drawable.offsetToCenter ⇒ <code>Number</code></h3>
+<p>stores x offset to center</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code>Number</code> - offsetToCenter<br><a name="Drawable+centerPosition"></a></p>
+<h3 id="drawable-centerposition-code-latlng-latlng-code-">drawable.centerPosition ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>stores latlng position of map center</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - center<br><a name="Drawable+zoomFactor"></a></p>
+<h3 id="drawable-zoomfactor-code-number-code-">drawable.zoomFactor ⇒ <code>Number</code></h3>
+<p>stores current zoom factor</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code>Number</code> - zoomFactor<br><a name="Drawable+bounds"></a></p>
+<h3 id="drawable-bounds-code-bounds-bounds-code-">drawable.bounds ⇒ <code><a href="#Bounds">Bounds</a></code></h3>
+<p>stores boundary information</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code><a href="#Bounds">Bounds</a></code> - bounds<br><a name="Drawable+draw"></a></p>
+<h3 id="drawable-draw-code-drawable-drawable-code-">drawable.draw() ⇒ <code><a href="#Drawable">Drawable</a></code></h3>
+<p>execute on displaying instance</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Drawable">Drawable</a></code><br><strong>Returns</strong>: <code><a href="#Drawable">Drawable</a></code> - instance of Drawable for chaining<br><a name="Interact"></a></p>
+<h2 id="interact">Interact</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Interact">Interact</a><ul>
+<li><a href="#new_Interact_new">new Interact(settings)</a></li>
+<li><a href="#Interact+timeToLastMove">.timeToLastMove</a> ⇒ <code>Number</code></li>
+<li><a href="#Interact+time">.time</a> ⇒ <code>Number</code></li>
+<li><a href="#Interact+getDefaultSettings">.getDefaultSettings()</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+getDefaultCallbacks">.getDefaultCallbacks()</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+getDefaultEventNames">.getDefaultEventNames()</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+getDefaultData">.getDefaultData()</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleViewport">.handleViewport(viewport)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+init">.init(container)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+bindEvents">.bindEvents()</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+bindIEEvents">.bindIEEvents()</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+bindTouchEvents">.bindTouchEvents()</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+bindMouseEvents">.bindMouseEvents()</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+preHandle">.preHandle(event)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+scrollHandler">.scrollHandler(event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+normalizeWheelDelta">.normalizeWheelDelta(e)</a> ⇒ <code>Number</code></li>
+<li><a href="#Interact+isPointerEvent">.isPointerEvent(e)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+calculateStart">.calculateStart(e)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handlePointerEventStart">.handlePointerEventStart(data, e)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleTouchEventStart">.handleTouchEventStart(data, e)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+getPointerArray">.getPointerArray()</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleMultitouchStart">.handleMultitouchStart(positionsArray)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleSingletouchStart">.handleSingletouchStart(position)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+takeActionStart">.takeActionStart(action)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+startHandler">.startHandler(event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+clearTimeouts">.clearTimeouts(timeout)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+calculateMove">.calculateMove(e)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handlePointerEventMove">.handlePointerEventMove(data, e)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleTouchEventMove">.handleTouchEventMove(data, e)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleTouchEvent">.handleTouchEvent(data, e, fnSingle, fnMulti)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleMultitouchMove">.handleMultitouchMove(positionsArray)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleSingletouchMove">.handleSingletouchMove(position)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+moveHandler">.moveHandler(event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+handlePinchAndZoom">.handlePinchAndZoom()</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+positionDidNotChange">.positionDidNotChange(e)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+calculateEnd">.calculateEnd(e)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+handleSingletouchEnd">.handleSingletouchEnd(position)</a> ⇒ <code>Object</code></li>
+<li><a href="#Interact+takeActionEnd">.takeActionEnd(action)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+endHandler">.endHandler(event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+handleSwipeAndFlick">.handleSwipeAndFlick()</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+handleMultitouchEnd">.handleMultitouchEnd(e)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+pinchBalance">.pinchBalance()</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+getSwipeDirections">.getSwipeDirections(direction)</a> ⇒ <code>Array.&lt;String&gt;</code></li>
+<li><a href="#Interact+setTimeoutForEvent">.setTimeoutForEvent(callback, timeout, args, holdTimeout)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+eventCallback">.eventCallback(callback, args)</a> ⇒ <code><a href="#Interact">Interact</a></code></li>
+<li><a href="#Interact+getRelativePosition">.getRelativePosition(e)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Interact+getAbsolutePosition">.getAbsolutePosition(point)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Interact+getScrollDirection">.getScrollDirection(event)</a> ⇒ <code>Array.&lt;String&gt;</code></li>
+<li><a href="#Interact+isDownDirection">.isDownDirection(axis, event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+isUpDirection">.isUpDirection(axis, event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+isRightDirection">.isRightDirection(axis, event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+isLeftDirection">.isLeftDirection(axis, event)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Interact+getEvent">.getEvent(e)</a> ⇒ <code>Event</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Interact_new"></a></p>
+<h3 id="new-interact-settings-">new Interact(settings)</h3>
+<p><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - new instance<br><strong>Params</strong></p>
+<ul>
+<li>settings <code>Object</code> - = {} - all the settings<ul>
+<li>.container <code>String</code> | <code>HTMLElement</code> - = &quot;.interact-container&quot; - Container, either string or dom-object</li>
+<li>.timeTreshold <code>Object</code> - = {} - settings for the timing tresholds<ul>
+<li>.tap <code>Number</code> - = 200 - timing treshold for tap</li>
+<li>.hold <code>Number</code> - = 500 - timing treshold for hold</li>
+<li>.swipe <code>Number</code> - = 300 - timing treshold for swipe</li>
+<li>.flick <code>Number</code> - = 30 - timing treshold for flick</li>
+</ul>
+</li>
+<li>.distanceTreshold <code>Object</code> - = {} - settings for the distance tresholds<ul>
+<li>.swipe <code>Number</code> - = 200 - distance treshold for swipe</li>
+</ul>
+</li>
+<li>.overwriteViewportSettings <code>Boolean</code> | <code>string</code> - = false - on true prevents pinching, can be a custom string too</li>
+<li>.stopPropagation <code>Boolean</code> - = true - on true stops the propagation of events</li>
+<li>.preventDefault <code>Boolean</code> - = true - on true prevents the default actions of events</li>
+<li>.autoFireHold <code>Boolean</code> - = false - if set to false hold-event is not fired</li>
+<li>.pinchBalanceTime <code>Number</code> - = 50 - prevents from firing too much pinching events</li>
+<li>.callbacks <code>Object</code> - = {} - settings for the callback-functions<ul>
+<li>.tap <code>function</code> - = null - callback-function for tap</li>
+<li>.tapHold <code>function</code> - = null - callback-function for tapHold</li>
+<li>.doubletap <code>function</code> - = null - callback-function for doubletap</li>
+<li>.hold <code>function</code> - = null - callback-function for hold</li>
+<li>.pan <code>function</code> - = null - callback-function for pan</li>
+<li>.swipe <code>function</code> - = null - callback-function for swipe</li>
+<li>.flick <code>function</code> - = null - callback-function for flick</li>
+<li>.zoom <code>function</code> - = null - callback-function for zoom</li>
+<li>.wheel <code>function</code> - = null - callback-function for wheel</li>
+<li>.pinch <code>function</code> - = null - callback-function for pinch</li>
+</ul>
+</li>
+<li>.events <code>Object</code> - = {} - settings all eventnames<ul>
+<li>.start <code>Object</code> - = {} - settings all start eventnames<ul>
+<li>.touch <code>Object</code> - = (&quot;MSPointerDown pointerdown&quot; || &quot;touchstart&quot;) - settings start touch eventnames</li>
+<li>.mouse <code>Object</code> - = (&quot;MSPointerDown pointerdown&quot; || &quot;mousedown&quot;) - settings start mouse eventnames</li>
+</ul>
+</li>
+<li>.move <code>Object</code> - = {} - settings all move eventnames<ul>
+<li>.touch <code>Object</code> - = (&quot;MSPointerMove pointermove&quot; || &quot;touchmove&quot;) - settings move touch eventnames</li>
+<li>.mouse <code>Object</code> - = (&quot;MSPointerMove pointermove&quot; || &quot;mousemove&quot;) - settings move mouse eventnames</li>
+</ul>
+</li>
+<li>.end <code>Object</code> - = {} - settings all end eventnames<ul>
+<li>.touch <code>Object</code> - = (&quot;MSPointerUp pointerup&quot; || &quot;touchend&quot;) - settings end touch eventnames</li>
+<li>.mouse <code>Object</code> - = (&quot;MSPointerUp pointerup&quot; || &quot;mouseup&quot;) - settings end mouse eventnames</li>
+</ul>
+</li>
+<li>.leave <code>Object</code> - = {} - settings all leave eventnames<ul>
+<li>.touch <code>Object</code> - = (&quot;MSPointerLeave pointerleave&quot; || &quot;touchleave&quot;) - settings leave touch eventnames</li>
+<li>.mouse <code>Object</code> - = (&quot;MSPointerLeave pointerleave&quot; || &quot;mouseleave&quot;) - settings leave mouse eventnames</li>
+</ul>
+</li>
+<li>.scroll <code>String</code> - = (&quot;wheel&quot; || &quot;mousewhell&quot; || &quot;DOMMouseScroll&quot;) - settings all scroll eventnames</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="Interact+timeToLastMove"></a></p>
+<h3 id="interact-timetolastmove-code-number-code-">interact.timeToLastMove ⇒ <code>Number</code></h3>
+<p>get time difference to last</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Number</code> - difference<br><a name="Interact+time"></a></p>
+<h3 id="interact-time-code-number-code-">interact.time ⇒ <code>Number</code></h3>
+<p>get time difference to start</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Number</code> - difference<br><a name="Interact+getDefaultSettings"></a></p>
+<h3 id="interact-getdefaultsettings-code-object-code-">interact.getDefaultSettings() ⇒ <code>Object</code></h3>
+<p>get the default settings</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - settings<br><a name="Interact+getDefaultCallbacks"></a></p>
+<h3 id="interact-getdefaultcallbacks-code-object-code-">interact.getDefaultCallbacks() ⇒ <code>Object</code></h3>
+<p>get default callbacks</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - callbacks<br><a name="Interact+getDefaultEventNames"></a></p>
+<h3 id="interact-getdefaulteventnames-code-object-code-">interact.getDefaultEventNames() ⇒ <code>Object</code></h3>
+<p>get default eventnames</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - eventnames<br><a name="Interact+getDefaultData"></a></p>
+<h3 id="interact-getdefaultdata-code-object-code-">interact.getDefaultData() ⇒ <code>Object</code></h3>
+<p>get default data</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - data<br><a name="Interact+handleViewport"></a></p>
+<h3 id="interact-handleviewport-viewport-code-interact-interact-code-">interact.handleViewport(viewport) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>handles the overwrite of viewport meta</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><strong>Params</strong></p>
+<ul>
+<li>viewport <code>Boolean</code> | <code>String</code> - specified viewport option</li>
+</ul>
+<p><a name="Interact+init"></a></p>
+<h3 id="interact-init-container-code-interact-interact-code-">interact.init(container) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>initializes class settings and bindings</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><strong>Params</strong></p>
+<ul>
+<li>container <code>HTMLElement</code> | <code>String</code> - Container, either string or DOM object</li>
+</ul>
+<p><a name="Interact+bindEvents"></a></p>
+<h3 id="interact-bindevents-code-interact-interact-code-">interact.bindEvents() ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>binds all needed events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><a name="Interact+bindIEEvents"></a></p>
+<h3 id="interact-bindieevents-code-interact-interact-code-">interact.bindIEEvents() ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>binds all needed events for IE</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><a name="Interact+bindTouchEvents"></a></p>
+<h3 id="interact-bindtouchevents-code-interact-interact-code-">interact.bindTouchEvents() ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>binds all needed events for touch devices</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><a name="Interact+bindMouseEvents"></a></p>
+<h3 id="interact-bindmouseevents-code-interact-interact-code-">interact.bindMouseEvents() ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>binds all needed events for mouse devices</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><a name="Interact+preHandle"></a></p>
+<h3 id="interact-prehandle-event-code-object-code-">interact.preHandle(event) ⇒ <code>Object</code></h3>
+<p>pre handle all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - normalized Event<br><strong>Params</strong></p>
+<ul>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+scrollHandler"></a></p>
+<h3 id="interact-scrollhandler-event-code-boolean-code-">interact.scrollHandler(event) ⇒ <code>Boolean</code></h3>
+<p>handles cross-browser and -device scroll</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - always returns false<br><strong>Params</strong></p>
+<ul>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+normalizeWheelDelta"></a></p>
+<h3 id="interact-normalizewheeldelta-e-code-number-code-">interact.normalizeWheelDelta(e) ⇒ <code>Number</code></h3>
+<p>Solution from <a href="http://jsfiddle.net/uNeBr/">http://jsfiddle.net/uNeBr/</a></p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Number</code> - normalized wheel delta<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+isPointerEvent"></a></p>
+<h3 id="interact-ispointerevent-e-code-boolean-code-">interact.isPointerEvent(e) ⇒ <code>Boolean</code></h3>
+<p>check if event is a PointerEvent (IE)</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Whether event is PointerEvent<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+calculateStart"></a></p>
+<h3 id="interact-calculatestart-e-code-object-code-">interact.calculateStart(e) ⇒ <code>Object</code></h3>
+<p>calculation to be made at start-handler</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - calculated data<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handlePointerEventStart"></a></p>
+<h3 id="interact-handlepointereventstart-data-e-code-object-code-">interact.handlePointerEventStart(data, e) ⇒ <code>Object</code></h3>
+<p>handle PointerEvent calculations</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - current data</li>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handleTouchEventStart"></a></p>
+<h3 id="interact-handletoucheventstart-data-e-code-object-code-">interact.handleTouchEventStart(data, e) ⇒ <code>Object</code></h3>
+<p>handle TouchEvent calculations for start</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - current data</li>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+getPointerArray"></a></p>
+<h3 id="interact-getpointerarray-code-object-code-">interact.getPointerArray() ⇒ <code>Object</code></h3>
+<p>get array of pointers (IE)</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - array of pointerIDs<br><a name="Interact+handleMultitouchStart"></a></p>
+<h3 id="interact-handlemultitouchstart-positionsarray-code-object-code-">interact.handleMultitouchStart(positionsArray) ⇒ <code>Object</code></h3>
+<p>handles multitouch for start</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>positionsArray <code>Object</code> - array of positions</li>
+</ul>
+<p><a name="Interact+handleSingletouchStart"></a></p>
+<h3 id="interact-handlesingletouchstart-position-code-object-code-">interact.handleSingletouchStart(position) ⇒ <code>Object</code></h3>
+<p>handles singletouch for start</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>position <code><a href="#Point">Point</a></code> - position of touch</li>
+</ul>
+<p><a name="Interact+takeActionStart"></a></p>
+<h3 id="interact-takeactionstart-action-code-interact-interact-code-">interact.takeActionStart(action) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>handle action at start event handler</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - instance of Interact for chaining<br><strong>Params</strong></p>
+<ul>
+<li>action <code>String</code> - last action made</li>
+</ul>
+<p><a name="Interact+startHandler"></a></p>
+<h3 id="interact-starthandler-event-code-boolean-code-">interact.startHandler(event) ⇒ <code>Boolean</code></h3>
+<p>handles cross-browser and -device start-event</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - always returns false<br><strong>Params</strong></p>
+<ul>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+clearTimeouts"></a></p>
+<h3 id="interact-cleartimeouts-timeout-code-interact-interact-code-">interact.clearTimeouts(timeout) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>clear timeout helper</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - instance of Interact for chaining<br><strong>Params</strong></p>
+<ul>
+<li>timeout <code>Object</code> - timeout object to be cleared</li>
+</ul>
+<p><a name="Interact+calculateMove"></a></p>
+<h3 id="interact-calculatemove-e-code-object-code-">interact.calculateMove(e) ⇒ <code>Object</code></h3>
+<p>calculation to be made at move-handler</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - calculated data<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handlePointerEventMove"></a></p>
+<h3 id="interact-handlepointereventmove-data-e-code-object-code-">interact.handlePointerEventMove(data, e) ⇒ <code>Object</code></h3>
+<p>handle PointerEvent at moving (IE)</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - specified input data</li>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handleTouchEventMove"></a></p>
+<h3 id="interact-handletoucheventmove-data-e-code-object-code-">interact.handleTouchEventMove(data, e) ⇒ <code>Object</code></h3>
+<p>handle TouchEvent calculations for move</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - current data</li>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handleTouchEvent"></a></p>
+<h3 id="interact-handletouchevent-data-e-fnsingle-fnmulti-code-object-code-">interact.handleTouchEvent(data, e, fnSingle, fnMulti) ⇒ <code>Object</code></h3>
+<p>handles touch events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - current data</li>
+<li>e <code>Event</code> - event</li>
+<li>fnSingle <code>function</code> - callback for singletouch</li>
+<li>fnMulti <code>function</code> - callback for multitouch</li>
+</ul>
+<p><a name="Interact+handleMultitouchMove"></a></p>
+<h3 id="interact-handlemultitouchmove-positionsarray-code-object-code-">interact.handleMultitouchMove(positionsArray) ⇒ <code>Object</code></h3>
+<p>handles multitouch for move</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>positionsArray <code>Object</code> - array of positions</li>
+</ul>
+<p><a name="Interact+handleSingletouchMove"></a></p>
+<h3 id="interact-handlesingletouchmove-position-code-object-code-">interact.handleSingletouchMove(position) ⇒ <code>Object</code></h3>
+<p>handles singletouch for move</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>position <code><a href="#Point">Point</a></code> - position</li>
+</ul>
+<p><a name="Interact+moveHandler"></a></p>
+<h3 id="interact-movehandler-event-code-boolean-code-">interact.moveHandler(event) ⇒ <code>Boolean</code></h3>
+<p>handles cross-browser and -device move-event</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - always returns false<br><strong>Params</strong></p>
+<ul>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handlePinchAndZoom"></a></p>
+<h3 id="interact-handlepinchandzoom-code-interact-interact-code-">interact.handlePinchAndZoom() ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>handles pinch and zoom</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - instance of Interact for chaining<br><a name="Interact+positionDidNotChange"></a></p>
+<h3 id="interact-positiondidnotchange-e-code-boolean-code-">interact.positionDidNotChange(e) ⇒ <code>Boolean</code></h3>
+<p>check if position has been changed</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Whether or not position has changed<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+calculateEnd"></a></p>
+<h3 id="interact-calculateend-e-code-object-code-">interact.calculateEnd(e) ⇒ <code>Object</code></h3>
+<p>calculation to be made at end-handler</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - calculated data<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handleSingletouchEnd"></a></p>
+<h3 id="interact-handlesingletouchend-position-code-object-code-">interact.handleSingletouchEnd(position) ⇒ <code>Object</code></h3>
+<p>handles singletouch for end</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Object</code> - manipulated enriched data<br><strong>Params</strong></p>
+<ul>
+<li>position <code><a href="#Point">Point</a></code> - position</li>
+</ul>
+<p><a name="Interact+takeActionEnd"></a></p>
+<h3 id="interact-takeactionend-action-code-interact-interact-code-">interact.takeActionEnd(action) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>handle action at end event handler</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - instance of Interact for chaining<br><strong>Params</strong></p>
+<ul>
+<li>action <code>String</code> - last action made</li>
+</ul>
+<p><a name="Interact+endHandler"></a></p>
+<h3 id="interact-endhandler-event-code-boolean-code-">interact.endHandler(event) ⇒ <code>Boolean</code></h3>
+<p>handles cross-browser and -device end-event</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - always returns false<br><strong>Params</strong></p>
+<ul>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+handleSwipeAndFlick"></a></p>
+<h3 id="interact-handleswipeandflick-code-interact-interact-code-">interact.handleSwipeAndFlick() ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>handles flick and swipe events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - instance of Interact for chaining<br><a name="Interact+handleMultitouchEnd"></a></p>
+<h3 id="interact-handlemultitouchend-e-code-interact-interact-code-">interact.handleMultitouchEnd(e) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>handles multitouch for end</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - instance of Interact for chaining<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+pinchBalance"></a></p>
+<h3 id="interact-pinchbalance-code-interact-interact-code-">interact.pinchBalance() ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>balances pinching after release of finger</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - instance of Interact for chaining<br><a name="Interact+getSwipeDirections"></a></p>
+<h3 id="interact-getswipedirections-direction-code-array-lt-string-gt-code-">interact.getSwipeDirections(direction) ⇒ <code>Array.&lt;String&gt;</code></h3>
+<p>Returns an array of strings, representing the directions</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - returns an array representing the directions as strings<br><strong>Params</strong></p>
+<ul>
+<li>direction <code><a href="#Point">Point</a></code> - the specified direction in pixel</li>
+</ul>
+<p><a name="Interact+setTimeoutForEvent"></a></p>
+<h3 id="interact-settimeoutforevent-callback-timeout-args-holdtimeout-code-interact-interact-code-">interact.setTimeoutForEvent(callback, timeout, args, holdTimeout) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>Helper for setting a timeout for events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><strong>Params</strong></p>
+<ul>
+<li>callback <code>function</code> - function to be called</li>
+<li>timeout <code>Number</code> - time in milliseconds</li>
+<li>args <code>Array.&lt;Object&gt;</code> - array of arguments</li>
+<li>holdTimeout <code>Boolean</code> - if true, a different variable will be used</li>
+</ul>
+<p><a name="Interact+eventCallback"></a></p>
+<h3 id="interact-eventcallback-callback-args-code-interact-interact-code-">interact.eventCallback(callback, args) ⇒ <code><a href="#Interact">Interact</a></code></h3>
+<p>Eventhandler for handling the callbacks</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Interact">Interact</a></code> - Returns this instance<br><strong>Params</strong></p>
+<ul>
+<li>callback <code>function</code> - function to be called</li>
+<li>args <code>Array.&lt;object&gt;</code> - arguments for the function</li>
+</ul>
+<p><a name="Interact+getRelativePosition"></a></p>
+<h3 id="interact-getrelativeposition-e-code-point-point-code-">interact.getRelativePosition(e) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get the relative position of clientX and clientY</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - calculated relative position<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+getAbsolutePosition"></a></p>
+<h3 id="interact-getabsoluteposition-point-code-point-point-code-">interact.getAbsolutePosition(point) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get the absolute position of clientX and clientY</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - calculated absolute position<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - specified point</li>
+</ul>
+<p><a name="Interact+getScrollDirection"></a></p>
+<h3 id="interact-getscrolldirection-event-code-array-lt-string-gt-code-">interact.getScrollDirection(event) ⇒ <code>Array.&lt;String&gt;</code></h3>
+<p>get scroll direction from event</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - an array with scroll directions<br><strong>Params</strong></p>
+<ul>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+isDownDirection"></a></p>
+<h3 id="interact-isdowndirection-axis-event-code-boolean-code-">interact.isDownDirection(axis, event) ⇒ <code>Boolean</code></h3>
+<p>checks if direction is down</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Whether or not direction is down<br><strong>Params</strong></p>
+<ul>
+<li>axis <code>Number</code> - what axis is used</li>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+isUpDirection"></a></p>
+<h3 id="interact-isupdirection-axis-event-code-boolean-code-">interact.isUpDirection(axis, event) ⇒ <code>Boolean</code></h3>
+<p>checks if direction is up</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Whether or not direction is up<br><strong>Params</strong></p>
+<ul>
+<li>axis <code>Number</code> - what axis is used</li>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+isRightDirection"></a></p>
+<h3 id="interact-isrightdirection-axis-event-code-boolean-code-">interact.isRightDirection(axis, event) ⇒ <code>Boolean</code></h3>
+<p>checks if direction is right</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Whether or not direction is right<br><strong>Params</strong></p>
+<ul>
+<li>axis <code>Number</code> - what axis is used</li>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+isLeftDirection"></a></p>
+<h3 id="interact-isleftdirection-axis-event-code-boolean-code-">interact.isLeftDirection(axis, event) ⇒ <code>Boolean</code></h3>
+<p>checks if direction is left</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Whether or not direction is left<br><strong>Params</strong></p>
+<ul>
+<li>axis <code>Number</code> - what axis is used</li>
+<li>event <code>Event</code> - event</li>
+</ul>
+<p><a name="Interact+getEvent"></a></p>
+<h3 id="interact-getevent-e-code-event-code-">interact.getEvent(e) ⇒ <code>Event</code></h3>
+<p>Get event helper, applies event-fix too</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Interact">Interact</a></code><br><strong>Returns</strong>: <code>Event</code> - cross-device event<br><strong>Params</strong></p>
+<ul>
+<li>e <code>Event</code> - event</li>
+</ul>
+<p><a name="Label"></a></p>
+<h2 id="label">Label</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Label">Label</a><ul>
+<li><a href="#new_Label_new">new Label(settings, context, id)</a></li>
+<li><a href="#Label+position">.position</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Label+nearestPositionToCenter">.nearestPositionToCenter</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#Label+getNearestPositionToCenter">.getNearestPositionToCenter()</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#Label+draw">.draw()</a> ⇒ <code><a href="#Label">Label</a></code></li>
+<li><a href="#Label+decideWhatToDraw">.decideWhatToDraw(text, icon)</a> ⇒ <code>function</code></li>
+<li><a href="#Label+drawText">.drawText(pos)</a></li>
+<li><a href="#Label+drawIcon">.drawIcon(pos)</a></li>
+<li><a href="#Label+drawCircleIcon">.drawCircleIcon(size)</a> ⇒ <code>function</code></li>
+<li><a href="#Label+drawSquareIcon">.drawSquareIcon(size)</a> ⇒ <code>function</code></li>
+<li><a href="#Label+drawImageIcon">.drawImageIcon(image, size, offset)</a> ⇒ <code>function</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Label_new"></a></p>
+<h3 id="new-label-settings-context-id-">new Label(settings, context, id)</h3>
+<p>/**</p>
+<p><strong>Returns</strong>: <code><a href="#Label">Label</a></code> - instance of Label for chaining<br><strong>Params</strong></p>
+<ul>
+<li>settings <code>Object</code> - = {} - settings for label</li>
+<li>context <code>CanvasRenderingContext2D</code> - = null - canvas context</li>
+<li>id <code>Number</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="Label+position"></a></p>
+<h3 id="label-position-code-point-point-code-">label.position ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>position of label</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - position<br><a name="Label+nearestPositionToCenter"></a></p>
+<h3 id="label-nearestpositiontocenter-code-latlng-latlng-code-">label.nearestPositionToCenter ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>find nearest position to mapcenter</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - nearest position<br><a name="Label+getNearestPositionToCenter"></a></p>
+<h3 id="label-getnearestpositiontocenter-code-latlng-latlng-code-">label.getNearestPositionToCenter() ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>find nearest position to mapcenter</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - nearest position<br><a name="Label+draw"></a></p>
+<h3 id="label-draw-code-label-label-code-">label.draw() ⇒ <code><a href="#Label">Label</a></code></h3>
+<p>draw a label</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code><a href="#Label">Label</a></code> - instance of Label for chaining<br><a name="Label+decideWhatToDraw"></a></p>
+<h3 id="label-decidewhattodraw-text-icon-code-function-code-">label.decideWhatToDraw(text, icon) ⇒ <code>function</code></h3>
+<p>currying function for drawing text, icon or both</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code>function</code> - function to be called on draw<br><strong>Params</strong></p>
+<ul>
+<li>text <code>Object</code> - data for text</li>
+<li>icon <code>Object</code> - data for icon</li>
+</ul>
+<p><a name="Label+drawText"></a></p>
+<h3 id="label-drawtext-pos-">label.drawText(pos)</h3>
+<p>draw text of label</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Params</strong></p>
+<ul>
+<li>pos <code><a href="#Point">Point</a></code> - origin of label</li>
+</ul>
+<p><a name="Label+drawIcon"></a></p>
+<h3 id="label-drawicon-pos-">label.drawIcon(pos)</h3>
+<p>draw icon of label</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Params</strong></p>
+<ul>
+<li>pos <code><a href="#Point">Point</a></code> - origin of label</li>
+</ul>
+<p><a name="Label+drawCircleIcon"></a></p>
+<h3 id="label-drawcircleicon-size-code-function-code-">label.drawCircleIcon(size) ⇒ <code>function</code></h3>
+<p>currying function for drawing a circle</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code>function</code> - function for drawing circle icon<br><strong>Params</strong></p>
+<ul>
+<li>size <code>Number</code> - size of circle</li>
+</ul>
+<p><a name="Label+drawSquareIcon"></a></p>
+<h3 id="label-drawsquareicon-size-code-function-code-">label.drawSquareIcon(size) ⇒ <code>function</code></h3>
+<p>currying function for drawing a square</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code>function</code> - function for drawing square icon<br><strong>Params</strong></p>
+<ul>
+<li>size <code>Number</code> - size of square</li>
+</ul>
+<p><a name="Label+drawImageIcon"></a></p>
+<h3 id="label-drawimageicon-image-size-offset-code-function-code-">label.drawImageIcon(image, size, offset) ⇒ <code>function</code></h3>
+<p>currying function for drawing an image</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Label">Label</a></code><br><strong>Returns</strong>: <code>function</code> - function for drawing image icon<br><strong>Params</strong></p>
+<ul>
+<li>image <code>Image</code> - image to be drawn</li>
+<li>size <code><a href="#Point">Point</a></code> - dimension of image</li>
+<li>offset <code><a href="#Point">Point</a></code> - offset of image</li>
+</ul>
+<p><a name="LatLng"></a></p>
+<h2 id="latlng">LatLng</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#LatLng">LatLng</a><ul>
+<li><a href="#new_LatLng_new">new LatLng(lat, lng)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#LatLng+length">.length</a> ⇒ <code>Number</code></li>
+<li><a href="#LatLng+clone">.clone</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#LatLng+distance">.distance(latlng)</a> ⇒ <code>Number</code></li>
+<li><a href="#LatLng+substract">.substract(coord)</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#LatLng+add">.add(coord)</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#LatLng+divide">.divide(factorLat, factorLng)</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#LatLng+multiply">.multiply(factorLat, factorLng)</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#LatLng+equals">.equals(coord)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#LatLng+toString">.toString()</a> ⇒ <code>String</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#LatLng.createFromLatLng">.createFromLatLng(LatLng)</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_LatLng_new"></a></p>
+<h3 id="new-latlng-lat-lng-">new LatLng(lat, lng)</h3>
+<p><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - instance of LatLng for chaining<br><strong>Params</strong></p>
+<ul>
+<li>lat <code>Number</code> <code> = 0</code> - = 0 - representation of latitude</li>
+<li>lng <code>Number</code> <code> = 0</code> - = 0 - representation of longitude</li>
+</ul>
+<p><a name="LatLng+length"></a></p>
+<h3 id="latlng-length-code-number-code-">latLng.length ⇒ <code>Number</code></h3>
+<p>length of a latlng</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code>Number</code> - length of latlng<br><a name="LatLng+clone"></a></p>
+<h3 id="latlng-clone-code-latlng-latlng-code-">latLng.clone ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>gets a clone of this latlng</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - create a copy<br><a name="LatLng+distance"></a></p>
+<h3 id="latlng-distance-latlng-code-number-code-">latLng.distance(latlng) ⇒ <code>Number</code></h3>
+<p>calculates distance between this and specified latlng</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code>Number</code> - distance<br><strong>Params</strong></p>
+<ul>
+<li>latlng <code><a href="#LatLng">LatLng</a></code> - = new LatLng() - specified latlng</li>
+</ul>
+<p><a name="LatLng+substract"></a></p>
+<h3 id="latlng-substract-coord-code-latlng-latlng-code-">latLng.substract(coord) ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>substract specified coord from this coordinate</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - instance of LatLng for chaining<br><strong>Params</strong></p>
+<ul>
+<li>coord <code><a href="#LatLng">LatLng</a></code> - = new LatLng() - specified coordinate to substract from this coord</li>
+</ul>
+<p><a name="LatLng+add"></a></p>
+<h3 id="latlng-add-coord-code-latlng-latlng-code-">latLng.add(coord) ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>add specified coord to this coordinate</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - instance of LatLng for chaining<br><strong>Params</strong></p>
+<ul>
+<li>coord <code><a href="#LatLng">LatLng</a></code> - = new LatLng() - specified coordinate to add to this coord</li>
+</ul>
+<p><a name="LatLng+divide"></a></p>
+<h3 id="latlng-divide-factorlat-factorlng-code-latlng-latlng-code-">latLng.divide(factorLat, factorLng) ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>divides a latlng with a given factor</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - instance of LatLng for chaining<br><strong>Params</strong></p>
+<ul>
+<li>factorLat <code>Number</code> <code> = 1</code> - = 1 - factor to divide lat with</li>
+<li>factorLng <code>Number</code> - = factorLat - factor to divide lng with</li>
+</ul>
+<p><a name="LatLng+multiply"></a></p>
+<h3 id="latlng-multiply-factorlat-factorlng-code-latlng-latlng-code-">latLng.multiply(factorLat, factorLng) ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>multiplicates a latlng with a given factor</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - instance of LatLng for chaining<br><strong>Params</strong></p>
+<ul>
+<li>factorLat <code>Number</code> <code> = 1</code> - = 1 - factor to multiplicate lat with</li>
+<li>factorLng <code>Number</code> - = factorLat - factor to multiplicate lng with</li>
+</ul>
+<p><a name="LatLng+equals"></a></p>
+<h3 id="latlng-equals-coord-code-boolean-code-">latLng.equals(coord) ⇒ <code>Boolean</code></h3>
+<p>checks if specified coord equals this coord</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Returns if specified coord equals this coord<br><strong>Params</strong></p>
+<ul>
+<li>coord <code><a href="#LatLng">LatLng</a></code> - specified coord to check against</li>
+</ul>
+<p><a name="LatLng+toString"></a></p>
+<h3 id="latlng-tostring-code-string-code-">latLng.toString() ⇒ <code>String</code></h3>
+<p>converts a LatLng to string</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code>String</code> - representing LatLng<br><a name="LatLng.createFromLatLng"></a></p>
+<h3 id="latlng-createfromlatlng-latlng-code-latlng-latlng-code-">LatLng.createFromLatLng(LatLng) ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>Creates a LatLng from specified LatLng</p>
+<p><strong>Kind</strong>: static method of <code><a href="#LatLng">LatLng</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - the LatLng specified<br><strong>Params</strong></p>
+<ul>
+<li>LatLng <code><a href="#LatLng">LatLng</a></code> - specified LatLng</li>
+</ul>
+<p><a name="MappedJS"></a></p>
+<h2 id="mappedjs">MappedJS</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#MappedJS">MappedJS</a><ul>
+<li><a href="#new_MappedJS_new">new MappedJS(container, mapData, markerData, labelData, mapSettings)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#MappedJS+generateUniqueID">.generateUniqueID()</a> ⇒ <code>Number</code></li>
+<li><a href="#MappedJS+addInformationLayer">.addInformationLayer(type, settings)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+addControls">.addControls()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+initializeSettings">.initializeSettings(container, settings)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+initializeData">.initializeData(mapData, cb)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+initializeMap">.initializeMap()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+getAbsolutePosition">.getAbsolutePosition(point)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#MappedJS+initializeInteractForMap">.initializeInteractForMap()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+bindEvents">.bindEvents()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+resetToInitialState">.resetToInitialState()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+zoomInToCenter">.zoomInToCenter()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+zoomOutToCenter">.zoomOutToCenter()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+keyPress">.keyPress(e)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+handleMovementByKeys">.handleMovementByKeys(direction)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+keyRelease">.keyRelease()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+resizeHandler">.resizeHandler()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+loadingFinished">.loadingFinished()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#MappedJS.count">.count</a> : <code>Number</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_MappedJS_new"></a></p>
+<h3 id="new-mappedjs-container-mapdata-markerdata-labeldata-mapsettings-">new MappedJS(container, mapData, markerData, labelData, mapSettings)</h3>
+<p><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
+<ul>
+<li>container <code>String</code> | <code>HTMLElement</code> <code> = &quot;.mjs&quot;</code> - Container, either string or dom-object</li>
+<li>mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file</li>
+<li>markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file</li>
+<li>labelData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file</li>
+<li>mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json</li>
+</ul>
+<p><a name="MappedJS+generateUniqueID"></a></p>
+<h3 id="mappedjs-generateuniqueid-code-number-code-">mappedJS.generateUniqueID() ⇒ <code>Number</code></h3>
+<p>generate a unique id for this instance</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code>Number</code> - unique id<br><a name="MappedJS+addInformationLayer"></a></p>
+<h3 id="mappedjs-addinformationlayer-type-settings-code-mappedjs-mappedjs-code-">mappedJS.addInformationLayer(type, settings) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>add an information layer to container</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
+<ul>
+<li>type <code>String</code> - type of layer</li>
+<li>settings <code>Object</code> - of layer</li>
+</ul>
+<p><a name="MappedJS+addControls"></a></p>
+<h3 id="mappedjs-addcontrols-code-mappedjs-mappedjs-code-">mappedJS.addControls() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>add controls (zoom, home) to DOM</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+initializeSettings"></a></p>
+<h3 id="mappedjs-initializesettings-container-settings-code-mappedjs-mappedjs-code-">mappedJS.initializeSettings(container, settings) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>initializes the settings and handles errors</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
+<ul>
+<li>container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object</li>
+<li>settings <code>Object</code> - list of settings</li>
+</ul>
+<p><a name="MappedJS+initializeData"></a></p>
+<h3 id="mappedjs-initializedata-mapdata-cb-code-mappedjs-mappedjs-code-">mappedJS.initializeData(mapData, cb) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>initializes the data, asynchronous</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
+<ul>
+<li>mapData <code>Object</code> - data of map tiles, can be json or path to file</li>
+<li>cb <code>Helper~requestJSONCallback</code> - called, when data is received</li>
+</ul>
+<p><a name="MappedJS+initializeMap"></a></p>
+<h3 id="mappedjs-initializemap-code-mappedjs-mappedjs-code-">mappedJS.initializeMap() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>initializes Map module</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+getAbsolutePosition"></a></p>
+<h3 id="mappedjs-getabsoluteposition-point-code-point-point-code-">mappedJS.getAbsolutePosition(point) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get absolute position of a point</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - absolute position to viewport<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - specified relative position</li>
+</ul>
+<p><a name="MappedJS+initializeInteractForMap"></a></p>
+<h3 id="mappedjs-initializeinteractformap-code-mappedjs-mappedjs-code-">mappedJS.initializeInteractForMap() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>initializes interaction</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+bindEvents"></a></p>
+<h3 id="mappedjs-bindevents-code-mappedjs-mappedjs-code-">mappedJS.bindEvents() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>binds all events to handlers</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+resetToInitialState"></a></p>
+<h3 id="mappedjs-resettoinitialstate-code-mappedjs-mappedjs-code-">mappedJS.resetToInitialState() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>resets map to initial state</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+zoomInToCenter"></a></p>
+<h3 id="mappedjs-zoomintocenter-code-mappedjs-mappedjs-code-">mappedJS.zoomInToCenter() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>zooms into center of map</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+zoomOutToCenter"></a></p>
+<h3 id="mappedjs-zoomouttocenter-code-mappedjs-mappedjs-code-">mappedJS.zoomOutToCenter() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>zooms out of center of map</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+keyPress"></a></p>
+<h3 id="mappedjs-keypress-e-code-mappedjs-mappedjs-code-">mappedJS.keyPress(e) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>Keypress handler</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
+<ul>
+<li>e <code>KeyboardEvent</code> - key event</li>
+</ul>
+<p><a name="MappedJS+handleMovementByKeys"></a></p>
+<h3 id="mappedjs-handlemovementbykeys-direction-code-mappedjs-mappedjs-code-">mappedJS.handleMovementByKeys(direction) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>handles the translation of the map by keypress</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
+<ul>
+<li>direction <code><a href="#Point">Point</a></code> - x,y point where to translate to</li>
+</ul>
+<p><a name="MappedJS+keyRelease"></a></p>
+<h3 id="mappedjs-keyrelease-code-mappedjs-mappedjs-code-">mappedJS.keyRelease() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>key is released</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+resizeHandler"></a></p>
+<h3 id="mappedjs-resizehandler-code-mappedjs-mappedjs-code-">mappedJS.resizeHandler() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>handles resizing of window</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+loadingFinished"></a></p>
+<h3 id="mappedjs-loadingfinished-code-mappedjs-mappedjs-code-">mappedJS.loadingFinished() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<p>called when loading and initialization is finished</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS.count"></a></p>
+<h3 id="mappedjs-count-code-number-code-">MappedJS.count : <code>Number</code></h3>
+<p>instance counter</p>
+<p><strong>Kind</strong>: static property of <code><a href="#MappedJS">MappedJS</a></code><br><a name="MapInformation"></a></p>
+<h2 id="mapinformation">MapInformation</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#MapInformation">MapInformation</a><ul>
+<li><em>instance</em><ul>
+<li><a href="#MapInformation+offsetToCenter">.offsetToCenter</a></li>
+<li><a href="#MapInformation+pixelPerLatLng">.pixelPerLatLng</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#MapInformation+get">.get()</a> ⇒ <code>Object</code></li>
+<li><a href="#MapInformation+bindEvents">.bindEvents()</a> ⇒ <code><a href="#MapInformation">MapInformation</a></code></li>
+<li><a href="#MapInformation+update">.update(obj)</a> ⇒ <code><a href="#MapInformation">MapInformation</a></code></li>
+<li><a href="#MapInformation+convertPointToLatLng">.convertPointToLatLng(point)</a> ⇒ <code><a href="#LatLng">LatLng</a></code></li>
+<li><a href="#MapInformation+convertLatLngToPoint">.convertLatLngToPoint(latlng)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#MapInformation+centerUpdated">.centerUpdated()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#MapInformation+updateOffsetToCenter">.updateOffsetToCenter()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#MapInformation+getDistortionFactorForLatitude">.getDistortionFactorForLatitude(latlng)</a> ⇒ <code>Number</code></li>
+<li><a href="#MapInformation+destroy">.destroy()</a></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#MapInformation.instances">.instances</a> : <code>Object</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="MapInformation+offsetToCenter"></a></p>
+<h3 id="mapinformation-offsettocenter">mapInformation.offsetToCenter</h3>
+<p>Returns the current distorted viewport</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#MapInformation">MapInformation</a></code><br><a name="MapInformation+pixelPerLatLng"></a></p>
+<h3 id="mapinformation-pixelperlatlng-code-point-point-code-">mapInformation.pixelPerLatLng ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>how many pixels per lat and lng</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - pixels per lat/lng<br><a name="MapInformation+get"></a></p>
+<h3 id="mapinformation-get-code-object-code-">mapInformation.get() ⇒ <code>Object</code></h3>
+<p>gets current data</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code>Object</code> - map information<br><a name="MapInformation+bindEvents"></a></p>
+<h3 id="mapinformation-bindevents-code-mapinformation-mapinformation-code-">mapInformation.bindEvents() ⇒ <code><a href="#MapInformation">MapInformation</a></code></h3>
+<p>bind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code><a href="#MapInformation">MapInformation</a></code> - instance of MapInformation for chaining<br><a name="MapInformation+update"></a></p>
+<h3 id="mapinformation-update-obj-code-mapinformation-mapinformation-code-">mapInformation.update(obj) ⇒ <code><a href="#MapInformation">MapInformation</a></code></h3>
+<p>updates current information</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code><a href="#MapInformation">MapInformation</a></code> - instance of MapInformation for chaining<br><strong>Params</strong></p>
+<ul>
+<li>obj <code>Object</code> - = {} - new data delivered</li>
+</ul>
+<p><a name="MapInformation+convertPointToLatLng"></a></p>
+<h3 id="mapinformation-convertpointtolatlng-point-code-latlng-latlng-code-">mapInformation.convertPointToLatLng(point) ⇒ <code><a href="#LatLng">LatLng</a></code></h3>
+<p>converts a Point to LatLng in view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code><a href="#LatLng">LatLng</a></code> - presentation of point in lat-lng system<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - specified point to be converted</li>
+</ul>
+<p><a name="MapInformation+convertLatLngToPoint"></a></p>
+<h3 id="mapinformation-convertlatlngtopoint-latlng-code-point-point-code-">mapInformation.convertLatLngToPoint(latlng) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>converts a LatLng to Point in view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - presentation of point in pixel system<br><strong>Params</strong></p>
+<ul>
+<li>latlng <code><a href="#LatLng">LatLng</a></code> - specified latlng to be converted</li>
+</ul>
+<p><a name="MapInformation+centerUpdated"></a></p>
+<h3 id="mapinformation-centerupdated-code-boolean-code-">mapInformation.centerUpdated() ⇒ <code>Boolean</code></h3>
+<p>center position was updated</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code>Boolean</code> - information was updated<br><a name="MapInformation+updateOffsetToCenter"></a></p>
+<h3 id="mapinformation-updateoffsettocenter-code-boolean-code-">mapInformation.updateOffsetToCenter() ⇒ <code>Boolean</code></h3>
+<p>offset to center was updated</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code>Boolean</code> - information was updated<br><a name="MapInformation+getDistortionFactorForLatitude"></a></p>
+<h3 id="mapinformation-getdistortionfactorforlatitude-latlng-code-number-code-">mapInformation.getDistortionFactorForLatitude(latlng) ⇒ <code>Number</code></h3>
+<p>get distortion factor for specified latitude</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><strong>Returns</strong>: <code>Number</code> - distortion factor<br><strong>Params</strong></p>
+<ul>
+<li>latlng <code><a href="#LatLng">LatLng</a></code> - lat/lng position</li>
+</ul>
+<p><a name="MapInformation+destroy"></a></p>
+<h3 id="mapinformation-destroy-">mapInformation.destroy()</h3>
+<p>destroys singleton instance</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MapInformation">MapInformation</a></code><br><a name="MapInformation.instances"></a></p>
+<h3 id="mapinformation-instances-code-object-code-">MapInformation.instances : <code>Object</code></h3>
+<p>singleton instance wrapper</p>
+<p><strong>Kind</strong>: static property of <code><a href="#MapInformation">MapInformation</a></code><br><a name="Marker"></a></p>
+<h2 id="marker">Marker</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Marker">Marker</a><ul>
+<li><a href="#new_Marker_new">new Marker(data, container, id)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Marker+boundingBox">.boundingBox</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Marker+bindEvents">.bindEvents()</a> ⇒ <code><a href="#Marker">Marker</a></code></li>
+<li><a href="#Marker+action">.action()</a> ⇒ <code><a href="#Marker">Marker</a></code></li>
+<li><a href="#Marker+addMarkerToDOM">.addMarkerToDOM(container)</a> ⇒ <code>HTMLElement</code></li>
+<li><a href="#Marker+positionMarker">.positionMarker()</a> ⇒ <code><a href="#Marker">Marker</a></code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Marker.count">.count</a> : <code>Number</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Marker_new"></a></p>
+<h3 id="new-marker-data-container-id-">new Marker(data, container, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#Marker">Marker</a></code> - - instance of Marker for chaining<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - enriched data</li>
+<li>container <code>HTMLElement</code> - = null - parent container</li>
+<li>id <code>Number</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="Marker+boundingBox"></a></p>
+<h3 id="marker-boundingbox-code-rectangle-rectangle-code-">marker.boundingBox ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>gets bounding box of marker</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Marker">Marker</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - current dimension of this marker<br><a name="Marker+bindEvents"></a></p>
+<h3 id="marker-bindevents-code-marker-marker-code-">marker.bindEvents() ⇒ <code><a href="#Marker">Marker</a></code></h3>
+<p>bind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Marker">Marker</a></code><br><strong>Returns</strong>: <code><a href="#Marker">Marker</a></code> - instance of Marker for chaining<br><a name="Marker+action"></a></p>
+<h3 id="marker-action-code-marker-marker-code-">marker.action() ⇒ <code><a href="#Marker">Marker</a></code></h3>
+<p>execute bound action of cluster</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Marker">Marker</a></code><br><strong>Returns</strong>: <code><a href="#Marker">Marker</a></code> - instance of Marker for chaining<br><a name="Marker+addMarkerToDOM"></a></p>
+<h3 id="marker-addmarkertodom-container-code-htmlelement-code-">marker.addMarkerToDOM(container) ⇒ <code>HTMLElement</code></h3>
+<p>add a marker to the DOM</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Marker">Marker</a></code><br><strong>Returns</strong>: <code>HTMLElement</code> - DOM-selector of appended markup<br><strong>Params</strong></p>
+<ul>
+<li>container <code>HTMLElement</code> - parent container to append to</li>
+</ul>
+<p><a name="Marker+positionMarker"></a></p>
+<h3 id="marker-positionmarker-code-marker-marker-code-">marker.positionMarker() ⇒ <code><a href="#Marker">Marker</a></code></h3>
+<p>set initial position of this marker</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Marker">Marker</a></code><br><strong>Returns</strong>: <code><a href="#Marker">Marker</a></code> - instance of Marker for chaining<br><a name="Marker.count"></a></p>
+<h3 id="marker-count-code-number-code-">Marker.count : <code>Number</code></h3>
+<p>counts all markers</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Marker">Marker</a></code><br><a name="MarkerClusterer"></a></p>
+<h2 id="markerclusterer">MarkerClusterer</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#MarkerClusterer">MarkerClusterer</a><ul>
+<li><a href="#new_MarkerClusterer_new">new MarkerClusterer(markers, container, id)</a></li>
+<li><a href="#MarkerClusterer+bindEvents">.bindEvents()</a> ⇒ <code><a href="#MarkerClusterer">MarkerClusterer</a></code></li>
+<li><a href="#MarkerClusterer+clusterize">.clusterize()</a> ⇒ <code><a href="#MarkerClusterer">MarkerClusterer</a></code></li>
+<li><a href="#MarkerClusterer+findNearestHit">.findNearestHit(marker, hits)</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#MarkerClusterer+getDistance">.getDistance(marker, cluster)</a> ⇒ <code>Number</code></li>
+<li><a href="#MarkerClusterer+createCluster">.createCluster(marker)</a> ⇒ <code><a href="#Cluster">Cluster</a></code></li>
+<li><a href="#MarkerClusterer+deleteAllClusters">.deleteAllClusters()</a> ⇒ <code><a href="#MarkerClusterer">MarkerClusterer</a></code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_MarkerClusterer_new"></a></p>
+<h3 id="new-markerclusterer-markers-container-id-">new MarkerClusterer(markers, container, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#MarkerClusterer">MarkerClusterer</a></code> - instance of MarkerClusterer for chaining<br><strong>Params</strong></p>
+<ul>
+<li>markers <code>Array</code> - = [] - all markers</li>
+<li>container <code>HTMLElement</code> - = null - parent container</li>
+<li>id <code>Number</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="MarkerClusterer+bindEvents"></a></p>
+<h3 id="markerclusterer-bindevents-code-markerclusterer-markerclusterer-code-">markerClusterer.bindEvents() ⇒ <code><a href="#MarkerClusterer">MarkerClusterer</a></code></h3>
+<p>bind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MarkerClusterer">MarkerClusterer</a></code><br><strong>Returns</strong>: <code><a href="#MarkerClusterer">MarkerClusterer</a></code> - instance of MarkerClusterer for chaining<br><a name="MarkerClusterer+clusterize"></a></p>
+<h3 id="markerclusterer-clusterize-code-markerclusterer-markerclusterer-code-">markerClusterer.clusterize() ⇒ <code><a href="#MarkerClusterer">MarkerClusterer</a></code></h3>
+<p>decompose all markers into Cluster</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MarkerClusterer">MarkerClusterer</a></code><br><strong>Returns</strong>: <code><a href="#MarkerClusterer">MarkerClusterer</a></code> - instance of MarkerClusterer for chaining<br><a name="MarkerClusterer+findNearestHit"></a></p>
+<h3 id="markerclusterer-findnearesthit-marker-hits-code-cluster-cluster-code-">markerClusterer.findNearestHit(marker, hits) ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>find nearest cluster if there are multiple hits</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MarkerClusterer">MarkerClusterer</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - closest cluster<br><strong>Params</strong></p>
+<ul>
+<li>marker <code><a href="#Marker">Marker</a></code> - specified marker</li>
+<li>hits <code>Array</code> - array of Clusters hit</li>
+</ul>
+<p><a name="MarkerClusterer+getDistance"></a></p>
+<h3 id="markerclusterer-getdistance-marker-cluster-code-number-code-">markerClusterer.getDistance(marker, cluster) ⇒ <code>Number</code></h3>
+<p>gets distance between marker and cluster</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MarkerClusterer">MarkerClusterer</a></code><br><strong>Returns</strong>: <code>Number</code> - distance between them<br><strong>Params</strong></p>
+<ul>
+<li>marker <code><a href="#Marker">Marker</a></code> - specified marker</li>
+<li>cluster <code><a href="#Cluster">Cluster</a></code> - specified cluster</li>
+</ul>
+<p><a name="MarkerClusterer+createCluster"></a></p>
+<h3 id="markerclusterer-createcluster-marker-code-cluster-cluster-code-">markerClusterer.createCluster(marker) ⇒ <code><a href="#Cluster">Cluster</a></code></h3>
+<p>creates a new cluster for marker</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MarkerClusterer">MarkerClusterer</a></code><br><strong>Returns</strong>: <code><a href="#Cluster">Cluster</a></code> - created cluster<br><strong>Params</strong></p>
+<ul>
+<li>marker <code><a href="#Marker">Marker</a></code> - specified marker</li>
+</ul>
+<p><a name="MarkerClusterer+deleteAllClusters"></a></p>
+<h3 id="markerclusterer-deleteallclusters-code-markerclusterer-markerclusterer-code-">markerClusterer.deleteAllClusters() ⇒ <code><a href="#MarkerClusterer">MarkerClusterer</a></code></h3>
+<p>delete all clusters</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#MarkerClusterer">MarkerClusterer</a></code><br><strong>Returns</strong>: <code><a href="#MarkerClusterer">MarkerClusterer</a></code> - instance of MarkerClusterer for chaining<br><a name="Point"></a></p>
+<h2 id="point">Point</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Point">Point</a><ul>
+<li><a href="#new_Point_new">new Point(x, y)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Point+length">.length</a> ⇒ <code>Number</code></li>
+<li><a href="#Point+clone">.clone</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+abs">.abs</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+substract">.substract(point)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+add">.add(point)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+multiply">.multiply(x, y)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+divide">.divide(x, y)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+equals">.equals(point)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Point+distance">.distance(point)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+translate">.translate(x, y)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+position">.position(x, y)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Point+toArray">.toArray()</a> ⇒ <code>Array</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Point.createFromPoint">.createFromPoint(point)</a> ⇒ <code><a href="#Point">Point</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Point_new"></a></p>
+<h3 id="new-point-x-y-">new Point(x, y)</h3>
+<p><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - instance of Point for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - representation of x coordinate</li>
+<li>y <code>Number</code> <code> = 0</code> - = 0 - representation of y coordinate</li>
+</ul>
+<p><a name="Point+length"></a></p>
+<h3 id="point-length-code-number-code-">point.length ⇒ <code>Number</code></h3>
+<p>length of a point</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code>Number</code> - length of a point<br><a name="Point+clone"></a></p>
+<h3 id="point-clone-code-point-point-code-">point.clone ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>gets a clone of this point</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - new instance equals this point<br><a name="Point+abs"></a></p>
+<h3 id="point-abs-code-point-point-code-">point.abs ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>gets absolute Point</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - returns Point with absolute values<br><a name="Point+substract"></a></p>
+<h3 id="point-substract-point-code-point-point-code-">point.substract(point) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>substracts 2 points</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - instance of Point for chaining<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - = new Point() - the point to substract from this</li>
+</ul>
+<p><a name="Point+add"></a></p>
+<h3 id="point-add-point-code-point-point-code-">point.add(point) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>adds 2 points</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - instance of Point for chaining<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - = new Point() - the point to add to this</li>
+</ul>
+<p><a name="Point+multiply"></a></p>
+<h3 id="point-multiply-x-y-code-point-point-code-">point.multiply(x, y) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>multiplicates a point with a given x and y</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - instance of Point for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 1</code> - = 1 - factor to multiplicate x with</li>
+<li>y <code>Number</code> - = x - factor to multiplicate y with</li>
+</ul>
+<p><a name="Point+divide"></a></p>
+<h3 id="point-divide-x-y-code-point-point-code-">point.divide(x, y) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>divide a point with a given x and y</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - instance of Point for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 1</code> - = 1 - factor to divide x with</li>
+<li>y <code>Number</code> - = x - factor to divide y with</li>
+</ul>
+<p><a name="Point+equals"></a></p>
+<h3 id="point-equals-point-code-boolean-code-">point.equals(point) ⇒ <code>Boolean</code></h3>
+<p>check if points are equal</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code>Boolean</code> - is true, if x and y are the same<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - the point to check against this</li>
+</ul>
+<p><a name="Point+distance"></a></p>
+<h3 id="point-distance-point-code-point-point-code-">point.distance(point) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>Returns the distance from this Point to a specified Point</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - the distance between this Point and specified point<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - = new Point() - the specified point to be measured against this Point</li>
+</ul>
+<p><a name="Point+translate"></a></p>
+<h3 id="point-translate-x-y-code-point-point-code-">point.translate(x, y) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>translates a point by x and y</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - instance of Point for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - value to move x</li>
+<li>y <code>Number</code> - = x - value to move y</li>
+</ul>
+<p><a name="Point+position"></a></p>
+<h3 id="point-position-x-y-code-point-point-code-">point.position(x, y) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>positions a point by x and y</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - instance of Point for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - value to position x</li>
+<li>y <code>Number</code> - = x - value to position y</li>
+</ul>
+<p><a name="Point+toArray"></a></p>
+<h3 id="point-toarray-code-array-code-">point.toArray() ⇒ <code>Array</code></h3>
+<p>translates a Point to an array</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code>Array</code> - Returns Point as Array(x, y)<br><a name="Point.createFromPoint"></a></p>
+<h3 id="point-createfrompoint-point-code-point-point-code-">Point.createFromPoint(point) ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>Creates a Point from specified point</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Point">Point</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - the point specified<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - specified point</li>
+</ul>
+<p><a name="Publisher"></a></p>
+<h2 id="publisher">Publisher</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Publisher">Publisher</a><ul>
+<li><a href="#new_Publisher_new">new Publisher(id)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Publisher+subscribe">.subscribe(type, fn)</a> ⇒ <code><a href="#Publisher">Publisher</a></code></li>
+<li><a href="#Publisher+unsubscribe">.unsubscribe(type, fn)</a> ⇒ <code><a href="#Publisher">Publisher</a></code></li>
+<li><a href="#Publisher+publish">.publish(type, arg)</a> ⇒ <code><a href="#Publisher">Publisher</a></code></li>
+<li><a href="#Publisher+handle">.handle(action, type, a)</a> ⇒ <code><a href="#Publisher">Publisher</a></code></li>
+<li><a href="#Publisher+destroy">.destroy()</a></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Publisher.instances">.instances</a> : <code>Object</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Publisher_new"></a></p>
+<h3 id="new-publisher-id-">new Publisher(id)</h3>
+<p><strong>Returns</strong>: <code><a href="#Publisher">Publisher</a></code> - singleton instance of Publisher for chaining<br><strong>Params</strong></p>
+<ul>
+<li>id <code>Number</code> <code> = 0</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="Publisher+subscribe"></a></p>
+<h3 id="publisher-subscribe-type-fn-code-publisher-publisher-code-">publisher.subscribe(type, fn) ⇒ <code><a href="#Publisher">Publisher</a></code></h3>
+<p>subscribe to a topic</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Publisher">Publisher</a></code><br><strong>Returns</strong>: <code><a href="#Publisher">Publisher</a></code> - instance of Publisher for chaining<br><strong>Params</strong></p>
+<ul>
+<li>type <code>String</code> <code> = any</code> - = &quot;any&quot; - a topic</li>
+<li>fn <code>function</code> - = function(){} - a function to callback</li>
+</ul>
+<p><a name="Publisher+unsubscribe"></a></p>
+<h3 id="publisher-unsubscribe-type-fn-code-publisher-publisher-code-">publisher.unsubscribe(type, fn) ⇒ <code><a href="#Publisher">Publisher</a></code></h3>
+<p>unsubscribe from a topic</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Publisher">Publisher</a></code><br><strong>Returns</strong>: <code><a href="#Publisher">Publisher</a></code> - instance of Publisher for chaining<br><strong>Params</strong></p>
+<ul>
+<li>type <code>String</code> <code> = any</code> - = &quot;any&quot; - a topic</li>
+<li>fn <code>function</code> - = function(){} - a function to callback</li>
+</ul>
+<p><a name="Publisher+publish"></a></p>
+<h3 id="publisher-publish-type-arg-code-publisher-publisher-code-">publisher.publish(type, arg) ⇒ <code><a href="#Publisher">Publisher</a></code></h3>
+<p>publish to a topic</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Publisher">Publisher</a></code><br><strong>Returns</strong>: <code><a href="#Publisher">Publisher</a></code> - instance of Publisher for chaining<br><strong>Params</strong></p>
+<ul>
+<li>type <code>String</code> <code> = any</code> - = &quot;any&quot; - a topic</li>
+<li>arg <code>function</code> - = [] - list of parameters</li>
+</ul>
+<p><a name="Publisher+handle"></a></p>
+<h3 id="publisher-handle-action-type-a-code-publisher-publisher-code-">publisher.handle(action, type, a) ⇒ <code><a href="#Publisher">Publisher</a></code></h3>
+<p>handle subscribe to a topic</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Publisher">Publisher</a></code><br><strong>Returns</strong>: <code><a href="#Publisher">Publisher</a></code> - instance of Publisher for chaining<br><strong>Params</strong></p>
+<ul>
+<li>action <code>String</code> - eventname</li>
+<li>type <code>String</code> - = &quot;any&quot; - a topic</li>
+<li>a <code>Object</code> - function to callback or arguments</li>
+</ul>
+<p><a name="Publisher+destroy"></a></p>
+<h3 id="publisher-destroy-">publisher.destroy()</h3>
+<p>destroys singleton instance</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Publisher">Publisher</a></code><br><a name="Publisher.instances"></a></p>
+<h3 id="publisher-instances-code-object-code-">Publisher.instances : <code>Object</code></h3>
+<p>singleton instance wrapper</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Publisher">Publisher</a></code><br><a name="Rectangle"></a></p>
+<h2 id="rectangle">Rectangle</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Rectangle">Rectangle</a><ul>
+<li><a href="#new_Rectangle_new">new Rectangle(x, y, width, height)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Rectangle+center">.center</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Rectangle+topLeft">.topLeft</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Rectangle+topRight">.topRight</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Rectangle+bottomLeft">.bottomLeft</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Rectangle+bottomRight">.bottomRight</a> ⇒ <code><a href="#Point">Point</a></code></li>
+<li><a href="#Rectangle+right">.right</a> ⇒ <code>Number</code></li>
+<li><a href="#Rectangle+left">.left</a> ⇒ <code>Number</code></li>
+<li><a href="#Rectangle+top">.top</a> ⇒ <code>Number</code></li>
+<li><a href="#Rectangle+bottom">.bottom</a> ⇒ <code>Number</code></li>
+<li><a href="#Rectangle+clone">.clone</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+intersects">.intersects(rect)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Rectangle+contains">.contains(rectOrPoint)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Rectangle+extend">.extend(rect)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+setCenter">.setCenter(point)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+setCenterX">.setCenterX(x)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+setCenterY">.setCenterY(y)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+containsPoint">.containsPoint(point)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Rectangle+containsRect">.containsRect(rect)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Rectangle+getDistortedRect">.getDistortedRect(factor)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+getNormalRect">.getNormalRect(factor)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+scaleX">.scaleX(x)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+scaleY">.scaleY(y)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+scale">.scale(x, y)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+scaleCenter">.scaleCenter(x, y)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+translate">.translate(x, y)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+transform">.transform(x, y, width, height)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+position">.position(x, y)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+size">.size(x, y, width, height)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+setSize">.setSize(width, height)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#Rectangle+equals">.equals(rectangle)</a> ⇒ <code>Boolean</code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Rectangle.createFromRectangle">.createFromRectangle(rect)</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Rectangle_new"></a></p>
+<h3 id="new-rectangle-x-y-width-height-">new Rectangle(x, y, width, height)</h3>
+<p><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - x-position of specified rectangle</li>
+<li>y <code>Number</code> <code> = 0</code> - = 0 - y-position of specified rectangle</li>
+<li>width <code>Number</code> <code> = 0</code> - = 0 - width of specified rectangle</li>
+<li>height <code>Number</code> <code> = 0</code> - = 0 - height of specified rectangle</li>
+</ul>
+<p><a name="Rectangle+center"></a></p>
+<h3 id="rectangle-center-code-point-point-code-">rectangle.center ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get center-position of rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - center point<br><a name="Rectangle+topLeft"></a></p>
+<h3 id="rectangle-topleft-code-point-point-code-">rectangle.topLeft ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get top-left-position of rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - top-left point<br><a name="Rectangle+topRight"></a></p>
+<h3 id="rectangle-topright-code-point-point-code-">rectangle.topRight ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get top-right-position of rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - top-right point<br><a name="Rectangle+bottomLeft"></a></p>
+<h3 id="rectangle-bottomleft-code-point-point-code-">rectangle.bottomLeft ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get bottom-left-position of rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - bottom-left point<br><a name="Rectangle+bottomRight"></a></p>
+<h3 id="rectangle-bottomright-code-point-point-code-">rectangle.bottomRight ⇒ <code><a href="#Point">Point</a></code></h3>
+<p>get bottom-right-position of rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Point">Point</a></code> - bottom-right point<br><a name="Rectangle+right"></a></p>
+<h3 id="rectangle-right-code-number-code-">rectangle.right ⇒ <code>Number</code></h3>
+<p>Returns right position of Rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Number</code> - right position<br><a name="Rectangle+left"></a></p>
+<h3 id="rectangle-left-code-number-code-">rectangle.left ⇒ <code>Number</code></h3>
+<p>Returns left position of Rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Number</code> - left position<br><a name="Rectangle+top"></a></p>
+<h3 id="rectangle-top-code-number-code-">rectangle.top ⇒ <code>Number</code></h3>
+<p>Returns top position of Rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Number</code> - top position<br><a name="Rectangle+bottom"></a></p>
+<h3 id="rectangle-bottom-code-number-code-">rectangle.bottom ⇒ <code>Number</code></h3>
+<p>Returns bottom position of Rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Number</code> - bottom position<br><a name="Rectangle+clone"></a></p>
+<h3 id="rectangle-clone-code-rectangle-rectangle-code-">rectangle.clone ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>clones a rectangle</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - duplicated rectangle<br><a name="Rectangle+intersects"></a></p>
+<h3 id="rectangle-intersects-rect-code-boolean-code-">rectangle.intersects(rect) ⇒ <code>Boolean</code></h3>
+<p>Checks whether Rectangle intersects with specified Rectangle</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Boolean</code> - true if containment is entirely<br><strong>Params</strong></p>
+<ul>
+<li>rect <code><a href="#Rectangle">Rectangle</a></code> - = new Rectangle() - the specified rectangle to check against</li>
+</ul>
+<p><a name="Rectangle+contains"></a></p>
+<h3 id="rectangle-contains-rectorpoint-code-boolean-code-">rectangle.contains(rectOrPoint) ⇒ <code>Boolean</code></h3>
+<p>Checks whether Rectangle entirely contains the Rectangle or Point</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Boolean</code> - true if containment is entirely<br><strong>Params</strong></p>
+<ul>
+<li>rectOrPoint <code><a href="#Rectangle">Rectangle</a></code> | <code><a href="#Point">Point</a></code> - the specified point or rectangle to check against</li>
+</ul>
+<p><a name="Rectangle+extend"></a></p>
+<h3 id="rectangle-extend-rect-code-rectangle-rectangle-code-">rectangle.extend(rect) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>extend a rectangle by specified rectangle dimensions</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>rect <code><a href="#Rectangle">Rectangle</a></code> - specified rectangle</li>
+</ul>
+<p><a name="Rectangle+setCenter"></a></p>
+<h3 id="rectangle-setcenter-point-code-rectangle-rectangle-code-">rectangle.setCenter(point) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>Sets the center of this Rectangle to specified point</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - = new Point() - specified point to set center of rectangle to</li>
+</ul>
+<p><a name="Rectangle+setCenterX"></a></p>
+<h3 id="rectangle-setcenterx-x-code-rectangle-rectangle-code-">rectangle.setCenterX(x) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>Sets the x-center of this Rectangle to specified x</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - specified x coordinate to set x center of rectangle to</li>
+</ul>
+<p><a name="Rectangle+setCenterY"></a></p>
+<h3 id="rectangle-setcentery-y-code-rectangle-rectangle-code-">rectangle.setCenterY(y) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>Sets the y-center of this Rectangle to specified y</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>y <code>Number</code> <code> = 0</code> - = 0 - specified y coordinate to set y center of rectangle to</li>
+</ul>
+<p><a name="Rectangle+containsPoint"></a></p>
+<h3 id="rectangle-containspoint-point-code-boolean-code-">rectangle.containsPoint(point) ⇒ <code>Boolean</code></h3>
+<p>Checks whether Rectangle entirely contains the Point</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Boolean</code> - true if containment is entirely<br><strong>Params</strong></p>
+<ul>
+<li>point <code><a href="#Point">Point</a></code> - = new Point() - the specified point to check against</li>
+</ul>
+<p><a name="Rectangle+containsRect"></a></p>
+<h3 id="rectangle-containsrect-rect-code-boolean-code-">rectangle.containsRect(rect) ⇒ <code>Boolean</code></h3>
+<p>Checks whether Rectangle entirely contains the Rectangle</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Boolean</code> - true if containment is entirely<br><strong>Params</strong></p>
+<ul>
+<li>rect <code><a href="#Rectangle">Rectangle</a></code> - = new Rectangle() - the specified rectangle to check against</li>
+</ul>
+<p><a name="Rectangle+getDistortedRect"></a></p>
+<h3 id="rectangle-getdistortedrect-factor-code-rectangle-rectangle-code-">rectangle.getDistortedRect(factor) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>distorts rectangle by factor</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - a distorted Rectangle<br><strong>Params</strong></p>
+<ul>
+<li>factor <code>Number</code> <code> = 1</code> - = 1 - the specified factor of distortion</li>
+</ul>
+<p><a name="Rectangle+getNormalRect"></a></p>
+<h3 id="rectangle-getnormalrect-factor-code-rectangle-rectangle-code-">rectangle.getNormalRect(factor) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>redistorts rectangle by factor</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - an undistorted Rectangle<br><strong>Params</strong></p>
+<ul>
+<li>factor <code>Number</code> <code> = 1</code> - = 1- the specified factor of distortion</li>
+</ul>
+<p><a name="Rectangle+scaleX"></a></p>
+<h3 id="rectangle-scalex-x-code-rectangle-rectangle-code-">rectangle.scaleX(x) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>scale x and width of rectangle</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 1</code> - = 1 - factor to be applied to scale</li>
+</ul>
+<p><a name="Rectangle+scaleY"></a></p>
+<h3 id="rectangle-scaley-y-code-rectangle-rectangle-code-">rectangle.scaleY(y) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>scale y and height of rectangle</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>y <code>Number</code> <code> = 1</code> - = 1- factor to be applied to scale</li>
+</ul>
+<p><a name="Rectangle+scale"></a></p>
+<h3 id="rectangle-scale-x-y-code-rectangle-rectangle-code-">rectangle.scale(x, y) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>scale x and y for width and height of rectangle</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 1</code> - = 1 - factor to be applied to scale</li>
+<li>y <code>Number</code> - = x - factor to be applied to scale</li>
+</ul>
+<p><a name="Rectangle+scaleCenter"></a></p>
+<h3 id="rectangle-scalecenter-x-y-code-rectangle-rectangle-code-">rectangle.scaleCenter(x, y) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>scale x and y for width and height of rectangle</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 1</code> - = 1 - factor to be applied to scale</li>
+<li>y <code>Number</code> - = x - factor to be applied to scale</li>
+</ul>
+<p><a name="Rectangle+translate"></a></p>
+<h3 id="rectangle-translate-x-y-code-rectangle-rectangle-code-">rectangle.translate(x, y) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>moves a rectangle by specified coords</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - specified x to be added to x position</li>
+<li>y <code>Number</code> - = x - specified y to be added to y position</li>
+</ul>
+<p><a name="Rectangle+transform"></a></p>
+<h3 id="rectangle-transform-x-y-width-height-code-rectangle-rectangle-code-">rectangle.transform(x, y, width, height) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>transforms a rectangle by specified coords</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - specified x to be added to x position</li>
+<li>y <code>Number</code> - = x - specified y to be added to y position</li>
+<li>width <code>Number</code> <code> = 0</code> - = 0 - specified width to be added to this width</li>
+<li>height <code>Number</code> - = 0 - specified height to be added to this height</li>
+</ul>
+<p><a name="Rectangle+position"></a></p>
+<h3 id="rectangle-position-x-y-code-rectangle-rectangle-code-">rectangle.position(x, y) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>changes the position a rectangle by specified coords</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0 - the new x position</li>
+<li>y <code>Number</code> - = 0 - he new y position</li>
+</ul>
+<p><a name="Rectangle+size"></a></p>
+<h3 id="rectangle-size-x-y-width-height-code-rectangle-rectangle-code-">rectangle.size(x, y, width, height) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>changes the size of a rectangle by specified params</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>x <code>Number</code> <code> = 0</code> - = 0- the new x position</li>
+<li>y <code>Number</code> - = x - the new y position</li>
+<li>width <code>Number</code> <code> = 0</code> - = 0 - the new width</li>
+<li>height <code>Number</code> - = 0 - the new width</li>
+</ul>
+<p><a name="Rectangle+setSize"></a></p>
+<h3 id="rectangle-setsize-width-height-code-rectangle-rectangle-code-">rectangle.setSize(width, height) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>changes the size of a rectangle by specified params</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - instance of Rectangle for chaining<br><strong>Params</strong></p>
+<ul>
+<li>width <code>Number</code> <code> = 0</code> - = 0 - the new width</li>
+<li>height <code>Number</code> - = width - the new width</li>
+</ul>
+<p><a name="Rectangle+equals"></a></p>
+<h3 id="rectangle-equals-rectangle-code-boolean-code-">rectangle.equals(rectangle) ⇒ <code>Boolean</code></h3>
+<p>check if rectangles are equal</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code>Boolean</code> - is true, if x, y, width and height are the same<br><strong>Params</strong></p>
+<ul>
+<li>rectangle <code><a href="#Rectangle">Rectangle</a></code> - the specified rectangle to check against this</li>
+</ul>
+<p><a name="Rectangle.createFromRectangle"></a></p>
+<h3 id="rectangle-createfromrectangle-rect-code-rectangle-rectangle-code-">Rectangle.createFromRectangle(rect) ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>Creates a Rectangle from specified Rectangle</p>
+<p><strong>Kind</strong>: static method of <code><a href="#Rectangle">Rectangle</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - a copy of specified rectangle<br><strong>Params</strong></p>
+<ul>
+<li>rect <code><a href="#Rectangle">Rectangle</a></code> - specified Rectangle</li>
+</ul>
+<p><a name="StateHandler"></a></p>
+<h2 id="statehandler">StateHandler</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#StateHandler">StateHandler</a><ul>
+<li><a href="#new_StateHandler_new">new StateHandler(states_array)</a></li>
+<li><a href="#StateHandler+current">.current</a> ⇒ <code>Object</code></li>
+<li><a href="#StateHandler+length">.length</a> ⇒ <code>Number</code></li>
+<li><a href="#StateHandler+next">.next()</a> ⇒ <code><a href="#StateHandler">StateHandler</a></code></li>
+<li><a href="#StateHandler+previous">.previous()</a> ⇒ <code><a href="#StateHandler">StateHandler</a></code></li>
+<li><a href="#StateHandler+changeTo">.changeTo(state)</a> ⇒ <code><a href="#StateHandler">StateHandler</a></code></li>
+<li><a href="#StateHandler+hasNext">.hasNext()</a> ⇒ <code>Boolean</code></li>
+<li><a href="#StateHandler+hasPrevious">.hasPrevious()</a> ⇒ <code>Boolean</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_StateHandler_new"></a></p>
+<h3 id="new-statehandler-states_array-">new StateHandler(states_array)</h3>
+<p><strong>Returns</strong>: <code><a href="#StateHandler">StateHandler</a></code> - instance of StateHandler for chaining<br><strong>Params</strong></p>
+<ul>
+<li>states_array <code>Array</code> - = [{value: 0, description: &#39;Default&#39;}] - [description]</li>
+</ul>
+<p><a name="StateHandler+current"></a></p>
+<h3 id="statehandler-current-code-object-code-">stateHandler.current ⇒ <code>Object</code></h3>
+<p>get current state</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#StateHandler">StateHandler</a></code><br><strong>Returns</strong>: <code>Object</code> - current state from STATES-array<br><a name="StateHandler+length"></a></p>
+<h3 id="statehandler-length-code-number-code-">stateHandler.length ⇒ <code>Number</code></h3>
+<p>get number of states</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#StateHandler">StateHandler</a></code><br><strong>Returns</strong>: <code>Number</code> - number of states<br><a name="StateHandler+next"></a></p>
+<h3 id="statehandler-next-code-statehandler-statehandler-code-">stateHandler.next() ⇒ <code><a href="#StateHandler">StateHandler</a></code></h3>
+<p>get the next element</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#StateHandler">StateHandler</a></code><br><strong>Returns</strong>: <code><a href="#StateHandler">StateHandler</a></code> - instance of StateHandler for chaining<br><a name="StateHandler+previous"></a></p>
+<h3 id="statehandler-previous-code-statehandler-statehandler-code-">stateHandler.previous() ⇒ <code><a href="#StateHandler">StateHandler</a></code></h3>
+<p>get the previous element</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#StateHandler">StateHandler</a></code><br><strong>Returns</strong>: <code><a href="#StateHandler">StateHandler</a></code> - instance of StateHandler for chaining<br><a name="StateHandler+changeTo"></a></p>
+<h3 id="statehandler-changeto-state-code-statehandler-statehandler-code-">stateHandler.changeTo(state) ⇒ <code><a href="#StateHandler">StateHandler</a></code></h3>
+<p>change the state to specified state</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#StateHandler">StateHandler</a></code><br><strong>Returns</strong>: <code><a href="#StateHandler">StateHandler</a></code> - instance of StateHandler for chaining<br><strong>Params</strong></p>
+<ul>
+<li>state <code>Number</code> - index of state in array</li>
+</ul>
+<p><a name="StateHandler+hasNext"></a></p>
+<h3 id="statehandler-hasnext-code-boolean-code-">stateHandler.hasNext() ⇒ <code>Boolean</code></h3>
+<p>checks if there is a next element</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#StateHandler">StateHandler</a></code><br><strong>Returns</strong>: <code>Boolean</code> - wheter there is a next state or not<br><a name="StateHandler+hasPrevious"></a></p>
+<h3 id="statehandler-hasprevious-code-boolean-code-">stateHandler.hasPrevious() ⇒ <code>Boolean</code></h3>
+<p>checks if there is a previous element</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#StateHandler">StateHandler</a></code><br><strong>Returns</strong>: <code>Boolean</code> - wheter there is a previous state or not<br><a name="Tile"></a></p>
+<h2 id="tile">Tile</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#Tile">Tile</a><ul>
+<li><a href="#new_Tile_new">new Tile(path, x, y, w, h, context, id)</a></li>
+<li><em>instance</em><ul>
+<li><a href="#Tile+distortedTile">.distortedTile</a> ⇒ <code><a href="#Tile">Tile</a></code></li>
+<li><a href="#Tile+initialize">.initialize()</a> ⇒ <code><a href="#Tile">Tile</a></code></li>
+<li><a href="#Tile+draw">.draw()</a> ⇒ <code><a href="#Tile">Tile</a></code></li>
+</ul>
+</li>
+<li><em>static</em><ul>
+<li><a href="#Tile.STATES">.STATES</a> : <code>Array</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="new_Tile_new"></a></p>
+<h3 id="new-tile-path-x-y-w-h-context-id-">new Tile(path, x, y, w, h, context, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#Tile">Tile</a></code> - instance of Tile for chaining<br><strong>Params</strong></p>
+<ul>
+<li>path <code>String</code> - = null - path to image</li>
+<li>x <code>Number</code> - = 0 - position x of tile</li>
+<li>y <code>Number</code> - = 0 - position y of tile</li>
+<li>w <code>Number</code> - = 0 - tile width</li>
+<li>h <code>Number</code> - = 0 - tile height</li>
+<li>context <code>CanvasRenderingContext2D</code> - = null - context of canvas</li>
+<li>id <code>Number</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="Tile+distortedTile"></a></p>
+<h3 id="tile-distortedtile-code-tile-tile-code-">tile.distortedTile ⇒ <code><a href="#Tile">Tile</a></code></h3>
+<p>transform original tile to a distorted tile</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Tile">Tile</a></code><br><strong>Returns</strong>: <code><a href="#Tile">Tile</a></code> - distorted tile<br><a name="Tile+initialize"></a></p>
+<h3 id="tile-initialize-code-tile-tile-code-">tile.initialize() ⇒ <code><a href="#Tile">Tile</a></code></h3>
+<p>initializes tile and starts loading image</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Tile">Tile</a></code><br><strong>Returns</strong>: <code><a href="#Tile">Tile</a></code> - instance of Tile for chaining<br><a name="Tile+draw"></a></p>
+<h3 id="tile-draw-code-tile-tile-code-">tile.draw() ⇒ <code><a href="#Tile">Tile</a></code></h3>
+<p>draws image data of tile on context</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Tile">Tile</a></code><br><strong>Returns</strong>: <code><a href="#Tile">Tile</a></code> - instance of Tile for chaining<br><a name="Tile.STATES"></a></p>
+<h3 id="tile-states-code-array-code-">Tile.STATES : <code>Array</code></h3>
+<p>States of a tile</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Tile">Tile</a></code><br><a name="TileMap"></a></p>
+<h2 id="tilemap">TileMap</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#TileMap">TileMap</a><ul>
+<li><a href="#new_TileMap_new">new TileMap(container, tilesData, settings, id)</a></li>
+<li><a href="#TileMap+width">.width</a> ⇒ <code>Number</code></li>
+<li><a href="#TileMap+height">.height</a> ⇒ <code>Number</code></li>
+<li><a href="#TileMap+viewport">.viewport</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
+<li><a href="#TileMap+view">.view</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#TileMap+initialize">.initialize(tilesData)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+checkIfLevelCanFitBounds">.checkIfLevelCanFitBounds()</a> ⇒ <code>Number</code></li>
+<li><a href="#TileMap+reset">.reset()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+initializeLabels">.initializeLabels()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+createViewFromData">.createViewFromData(data)</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#TileMap+repositionMarkerContainer">.repositionMarkerContainer()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#TileMap+enrichMarkerData">.enrichMarkerData(markerData)</a> ⇒ <code>Object</code></li>
+<li><a href="#TileMap+enrichLabelData">.enrichLabelData(labelData)</a> ⇒ <code>Object</code></li>
+<li><a href="#TileMap+initializeMarkers">.initializeMarkers(markerData)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+appendMarkerContainerToDom">.appendMarkerContainerToDom()</a></li>
+<li><a href="#TileMap+createTooltipContainer">.createTooltipContainer()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+bindEvents">.bindEvents()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+zoomToBounds">.zoomToBounds(center, boundingBox)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+thumbLoaded">.thumbLoaded()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+setViewToOldView">.setViewToOldView(center, zoom)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+changelevel">.changelevel(direction)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+initializeCanvas">.initializeCanvas()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+redraw">.redraw()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+resize">.resize()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+moveView">.moveView(delta)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+zoom">.zoom(factor, position)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+clusterHandler">.clusterHandler()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+resizeCanvas">.resizeCanvas()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+resizeView">.resizeView()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+mainLoop">.mainLoop()</a></li>
+<li><a href="#TileMap+drawLabels">.drawLabels()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_TileMap_new"></a></p>
+<h3 id="new-tilemap-container-tilesdata-settings-id-">new TileMap(container, tilesData, settings, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>container <code>HTMLElement</code> - = null - jQuery-object holding the container</li>
+<li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
+<li>settings <code>Object</code> - = {} - json object representing settings of TileMap</li>
+<li>id <code>Number</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="TileMap+width"></a></p>
+<h3 id="tilemap-width-code-number-code-">tileMap.width ⇒ <code>Number</code></h3>
+<p>Returns width of container</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Number</code> - - width of container<br><a name="TileMap+height"></a></p>
+<h3 id="tilemap-height-code-number-code-">tileMap.height ⇒ <code>Number</code></h3>
+<p>Returns height of container</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Number</code> - - height of container<br><a name="TileMap+viewport"></a></p>
+<h3 id="tilemap-viewport-code-rectangle-rectangle-code-">tileMap.viewport ⇒ <code><a href="#Rectangle">Rectangle</a></code></h3>
+<p>gets current viewport</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#Rectangle">Rectangle</a></code> - viewport<br><a name="TileMap+view"></a></p>
+<h3 id="tilemap-view-code-view-view-code-">tileMap.view ⇒ <code><a href="#View">View</a></code></h3>
+<p>current view</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - view<br><a name="TileMap+initialize"></a></p>
+<h3 id="tilemap-initialize-tilesdata-code-tilemap-tilemap-code-">tileMap.initialize(tilesData) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>initialize map</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>tilesData <code>Object</code> - data of tiles, markers and labels</li>
+</ul>
+<p><a name="TileMap+checkIfLevelCanFitBounds"></a></p>
+<h3 id="tilemap-checkiflevelcanfitbounds-code-number-code-">tileMap.checkIfLevelCanFitBounds() ⇒ <code>Number</code></h3>
+<p>check if level can fit boundaries and if not iterate to closer level</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Number</code> - level<br><a name="TileMap+reset"></a></p>
+<h3 id="tilemap-reset-code-tilemap-tilemap-code-">tileMap.reset() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>resets view to initial state</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+initializeLabels"></a></p>
+<h3 id="tilemap-initializelabels-code-tilemap-tilemap-code-">tileMap.initializeLabels() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>initialize all labels</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+createViewFromData"></a></p>
+<h3 id="tilemap-createviewfromdata-data-code-view-view-code-">tileMap.createViewFromData(data) ⇒ <code><a href="#View">View</a></code></h3>
+<p>creates a View from specified parameters</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - created View<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - specified data</li>
+</ul>
+<p><a name="TileMap+repositionMarkerContainer"></a></p>
+<h3 id="tilemap-repositionmarkercontainer-code-view-view-code-">tileMap.repositionMarkerContainer() ⇒ <code><a href="#View">View</a></code></h3>
+<p>reposition marker container</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="TileMap+enrichMarkerData"></a></p>
+<h3 id="tilemap-enrichmarkerdata-markerdata-code-object-code-">tileMap.enrichMarkerData(markerData) ⇒ <code>Object</code></h3>
+<p>enrich marker data</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched marker data<br><strong>Params</strong></p>
+<ul>
+<li>markerData <code>Object</code> - data of markers</li>
+</ul>
+<p><a name="TileMap+enrichLabelData"></a></p>
+<h3 id="tilemap-enrichlabeldata-labeldata-code-object-code-">tileMap.enrichLabelData(labelData) ⇒ <code>Object</code></h3>
+<p>enrich label data</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched label data<br><strong>Params</strong></p>
+<ul>
+<li>labelData <code>Object</code> - data of labels</li>
+</ul>
+<p><a name="TileMap+initializeMarkers"></a></p>
+<h3 id="tilemap-initializemarkers-markerdata-code-tilemap-tilemap-code-">tileMap.initializeMarkers(markerData) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>initializes all markers</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>markerData <code>Object</code> - data of all markers</li>
+</ul>
+<p><a name="TileMap+appendMarkerContainerToDom"></a></p>
+<h3 id="tilemap-appendmarkercontainertodom-">tileMap.appendMarkerContainerToDom()</h3>
+<p>append marker container to DOM
+´     * @return {TileMap} instance of TileMap for chaining</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><a name="TileMap+createTooltipContainer"></a></p>
+<h3 id="tilemap-createtooltipcontainer-code-tilemap-tilemap-code-">tileMap.createTooltipContainer() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>creates an instance of ToolTip</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+bindEvents"></a></p>
+<h3 id="tilemap-bindevents-code-tilemap-tilemap-code-">tileMap.bindEvents() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>bind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+zoomToBounds"></a></p>
+<h3 id="tilemap-zoomtobounds-center-boundingbox-code-tilemap-tilemap-code-">tileMap.zoomToBounds(center, boundingBox) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>zoom to boundaries on specified center</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>center <code><a href="#LatLng">LatLng</a></code> - zoom to position</li>
+<li>boundingBox <code><a href="#Rectangle">Rectangle</a></code> - specified bounds to toom to</li>
+</ul>
+<p><a name="TileMap+thumbLoaded"></a></p>
+<h3 id="tilemap-thumbloaded-code-tilemap-tilemap-code-">tileMap.thumbLoaded() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>called when thumbnail image was loaded</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+setViewToOldView"></a></p>
+<h3 id="tilemap-setviewtooldview-center-zoom-code-tilemap-tilemap-code-">tileMap.setViewToOldView(center, zoom) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>set new view to old views position and zoomlevel</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>center <code><a href="#LatLng">LatLng</a></code> - old center</li>
+<li>zoom <code>Number</code> - old zoom,</li>
+</ul>
+<p><a name="TileMap+changelevel"></a></p>
+<h3 id="tilemap-changelevel-direction-code-tilemap-tilemap-code-">tileMap.changelevel(direction) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>change level up or down</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>direction <code>Number</code> - either 1 or -1</li>
+</ul>
+<p><a name="TileMap+initializeCanvas"></a></p>
+<h3 id="tilemap-initializecanvas-code-tilemap-tilemap-code-">tileMap.initializeCanvas() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>initializes the canvas, adds to DOM</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+redraw"></a></p>
+<h3 id="tilemap-redraw-code-tilemap-tilemap-code-">tileMap.redraw() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>complete clear and draw of all visible tiles</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+resize"></a></p>
+<h3 id="tilemap-resize-code-tilemap-tilemap-code-">tileMap.resize() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>Handles resizing of TileMap</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+moveView"></a></p>
+<h3 id="tilemap-moveview-delta-code-tilemap-tilemap-code-">tileMap.moveView(delta) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>move view by delta</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>delta <code><a href="#Point">Point</a></code> - delta of x/y</li>
+</ul>
+<p><a name="TileMap+zoom"></a></p>
+<h3 id="tilemap-zoom-factor-position-code-tilemap-tilemap-code-">tileMap.zoom(factor, position) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>handles zoom by factor and position</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
+<ul>
+<li>factor <code>Number</code> - difference in zoom scale</li>
+<li>position <code><a href="#Point">Point</a></code> - position to zoom to</li>
+</ul>
+<p><a name="TileMap+clusterHandler"></a></p>
+<h3 id="tilemap-clusterhandler-code-tilemap-tilemap-code-">tileMap.clusterHandler() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>handles creation of clusters</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+resizeCanvas"></a></p>
+<h3 id="tilemap-resizecanvas-code-tilemap-tilemap-code-">tileMap.resizeCanvas() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>resizes the canvas sizes</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+resizeView"></a></p>
+<h3 id="tilemap-resizeview-code-tilemap-tilemap-code-">tileMap.resizeView() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>Handles resizing of view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+mainLoop"></a></p>
+<h3 id="tilemap-mainloop-">tileMap.mainLoop()</h3>
+<p>main draw call</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><a name="TileMap+drawLabels"></a></p>
+<h3 id="tilemap-drawlabels-code-tilemap-tilemap-code-">tileMap.drawLabels() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>draw all labels</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="ToolTip"></a></p>
+<h2 id="tooltip">ToolTip</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#ToolTip">ToolTip</a><ul>
+<li><a href="#new_ToolTip_new">new ToolTip(container, templates, id)</a></li>
+<li><a href="#ToolTip+allTemplatesLoaded">.allTemplatesLoaded</a> ⇒ <code>Boolean</code></li>
+<li><a href="#ToolTip+boot">.boot(templates)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+setupContainer">.setupContainer()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+registerHandlebarHelpers">.registerHandlebarHelpers()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+initializeTemplates">.initializeTemplates(templates)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+bindEvents">.bindEvents()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+resizeHandler">.resizeHandler()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+insertContent">.insertContent(content)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+open">.open(data)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+closeTooltip">.closeTooltip()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+setPosition">.setPosition()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+<li><a href="#ToolTip+compileTemplates">.compileTemplates()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_ToolTip_new"></a></p>
+<h3 id="new-tooltip-container-templates-id-">new ToolTip(container, templates, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
+<ul>
+<li>container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object</li>
+<li>templates <code>Array</code> - = [] - defined templates</li>
+<li>id <code>Number</code> - = 0 - if of parent instance</li>
+</ul>
+<p><a name="ToolTip+allTemplatesLoaded"></a></p>
+<h3 id="tooltip-alltemplatesloaded-code-boolean-code-">toolTip.allTemplatesLoaded ⇒ <code>Boolean</code></h3>
+<p>checks if all templates were loaded</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code>Boolean</code> - wheter true if all templates were loaded or false<br><a name="ToolTip+boot"></a></p>
+<h3 id="tooltip-boot-templates-code-tooltip-tooltip-code-">toolTip.boot(templates) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>initialize boot up after Handlebars is loaded</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
+<ul>
+<li>templates <code>Array</code> - = [] - defined templates</li>
+</ul>
+<p><a name="ToolTip+setupContainer"></a></p>
+<h3 id="tooltip-setupcontainer-code-tooltip-tooltip-code-">toolTip.setupContainer() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>initialize all container and DOM objects for ToolTip</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+registerHandlebarHelpers"></a></p>
+<h3 id="tooltip-registerhandlebarhelpers-code-tooltip-tooltip-code-">toolTip.registerHandlebarHelpers() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>register helpers for handlebars</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+initializeTemplates"></a></p>
+<h3 id="tooltip-initializetemplates-templates-code-tooltip-tooltip-code-">toolTip.initializeTemplates(templates) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>initialize all templates</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
+<ul>
+<li>templates <code>Object</code> - = {} - all specified templates</li>
+</ul>
+<p><a name="ToolTip+bindEvents"></a></p>
+<h3 id="tooltip-bindevents-code-tooltip-tooltip-code-">toolTip.bindEvents() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>bind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+resizeHandler"></a></p>
+<h3 id="tooltip-resizehandler-code-tooltip-tooltip-code-">toolTip.resizeHandler() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>on resize check if tooltip is bottom or left position</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+insertContent"></a></p>
+<h3 id="tooltip-insertcontent-content-code-tooltip-tooltip-code-">toolTip.insertContent(content) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>inserts content to ToolTip instance container</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
+<ul>
+<li>content <code>Object</code> - = {} - content object</li>
+</ul>
+<p><a name="ToolTip+open"></a></p>
+<h3 id="tooltip-open-data-code-tooltip-tooltip-code-">toolTip.open(data) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>opens a tooltip</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - content object</li>
+</ul>
+<p><a name="ToolTip+closeTooltip"></a></p>
+<h3 id="tooltip-closetooltip-code-tooltip-tooltip-code-">toolTip.closeTooltip() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>closes a tooltip</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+setPosition"></a></p>
+<h3 id="tooltip-setposition-code-tooltip-tooltip-code-">toolTip.setPosition() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>sets position of tooltip to left or bottom</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+compileTemplates"></a></p>
+<h3 id="tooltip-compiletemplates-code-tooltip-tooltip-code-">toolTip.compileTemplates() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
+<p>precompiles all Handlebars templates</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="View"></a></p>
+<h2 id="view">View</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#View">View</a><ul>
+<li><a href="#new_View_new">new View(view, data, context, maxZoom, minZoom, limitToBounds, centerSmallMap, id)</a></li>
+<li><a href="#View+visibleTiles">.visibleTiles</a> ⇒ <code>array</code></li>
+<li><a href="#View+init">.init()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+reset">.reset()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+getDistortedView">.getDistortedView()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+checkBoundaries">.checkBoundaries()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+viewportIsSmallerThanView">.viewportIsSmallerThanView(view)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#View+checkX">.checkX(left, right, mapWidth, viewWidth)</a> ⇒ <code>Number</code></li>
+<li><a href="#View+checkY">.checkY(top, bottom, mapHeight, viewHeight)</a> ⇒ <code>Number</code></li>
+<li><a href="#View+loadThumb">.loadThumb()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+setLatLngToPosition">.setLatLngToPosition(latlng, position)</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+getDeltaXToCenter">.getDeltaXToCenter(pos)</a> ⇒ <code>Number</code></li>
+<li><a href="#View+zoom">.zoom(factor, pos, automatic)</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+changeZoomLevelIfNecessary">.changeZoomLevelIfNecessary(factor, viewportIsSmaller)</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+calculateNewCenter">.calculateNewCenter()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+moveView">.moveView(pos)</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+draw">.draw()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+drawVisibleTiles">.drawVisibleTiles()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+drawThumbnail">.drawThumbnail()</a> ⇒ <code><a href="#View">View</a></code></li>
+<li><a href="#View+initializeTiles">.initializeTiles()</a> ⇒ <code><a href="#View">View</a></code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_View_new"></a></p>
+<h3 id="new-view-view-data-context-maxzoom-minzoom-limittobounds-centersmallmap-id-">new View(view, data, context, maxZoom, minZoom, limitToBounds, centerSmallMap, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><strong>Params</strong></p>
+<ul>
+<li>view <code><a href="#Rectangle">Rectangle</a></code> - = new Rectangle() - representation of map</li>
+<li>data <code>Object</code> - = {} - tile data of current map</li>
+<li>context <code>CanvasRenderingContext2D</code> - = null - canvas context for drawing</li>
+<li>maxZoom <code>Number</code> - = 1.5 - maximal zoom of view</li>
+<li>minZoom <code>Number</code> - = 0.8 - minimal zoom of view</li>
+<li>limitToBounds <code>Number</code> - where to limit panning</li>
+<li>centerSmallMap <code>Boolean</code> - = false - if map is smaller than viewport, center it</li>
+<li>id <code>Number</code> - = 0 - id of parent instance</li>
+</ul>
+<p><a name="View+visibleTiles"></a></p>
+<h3 id="view-visibletiles-code-array-code-">view.visibleTiles ⇒ <code>array</code></h3>
+<p>get all visible tiles</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code>array</code> - all tiles that are currently visible<br><a name="View+init"></a></p>
+<h3 id="view-init-code-view-view-code-">view.init() ⇒ <code><a href="#View">View</a></code></h3>
+<p>initializes the view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+reset"></a></p>
+<h3 id="view-reset-code-view-view-code-">view.reset() ⇒ <code><a href="#View">View</a></code></h3>
+<p>resets current View to its initial position</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+getDistortedView"></a></p>
+<h3 id="view-getdistortedview-code-view-view-code-">view.getDistortedView() ⇒ <code><a href="#View">View</a></code></h3>
+<p>distorts this view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - [distorted View]<br><a name="View+checkBoundaries"></a></p>
+<h3 id="view-checkboundaries-code-view-view-code-">view.checkBoundaries() ⇒ <code><a href="#View">View</a></code></h3>
+<p>check boundaries of map and bounds</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+viewportIsSmallerThanView"></a></p>
+<h3 id="view-viewportissmallerthanview-view-code-boolean-code-">view.viewportIsSmallerThanView(view) ⇒ <code>Boolean</code></h3>
+<p>check if viewport is smaller than view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code>Boolean</code> - true if smaller, else false<br><strong>Params</strong></p>
+<ul>
+<li>view <code><a href="#Rectangle">Rectangle</a></code> - specified view</li>
+</ul>
+<p><a name="View+checkX"></a></p>
+<h3 id="view-checkx-left-right-mapwidth-viewwidth-code-number-code-">view.checkX(left, right, mapWidth, viewWidth) ⇒ <code>Number</code></h3>
+<p>check x boundaries</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code>Number</code> - calculated x to be in viewport<br><strong>Params</strong></p>
+<ul>
+<li>left <code>Number</code> - left position</li>
+<li>right <code>Number</code> - right position</li>
+<li>mapWidth <code>Number</code> - width of map</li>
+<li>viewWidth <code>Number</code> - width of viewport</li>
+</ul>
+<p><a name="View+checkY"></a></p>
+<h3 id="view-checky-top-bottom-mapheight-viewheight-code-number-code-">view.checkY(top, bottom, mapHeight, viewHeight) ⇒ <code>Number</code></h3>
+<p>check y boundaries</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code>Number</code> - calculated y to be in viewport<br><strong>Params</strong></p>
+<ul>
+<li>top <code>Number</code> - top position</li>
+<li>bottom <code>Number</code> - bottom position</li>
+<li>mapHeight <code>Number</code> - height of map</li>
+<li>viewHeight <code>Number</code> - height of viewport</li>
+</ul>
+<p><a name="View+loadThumb"></a></p>
+<h3 id="view-loadthumb-code-view-view-code-">view.loadThumb() ⇒ <code><a href="#View">View</a></code></h3>
+<p>loads thumbnail of view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+setLatLngToPosition"></a></p>
+<h3 id="view-setlatlngtoposition-latlng-position-code-view-view-code-">view.setLatLngToPosition(latlng, position) ⇒ <code><a href="#View">View</a></code></h3>
+<p>set specified lat/lng to position x/y</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><strong>Params</strong></p>
+<ul>
+<li>latlng <code><a href="#LatLng">LatLng</a></code> - specified latlng to be set Point to</li>
+<li>position <code><a href="#Point">Point</a></code> - specified position to set LatLng to</li>
+</ul>
+<p><a name="View+getDeltaXToCenter"></a></p>
+<h3 id="view-getdeltaxtocenter-pos-code-number-code-">view.getDeltaXToCenter(pos) ⇒ <code>Number</code></h3>
+<p>receive relative Position to center of viewport</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code>Number</code> - delta of point to center of viewport<br><strong>Params</strong></p>
+<ul>
+<li>pos <code><a href="#Point">Point</a></code> - specified position</li>
+</ul>
+<p><a name="View+zoom"></a></p>
+<h3 id="view-zoom-factor-pos-automatic-code-view-view-code-">view.zoom(factor, pos, automatic) ⇒ <code><a href="#View">View</a></code></h3>
+<p>zooming handler</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><strong>Params</strong></p>
+<ul>
+<li>factor <code>Number</code> - increase/decrease factor</li>
+<li>pos <code><a href="#Point">Point</a></code> - Position to zoom to</li>
+<li>automatic <code>Boolean</code> <code> = false</code> - = false - is resetted by programm in case of beholding boundaries</li>
+</ul>
+<p><a name="View+changeZoomLevelIfNecessary"></a></p>
+<h3 id="view-changezoomlevelifnecessary-factor-viewportissmaller-code-view-view-code-">view.changeZoomLevelIfNecessary(factor, viewportIsSmaller) ⇒ <code><a href="#View">View</a></code></h3>
+<p>changes zoom level if its necessary</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><strong>Params</strong></p>
+<ul>
+<li>factor <code>Number</code> - specified zoom change</li>
+<li>viewportIsSmaller <code>Boolean</code> - is viewport smaller than view</li>
+</ul>
+<p><a name="View+calculateNewCenter"></a></p>
+<h3 id="view-calculatenewcenter-code-view-view-code-">view.calculateNewCenter() ⇒ <code><a href="#View">View</a></code></h3>
+<p>update center position of view</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+moveView"></a></p>
+<h3 id="view-moveview-pos-code-view-view-code-">view.moveView(pos) ⇒ <code><a href="#View">View</a></code></h3>
+<p>moves the view&#39;s current position by pos</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><strong>Params</strong></p>
+<ul>
+<li>pos <code><a href="#Point">Point</a></code> - specified additional offset</li>
+</ul>
+<p><a name="View+draw"></a></p>
+<h3 id="view-draw-code-view-view-code-">view.draw() ⇒ <code><a href="#View">View</a></code></h3>
+<p>Handles draw of visible elements</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+drawVisibleTiles"></a></p>
+<h3 id="view-drawvisibletiles-code-view-view-code-">view.drawVisibleTiles() ⇒ <code><a href="#View">View</a></code></h3>
+<p>draws all visible tiles</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+drawThumbnail"></a></p>
+<h3 id="view-drawthumbnail-code-view-view-code-">view.drawThumbnail() ⇒ <code><a href="#View">View</a></code></h3>
+<p>draws the thumbnail</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="View+initializeTiles"></a></p>
+<h3 id="view-initializetiles-code-view-view-code-">view.initializeTiles() ⇒ <code><a href="#View">View</a></code></h3>
+<p>initializes tiles</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="Events"></a></p>
+<h2 id="events-code-object-code-">Events : <code>object</code></h2>
+<p>Helper for naming events</p>
+<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x6d;&#100;&#x75;&#118;&#x65;&#64;&#100;&#101;&#115;&#x69;&#x67;&#110;&#109;&#x61;&#x69;&#108;&#x2e;&#x6e;&#101;&#116;">&#x6d;&#100;&#x75;&#118;&#x65;&#64;&#100;&#101;&#115;&#x69;&#x67;&#110;&#109;&#x61;&#x69;&#108;&#x2e;&#x6e;&#101;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<ul>
+<li><a href="#Events">Events</a> : <code>object</code><ul>
+<li><a href="#Events.ToolTip">.ToolTip</a> : <code>Object</code></li>
+<li><a href="#Events.Marker">.Marker</a> : <code>Object</code></li>
+<li><a href="#Events.Publisher">.Publisher</a> : <code>Object</code></li>
+<li><a href="#Events.TileMap">.TileMap</a> : <code>Object</code></li>
+<li><a href="#Events.Handling">.Handling</a> : <code>Object</code></li>
+<li><a href="#Events.View">.View</a> : <code>Object</code></li>
+<li><a href="#Events.MarkerClusterer">.MarkerClusterer</a> : <code>Object</code></li>
+<li><a href="#Events.MapInformation">.MapInformation</a> : <code>Object</code></li>
+<li><a href="#Events.General">.General</a> : <code>Object</code></li>
+</ul>
+</li>
+</ul>
+<p><a name="Events.ToolTip"></a></p>
+<h3 id="events-tooltip-code-object-code-">Events.ToolTip : <code>Object</code></h3>
+<p>Eventnames for ToolTip class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>OPEN <code>Object</code> - when a tooltip should be openend  </li>
+<li>CLOSE <code>Object</code> - when a tooltip should be closed  </li>
+</ul>
+<p><a name="Events.Marker"></a></p>
+<h3 id="events-marker-code-object-code-">Events.Marker : <code>Object</code></h3>
+<p>Eventnames for Marker class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>DEACTIVATE <code>Object</code> - when a Marker should be in deactived state  </li>
+</ul>
+<p><a name="Events.Publisher"></a></p>
+<h3 id="events-publisher-code-object-code-">Events.Publisher : <code>Object</code></h3>
+<p>Eventnames for Publisher class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>PUBLISH <code>Object</code> - notifies all subscribers  </li>
+<li>SUBSCRIBE <code>Object</code> - subscribes to a topic  </li>
+<li>UNSUBSCRIBE <code>Object</code> - unsubscribes from a topic  </li>
+</ul>
+<p><a name="Events.TileMap"></a></p>
+<h3 id="events-tilemap-code-object-code-">Events.TileMap : <code>Object</code></h3>
+<p>Eventnames for TileMap class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>IMG_DATA_NAME <code>Object</code> - name of img data  </li>
+<li>MARKER_DATA_NAME <code>Object</code> - name of marker data  </li>
+<li>LABEL_DATA_NAME <code>Object</code> - name of label data  </li>
+<li>NEXT_LEVEL <code>Object</code> - next level of view  </li>
+<li>PREVIOUS_LEVEL <code>Object</code> - previous level of view  </li>
+<li>RESIZE <code>Object</code> - resize of view needed  </li>
+<li>ZOOM_TO_BOUNDS <code>Object</code> - zoom to bounds  </li>
+<li>DRAW <code>Object</code> - draw is needed  </li>
+</ul>
+<p><a name="Events.Handling"></a></p>
+<h3 id="events-handling-code-object-code-">Events.Handling : <code>Object</code></h3>
+<p>Eventnames for Handling in all classes</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>RESIZE <code>Object</code> - resize of window happened needed  </li>
+<li>CLICK <code>Object</code> - click occured  </li>
+<li>TOUCHSTART <code>Object</code> - Touch started  </li>
+<li>TOUCHEND <code>Object</code> - Touch ended  </li>
+<li>MOUSEDOWN <code>Object</code> - Mouse started  </li>
+<li>MOUSEUP <code>Object</code> - Mouse ended  </li>
+<li>KEYDOWN <code>Object</code> - key pressed  </li>
+<li>KEYUP <code>Object</code> - key released  </li>
+<li>ENTER <code>Object</code> - entering of mouse  </li>
+</ul>
+<p><a name="Events.View"></a></p>
+<h3 id="events-view-code-object-code-">Events.View : <code>Object</code></h3>
+<p>Eventnames for View class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>THUMB_LOADED <code>Object</code> - thumbnail was loaded  </li>
+</ul>
+<p><a name="Events.MarkerClusterer"></a></p>
+<h3 id="events-markerclusterer-code-object-code-">Events.MarkerClusterer : <code>Object</code></h3>
+<p>Eventnames for MarkerClusterer class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>CLUSTERIZE <code>Object</code> - create cluster  </li>
+<li>UNCLUSTERIZE <code>Object</code> - destroy cluster  </li>
+</ul>
+<p><a name="Events.MapInformation"></a></p>
+<h3 id="events-mapinformation-code-object-code-">Events.MapInformation : <code>Object</code></h3>
+<p>Eventnames for MapInformation class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>UPDATE <code>Object</code> - updates informations  </li>
+</ul>
+<p><a name="Events.General"></a></p>
+<h3 id="events-general-code-object-code-">Events.General : <code>Object</code></h3>
+<p>Eventnames for MappedJS class</p>
+<p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
+<ul>
+<li>ACTIVE <code>Object</code> - DomElement is marked active  </li>
+<li>ZOOM_IN <code>Object</code> - zoom in button  </li>
+<li>ZOOM_OUT <code>Object</code> - zoom out button  </li>
+<li>HOME <code>Object</code> - home button  </li>
+</ul>
+        <footer class="site-footer">
+            <span class="site-footer-owner"><a href="https://github.com/dazlious/MappedJS">MappedJS</a> is maintained by <a href="https://github.com/dazlious">dazlious</a>.</span>
+
+            <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+        </footer>
+
+    </section>
+
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-74095960-1");
+            pageTracker._trackPageview();
+        } catch (err) {}
+    </script>
+
+
+
+</body>
+
+</html>

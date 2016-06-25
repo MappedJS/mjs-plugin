@@ -1,0 +1,21 @@
+h2 {
+    margin: 0 0 (2*$gutter) 0;
+    font-size: (8*$gutter);
+    > * {
+        display: block;
+    }
+    .kicker {
+        font-size: 40%;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .headline {
+        font-size: 100%;
+        font-weight: 700;
+    }
+    .subheadline {
+        font-size: 60%;
+        font-style: italic;
+        font-weight: 100;
+    }
+}

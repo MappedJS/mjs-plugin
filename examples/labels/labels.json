@@ -1,0 +1,78 @@
+{
+    "labels": [
+        {
+            "position": [[52.522230, 13.393174], [52.53182,13.2902553], [52.453333, 13.562520], [52.536263, 13.210026], [52.513239, 13.420777]],
+            "text": {
+                "content": "Spree",
+                "color": "#333333",
+                "offset": [0, 5],
+                "align": "center",
+                "baseline": "hanging",
+                "font": "10pt Arial"
+            },
+            "icon": {
+                "type": "circle",
+                "size": 2,
+                "color": "#333333"
+            },
+            "visibility": {
+                "min": 0,
+                "max": 4
+            }
+        },
+        {
+            "position": [52.502142, 13.341315],
+            "text": {
+                "content": "KaDeWe",
+                "color": "#333333",
+                "offset": [0, 5],
+                "align": "center",
+                "baseline": "hanging",
+                "font": "10pt Arial"
+            },
+            "icon": {
+                "type": "square",
+                "size": 4,
+                "color": "#333333"
+            }
+        },
+        {
+            "position": [52.455128, 13.280346],
+            "text": {
+                "content": "Thielpark",
+                "color": "#333333",
+                "offset": [0, 5],
+                "align": "center",
+                "baseline": "hanging",
+                "font": "10pt Arial"
+            },
+            "icon": {
+                "type": "image",
+                "size": [16, 16],
+                "offset": [-8, -16],
+                "url": "img/bulb.png"
+            }
+        },
+        {
+            "position": [[52.506725, 13.229573], [52.514072, 13.345305], [52.527950, 13.125600], [52.517405, 13.398682], [52.536113, 13.433050], [52.552125, 13.465810], [52.604561, 13.524158]],
+            "text": {
+                "content": "B2",
+                "color": "#333333",
+                "offset": [0, 5],
+                "align": "center",
+                "baseline": "hanging",
+                "font": "10pt Arial"
+            },
+            "icon": {
+                "type": "image",
+                "size": [32, 32],
+                "offset": [-12, -32],
+                "url": "img/icon.png"
+            },
+            "visibility": {
+                "min": 3,
+                "max": 5
+            }
+        }
+    ]
+}

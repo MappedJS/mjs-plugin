@@ -1,0 +1,68 @@
+{
+    "marker": [
+        {
+            "icon": "img/icon.png",
+            "hover": true,
+            "offset": {
+                "x": 5,
+                "y": 0
+            },
+            "size": {
+                "width": 64,
+                "height": 32
+            },
+            "position": {
+                "lat": 52.5,
+                "lng": 13.3
+            }
+        },
+        {
+            "icon": "img/icon.png",
+            "hover": true,
+            "offset": {
+                "x": 5,
+                "y": 0
+            },
+            "size": {
+                "width": 64,
+                "height": 32
+            },
+            "position": {
+                "lat": 52.5,
+                "lng": 13.29
+            }
+        },
+        {
+            "icon": "img/icon.png",
+            "hover": true,
+            "offset": {
+                "x": 5,
+                "y": 0
+            },
+            "size": {
+                "width": 64,
+                "height": 32
+            },
+            "position": {
+                "lat": 52.5,
+                "lng": 13.32
+            }
+        },
+        {
+            "icon": "img/icon.png",
+            "hover": true,
+            "offset": {
+                "x": 5,
+                "y": 0
+            },
+            "size": {
+                "width": 64,
+                "height": 32
+            },
+            "position": {
+                "lat": 52.5,
+                "lng": 13.33
+            }
+        }
+    ]
+}
