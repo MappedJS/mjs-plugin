@@ -5643,10 +5643,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        infoElement.classList.add("info-container");
 	        infoElement.classList.add(type);
 	        infoElement.classList.add(settings.position);
+	        infoElement.setAttribute('draggable', 'false');
+	        infoElement.setAttribute('unselectable', 'on');
 	        if (settings.show) infoElement.classList.add(_Events.Events.General.ACTIVE);
 
 	        _Helper.Helper.loadImage(settings.path, function (img) {
 	            infoElement.appendChild(img);
+	            img.setAttribute('draggable', 'false');
+	            img.setAttribute('unselectable', 'on');
+	            _Helper.Helper.addListener(img, "dragstart", function () {
+	                return false;
+	            });
 	            _this2[type] = infoElement;
 	            _this2.container.appendChild(infoElement);
 	            _Helper.Helper.addListener(infoElement, _Events.Events.Handling.CLICK, function () {

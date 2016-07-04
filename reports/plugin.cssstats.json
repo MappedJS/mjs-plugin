@@ -1,18 +1,18 @@
 {
     "fileSize": {
-        "size": "20.79 KB",
-        "gzipSize": "8.16 KB"
+        "size": "21.30 KB",
+        "gzipSize": "8.23 KB"
     },
     "selectorSpecifity": {
         "max": 51,
-        "average": 32.44736842105263
+        "average": 32.14102564102564
     },
     "totals": {
-        "rules": 67,
-        "selectors": 76,
-        "declarations": 215,
-        "properties": 55,
-        "vendorPrefixes": 10,
+        "rules": 69,
+        "selectors": 78,
+        "declarations": 226,
+        "properties": 62,
+        "vendorPrefixes": 17,
         "mediaQueries": 0,
         "importants": 0
     },
@@ -24,8 +24,8 @@
         "background-color": 5
     },
     "selectors": {
-        "type": 11,
-        "class": 76,
+        "type": 12,
+        "class": 78,
         "id": 0,
         "pseudoClass": 6,
         "pseudoElement": 5
@@ -118,6 +118,8 @@
             20,
             20,
             21,
+            20,
+            21,
             30,
             30,
             31,
@@ -195,6 +197,8 @@
             5,
             4,
             11,
+            4,
+            7,
             5,
             4,
             2,

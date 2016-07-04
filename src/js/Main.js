@@ -98,10 +98,17 @@ export class MappedJS {
         infoElement.classList.add("info-container");
         infoElement.classList.add(type);
         infoElement.classList.add(settings.position);
+        infoElement.setAttribute('draggable', 'false');
+        infoElement.setAttribute('unselectable', 'on');
         if (settings.show) infoElement.classList.add(Events.General.ACTIVE);
 
         Helper.loadImage(settings.path, (img) => {
             infoElement.appendChild(img);
+            img.setAttribute('draggable', 'false');
+            img.setAttribute('unselectable', 'on');
+            Helper.addListener(img, "dragstart", () => {
+                return false;
+            });
             this[type] = infoElement;
             this.container.appendChild(infoElement);
             Helper.addListener(infoElement, Events.Handling.CLICK, () => {
