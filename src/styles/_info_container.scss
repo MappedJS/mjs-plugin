@@ -20,6 +20,15 @@ $info-border: 5px;
         background-size: 320%;
         border-radius: $gutter;
     }
+    & * {
+        user-select: none;
+    }
+    & img {
+        -webkit-user-drag: none;
+        user-drag: none;
+        user-select: none;
+        pointer-events: none;
+    }
     &.bottom-right,
     &.top-right {
         left: 100%;

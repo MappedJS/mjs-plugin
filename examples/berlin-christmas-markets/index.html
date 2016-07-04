@@ -11,7 +11,7 @@
         <meta name="robots" content="index,follow,noarchive">
 
         <link rel="stylesheet" type="text/css" href="../../dist/styles/mappedJS.css">
-        
+
         <style>
             body {
                 margin: 0;
@@ -57,8 +57,22 @@
                     "zoom": 1,
                     "tooltip": {
                         "templates": {
-                            "image": "../../hbs/image.hbs"
+                            "image": "../../hbs/image.hbs",
+                            "crossheading": "../../hbs/crossheading.hbs",
+                            "headline": "../../hbs/headline.hbs",
+                            "iframe": "../../hbs/iframe.hbs",
+                            "text": "../../hbs/text.hbs"
                         }
+                    },
+                    "legend": {
+                        "path": "./img/legend.svg",
+                        "position": "top-right",
+                        "show": false
+                    },
+                    "locator": {
+                        "path": "./img/locator.jpg",
+                        "position": "bottom-left",
+                        "show": false
                     }
                 }
             });
