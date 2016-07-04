@@ -199,9 +199,9 @@ DataEnrichment.DATA_LABEL_ICON = {
  * @type {Object}
  */
 DataEnrichment.TOOLTIP = {
-    image: "/plugin/hbs/image.hbs",
-    text: "/plugin/hbs/text.hbs",
-    headline: "/plugin/hbs/headline.hbs",
-    crossheading: "/plugin/hbs/crossheading.hbs",
-    iframe: "/plugin/hbs/iframe.hbs"
+    image: "/hbs/image.hbs",
+    text: "/hbs/text.hbs",
+    headline: "/hbs/headline.hbs",
+    crossheading: "/hbs/crossheading.hbs",
+    iframe: "/hbs/iframe.hbs"
 };
