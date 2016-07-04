@@ -3080,8 +3080,8 @@ precompiles all Handlebars templates
     * [.loadThumb()](#View+loadThumb) ⇒ <code>[View](#View)</code>
     * [.setLatLngToPosition(latlng, position)](#View+setLatLngToPosition) ⇒ <code>[View](#View)</code>
     * [.getDeltaXToCenter(pos)](#View+getDeltaXToCenter) ⇒ <code>Number</code>
-    * [.zoom(factor, pos, automatic)](#View+zoom) ⇒ <code>[View](#View)</code>
-    * [.changeZoomLevelIfNecessary(factor, viewportIsSmaller)](#View+changeZoomLevelIfNecessary) ⇒ <code>[View](#View)</code>
+    * [.zoom(factor, pos, automatic)](#View+zoom) ⇒ <code>Number</code>
+    * [.changeZoomLevelIfNecessary(factor, viewportIsSmaller)](#View+changeZoomLevelIfNecessary) ⇒ <code>Number</code>
     * [.calculateNewCenter()](#View+calculateNewCenter) ⇒ <code>[View](#View)</code>
     * [.moveView(pos)](#View+moveView) ⇒ <code>[View](#View)</code>
     * [.draw()](#View+draw) ⇒ <code>[View](#View)</code>
@@ -3210,11 +3210,11 @@ receive relative Position to center of viewport
 
 <a name="View+zoom"></a>
 
-### view.zoom(factor, pos, automatic) ⇒ <code>[View](#View)</code>
+### view.zoom(factor, pos, automatic) ⇒ <code>Number</code>
 zooming handler
 
 **Kind**: instance method of <code>[View](#View)</code>  
-**Returns**: <code>[View](#View)</code> - instance of View for chaining  
+**Returns**: <code>Number</code> - indicates if direction has changed  
 **Params**
 
 - factor <code>Number</code> - increase/decrease factor
@@ -3223,11 +3223,11 @@ zooming handler
 
 <a name="View+changeZoomLevelIfNecessary"></a>
 
-### view.changeZoomLevelIfNecessary(factor, viewportIsSmaller) ⇒ <code>[View](#View)</code>
+### view.changeZoomLevelIfNecessary(factor, viewportIsSmaller) ⇒ <code>Number</code>
 changes zoom level if its necessary
 
 **Kind**: instance method of <code>[View](#View)</code>  
-**Returns**: <code>[View](#View)</code> - instance of View for chaining  
+**Returns**: <code>Number</code> - indicates if direction has changed  
 **Params**
 
 - factor <code>Number</code> - specified zoom change

@@ -4606,7 +4606,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    TileMap.prototype.zoom = function zoom(factor, position) {
 	        if (factor !== 0) {
-	            this.view.zoom(factor, position);
+	            var levelChanged = this.view.zoom(factor, position);
+	            if (levelChanged === 1 && this.levelHandler.hasNext() || levelChanged === -1 && this.levelHandler.hasPrevious()) {
+	                this.zoom(factor, position);
+	            }
 	            this.clusterHandler();
 	            this.redraw();
 	        }
@@ -7204,7 +7207,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param  {Number} factor - increase/decrease factor
 	     * @param  {Point} pos - Position to zoom to
 	     * @param  {Boolean} automatic = false - is resetted by programm in case of beholding boundaries
-	     * @return {View} instance of View for chaining
+	     * @return {Number} indicates if direction has changed
 	     */
 
 
@@ -7237,26 +7240,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 
 	        this.setLatLngToPosition(latlngPosition, pos);
-	        this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
-
-	        return this;
+	        return this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
 	    };
 
 	    /**
 	     * changes zoom level if its necessary
 	     * @param  {Number} factor - specified zoom change
 	     * @param  {Boolean} viewportIsSmaller - is viewport smaller than view
-	     * @return {View} instance of View for chaining
+	     * @return {Number} indicates if direction has changed
 	     */
 
 
 	    View.prototype.changeZoomLevelIfNecessary = function changeZoomLevelIfNecessary(factor, viewportIsSmaller) {
+	        var zoomChangedDirection = 0;
 	        if (this.zoomFactor >= this.maxZoom && factor > 0) {
 	            this.eventManager.publish(_Events.Events.TileMap.NEXT_LEVEL);
+	            zoomChangedDirection = 1;
 	        } else if (this.zoomFactor <= this.minZoom && factor < 0 && !viewportIsSmaller) {
 	            this.eventManager.publish(_Events.Events.TileMap.PREVIOUS_LEVEL);
+	            zoomChangedDirection = -1;
 	        }
-	        return this;
+	        return zoomChangedDirection;
 	    };
 
 	    /**

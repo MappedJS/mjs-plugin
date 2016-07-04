@@ -272,7 +272,7 @@ export class View extends Drawable {
      * @param  {Number} factor - increase/decrease factor
      * @param  {Point} pos - Position to zoom to
      * @param  {Boolean} automatic = false - is resetted by programm in case of beholding boundaries
-     * @return {View} instance of View for chaining
+     * @return {Number} indicates if direction has changed
      */
     zoom(factor, pos, automatic = false) {
         const equalizedMap = this.getDistortedView();
@@ -301,24 +301,25 @@ export class View extends Drawable {
         });
 
         this.setLatLngToPosition(latlngPosition, pos);
-        this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
-
-        return this;
+        return this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
     }
 
     /**
      * changes zoom level if its necessary
      * @param  {Number} factor - specified zoom change
      * @param  {Boolean} viewportIsSmaller - is viewport smaller than view
-     * @return {View} instance of View for chaining
+     * @return {Number} indicates if direction has changed
      */
     changeZoomLevelIfNecessary(factor, viewportIsSmaller) {
+        let zoomChangedDirection = 0;
         if (this.zoomFactor >= this.maxZoom && factor > 0) {
             this.eventManager.publish(Events.TileMap.NEXT_LEVEL);
+            zoomChangedDirection = 1;
         } else if (this.zoomFactor <= this.minZoom && factor < 0 && !viewportIsSmaller) {
             this.eventManager.publish(Events.TileMap.PREVIOUS_LEVEL);
+            zoomChangedDirection = -1;
         }
-        return this;
+        return zoomChangedDirection;
     }
 
     /**
