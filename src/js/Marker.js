@@ -28,7 +28,7 @@ export class Marker extends Drawable {
     get boundingBox() {
         const bBox = this.icon.getBoundingClientRect();
         const parentBBox = this.container.getBoundingClientRect();
-        return new Rectangle(bBox.left - parentBBox.left, bBox.top - parentBBox.top, bBox.width, bBox.height).scaleCenter(1.2);
+        return new Rectangle(bBox.left - parentBBox.left, bBox.top - parentBBox.top, bBox.width, bBox.height).scaleCenter(2);
     }
 
     /**

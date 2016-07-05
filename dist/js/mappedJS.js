@@ -5218,7 +5218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    Cluster.prototype.addMarker = function addMarker(marker) {
 	        this.markers.push(marker);
-	        this.boundingBox = !this.boundingBox ? marker.boundingBox : this.boundingBox.extend(marker.boundingBox);
+	        this.boundingBox = !this.boundingBox ? marker.boundingBox : this.boundingBox;
 	        return this;
 	    };
 
@@ -6033,7 +6033,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        get: function get() {
 	            var bBox = this.icon.getBoundingClientRect();
 	            var parentBBox = this.container.getBoundingClientRect();
-	            return new _Rectangle.Rectangle(bBox.left - parentBBox.left, bBox.top - parentBBox.top, bBox.width, bBox.height).scaleCenter(1.2);
+	            return new _Rectangle.Rectangle(bBox.left - parentBBox.left, bBox.top - parentBBox.top, bBox.width, bBox.height).scaleCenter(2);
 	        }
 
 	        /**
