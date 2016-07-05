@@ -4319,10 +4319,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    TileMap.prototype.repositionMarkerContainer = function repositionMarkerContainer() {
 	        if (this.markerContainer) {
 	            var newSize = this.view.view.getDistortedRect(this.view.distortionFactor);
-	            var width = parseFloat(newSize.width);
-	            var height = parseFloat(newSize.height);
-	            var left = parseFloat(newSize.left + this.view.offsetToCenter);
-	            var top = parseFloat(newSize.top);
+	            var width = parseFloat(newSize.width).toFixed(8);
+	            var height = parseFloat(newSize.height).toFixed(8);
+	            var left = parseFloat(newSize.left + this.view.offsetToCenter).toFixed(8);
+	            var top = parseFloat(newSize.top).toFixed(8);
 	            _Helper.Helper.css(this.markerContainer, {
 	                "width": width + 'px',
 	                "height": height + 'px',
