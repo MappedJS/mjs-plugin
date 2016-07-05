@@ -121,6 +121,7 @@ export class View extends Drawable {
     checkBoundaries() {
         const offset = new Point();
         const equalizedMap = this.getDistortedView();
+
         if (!equalizedMap.containsRect(this.viewport)) {
             const distanceLeft = equalizedMap.left - this.viewport.left,
                 distanceRight = equalizedMap.right - this.viewport.right,
@@ -129,9 +130,11 @@ export class View extends Drawable {
 
             offset.x = this.checkX(distanceLeft, distanceRight, equalizedMap.width, this.viewport.width);
             offset.y = this.checkX(distanceTop, distanceBottom, equalizedMap.height, this.viewport.height);
+
+            offset.multiply(1 / this.distortionFactor, 1);
+            this.view.translate(offset.x, offset.y);
         }
-        offset.multiply(1 / this.distortionFactor, 1);
-        this.view.translate(offset.x, offset.y);
+
         this.eventManager.publish(Events.MapInformation.UPDATE, {
             view: this.view
         });

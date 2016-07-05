@@ -4319,10 +4319,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    TileMap.prototype.repositionMarkerContainer = function repositionMarkerContainer() {
 	        if (this.markerContainer) {
 	            var newSize = this.view.view.getDistortedRect(this.view.distortionFactor);
-	            var width = parseInt(newSize.width, 10);
-	            var height = parseInt(newSize.height, 10);
-	            var left = parseInt(newSize.left + this.view.offsetToCenter, 10);
-	            var top = parseInt(newSize.top, 10);
+	            var width = parseFloat(newSize.width);
+	            var height = parseFloat(newSize.height);
+	            var left = parseFloat(newSize.left + this.view.offsetToCenter);
+	            var top = parseFloat(newSize.top);
 	            _Helper.Helper.css(this.markerContainer, {
 	                "width": width + 'px',
 	                "height": height + 'px',
@@ -4676,7 +4676,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.lastFrameMillisecs = currentMillisecs;
 	        this.deltaTiming = _Helper.Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
 
-	        if (this.velocity.length >= 0.2) this.moveView(this.velocity.multiply(0.9).clone.multiply(this.deltaTiming));
+	        if (this.velocity.length >= 0.1) this.moveView(this.velocity.multiply(0.9).clone.multiply(this.deltaTiming));
 
 	        this.view.checkBoundaries();
 
@@ -7042,6 +7042,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    View.prototype.checkBoundaries = function checkBoundaries() {
 	        var offset = new _Point.Point();
 	        var equalizedMap = this.getDistortedView();
+
 	        if (!equalizedMap.containsRect(this.viewport)) {
 	            var distanceLeft = equalizedMap.left - this.viewport.left,
 	                distanceRight = equalizedMap.right - this.viewport.right,
@@ -7050,9 +7051,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            offset.x = this.checkX(distanceLeft, distanceRight, equalizedMap.width, this.viewport.width);
 	            offset.y = this.checkX(distanceTop, distanceBottom, equalizedMap.height, this.viewport.height);
+
+	            offset.multiply(1 / this.distortionFactor, 1);
+	            this.view.translate(offset.x, offset.y);
 	        }
-	        offset.multiply(1 / this.distortionFactor, 1);
-	        this.view.translate(offset.x, offset.y);
+
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
 	            view: this.view
 	        });
