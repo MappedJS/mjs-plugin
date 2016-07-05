@@ -274,10 +274,10 @@ export class TileMap {
     repositionMarkerContainer() {
         if (this.markerContainer) {
             const newSize = this.view.view.getDistortedRect(this.view.distortionFactor);
-            const width = parseFloat(newSize.width);
-            const height = parseFloat(newSize.height);
-            const left = parseFloat(newSize.left + this.view.offsetToCenter);
-            const top = parseFloat(newSize.top);
+            const width = parseFloat(newSize.width).toFixed(8);
+            const height = parseFloat(newSize.height).toFixed(8);
+            const left = parseFloat(newSize.left + this.view.offsetToCenter).toFixed(8);
+            const top = parseFloat(newSize.top).toFixed(8);
             Helper.css(this.markerContainer, {
                 "width": `${width}px`,
                 "height": `${height}px`,
