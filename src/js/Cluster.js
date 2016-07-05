@@ -118,7 +118,7 @@ export class Cluster extends Drawable {
      */
     addMarker(marker) {
         this.markers.push(marker);
-        this.boundingBox = (!this.boundingBox) ? marker.boundingBox : this.boundingBox.extend(marker.boundingBox);
+        this.boundingBox = (!this.boundingBox) ? marker.boundingBox : this.boundingBox;
         return this;
     }
 
