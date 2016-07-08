@@ -15,6 +15,9 @@ import {
     Publisher
 } from './Publisher.js';
 import {
+    Point
+} from './Point.js';
+import {
     TileMap
 } from './TileMap.js';
 import {
@@ -23,9 +26,6 @@ import {
 import {
     Interact
 } from './Interact.js';
-import {
-    Point
-} from './Point.js';
 
 /**
  * @author Michael Duve <mduve@designmail.net>
@@ -39,7 +39,6 @@ export class MappedJS {
      * @param  {String|HTMLElement} container=".mjs" - Container, either string or dom-object
      * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
      * @param  {String|Object} markerData={} - data of markers, can be json or path to file
-     * @param  {String|Object} labelData={} - data of markers, can be json or path to file
      * @param  {Object} mapSettings={} - settings for map, must be json
      * @return {MappedJS} instance of MappedJS for chaining
      */
@@ -47,7 +46,6 @@ export class MappedJS {
         container = ".mjs",
         mapData = {},
         markerData = {},
-        labelData = {},
         mapSettings = {}
     }) {
         this.initializeSettings(container, mapSettings);
@@ -60,17 +58,19 @@ export class MappedJS {
             this.mapData = loadedMapData;
             this.initializeData(markerData, (loadedMarkerData) => {
                 this.mapData = Object.assign(this.mapData, loadedMarkerData);
-                this.initializeData(labelData, (loadedLabelData) => {
-                    this.mapData = Object.assign(this.mapData, loadedLabelData);
-                    this.initializeMap();
-                    this.addControls();
 
-                    if (mapSettings.legend) this.addInformationLayer("legend", mapSettings.legend);
-                    if (mapSettings.locator) this.addInformationLayer("location", mapSettings.locator);
+                this.initializeMap();
+                this.addControls();
 
-                    this.bindEvents();
-                    this.loadingFinished();
-                });
+                if (mapSettings.legend) {
+                    this.addInformationLayer("legend", mapSettings.legend);
+                }
+                if (mapSettings.locator) {
+                    this.addInformationLayer("location", mapSettings.locator);
+                }
+
+                this.bindEvents();
+                this.loadingFinished();
             });
         });
 
@@ -100,7 +100,9 @@ export class MappedJS {
         infoElement.classList.add(settings.position);
         infoElement.setAttribute('draggable', 'false');
         infoElement.setAttribute('unselectable', 'on');
-        if (settings.show) infoElement.classList.add(Events.General.ACTIVE);
+        if (settings.show) {
+            infoElement.classList.add(Events.General.ACTIVE);
+        }
 
         Helper.loadImage(settings.path, (img) => {
             infoElement.appendChild(img);
@@ -219,16 +221,36 @@ export class MappedJS {
             callbacks: {
                 tap: (data) => {
                     const pos = this.getAbsolutePosition(data.positionStart);
-                    this.tileMap.velocity = new Point();
+                    Helper.forEach(this.tileMap.markers, (marker) => {
+                        if (marker.hit(pos)) {
+                            marker.action(pos);
+                        }
+                    });
+                    Helper.forEach(this.tileMap.markerClusterer.clusters, (cluster) => {
+                        if (cluster.hit(pos)) {
+                            cluster.action(pos);
+                        }
+                    });
+
                     const id = data.target.getAttribute("data-id");
-                    if (id) this.eventManager.publish(id, pos);
+                    if (id) {
+                        this.eventManager.publish(id, pos);
+                    }
+
+                    this.tileMap.velocity = new Point();
                 },
                 doubletap: (data) => {
                     this.tileMap.velocity = new Point();
                     this.tileMap.zoom(0.2, this.getAbsolutePosition(data.positionStart));
                 },
+                hover: (position) => {
+                    const pos = this.getAbsolutePosition(position);
+                    this.hoverItems(pos);
+                },
                 pan: (data) => {
-                    if (data.target.classList.contains("control")) return false;
+                    if (data.target.classList.contains("control")) {
+                        return false;
+                    }
                     const change = data.positionLast.clone.substract(data.positionMove);
                     this.tileMap.velocity = new Point();
                     this.tileMap.moveView(this.getAbsolutePosition(change).multiply(-1, -1));
@@ -243,10 +265,28 @@ export class MappedJS {
                     this.tileMap.zoom(data.difference * 3, this.getAbsolutePosition(data.positionMove));
                 },
                 flick: (data) => {
-                    this.tileMap.velocity = data.velocity.multiply(20);
+                    this.tileMap.velocity = data.velocity.multiply(10);
                 }
             }
         });
+        return this;
+    }
+
+    /**
+     * check hover of items
+     * @param  {Point} pos - specified point to check against
+     * @return {MappedJS} instance of MappedJS for chaining
+     */
+    hoverItems(pos) {
+        let oneIsHit = false;
+        const items = [...this.tileMap.clusters, ...this.tileMap.markers];
+        for (let i = items.length-1; i >= 0; i--) {
+            const current = items[i];
+            if (current.isActive(pos, oneIsHit)) {
+                oneIsHit = true;
+            }
+        }
+        document.body.style.cursor = (oneIsHit) ? 'pointer': 'default';
         return this;
     }
 
@@ -255,8 +295,6 @@ export class MappedJS {
      * @return {MappedJS} instance of MappedJS for chaining
      */
     bindEvents() {
-
-        this.initializeInteractForMap();
 
         Helper.addListener(window, Events.Handling.RESIZE, this.resizeHandler.bind(this));
 
@@ -275,6 +313,8 @@ export class MappedJS {
 
         this.home.setAttribute("data-id", Events.General.HOME);
         this.eventManager.subscribe(Events.General.HOME, this.resetToInitialState.bind(this));
+
+        this.initializeInteractForMap();
 
         return this;
     }
@@ -312,7 +352,9 @@ export class MappedJS {
      * @return {MappedJS} instance of MappedJS for chaining
      */
     keyPress(e) {
-        if (this.container !== document.activeElement) return false;
+        if (this.container !== document.activeElement) {
+            return false;
+        }
         switch (e.keyCode) {
             case 38: // up
                 this.handleMovementByKeys(new Point(0, 1));

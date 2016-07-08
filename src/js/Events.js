@@ -17,15 +17,6 @@ export const Events = {
         CLOSE: "tooltip-close"
     },
     /**
-     * Eventnames for Marker class
-     * @type {Object}
-     * @memberof Events
-     * @property {Object} DEACTIVATE - when a Marker should be in deactived state
-     */
-    Marker: {
-        DEACTIVATE: "deactivate-marker"
-    },
-    /**
      * Eventnames for Publisher class
      * @type {Object}
      * @memberof Events
@@ -44,7 +35,6 @@ export const Events = {
      * @memberof Events
      * @property {Object} IMG_DATA_NAME - name of img data
      * @property {Object} MARKER_DATA_NAME - name of marker data
-     * @property {Object} LABEL_DATA_NAME - name of label data
      * @property {Object} NEXT_LEVEL - next level of view
      * @property {Object} PREVIOUS_LEVEL - previous level of view
      * @property {Object} RESIZE - resize of view needed
@@ -54,7 +44,6 @@ export const Events = {
     TileMap: {
         IMG_DATA_NAME: "img_data",
         MARKER_DATA_NAME: "marker",
-        LABEL_DATA_NAME: "labels",
         NEXT_LEVEL: "next-level",
         PREVIOUS_LEVEL: "previous-level",
         RESIZE: "resize",

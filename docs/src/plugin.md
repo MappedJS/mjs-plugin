@@ -20,8 +20,6 @@
 <dd></dd>
 <dt><a href="#Interact">Interact</a></dt>
 <dd></dd>
-<dt><a href="#Label">Label</a></dt>
-<dd></dd>
 <dt><a href="#LatLng">LatLng</a></dt>
 <dd></dd>
 <dt><a href="#MappedJS">MappedJS</a></dt>
@@ -39,6 +37,8 @@
 <dt><a href="#Rectangle">Rectangle</a></dt>
 <dd></dd>
 <dt><a href="#StateHandler">StateHandler</a></dt>
+<dd></dd>
+<dt><a href="#Texture">Texture</a></dt>
 <dd></dd>
 <dt><a href="#Tile">Tile</a></dt>
 <dd></dd>
@@ -68,9 +68,7 @@ enriches delivered data with default values
 
 * [DataEnrichment](#module_DataEnrichment)
     * [.marker(data)](#module_DataEnrichment.marker) ⇒ <code>Object</code>
-    * [.label(data)](#module_DataEnrichment.label) ⇒ <code>Object</code>
     * [.mapSettings(data)](#module_DataEnrichment.mapSettings) ⇒ <code>Object</code>
-    * [.tooltip(data)](#module_DataEnrichment.tooltip) ⇒ <code>Object</code>
 
 <a name="module_DataEnrichment.marker"></a>
 
@@ -83,17 +81,6 @@ enriches marker data with all needed data
 
 - data <code>Object</code> - specified data for marker
 
-<a name="module_DataEnrichment.label"></a>
-
-### DataEnrichment.label(data) ⇒ <code>Object</code>
-enriches label data with all needed data
-
-**Kind**: static method of <code>[DataEnrichment](#module_DataEnrichment)</code>  
-**Returns**: <code>Object</code> - enriched label data  
-**Params**
-
-- data <code>Object</code> - specified data for label
-
 <a name="module_DataEnrichment.mapSettings"></a>
 
 ### DataEnrichment.mapSettings(data) ⇒ <code>Object</code>
@@ -104,17 +91,6 @@ enriches map data with all needed data
 **Params**
 
 - data <code>Object</code> - specified data for mapsettings
-
-<a name="module_DataEnrichment.tooltip"></a>
-
-### DataEnrichment.tooltip(data) ⇒ <code>Object</code>
-enriches tooltip data with all needed data
-
-**Kind**: static method of <code>[DataEnrichment](#module_DataEnrichment)</code>  
-**Returns**: <code>Object</code> - enriched tooltip data  
-**Params**
-
-- data <code>Object</code> - specified data for tooltip
 
 <a name="module_Helper"></a>
 
@@ -364,27 +340,46 @@ get height of boundaries
 **Kind**: global class  
 
 * [Cluster](#Cluster)
-    * [new Cluster(container, id)](#new_Cluster_new)
-    * _instance_
-        * [.init()](#Cluster+init) ⇒ <code>[Cluster](#Cluster)</code>
-        * [.createClusterMarker()](#Cluster+createClusterMarker) ⇒ <code>[Cluster](#Cluster)</code>
-        * [.bindEvents()](#Cluster+bindEvents) ⇒ <code>[Cluster](#Cluster)</code>
-        * [.unbindEvents()](#Cluster+unbindEvents) ⇒ <code>[Cluster](#Cluster)</code>
-        * [.action()](#Cluster+action) ⇒ <code>[Cluster](#Cluster)</code>
-        * [.addMarker(marker)](#Cluster+addMarker) ⇒ <code>[Cluster](#Cluster)</code>
-        * [.removeFromDOM()](#Cluster+removeFromDOM) ⇒ <code>[Cluster](#Cluster)</code>
-    * _static_
-        * [.count](#Cluster.count) : <code>Number</code>
+    * [new Cluster(context, texture, font, id)](#new_Cluster_new)
+    * [.position](#Cluster+position) ⇒ <code>[Point](#Point)</code>
+    * [.boundingBox](#Cluster+boundingBox) ⇒ <code>[Rectangle](#Rectangle)</code>
+    * [.init()](#Cluster+init) ⇒ <code>[Cluster](#Cluster)</code>
+    * [.createClusterMarker()](#Cluster+createClusterMarker) ⇒ <code>[Cluster](#Cluster)</code>
+    * [.draw()](#Cluster+draw) ⇒ <code>[Cluster](#Cluster)</code>
+    * [.bindEvents()](#Cluster+bindEvents) ⇒ <code>[Cluster](#Cluster)</code>
+    * [.unbindEvents()](#Cluster+unbindEvents) ⇒ <code>[Cluster](#Cluster)</code>
+    * [.isActive(point, oneIsHit)](#Cluster+isActive) ⇒ <code>Boolean</code>
+    * [.hit(point)](#Cluster+hit) ⇒ <code>Booelan</code>
+    * [.action()](#Cluster+action) ⇒ <code>[Cluster](#Cluster)</code>
+    * [.calculateCenter()](#Cluster+calculateCenter) ⇒ <code>[LatLng](#LatLng)</code>
+    * [.addMarker(marker)](#Cluster+addMarker) ⇒ <code>[Cluster](#Cluster)</code>
+    * [.remove()](#Cluster+remove) ⇒ <code>[Cluster](#Cluster)</code>
 
 <a name="new_Cluster_new"></a>
 
-### new Cluster(container, id)
+### new Cluster(context, texture, font, id)
 **Returns**: <code>[Cluster](#Cluster)</code> - instance of Cluster for chaining  
 **Params**
 
-- container <code>HTMLDivElement</code> - =  null - parent container of
+- context <code>CanvasRenderingContext2D</code> - = null - context of canvas
+- texture <code>[Texture](#Texture)</code> - = null - texture of cluster
+- font <code>Object</code> - = DataEnrichment.CLUSTER_FONT - style of font in cluster
 - id <code>Number</code> - = 0 - id of parent instance
 
+<a name="Cluster+position"></a>
+
+### cluster.position ⇒ <code>[Point](#Point)</code>
+calculates the actual position of a cluster
+
+**Kind**: instance property of <code>[Cluster](#Cluster)</code>  
+**Returns**: <code>[Point](#Point)</code> - calculated position  
+<a name="Cluster+boundingBox"></a>
+
+### cluster.boundingBox ⇒ <code>[Rectangle](#Rectangle)</code>
+calculates actual dimension and position of a cluster
+
+**Kind**: instance property of <code>[Cluster](#Cluster)</code>  
+**Returns**: <code>[Rectangle](#Rectangle)</code> - calculated dimension  
 <a name="Cluster+init"></a>
 
 ### cluster.init() ⇒ <code>[Cluster](#Cluster)</code>
@@ -396,6 +391,13 @@ initialize a cluster
 
 ### cluster.createClusterMarker() ⇒ <code>[Cluster](#Cluster)</code>
 create cluster for markers
+
+**Kind**: instance method of <code>[Cluster](#Cluster)</code>  
+**Returns**: <code>[Cluster](#Cluster)</code> - instance of Cluster for chaining  
+<a name="Cluster+draw"></a>
+
+### cluster.draw() ⇒ <code>[Cluster](#Cluster)</code>
+draw this cluster
 
 **Kind**: instance method of <code>[Cluster](#Cluster)</code>  
 **Returns**: <code>[Cluster](#Cluster)</code> - instance of Cluster for chaining  
@@ -413,6 +415,29 @@ unbind all events
 
 **Kind**: instance method of <code>[Cluster](#Cluster)</code>  
 **Returns**: <code>[Cluster](#Cluster)</code> - instance of Cluster for chaining  
+<a name="Cluster+isActive"></a>
+
+### cluster.isActive(point, oneIsHit) ⇒ <code>Boolean</code>
+set active to true
+
+**Kind**: instance method of <code>[Cluster](#Cluster)</code>  
+**Returns**: <code>Boolean</code> - indicate hit (true) or not  
+**Params**
+
+- point <code>[Point](#Point)</code> - specified point to check against
+- oneIsHit <code>Boolean</code> <code> = false</code> - = false - if one item was hit before
+
+<a name="Cluster+hit"></a>
+
+### cluster.hit(point) ⇒ <code>Booelan</code>
+check hit of point
+
+**Kind**: instance method of <code>[Cluster](#Cluster)</code>  
+**Returns**: <code>Booelan</code> - Wheter it is a hit or not  
+**Params**
+
+- point <code>[Point](#Point)</code> - specified point to check against
+
 <a name="Cluster+action"></a>
 
 ### cluster.action() ⇒ <code>[Cluster](#Cluster)</code>
@@ -420,6 +445,13 @@ execute bound action of cluster
 
 **Kind**: instance method of <code>[Cluster](#Cluster)</code>  
 **Returns**: <code>[Cluster](#Cluster)</code> - instance of Cluster for chaining  
+<a name="Cluster+calculateCenter"></a>
+
+### cluster.calculateCenter() ⇒ <code>[LatLng](#LatLng)</code>
+calculates the center of a cluster
+
+**Kind**: instance method of <code>[Cluster](#Cluster)</code>  
+**Returns**: <code>[LatLng](#LatLng)</code> - center of cluster  
 <a name="Cluster+addMarker"></a>
 
 ### cluster.addMarker(marker) ⇒ <code>[Cluster](#Cluster)</code>
@@ -431,19 +463,13 @@ adds a marker to the cluster
 
 - marker <code>[Marker](#Marker)</code> - specified marker to be added to the cluster
 
-<a name="Cluster+removeFromDOM"></a>
+<a name="Cluster+remove"></a>
 
-### cluster.removeFromDOM() ⇒ <code>[Cluster](#Cluster)</code>
+### cluster.remove() ⇒ <code>[Cluster](#Cluster)</code>
 remove this cluster
 
 **Kind**: instance method of <code>[Cluster](#Cluster)</code>  
 **Returns**: <code>[Cluster](#Cluster)</code> - instance of Cluster for chaining  
-<a name="Cluster.count"></a>
-
-### Cluster.count : <code>Number</code>
-counts all clusters
-
-**Kind**: static property of <code>[Cluster](#Cluster)</code>  
 <a name="Drawable"></a>
 
 ## Drawable
@@ -1173,131 +1199,6 @@ Get event helper, applies event-fix too
 
 - e <code>Event</code> - event
 
-<a name="Label"></a>
-
-## Label
-**Kind**: global class  
-
-* [Label](#Label)
-    * [new Label(settings, context, id)](#new_Label_new)
-    * [.position](#Label+position) ⇒ <code>[Point](#Point)</code>
-    * [.nearestPositionToCenter](#Label+nearestPositionToCenter) ⇒ <code>[LatLng](#LatLng)</code>
-    * [.getNearestPositionToCenter()](#Label+getNearestPositionToCenter) ⇒ <code>[LatLng](#LatLng)</code>
-    * [.draw()](#Label+draw) ⇒ <code>[Label](#Label)</code>
-    * [.decideWhatToDraw(text, icon)](#Label+decideWhatToDraw) ⇒ <code>function</code>
-    * [.drawText(pos)](#Label+drawText)
-    * [.drawIcon(pos)](#Label+drawIcon)
-    * [.drawCircleIcon(size)](#Label+drawCircleIcon) ⇒ <code>function</code>
-    * [.drawSquareIcon(size)](#Label+drawSquareIcon) ⇒ <code>function</code>
-    * [.drawImageIcon(image, size, offset)](#Label+drawImageIcon) ⇒ <code>function</code>
-
-<a name="new_Label_new"></a>
-
-### new Label(settings, context, id)
-/**
-
-**Returns**: <code>[Label](#Label)</code> - instance of Label for chaining  
-**Params**
-
-- settings <code>Object</code> - = {} - settings for label
-- context <code>CanvasRenderingContext2D</code> - = null - canvas context
-- id <code>Number</code> - = 0 - id of parent instance
-
-<a name="Label+position"></a>
-
-### label.position ⇒ <code>[Point](#Point)</code>
-position of label
-
-**Kind**: instance property of <code>[Label](#Label)</code>  
-**Returns**: <code>[Point](#Point)</code> - position  
-<a name="Label+nearestPositionToCenter"></a>
-
-### label.nearestPositionToCenter ⇒ <code>[LatLng](#LatLng)</code>
-find nearest position to mapcenter
-
-**Kind**: instance property of <code>[Label](#Label)</code>  
-**Returns**: <code>[LatLng](#LatLng)</code> - nearest position  
-<a name="Label+getNearestPositionToCenter"></a>
-
-### label.getNearestPositionToCenter() ⇒ <code>[LatLng](#LatLng)</code>
-find nearest position to mapcenter
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Returns**: <code>[LatLng](#LatLng)</code> - nearest position  
-<a name="Label+draw"></a>
-
-### label.draw() ⇒ <code>[Label](#Label)</code>
-draw a label
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Returns**: <code>[Label](#Label)</code> - instance of Label for chaining  
-<a name="Label+decideWhatToDraw"></a>
-
-### label.decideWhatToDraw(text, icon) ⇒ <code>function</code>
-currying function for drawing text, icon or both
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Returns**: <code>function</code> - function to be called on draw  
-**Params**
-
-- text <code>Object</code> - data for text
-- icon <code>Object</code> - data for icon
-
-<a name="Label+drawText"></a>
-
-### label.drawText(pos)
-draw text of label
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Params**
-
-- pos <code>[Point](#Point)</code> - origin of label
-
-<a name="Label+drawIcon"></a>
-
-### label.drawIcon(pos)
-draw icon of label
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Params**
-
-- pos <code>[Point](#Point)</code> - origin of label
-
-<a name="Label+drawCircleIcon"></a>
-
-### label.drawCircleIcon(size) ⇒ <code>function</code>
-currying function for drawing a circle
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Returns**: <code>function</code> - function for drawing circle icon  
-**Params**
-
-- size <code>Number</code> - size of circle
-
-<a name="Label+drawSquareIcon"></a>
-
-### label.drawSquareIcon(size) ⇒ <code>function</code>
-currying function for drawing a square
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Returns**: <code>function</code> - function for drawing square icon  
-**Params**
-
-- size <code>Number</code> - size of square
-
-<a name="Label+drawImageIcon"></a>
-
-### label.drawImageIcon(image, size, offset) ⇒ <code>function</code>
-currying function for drawing an image
-
-**Kind**: instance method of <code>[Label](#Label)</code>  
-**Returns**: <code>function</code> - function for drawing image icon  
-**Params**
-
-- image <code>Image</code> - image to be drawn
-- size <code>[Point](#Point)</code> - dimension of image
-- offset <code>[Point](#Point)</code> - offset of image
-
 <a name="LatLng"></a>
 
 ## LatLng
@@ -1433,7 +1334,7 @@ Creates a LatLng from specified LatLng
 **Kind**: global class  
 
 * [MappedJS](#MappedJS)
-    * [new MappedJS(container, mapData, markerData, labelData, mapSettings)](#new_MappedJS_new)
+    * [new MappedJS(container, mapData, markerData, mapSettings)](#new_MappedJS_new)
     * _instance_
         * [.generateUniqueID()](#MappedJS+generateUniqueID) ⇒ <code>Number</code>
         * [.addInformationLayer(type, settings)](#MappedJS+addInformationLayer) ⇒ <code>[MappedJS](#MappedJS)</code>
@@ -1443,6 +1344,7 @@ Creates a LatLng from specified LatLng
         * [.initializeMap()](#MappedJS+initializeMap) ⇒ <code>[MappedJS](#MappedJS)</code>
         * [.getAbsolutePosition(point)](#MappedJS+getAbsolutePosition) ⇒ <code>[Point](#Point)</code>
         * [.initializeInteractForMap()](#MappedJS+initializeInteractForMap) ⇒ <code>[MappedJS](#MappedJS)</code>
+        * [.hoverItems(pos)](#MappedJS+hoverItems) ⇒ <code>[MappedJS](#MappedJS)</code>
         * [.bindEvents()](#MappedJS+bindEvents) ⇒ <code>[MappedJS](#MappedJS)</code>
         * [.resetToInitialState()](#MappedJS+resetToInitialState) ⇒ <code>[MappedJS](#MappedJS)</code>
         * [.zoomInToCenter()](#MappedJS+zoomInToCenter) ⇒ <code>[MappedJS](#MappedJS)</code>
@@ -1457,14 +1359,13 @@ Creates a LatLng from specified LatLng
 
 <a name="new_MappedJS_new"></a>
 
-### new MappedJS(container, mapData, markerData, labelData, mapSettings)
+### new MappedJS(container, mapData, markerData, mapSettings)
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
 **Params**
 
 - container <code>String</code> | <code>HTMLElement</code> <code> = &quot;.mjs&quot;</code> - Container, either string or dom-object
 - mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file
 - markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file
-- labelData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file
 - mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json
 
 <a name="MappedJS+generateUniqueID"></a>
@@ -1542,6 +1443,17 @@ initializes interaction
 
 **Kind**: instance method of <code>[MappedJS](#MappedJS)</code>  
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
+<a name="MappedJS+hoverItems"></a>
+
+### mappedJS.hoverItems(pos) ⇒ <code>[MappedJS](#MappedJS)</code>
+check hover of items
+
+**Kind**: instance method of <code>[MappedJS](#MappedJS)</code>  
+**Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
+**Params**
+
+- pos <code>[Point](#Point)</code> - specified point to check against
+
 <a name="MappedJS+bindEvents"></a>
 
 ### mappedJS.bindEvents() ⇒ <code>[MappedJS](#MappedJS)</code>
@@ -1743,40 +1655,83 @@ singleton instance wrapper
 **Kind**: global class  
 
 * [Marker](#Marker)
-    * [new Marker(data, container, id)](#new_Marker_new)
-    * _instance_
-        * [.boundingBox](#Marker+boundingBox) ⇒ <code>[Rectangle](#Rectangle)</code>
-        * [.bindEvents()](#Marker+bindEvents) ⇒ <code>[Marker](#Marker)</code>
-        * [.action()](#Marker+action) ⇒ <code>[Marker](#Marker)</code>
-        * [.addMarkerToDOM(container)](#Marker+addMarkerToDOM) ⇒ <code>HTMLElement</code>
-        * [.positionMarker()](#Marker+positionMarker) ⇒ <code>[Marker](#Marker)</code>
-    * _static_
-        * [.count](#Marker.count) : <code>Number</code>
+    * [new Marker(settings, context, id)](#new_Marker_new)
+    * [.position](#Marker+position) ⇒ <code>[Point](#Point)</code>
+    * [.boundingBox](#Marker+boundingBox) ⇒ <code>[Rectangle](#Rectangle)</code>
+    * [.nearestPositionToCenter](#Marker+nearestPositionToCenter) ⇒ <code>[LatLng](#LatLng)</code>
+    * [.isClusterable()](#Marker+isClusterable) ⇒ <code>Boolean</code>
+    * [.getNearestPositionToCenter()](#Marker+getNearestPositionToCenter) ⇒ <code>[LatLng](#LatLng)</code>
+    * [.isActive(point, oneIsHit)](#Marker+isActive) ⇒ <code>Boolean</code>
+    * [.action()](#Marker+action) ⇒ <code>[Marker](#Marker)</code>
+    * [.bindEvents()](#Marker+bindEvents) ⇒ <code>[Marker](#Marker)</code>
+    * [.draw()](#Marker+draw) ⇒ <code>[Marker](#Marker)</code>
+    * [.hit(point)](#Marker+hit) ⇒ <code>Booelan</code>
+    * [.decideWhatToDraw(text, icon)](#Marker+decideWhatToDraw) ⇒ <code>function</code>
+    * [.drawText(pos)](#Marker+drawText)
+    * [.drawIcon(pos)](#Marker+drawIcon)
+    * [.drawCircleIcon(size)](#Marker+drawCircleIcon) ⇒ <code>function</code>
+    * [.drawSquareIcon(size)](#Marker+drawSquareIcon) ⇒ <code>function</code>
+    * [.drawImageIcon(texture, size, offset)](#Marker+drawImageIcon) ⇒ <code>function</code>
 
 <a name="new_Marker_new"></a>
 
-### new Marker(data, container, id)
-**Returns**: <code>[Marker](#Marker)</code> - - instance of Marker for chaining  
+### new Marker(settings, context, id)
+/**
+
+**Returns**: <code>[Marker](#Marker)</code> - instance of Marker for chaining  
 **Params**
 
-- data <code>Object</code> - enriched data
-- container <code>HTMLElement</code> - = null - parent container
+- settings <code>Object</code> - = {} - settings for marker
+- context <code>CanvasRenderingContext2D</code> - = null - canvas context
 - id <code>Number</code> - = 0 - id of parent instance
 
+<a name="Marker+position"></a>
+
+### marker.position ⇒ <code>[Point](#Point)</code>
+position of marker
+
+**Kind**: instance property of <code>[Marker](#Marker)</code>  
+**Returns**: <code>[Point](#Point)</code> - position  
 <a name="Marker+boundingBox"></a>
 
 ### marker.boundingBox ⇒ <code>[Rectangle](#Rectangle)</code>
-gets bounding box of marker
+get dimensions of marker
 
 **Kind**: instance property of <code>[Marker](#Marker)</code>  
-**Returns**: <code>[Rectangle](#Rectangle)</code> - current dimension of this marker  
-<a name="Marker+bindEvents"></a>
+**Returns**: <code>[Rectangle](#Rectangle)</code> - dimensions  
+<a name="Marker+nearestPositionToCenter"></a>
 
-### marker.bindEvents() ⇒ <code>[Marker](#Marker)</code>
-bind all events
+### marker.nearestPositionToCenter ⇒ <code>[LatLng](#LatLng)</code>
+find nearest position to mapcenter
+
+**Kind**: instance property of <code>[Marker](#Marker)</code>  
+**Returns**: <code>[LatLng](#LatLng)</code> - nearest position  
+<a name="Marker+isClusterable"></a>
+
+### marker.isClusterable() ⇒ <code>Boolean</code>
+check if marker can be clustered
 
 **Kind**: instance method of <code>[Marker](#Marker)</code>  
-**Returns**: <code>[Marker](#Marker)</code> - instance of Marker for chaining  
+**Returns**: <code>Boolean</code> - wheter it can be clustered or not  
+<a name="Marker+getNearestPositionToCenter"></a>
+
+### marker.getNearestPositionToCenter() ⇒ <code>[LatLng](#LatLng)</code>
+find nearest position to mapcenter
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>[LatLng](#LatLng)</code> - nearest position  
+<a name="Marker+isActive"></a>
+
+### marker.isActive(point, oneIsHit) ⇒ <code>Boolean</code>
+set active to true
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>Boolean</code> - indicate hit (true) or not  
+**Params**
+
+- point <code>[Point](#Point)</code> - specified point to check against
+- oneIsHit <code>Boolean</code> <code> = false</code> - = false - if one item was hit before
+
 <a name="Marker+action"></a>
 
 ### marker.action() ⇒ <code>[Marker](#Marker)</code>
@@ -1784,37 +1739,105 @@ execute bound action of cluster
 
 **Kind**: instance method of <code>[Marker](#Marker)</code>  
 **Returns**: <code>[Marker](#Marker)</code> - instance of Marker for chaining  
-<a name="Marker+addMarkerToDOM"></a>
+<a name="Marker+bindEvents"></a>
 
-### marker.addMarkerToDOM(container) ⇒ <code>HTMLElement</code>
-add a marker to the DOM
-
-**Kind**: instance method of <code>[Marker](#Marker)</code>  
-**Returns**: <code>HTMLElement</code> - DOM-selector of appended markup  
-**Params**
-
-- container <code>HTMLElement</code> - parent container to append to
-
-<a name="Marker+positionMarker"></a>
-
-### marker.positionMarker() ⇒ <code>[Marker](#Marker)</code>
-set initial position of this marker
+### marker.bindEvents() ⇒ <code>[Marker](#Marker)</code>
+bind all events
 
 **Kind**: instance method of <code>[Marker](#Marker)</code>  
 **Returns**: <code>[Marker](#Marker)</code> - instance of Marker for chaining  
-<a name="Marker.count"></a>
+<a name="Marker+draw"></a>
 
-### Marker.count : <code>Number</code>
-counts all markers
+### marker.draw() ⇒ <code>[Marker](#Marker)</code>
+draw a marker
 
-**Kind**: static property of <code>[Marker](#Marker)</code>  
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>[Marker](#Marker)</code> - instance of Marker for chaining  
+<a name="Marker+hit"></a>
+
+### marker.hit(point) ⇒ <code>Booelan</code>
+check hit of point
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>Booelan</code> - Wheter it is a hit or not  
+**Params**
+
+- point <code>[Point](#Point)</code> - specified point to check against
+
+<a name="Marker+decideWhatToDraw"></a>
+
+### marker.decideWhatToDraw(text, icon) ⇒ <code>function</code>
+currying function for drawing text, icon or both
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>function</code> - function to be called on draw  
+**Params**
+
+- text <code>Object</code> - data for text
+- icon <code>Object</code> - data for icon
+
+<a name="Marker+drawText"></a>
+
+### marker.drawText(pos)
+draw text of marker
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Params**
+
+- pos <code>[Point](#Point)</code> - origin of marker
+
+<a name="Marker+drawIcon"></a>
+
+### marker.drawIcon(pos)
+draw icon of marker
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Params**
+
+- pos <code>[Point](#Point)</code> - origin of marker
+
+<a name="Marker+drawCircleIcon"></a>
+
+### marker.drawCircleIcon(size) ⇒ <code>function</code>
+currying function for drawing a circle
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>function</code> - function for drawing circle icon  
+**Params**
+
+- size <code>Number</code> - size of circle
+
+<a name="Marker+drawSquareIcon"></a>
+
+### marker.drawSquareIcon(size) ⇒ <code>function</code>
+currying function for drawing a square
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>function</code> - function for drawing square icon  
+**Params**
+
+- size <code>Number</code> - size of square
+
+<a name="Marker+drawImageIcon"></a>
+
+### marker.drawImageIcon(texture, size, offset) ⇒ <code>function</code>
+currying function for drawing an image
+
+**Kind**: instance method of <code>[Marker](#Marker)</code>  
+**Returns**: <code>function</code> - function for drawing image icon  
+**Params**
+
+- texture <code>[Texture](#Texture)</code> - texture to be drawn
+- size <code>[Point](#Point)</code> - dimension of image
+- offset <code>[Point](#Point)</code> - offset of image
+
 <a name="MarkerClusterer"></a>
 
 ## MarkerClusterer
 **Kind**: global class  
 
 * [MarkerClusterer](#MarkerClusterer)
-    * [new MarkerClusterer(markers, container, id)](#new_MarkerClusterer_new)
+    * [new MarkerClusterer(markers, context, clusterImage, id)](#new_MarkerClusterer_new)
     * [.bindEvents()](#MarkerClusterer+bindEvents) ⇒ <code>[MarkerClusterer](#MarkerClusterer)</code>
     * [.clusterize()](#MarkerClusterer+clusterize) ⇒ <code>[MarkerClusterer](#MarkerClusterer)</code>
     * [.findNearestHit(marker, hits)](#MarkerClusterer+findNearestHit) ⇒ <code>[Cluster](#Cluster)</code>
@@ -1824,12 +1847,13 @@ counts all markers
 
 <a name="new_MarkerClusterer_new"></a>
 
-### new MarkerClusterer(markers, container, id)
+### new MarkerClusterer(markers, context, clusterImage, id)
 **Returns**: <code>[MarkerClusterer](#MarkerClusterer)</code> - instance of MarkerClusterer for chaining  
 **Params**
 
 - markers <code>Array</code> - = [] - all markers
-- container <code>HTMLElement</code> - = null - parent container
+- context <code>CanvasRenderingContext2D</code> - = null - canvas context
+- clusterImage <code>[Texture](#Texture)</code> - = null - texture to be drawn
 - id <code>Number</code> - = 0 - id of parent instance
 
 <a name="MarkerClusterer+bindEvents"></a>
@@ -2576,6 +2600,58 @@ checks if there is a previous element
 
 **Kind**: instance method of <code>[StateHandler](#StateHandler)</code>  
 **Returns**: <code>Boolean</code> - wheter there is a previous state or not  
+<a name="Texture"></a>
+
+## Texture
+**Kind**: global class  
+
+* [Texture](#Texture)
+    * [new Texture(path, size, offset)](#new_Texture_new)
+    * _instance_
+        * [.initializeHitMap(w, h)](#Texture+initializeHitMap) ⇒ <code>[Texture](#Texture)</code>
+        * [.isHit(point)](#Texture+isHit) ⇒ <code>Boolean</code>
+    * _static_
+        * [.textures](#Texture.textures) : <code>Array</code>
+
+<a name="new_Texture_new"></a>
+
+### new Texture(path, size, offset)
+**Returns**: <code>[Texture](#Texture)</code> - instance of Texture for chaining  
+**Params**
+
+- path <code>String</code> - = null - path to image
+- size <code>[Point](#Point)</code> - = new Point() - size of image
+- offset <code>[Point](#Point)</code> - = new Point() - offset of image to position
+
+<a name="Texture+initializeHitMap"></a>
+
+### texture.initializeHitMap(w, h) ⇒ <code>[Texture](#Texture)</code>
+initializes an offscreen canvas hitmap
+
+**Kind**: instance method of <code>[Texture](#Texture)</code>  
+**Returns**: <code>[Texture](#Texture)</code> - instance of Texture for chaining  
+**Params**
+
+- w <code>Number</code> - width of canvas
+- h <code>Number</code> - height of canvas
+
+<a name="Texture+isHit"></a>
+
+### texture.isHit(point) ⇒ <code>Boolean</code>
+checks wheter texture was hit
+
+**Kind**: instance method of <code>[Texture](#Texture)</code>  
+**Returns**: <code>Boolean</code> - wheter texture is hit or not  
+**Params**
+
+- point <code>[Point](#Point)</code> - specified point to check against
+
+<a name="Texture.textures"></a>
+
+### Texture.textures : <code>Array</code>
+stores all initialized textures in this array
+
+**Kind**: static property of <code>[Texture](#Texture)</code>  
 <a name="Tile"></a>
 
 ## Tile
@@ -2642,16 +2718,13 @@ States of a tile
     * [.height](#TileMap+height) ⇒ <code>Number</code>
     * [.viewport](#TileMap+viewport) ⇒ <code>[Rectangle](#Rectangle)</code>
     * [.view](#TileMap+view) ⇒ <code>[View](#View)</code>
+    * [.clusters](#TileMap+clusters) ⇒ <code>Array</code>
     * [.initialize(tilesData)](#TileMap+initialize) ⇒ <code>[TileMap](#TileMap)</code>
     * [.checkIfLevelCanFitBounds()](#TileMap+checkIfLevelCanFitBounds) ⇒ <code>Number</code>
     * [.reset()](#TileMap+reset) ⇒ <code>[TileMap](#TileMap)</code>
-    * [.initializeLabels()](#TileMap+initializeLabels) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.initializeMarkers()](#TileMap+initializeMarkers) ⇒ <code>[TileMap](#TileMap)</code>
     * [.createViewFromData(data)](#TileMap+createViewFromData) ⇒ <code>[View](#View)</code>
-    * [.repositionMarkerContainer()](#TileMap+repositionMarkerContainer) ⇒ <code>[View](#View)</code>
     * [.enrichMarkerData(markerData)](#TileMap+enrichMarkerData) ⇒ <code>Object</code>
-    * [.enrichLabelData(labelData)](#TileMap+enrichLabelData) ⇒ <code>Object</code>
-    * [.initializeMarkers(markerData)](#TileMap+initializeMarkers) ⇒ <code>[TileMap](#TileMap)</code>
-    * [.appendMarkerContainerToDom()](#TileMap+appendMarkerContainerToDom)
     * [.createTooltipContainer()](#TileMap+createTooltipContainer) ⇒ <code>[TileMap](#TileMap)</code>
     * [.bindEvents()](#TileMap+bindEvents) ⇒ <code>[TileMap](#TileMap)</code>
     * [.zoomToBounds(center, boundingBox)](#TileMap+zoomToBounds) ⇒ <code>[TileMap](#TileMap)</code>
@@ -2667,7 +2740,8 @@ States of a tile
     * [.resizeCanvas()](#TileMap+resizeCanvas) ⇒ <code>[TileMap](#TileMap)</code>
     * [.resizeView()](#TileMap+resizeView) ⇒ <code>[TileMap](#TileMap)</code>
     * [.mainLoop()](#TileMap+mainLoop)
-    * [.drawLabels()](#TileMap+drawLabels) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.drawClusters()](#TileMap+drawClusters) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.drawMarkers()](#TileMap+drawMarkers) ⇒ <code>[TileMap](#TileMap)</code>
 
 <a name="new_TileMap_new"></a>
 
@@ -2708,6 +2782,13 @@ current view
 
 **Kind**: instance property of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[View](#View)</code> - view  
+<a name="TileMap+clusters"></a>
+
+### tileMap.clusters ⇒ <code>Array</code>
+returns all clusters
+
+**Kind**: instance property of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>Array</code> - array of clusters  
 <a name="TileMap+initialize"></a>
 
 ### tileMap.initialize(tilesData) ⇒ <code>[TileMap](#TileMap)</code>
@@ -2717,7 +2798,7 @@ initialize map
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 **Params**
 
-- tilesData <code>Object</code> - data of tiles, markers and labels
+- tilesData <code>Object</code> - data of tiles, markers and markers
 
 <a name="TileMap+checkIfLevelCanFitBounds"></a>
 
@@ -2733,10 +2814,10 @@ resets view to initial state
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
-<a name="TileMap+initializeLabels"></a>
+<a name="TileMap+initializeMarkers"></a>
 
-### tileMap.initializeLabels() ⇒ <code>[TileMap](#TileMap)</code>
-initialize all labels
+### tileMap.initializeMarkers() ⇒ <code>[TileMap](#TileMap)</code>
+initialize all markers
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
@@ -2751,13 +2832,6 @@ creates a View from specified parameters
 
 - data <code>Object</code> - specified data
 
-<a name="TileMap+repositionMarkerContainer"></a>
-
-### tileMap.repositionMarkerContainer() ⇒ <code>[View](#View)</code>
-reposition marker container
-
-**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
-**Returns**: <code>[View](#View)</code> - instance of View for chaining  
 <a name="TileMap+enrichMarkerData"></a>
 
 ### tileMap.enrichMarkerData(markerData) ⇒ <code>Object</code>
@@ -2769,35 +2843,6 @@ enrich marker data
 
 - markerData <code>Object</code> - data of markers
 
-<a name="TileMap+enrichLabelData"></a>
-
-### tileMap.enrichLabelData(labelData) ⇒ <code>Object</code>
-enrich label data
-
-**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
-**Returns**: <code>Object</code> - enriched label data  
-**Params**
-
-- labelData <code>Object</code> - data of labels
-
-<a name="TileMap+initializeMarkers"></a>
-
-### tileMap.initializeMarkers(markerData) ⇒ <code>[TileMap](#TileMap)</code>
-initializes all markers
-
-**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
-**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
-**Params**
-
-- markerData <code>Object</code> - data of all markers
-
-<a name="TileMap+appendMarkerContainerToDom"></a>
-
-### tileMap.appendMarkerContainerToDom()
-append marker container to DOM
-´     * @return {TileMap} instance of TileMap for chaining
-
-**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 <a name="TileMap+createTooltipContainer"></a>
 
 ### tileMap.createTooltipContainer() ⇒ <code>[TileMap](#TileMap)</code>
@@ -2925,10 +2970,17 @@ Handles resizing of view
 main draw call
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
-<a name="TileMap+drawLabels"></a>
+<a name="TileMap+drawClusters"></a>
 
-### tileMap.drawLabels() ⇒ <code>[TileMap](#TileMap)</code>
-draw all labels
+### tileMap.drawClusters() ⇒ <code>[TileMap](#TileMap)</code>
+draw all clusters
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
+<a name="TileMap+drawMarkers"></a>
+
+### tileMap.drawMarkers() ⇒ <code>[TileMap](#TileMap)</code>
+draw all markers
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
@@ -3290,7 +3342,6 @@ Helper for naming events
 
 * [Events](#Events) : <code>object</code>
     * [.ToolTip](#Events.ToolTip) : <code>Object</code>
-    * [.Marker](#Events.Marker) : <code>Object</code>
     * [.Publisher](#Events.Publisher) : <code>Object</code>
     * [.TileMap](#Events.TileMap) : <code>Object</code>
     * [.Handling](#Events.Handling) : <code>Object</code>
@@ -3309,16 +3360,6 @@ Eventnames for ToolTip class
 
 - OPEN <code>Object</code> - when a tooltip should be openend  
 - CLOSE <code>Object</code> - when a tooltip should be closed  
-
-<a name="Events.Marker"></a>
-
-### Events.Marker : <code>Object</code>
-Eventnames for Marker class
-
-**Kind**: static property of <code>[Events](#Events)</code>  
-**Properties**
-
-- DEACTIVATE <code>Object</code> - when a Marker should be in deactived state  
 
 <a name="Events.Publisher"></a>
 
@@ -3342,7 +3383,6 @@ Eventnames for TileMap class
 
 - IMG_DATA_NAME <code>Object</code> - name of img data  
 - MARKER_DATA_NAME <code>Object</code> - name of marker data  
-- LABEL_DATA_NAME <code>Object</code> - name of label data  
 - NEXT_LEVEL <code>Object</code> - next level of view  
 - PREVIOUS_LEVEL <code>Object</code> - previous level of view  
 - RESIZE <code>Object</code> - resize of view needed  

@@ -1,6 +1,6 @@
 {
     "name": "mjs-plugin",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Michael Duve",
     "email": "mduve@designmail.net",
     "description": "Cross-browser and -device implementation for interactive maps based on equidistant rectangular projection images",

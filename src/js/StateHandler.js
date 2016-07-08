@@ -42,7 +42,9 @@ export class StateHandler {
      */
     next() {
         this.lastState = this.current;
-        if (this.hasNext()) this.i++;
+        if (this.hasNext()) {
+            this.i++;
+        }
         return this;
     }
 
@@ -52,7 +54,9 @@ export class StateHandler {
      */
     previous() {
         this.lastState = this.current;
-        if (this.hasPrevious()) this.i--;
+        if (this.hasPrevious()) {
+            this.i--;
+        }
         return this;
     }
 
@@ -62,7 +66,9 @@ export class StateHandler {
      * @return {StateHandler} instance of StateHandler for chaining
      */
     changeTo(state) {
-        if (state >= 0 && state < this.length) this.i = state;
+        if (state >= 0 && state < this.length) {
+            this.i = state;
+        }
         return this;
     }
 

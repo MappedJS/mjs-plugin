@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head lang="de">
-        <title>Label Example</title>
+        <title>Marker Example</title>
         <meta charset="UTF-8">
         <meta name="author" content="Michael Duve">
         <meta name="description" lang="de" content="">
@@ -43,7 +43,6 @@
                 container: ".mjs",
                 mapData: "mapData.json",
                 markerData: "marker.json",
-                labelData: "labels.json",
                 mapSettings: {
                     "center": {
                         "lat": 52.5215,
@@ -55,6 +54,15 @@
                     },
                     "level": 1,
                     "zoom": 1,
+                    "tooltip": {
+                        "templates": {
+                            "image": "../../hbs/image.hbs",
+                            "crossheading": "../../hbs/crossheading.hbs",
+                            "headline": "../../hbs/headline.hbs",
+                            "iframe": "../../hbs/iframe.hbs",
+                            "text": "../../hbs/text.hbs"
+                        }
+                    },
                     "legend": {
                         "path": "./img/legend.svg",
                         "position": "top-right",

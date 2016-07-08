@@ -1,67 +1,33 @@
 {
     "marker": [
         {
-            "icon": "img/icon.png",
-            "hover": true,
-            "offset": {
-                "x": 5,
-                "y": 0
+            "position": [52.55, 13.3],
+            "text": {
+                "content": "Marker",
+                "color": "#333333",
+                "offset": [0, 5],
+                "align": "center",
+                "baseline": "hanging",
+                "font": "10pt Arial"
             },
-            "size": {
-                "width": 64,
-                "height": 32
-            },
-            "position": {
-                "lat": 52.5,
-                "lng": 13.3
+            "icon": {
+                "type": "image",
+                "size": [32, 32],
+                "offset": [-11, -32],
+                "url": "img/icon.png"
             }
         },
         {
-            "icon": "img/icon.png",
-            "hover": true,
-            "offset": {
-                "x": 5,
-                "y": 0
+            "position": [[52.506725, 13.229573], [52.514072, 13.345305], [52.527950, 13.125600], [52.517405, 13.398682], [52.536113, 13.433050], [52.552125, 13.465810], [52.604561, 13.524158]],
+            "icon": {
+                "type": "image",
+                "size": [32, 32],
+                "offset": [-11, -32],
+                "url": "img/icon.png"
             },
-            "size": {
-                "width": 64,
-                "height": 32
-            },
-            "position": {
-                "lat": 52.5,
-                "lng": 13.29
-            }
-        },
-        {
-            "icon": "img/icon.png",
-            "hover": true,
-            "offset": {
-                "x": 5,
-                "y": 0
-            },
-            "size": {
-                "width": 64,
-                "height": 32
-            },
-            "position": {
-                "lat": 52.5,
-                "lng": 13.32
-            }
-        },
-        {
-            "icon": "img/icon.png",
-            "hover": true,
-            "offset": {
-                "x": 5,
-                "y": 0
-            },
-            "size": {
-                "width": 64,
-                "height": 32
-            },
-            "position": {
-                "lat": 52.5,
-                "lng": 13.33
+            "visibility": {
+                "min": 0,
+                "max": 3
             }
         }
     ]

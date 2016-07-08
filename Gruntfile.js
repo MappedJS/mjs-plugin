@@ -86,6 +86,9 @@ module.exports = function(grunt) {
             },
             tests: {
                 command: './node_modules/.bin/istanbul cover _mocha'
+            },
+            sonar: {
+                command: 'cd ~/repository/mjs/plugin/ && sonar-runner -D sonar.projectVersion="<%= pkg.version %>"'
             }
         },
         watch: {
@@ -135,9 +138,12 @@ module.exports = function(grunt) {
     grunt.registerTask('bundle', ["sass:plugin", "postcss:dev", "webpack:dev"]);
     grunt.registerTask('ship', ["sass:plugin", "postcss:prod", "webpack:prod"]);
 
+    grunt.registerTask('sonar', ["shell:sonar"]);
+
+
     grunt.registerTask('tests', ["shell:tests"]);
 
-    grunt.registerTask('full', ["tests", "bundle", "ship", "deployDocs"]);
+    grunt.registerTask('full', ["tests", "bundle", "ship", "deployDocs", "sonar"]);
 
 
 };
