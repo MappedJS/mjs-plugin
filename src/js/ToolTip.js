@@ -115,7 +115,7 @@ export class ToolTip {
     bindEvents() {
         Helper.addListener(window, Events.Handling.RESIZE, this.resizeHandler.bind(this));
         Helper.addListener(this.close, Events.Handling.CLICK, () => {
-            this.closeTooltip();
+            this.eventManager.publish(Events.ToolTip.CLOSE);
         });
         this.eventManager.subscribe(Events.ToolTip.OPEN, this.open.bind(this));
         this.eventManager.subscribe(Events.ToolTip.CLOSE, () => {
@@ -155,7 +155,9 @@ export class ToolTip {
      * @return {ToolTip} instance of ToolTip for chaining
      */
     open(data) {
-        if (data) this.insertContent(data);
+        if (data) {
+            this.insertContent(data);
+        }
         if (this.container.classList.contains(Events.ToolTip.CLOSE)) {
             this.setPosition();
             this.container.classList.remove(Events.ToolTip.CLOSE);
@@ -171,7 +173,6 @@ export class ToolTip {
      */
     closeTooltip() {
         if (this.container.classList.contains(Events.ToolTip.OPEN)) {
-            this.eventManager.publish(Events.Marker.DEACTIVATE);
             this.setPosition();
             this.container.classList.remove(Events.ToolTip.OPEN);
             this.container.classList.add(Events.ToolTip.CLOSE);
@@ -204,7 +205,9 @@ export class ToolTip {
             Helper.getFile(template, (html) => {
                 this.templates[type] = (Handlebars||window.Handlebars).compile(html);
                 this.loadedTemplates++;
-                if (this.allTemplatesLoaded) this.container.appendChild(this.popup);
+                if (this.allTemplatesLoaded) {
+                    this.container.appendChild(this.popup);
+                }
             });
         });
         return this;

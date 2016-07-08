@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head lang="de">
-        <title>Offsets Example</title>
+        <title>Marker Example</title>
         <meta charset="UTF-8">
         <meta name="author" content="Michael Duve">
         <meta name="description" lang="de" content="">
@@ -26,11 +26,8 @@
                 height: 100%;
             }
             .mjs {
-                margin: 10% auto;
-                padding: 10%;
-                border: 50px solid red;
-                width: 50%;
-                height: 50%;
+                width: 100%;
+                height: 100%;
             }
         </style>
     </head>
@@ -56,7 +53,26 @@
                         "southEast": [52.266, 13.938]
                     },
                     "level": 1,
-                    "zoom": 1
+                    "zoom": 1,
+                    "tooltip": {
+                        "templates": {
+                            "image": "../../hbs/image.hbs",
+                            "crossheading": "../../hbs/crossheading.hbs",
+                            "headline": "../../hbs/headline.hbs",
+                            "iframe": "../../hbs/iframe.hbs",
+                            "text": "../../hbs/text.hbs"
+                        }
+                    },
+                    "legend": {
+                        "path": "./img/legend.svg",
+                        "position": "top-right",
+                        "show": true
+                    },
+                    "locator": {
+                        "path": "./img/locator.jpg",
+                        "position": "bottom-left",
+                        "show": true
+                    }
                 }
             });
 

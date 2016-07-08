@@ -15,7 +15,9 @@ export const Helper = {
      */
     requestJSON(filename, callback) {
         Helper.getFile(filename, (jsonFileData) => {
-            if (callback) callback(JSON.parse(jsonFileData));
+            if (callback) {
+                callback(JSON.parse(jsonFileData));
+            }
         });
         return this;
     },
@@ -110,7 +112,9 @@ export const Helper = {
     loadImage(path, cb) {
         const img = new Image();
         img.onload = () => {
-            if (cb && typeof cb === "function") cb(img);
+            if (cb && typeof cb === "function") {
+                cb(img);
+            }
         };
         img.src = path;
         return this;
@@ -127,8 +131,12 @@ export const Helper = {
         const xhr = new XMLHttpRequest();
         xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200 && callback) callback(xhr.responseText);
-                else throw new Error("The JSON submitted seems not valid", xhr);
+                if (xhr.status === 200 && callback) {
+                    callback(xhr.responseText);
+                }
+                else {
+                    throw new Error("The JSON submitted seems not valid", xhr);
+                }
             }
         };
         xhr.open("GET", url, true);
@@ -163,7 +171,9 @@ export const Helper = {
      */
     forEach(a, cb) {
         for (const i in a) {
-            if (a[i] !== undefined && typeof cb === "function") cb(a[i], i);
+            if (a[i] !== undefined && typeof cb === "function") {
+                cb(a[i], i);
+            }
         }
         return this;
     },

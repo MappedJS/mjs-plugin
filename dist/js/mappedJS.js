@@ -69,9 +69,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global    = __webpack_require__(8)
-	  , core      = __webpack_require__(10)
-	  , hide      = __webpack_require__(18)
+	var global    = __webpack_require__(9)
+	  , core      = __webpack_require__(11)
+	  , hide      = __webpack_require__(17)
 	  , redefine  = __webpack_require__(29)
 	  , ctx       = __webpack_require__(22)
 	  , PROTOTYPE = 'prototype';
@@ -115,36 +115,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ function(module, exports) {
 
-	var $Object = Object;
-	module.exports = {
-	  create:     $Object.create,
-	  getProto:   $Object.getPrototypeOf,
-	  isEnum:     {}.propertyIsEnumerable,
-	  getDesc:    $Object.getOwnPropertyDescriptor,
-	  setDesc:    $Object.defineProperty,
-	  setDescs:   $Object.defineProperties,
-	  getKeys:    $Object.keys,
-	  getNames:   $Object.getOwnPropertyNames,
-	  getSymbols: $Object.getOwnPropertySymbols,
-	  each:       [].forEach
-	};
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var store  = __webpack_require__(45)('wks')
-	  , uid    = __webpack_require__(32)
-	  , Symbol = __webpack_require__(8).Symbol;
-	module.exports = function(name){
-	  return store[name] || (store[name] =
-	    Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
-	};
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
 	"use strict";
 	"use strict";
 
@@ -169,7 +139,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    requestJSON: function requestJSON(filename, callback) {
 	        Helper.getFile(filename, function (jsonFileData) {
-	            if (callback) callback(JSON.parse(jsonFileData));
+	            if (callback) {
+	                callback(JSON.parse(jsonFileData));
+	            }
 	        });
 	        return this;
 	    },
@@ -284,7 +256,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    loadImage: function loadImage(path, cb) {
 	        var img = new Image();
 	        img.onload = function () {
-	            if (cb && typeof cb === "function") cb(img);
+	            if (cb && typeof cb === "function") {
+	                cb(img);
+	            }
 	        };
 	        img.src = path;
 	        return this;
@@ -302,7 +276,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var xhr = new XMLHttpRequest();
 	        xhr.onreadystatechange = function () {
 	            if (xhr.readyState === XMLHttpRequest.DONE) {
-	                if (xhr.status === 200 && callback) callback(xhr.responseText);else throw new Error("The JSON submitted seems not valid", xhr);
+	                if (xhr.status === 200 && callback) {
+	                    callback(xhr.responseText);
+	                } else {
+	                    throw new Error("The JSON submitted seems not valid", xhr);
+	                }
 	            }
 	        };
 	        xhr.open("GET", url, true);
@@ -339,7 +317,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    forEach: function forEach(a, cb) {
 	        for (var i in a) {
-	            if (a[i] !== undefined && typeof cb === "function") cb(a[i], i);
+	            if (a[i] !== undefined && typeof cb === "function") {
+	                cb(a[i], i);
+	            }
 	        }
 	        return this;
 	    },
@@ -393,160 +373,37 @@ return /******/ (function(modules) { // webpackBootstrap
 		};
 
 /***/ },
-/* 4 */
+/* 2 */
 /***/ function(module, exports) {
 
-	module.exports = function(it){
-	  return typeof it === 'object' ? it !== null : typeof it === 'function';
+	var $Object = Object;
+	module.exports = {
+	  create:     $Object.create,
+	  getProto:   $Object.getPrototypeOf,
+	  isEnum:     {}.propertyIsEnumerable,
+	  getDesc:    $Object.getOwnPropertyDescriptor,
+	  setDesc:    $Object.defineProperty,
+	  setDescs:   $Object.defineProperties,
+	  getKeys:    $Object.keys,
+	  getNames:   $Object.getOwnPropertyNames,
+	  getSymbols: $Object.getOwnPropertySymbols,
+	  each:       [].forEach
 	};
 
 /***/ },
-/* 5 */
-/***/ function(module, exports) {
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file Helper for naming events
-	 * @copyright Michael Duve 2016
-	 * @namespace Events
-	 */
-	var Events = exports.Events = {
-	  /**
-	   * Eventnames for ToolTip class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} OPEN - when a tooltip should be openend
-	   * @property {Object} CLOSE - when a tooltip should be closed
-	   */
-	  ToolTip: {
-	    OPEN: "tooltip-open",
-	    CLOSE: "tooltip-close"
-	  },
-	  /**
-	   * Eventnames for Marker class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} DEACTIVATE - when a Marker should be in deactived state
-	   */
-	  Marker: {
-	    DEACTIVATE: "deactivate-marker"
-	  },
-	  /**
-	   * Eventnames for Publisher class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} PUBLISH - notifies all subscribers
-	   * @property {Object} SUBSCRIBE - subscribes to a topic
-	   * @property {Object} UNSUBSCRIBE - unsubscribes from a topic
-	   */
-	  Publisher: {
-	    PUBLISH: "publish",
-	    SUBSCRIBE: "subscribe",
-	    UNSUBSCRIBE: "unsubscribe"
-	  },
-	  /**
-	   * Eventnames for TileMap class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} IMG_DATA_NAME - name of img data
-	   * @property {Object} MARKER_DATA_NAME - name of marker data
-	   * @property {Object} LABEL_DATA_NAME - name of label data
-	   * @property {Object} NEXT_LEVEL - next level of view
-	   * @property {Object} PREVIOUS_LEVEL - previous level of view
-	   * @property {Object} RESIZE - resize of view needed
-	   * @property {Object} ZOOM_TO_BOUNDS - zoom to bounds
-	   * @property {Object} DRAW - draw is needed
-	   */
-	  TileMap: {
-	    IMG_DATA_NAME: "img_data",
-	    MARKER_DATA_NAME: "marker",
-	    LABEL_DATA_NAME: "labels",
-	    NEXT_LEVEL: "next-level",
-	    PREVIOUS_LEVEL: "previous-level",
-	    RESIZE: "resize",
-	    ZOOM_TO_BOUNDS: "zoom-to-bounds",
-	    DRAW: "draw"
-	  },
-	  /**
-	   * Eventnames for Handling in all classes
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} RESIZE - resize of window happened needed
-	   * @property {Object} CLICK - click occured
-	   * @property {Object} TOUCHSTART - Touch started
-	   * @property {Object} TOUCHEND - Touch ended
-	   * @property {Object} MOUSEDOWN - Mouse started
-	   * @property {Object} MOUSEUP - Mouse ended
-	   * @property {Object} KEYDOWN - key pressed
-	   * @property {Object} KEYUP - key released
-	   * @property {Object} ENTER - entering of mouse
-	   */
-	  Handling: {
-	    RESIZE: "resize orientationchange",
-	    CLICK: "click",
-	    TOUCHSTART: "touchstart",
-	    MOUSEDOWN: "mousedown",
-	    TOUCHEND: "touchend",
-	    MOUSEUP: "mouseup",
-	    KEYDOWN: "keydown",
-	    KEYUP: "keyup",
-	    ENTER: "mouseenter pointerenter"
-	  },
-	  /**
-	   * Eventnames for View class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} THUMB_LOADED - thumbnail was loaded
-	   */
-	  View: {
-	    THUMB_LOADED: "thumb-loaded"
-	  },
-	  /**
-	   * Eventnames for MarkerClusterer class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} CLUSTERIZE - create cluster
-	   * @property {Object} UNCLUSTERIZE - destroy cluster
-	   */
-	  MarkerClusterer: {
-	    CLUSTERIZE: "clusterize",
-	    UNCLUSTERIZE: "unclusterize"
-
-	  },
-	  /**
-	   * Eventnames for MapInformation class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} UPDATE - updates informations
-	   */
-	  MapInformation: {
-	    UPDATE: "information-update"
-	  },
-	  /**
-	   * Eventnames for MappedJS class
-	   * @type {Object}
-	   * @memberof Events
-	   * @property {Object} ACTIVE - DomElement is marked active
-	   * @property {Object} ZOOM_IN - zoom in button
-	   * @property {Object} ZOOM_OUT - zoom out button
-	   * @property {Object} HOME - home button
-	   */
-	  General: {
-	    ACTIVE: "active",
-	    ZOOM_IN: "zoom-button-plus",
-	    ZOOM_OUT: "zoom-button-minus",
-	    HOME: "home-button"
-	  }
-		};
+	var store  = __webpack_require__(46)('wks')
+	  , uid    = __webpack_require__(32)
+	  , Symbol = __webpack_require__(9).Symbol;
+	module.exports = function(name){
+	  return store[name] || (store[name] =
+	    Symbol && Symbol[name] || (Symbol || uid)('Symbol.' + name));
+	};
 
 /***/ },
-/* 6 */
+/* 4 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -768,13 +625,155 @@ return /******/ (function(modules) { // webpackBootstrap
 		};
 
 /***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = function(it){
+	  return typeof it === 'object' ? it !== null : typeof it === 'function';
+	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	"use strict";
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file Helper for naming events
+	 * @copyright Michael Duve 2016
+	 * @namespace Events
+	 */
+	var Events = exports.Events = {
+	  /**
+	   * Eventnames for ToolTip class
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} OPEN - when a tooltip should be openend
+	   * @property {Object} CLOSE - when a tooltip should be closed
+	   */
+	  ToolTip: {
+	    OPEN: "tooltip-open",
+	    CLOSE: "tooltip-close"
+	  },
+	  /**
+	   * Eventnames for Publisher class
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} PUBLISH - notifies all subscribers
+	   * @property {Object} SUBSCRIBE - subscribes to a topic
+	   * @property {Object} UNSUBSCRIBE - unsubscribes from a topic
+	   */
+	  Publisher: {
+	    PUBLISH: "publish",
+	    SUBSCRIBE: "subscribe",
+	    UNSUBSCRIBE: "unsubscribe"
+	  },
+	  /**
+	   * Eventnames for TileMap class
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} IMG_DATA_NAME - name of img data
+	   * @property {Object} MARKER_DATA_NAME - name of marker data
+	   * @property {Object} NEXT_LEVEL - next level of view
+	   * @property {Object} PREVIOUS_LEVEL - previous level of view
+	   * @property {Object} RESIZE - resize of view needed
+	   * @property {Object} ZOOM_TO_BOUNDS - zoom to bounds
+	   * @property {Object} DRAW - draw is needed
+	   */
+	  TileMap: {
+	    IMG_DATA_NAME: "img_data",
+	    MARKER_DATA_NAME: "marker",
+	    NEXT_LEVEL: "next-level",
+	    PREVIOUS_LEVEL: "previous-level",
+	    RESIZE: "resize",
+	    ZOOM_TO_BOUNDS: "zoom-to-bounds",
+	    DRAW: "draw"
+	  },
+	  /**
+	   * Eventnames for Handling in all classes
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} RESIZE - resize of window happened needed
+	   * @property {Object} CLICK - click occured
+	   * @property {Object} TOUCHSTART - Touch started
+	   * @property {Object} TOUCHEND - Touch ended
+	   * @property {Object} MOUSEDOWN - Mouse started
+	   * @property {Object} MOUSEUP - Mouse ended
+	   * @property {Object} KEYDOWN - key pressed
+	   * @property {Object} KEYUP - key released
+	   * @property {Object} ENTER - entering of mouse
+	   */
+	  Handling: {
+	    RESIZE: "resize orientationchange",
+	    CLICK: "click",
+	    TOUCHSTART: "touchstart",
+	    MOUSEDOWN: "mousedown",
+	    TOUCHEND: "touchend",
+	    MOUSEUP: "mouseup",
+	    KEYDOWN: "keydown",
+	    KEYUP: "keyup",
+	    ENTER: "mouseenter pointerenter"
+	  },
+	  /**
+	   * Eventnames for View class
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} THUMB_LOADED - thumbnail was loaded
+	   */
+	  View: {
+	    THUMB_LOADED: "thumb-loaded"
+	  },
+	  /**
+	   * Eventnames for MarkerClusterer class
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} CLUSTERIZE - create cluster
+	   * @property {Object} UNCLUSTERIZE - destroy cluster
+	   */
+	  MarkerClusterer: {
+	    CLUSTERIZE: "clusterize",
+	    UNCLUSTERIZE: "unclusterize"
+
+	  },
+	  /**
+	   * Eventnames for MapInformation class
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} UPDATE - updates informations
+	   */
+	  MapInformation: {
+	    UPDATE: "information-update"
+	  },
+	  /**
+	   * Eventnames for MappedJS class
+	   * @type {Object}
+	   * @memberof Events
+	   * @property {Object} ACTIVE - DomElement is marked active
+	   * @property {Object} ZOOM_IN - zoom in button
+	   * @property {Object} ZOOM_OUT - zoom out button
+	   * @property {Object} HOME - home button
+	   */
+	  General: {
+	    ACTIVE: "active",
+	    ZOOM_IN: "zoom-button-plus",
+	    ZOOM_OUT: "zoom-button-minus",
+	    HOME: "home-button"
+	  }
+		};
+
+/***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
 	var $export = __webpack_require__(0)
-	  , core    = __webpack_require__(10)
-	  , fails   = __webpack_require__(11);
+	  , core    = __webpack_require__(11)
+	  , fails   = __webpack_require__(12);
 	module.exports = function(KEY, exec){
 	  var fn  = (core.Object || {})[KEY] || Object[KEY]
 	    , exp = {};
@@ -784,393 +783,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 8 */
-/***/ function(module, exports) {
-
-	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-	var global = module.exports = typeof window != 'undefined' && window.Math == Math
-	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
-	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// 7.1.13 ToObject(argument)
-	var defined = __webpack_require__(23);
-	module.exports = function(it){
-	  return Object(defined(it));
-	};
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-	var core = module.exports = {version: '1.2.6'};
-	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ },
-/* 11 */
-/***/ function(module, exports) {
-
-	module.exports = function(exec){
-	  try {
-	    return !!exec();
-	  } catch(e){
-	    return true;
-	  }
-	};
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(26)
-	  , defined = __webpack_require__(23);
-	module.exports = function(it){
-	  return IObject(defined(it));
-	};
-
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.Publisher = undefined;
-
-	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-	var _Events = __webpack_require__(5);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file Publish/Subscribe pattern
-	 * @copyright Michael Duve 2016
-	 */
-
-	var Publisher = exports.Publisher = function () {
-
-	    /**
-	     * @constructor
-	     * @param {Number} id = 0 - id of parent instance
-	     * @return {Publisher} singleton instance of Publisher for chaining
-	     */
-
-	    function Publisher() {
-	        var id = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-
-	        _classCallCheck(this, Publisher);
-
-	        if (!Publisher.instances[id]) {
-	            this.subscribers = {};
-	            this.id = id;
-	            Publisher.instances[id] = this;
-	        }
-	        return Publisher.instances[id];
-	    }
-
-	    /**
-	     * subscribe to a topic
-	     * @param  {String} type = "any" - a topic
-	     * @param  {Function} fn = function(){} - a function to callback
-	     * @return {Publisher} instance of Publisher for chaining
-	     */
-
-
-	    Publisher.prototype.subscribe = function subscribe() {
-	        var type = arguments.length <= 0 || arguments[0] === undefined ? "any" : arguments[0];
-	        var fn = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
-
-	        if (this.subscribers[type] === undefined) this.subscribers[type] = [];
-	        this.subscribers[type].push(fn);
-	        return this;
-	    };
-
-	    /**
-	     * unsubscribe from a topic
-	     * @param  {String} type = "any" - a topic
-	     * @param  {Function} fn = function(){} - a function to callback
-	     * @return {Publisher} instance of Publisher for chaining
-	     */
-
-
-	    Publisher.prototype.unsubscribe = function unsubscribe() {
-	        var type = arguments.length <= 0 || arguments[0] === undefined ? "any" : arguments[0];
-	        var fn = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
-
-	        return this.handle(_Events.Events.Publisher.UNSUBSCRIBE, type, fn);
-	    };
-
-	    /**
-	     * publish to a topic
-	     * @param  {String} type = "any" - a topic
-	     * @param  {Function} arg = [] - list of parameters
-	     * @return {Publisher} instance of Publisher for chaining
-	     */
-
-
-	    Publisher.prototype.publish = function publish() {
-	        var type = arguments.length <= 0 || arguments[0] === undefined ? "any" : arguments[0];
-	        var arg = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
-
-	        return this.handle(_Events.Events.Publisher.PUBLISH, type, arg);
-	    };
-
-	    /**
-	     * handle subscribe to a topic
-	     * @param  {String} action - eventname
-	     * @param  {String} type = "any" - a topic
-	     * @param  {Object} a function to callback or arguments
-	     * @return {Publisher} instance of Publisher for chaining
-	     */
-
-
-	    Publisher.prototype.handle = function handle(action, type, data) {
-	        var subs = this.subscribers[type] !== undefined ? this.subscribers[type] : [];
-	        var _iteratorNormalCompletion = true;
-	        var _didIteratorError = false;
-	        var _iteratorError = undefined;
-
-	        try {
-	            for (var _iterator = subs.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	                var _step$value = _slicedToArray(_step.value, 2);
-
-	                var i = _step$value[0];
-	                var fn = _step$value[1];
-
-	                if (action === _Events.Events.Publisher.PUBLISH) {
-	                    fn(data);
-	                } else {
-	                    if (fn === data) subs.splice(i, 1);
-	                }
-	            }
-	        } catch (err) {
-	            _didIteratorError = true;
-	            _iteratorError = err;
-	        } finally {
-	            try {
-	                if (!_iteratorNormalCompletion && _iterator.return) {
-	                    _iterator.return();
-	                }
-	            } finally {
-	                if (_didIteratorError) {
-	                    throw _iteratorError;
-	                }
-	            }
-	        }
-
-	        return this;
-	    };
-
-	    /**
-	     * destroys singleton instance
-	     */
-
-
-	    Publisher.prototype.destroy = function destroy() {
-	        Publisher.instances[this.id] = null;
-	    };
-
-	    return Publisher;
-	}();
-
-	/**
-	 * singleton instance wrapper
-	 * @type {Object}
-	 */
-
-
-		Publisher.instances = {};
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// 7.1.15 ToLength
-	var toInteger = __webpack_require__(31)
-	  , min       = Math.min;
-	module.exports = function(it){
-	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-	};
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.Drawable = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _Publisher = __webpack_require__(13);
-
-	var _MapInformation = __webpack_require__(38);
-
-	var _Rectangle2 = __webpack_require__(16);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file represents an item, that is displayed and needs information for its position
-	 * @copyright Michael Duve 2016
-	 */
-
-	var Drawable = exports.Drawable = function (_Rectangle) {
-	    _inherits(Drawable, _Rectangle);
-
-	    _createClass(Drawable, [{
-	        key: 'view',
-
-
-	        /**
-	         * stores mapdimension information
-	         * @return {Rectangle} map
-	         */
-	        get: function get() {
-	            return this.info.get().view;
-	        }
-
-	        /**
-	         * stores level information
-	         * @return {Number} level
-	         */
-
-	    }, {
-	        key: 'level',
-	        get: function get() {
-	            return this.info.get().level;
-	        }
-
-	        /**
-	         * stores viewport information
-	         * @return {Rectangle} viewport
-	         */
-
-	    }, {
-	        key: 'viewport',
-	        get: function get() {
-	            return this.info.get().viewport;
-	        }
-
-	        /**
-	         * stores distortion information
-	         * @return {Number} distortionFactor
-	         */
-
-	    }, {
-	        key: 'distortionFactor',
-	        get: function get() {
-	            return this.info.get().distortionFactor;
-	        }
-
-	        /**
-	         * stores x offset to center
-	         * @return {Number} offsetToCenter
-	         */
-
-	    }, {
-	        key: 'offsetToCenter',
-	        get: function get() {
-	            return this.info.get().offsetToCenter;
-	        }
-
-	        /**
-	         * stores latlng position of map center
-	         * @return {LatLng} center
-	         */
-
-	    }, {
-	        key: 'centerPosition',
-	        get: function get() {
-	            return this.info.get().center;
-	        }
-
-	        /**
-	         * stores current zoom factor
-	         * @return {Number} zoomFactor
-	         */
-
-	    }, {
-	        key: 'zoomFactor',
-	        get: function get() {
-	            return this.info.get().zoomFactor;
-	        }
-
-	        /**
-	         * stores boundary information
-	         * @return {Bounds} bounds
-	         */
-
-	    }, {
-	        key: 'bounds',
-	        get: function get() {
-	            return this.info.get().bounds;
-	        }
-
-	        /**
-	         * @constructor
-	         * @param  {Number} id = 0 - id of parent instance
-	         * @param  {Number} x  = 0 - position x of element
-	         * @param  {Number} y  = 0 - position y of element
-	         * @param  {Number} w  = 0 - width of element
-	         * @param  {Number} h  = 0 - height of element
-	         * @return {Drawable} instance of Drawable for chaining
-	         */
-
-	    }]);
-
-	    function Drawable() {
-	        var id = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
-	        var x = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
-	        var y = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
-	        var w = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
-
-	        var _ret;
-
-	        var h = arguments.length <= 4 || arguments[4] === undefined ? 0 : arguments[4];
-
-	        _classCallCheck(this, Drawable);
-
-	        var _this = _possibleConstructorReturn(this, _Rectangle.call(this, x, y, w, h));
-
-	        _this.id = id;
-	        _this.info = new _MapInformation.MapInformation(_this.id);
-	        _this.eventManager = new _Publisher.Publisher(_this.id);
-	        return _ret = _this, _possibleConstructorReturn(_this, _ret);
-	    }
-
-	    /**
-	     * execute on displaying instance
-	     * @return {Drawable} instance of Drawable for chaining
-	     */
-
-
-	    Drawable.prototype.draw = function draw() {
-	        return this;
-	    };
-
-	    return Drawable;
-	}(_Rectangle2.Rectangle);
-
-/***/ },
-/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1183,7 +795,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Point2 = __webpack_require__(6);
+	var _Point2 = __webpack_require__(4);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1662,22 +1274,244 @@ return /******/ (function(modules) { // webpackBootstrap
 		};
 
 /***/ },
-/* 17 */
+/* 9 */
+/***/ function(module, exports) {
+
+	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+	var global = module.exports = typeof window != 'undefined' && window.Math == Math
+	  ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
+	if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 7.1.13 ToObject(argument)
+	var defined = __webpack_require__(23);
+	module.exports = function(it){
+	  return Object(defined(it));
+	};
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	var core = module.exports = {version: '1.2.6'};
+	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = function(exec){
+	  try {
+	    return !!exec();
+	  } catch(e){
+	    return true;
+	  }
+	};
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// to indexed object, toObject with fallback for non-array-like ES3 strings
+	var IObject = __webpack_require__(26)
+	  , defined = __webpack_require__(23);
+	module.exports = function(it){
+	  return IObject(defined(it));
+	};
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Publisher = undefined;
+
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+	var _Events = __webpack_require__(6);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file Publish/Subscribe pattern
+	 * @copyright Michael Duve 2016
+	 */
+
+	var Publisher = exports.Publisher = function () {
+
+	    /**
+	     * @constructor
+	     * @param {Number} id = 0 - id of parent instance
+	     * @return {Publisher} singleton instance of Publisher for chaining
+	     */
+
+	    function Publisher() {
+	        var id = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+
+	        _classCallCheck(this, Publisher);
+
+	        if (!Publisher.instances[id]) {
+	            this.subscribers = {};
+	            this.id = id;
+	            Publisher.instances[id] = this;
+	        }
+	        return Publisher.instances[id];
+	    }
+
+	    /**
+	     * subscribe to a topic
+	     * @param  {String} type = "any" - a topic
+	     * @param  {Function} fn = function(){} - a function to callback
+	     * @return {Publisher} instance of Publisher for chaining
+	     */
+
+
+	    Publisher.prototype.subscribe = function subscribe() {
+	        var type = arguments.length <= 0 || arguments[0] === undefined ? "any" : arguments[0];
+	        var fn = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+
+	        if (this.subscribers[type] === undefined) {
+	            this.subscribers[type] = [];
+	        }
+	        this.subscribers[type].push(fn);
+	        return this;
+	    };
+
+	    /**
+	     * unsubscribe from a topic
+	     * @param  {String} type = "any" - a topic
+	     * @param  {Function} fn = function(){} - a function to callback
+	     * @return {Publisher} instance of Publisher for chaining
+	     */
+
+
+	    Publisher.prototype.unsubscribe = function unsubscribe() {
+	        var type = arguments.length <= 0 || arguments[0] === undefined ? "any" : arguments[0];
+	        var fn = arguments.length <= 1 || arguments[1] === undefined ? function () {} : arguments[1];
+
+	        return this.handle(_Events.Events.Publisher.UNSUBSCRIBE, type, fn);
+	    };
+
+	    /**
+	     * publish to a topic
+	     * @param  {String} type = "any" - a topic
+	     * @param  {Function} arg = [] - list of parameters
+	     * @return {Publisher} instance of Publisher for chaining
+	     */
+
+
+	    Publisher.prototype.publish = function publish() {
+	        var type = arguments.length <= 0 || arguments[0] === undefined ? "any" : arguments[0];
+	        var arg = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
+
+	        return this.handle(_Events.Events.Publisher.PUBLISH, type, arg);
+	    };
+
+	    /**
+	     * handle subscribe to a topic
+	     * @param  {String} action - eventname
+	     * @param  {String} type = "any" - a topic
+	     * @param  {Object} a function to callback or arguments
+	     * @return {Publisher} instance of Publisher for chaining
+	     */
+
+
+	    Publisher.prototype.handle = function handle(action, type, data) {
+	        var subs = this.subscribers[type] !== undefined ? this.subscribers[type] : [];
+	        var _iteratorNormalCompletion = true;
+	        var _didIteratorError = false;
+	        var _iteratorError = undefined;
+
+	        try {
+	            for (var _iterator = subs.entries()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                var _step$value = _slicedToArray(_step.value, 2);
+
+	                var i = _step$value[0];
+	                var fn = _step$value[1];
+
+	                if (action === _Events.Events.Publisher.PUBLISH) {
+	                    fn(data);
+	                } else {
+	                    if (fn === data) {
+	                        subs.splice(i, 1);
+	                    }
+	                }
+	            }
+	        } catch (err) {
+	            _didIteratorError = true;
+	            _iteratorError = err;
+	        } finally {
+	            try {
+	                if (!_iteratorNormalCompletion && _iterator.return) {
+	                    _iterator.return();
+	                }
+	            } finally {
+	                if (_didIteratorError) {
+	                    throw _iteratorError;
+	                }
+	            }
+	        }
+
+	        return this;
+	    };
+
+	    /**
+	     * destroys singleton instance
+	     */
+
+
+	    Publisher.prototype.destroy = function destroy() {
+	        Publisher.instances[this.id] = null;
+	    };
+
+	    return Publisher;
+	}();
+
+	/**
+	 * singleton instance wrapper
+	 * @type {Object}
+	 */
+
+
+		Publisher.instances = {};
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 7.1.15 ToLength
+	var toInteger = __webpack_require__(31)
+	  , min       = Math.min;
+	module.exports = function(it){
+	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+	};
+
+/***/ },
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 22.1.3.31 Array.prototype[@@unscopables]
-	var UNSCOPABLES = __webpack_require__(2)('unscopables')
+	var UNSCOPABLES = __webpack_require__(3)('unscopables')
 	  , ArrayProto  = Array.prototype;
-	if(ArrayProto[UNSCOPABLES] == undefined)__webpack_require__(18)(ArrayProto, UNSCOPABLES, {});
+	if(ArrayProto[UNSCOPABLES] == undefined)__webpack_require__(17)(ArrayProto, UNSCOPABLES, {});
 	module.exports = function(key){
 	  ArrayProto[UNSCOPABLES][key] = true;
 	};
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $          = __webpack_require__(1)
+	var $          = __webpack_require__(2)
 	  , createDesc = __webpack_require__(28);
 	module.exports = __webpack_require__(24) ? function(object, key, value){
 	  return $.setDesc(object, key, createDesc(1, value));
@@ -1685,6 +1519,175 @@ return /******/ (function(modules) { // webpackBootstrap
 	  object[key] = value;
 	  return object;
 	};
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Drawable = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Publisher = __webpack_require__(14);
+
+	var _MapInformation = __webpack_require__(38);
+
+	var _Rectangle2 = __webpack_require__(8);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file represents an item, that is displayed and needs information for its position
+	 * @copyright Michael Duve 2016
+	 */
+
+	var Drawable = exports.Drawable = function (_Rectangle) {
+	    _inherits(Drawable, _Rectangle);
+
+	    _createClass(Drawable, [{
+	        key: 'view',
+
+
+	        /**
+	         * stores mapdimension information
+	         * @return {Rectangle} map
+	         */
+	        get: function get() {
+	            return this.info.get().view;
+	        }
+
+	        /**
+	         * stores level information
+	         * @return {Number} level
+	         */
+
+	    }, {
+	        key: 'level',
+	        get: function get() {
+	            return this.info.get().level;
+	        }
+
+	        /**
+	         * stores viewport information
+	         * @return {Rectangle} viewport
+	         */
+
+	    }, {
+	        key: 'viewport',
+	        get: function get() {
+	            return this.info.get().viewport;
+	        }
+
+	        /**
+	         * stores distortion information
+	         * @return {Number} distortionFactor
+	         */
+
+	    }, {
+	        key: 'distortionFactor',
+	        get: function get() {
+	            return this.info.get().distortionFactor;
+	        }
+
+	        /**
+	         * stores x offset to center
+	         * @return {Number} offsetToCenter
+	         */
+
+	    }, {
+	        key: 'offsetToCenter',
+	        get: function get() {
+	            return this.info.get().offsetToCenter;
+	        }
+
+	        /**
+	         * stores latlng position of map center
+	         * @return {LatLng} center
+	         */
+
+	    }, {
+	        key: 'centerPosition',
+	        get: function get() {
+	            return this.info.get().center;
+	        }
+
+	        /**
+	         * stores current zoom factor
+	         * @return {Number} zoomFactor
+	         */
+
+	    }, {
+	        key: 'zoomFactor',
+	        get: function get() {
+	            return this.info.get().zoomFactor;
+	        }
+
+	        /**
+	         * stores boundary information
+	         * @return {Bounds} bounds
+	         */
+
+	    }, {
+	        key: 'bounds',
+	        get: function get() {
+	            return this.info.get().bounds;
+	        }
+
+	        /**
+	         * @constructor
+	         * @param  {Number} id = 0 - id of parent instance
+	         * @param  {Number} x  = 0 - position x of element
+	         * @param  {Number} y  = 0 - position y of element
+	         * @param  {Number} w  = 0 - width of element
+	         * @param  {Number} h  = 0 - height of element
+	         * @return {Drawable} instance of Drawable for chaining
+	         */
+
+	    }]);
+
+	    function Drawable() {
+	        var id = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var x = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	        var y = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	        var w = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+
+	        var _ret;
+
+	        var h = arguments.length <= 4 || arguments[4] === undefined ? 0 : arguments[4];
+
+	        _classCallCheck(this, Drawable);
+
+	        var _this = _possibleConstructorReturn(this, _Rectangle.call(this, x, y, w, h));
+
+	        _this.id = id;
+	        _this.info = new _MapInformation.MapInformation(_this.id);
+	        _this.eventManager = new _Publisher.Publisher(_this.id);
+	        return _ret = _this, _possibleConstructorReturn(_this, _ret);
+	    }
+
+	    /**
+	     * execute on displaying instance
+	     * @return {Drawable} instance of Drawable for chaining
+	     */
+
+
+	    Drawable.prototype.draw = function draw() {
+	        return this;
+	    };
+
+	    return Drawable;
+	}(_Rectangle2.Rectangle);
 
 /***/ },
 /* 19 */
@@ -1867,7 +1870,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(4);
+	var isObject = __webpack_require__(5);
 	module.exports = function(it){
 	  if(!isObject(it))throw TypeError(it + ' is not an object!');
 	  return it;
@@ -1888,7 +1891,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(40);
+	var aFunction = __webpack_require__(41);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -1923,7 +1926,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// Thank's IE8 for his funny defineProperty
-	module.exports = !__webpack_require__(11)(function(){
+	module.exports = !__webpack_require__(12)(function(){
 	  return Object.defineProperty({}, 'a', {get: function(){ return 7; }}).a != 7;
 	});
 
@@ -1971,14 +1974,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// add fake Function#toString
 	// for correct work wrapped methods / constructors with methods like LoDash isNative
-	var global    = __webpack_require__(8)
-	  , hide      = __webpack_require__(18)
+	var global    = __webpack_require__(9)
+	  , hide      = __webpack_require__(17)
 	  , SRC       = __webpack_require__(32)('src')
 	  , TO_STRING = 'toString'
 	  , $toString = Function[TO_STRING]
 	  , TPL       = ('' + $toString).split(TO_STRING);
 
-	__webpack_require__(10).inspectSource = function(it){
+	__webpack_require__(11).inspectSource = function(it){
 	  return $toString.call(it);
 	};
 
@@ -2034,6 +2037,181 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DataEnrichment = undefined;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	var _Helper = __webpack_require__(1);
+
+	var _Point = __webpack_require__(4);
+
+	var _LatLng = __webpack_require__(19);
+
+	var _Bounds = __webpack_require__(37);
+
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file enriches delivered data with default values
+	 * @copyright Michael Duve 2016
+	 * @module DataEnrichment
+	 */
+	var DataEnrichment = exports.DataEnrichment = {
+	    /**
+	     * enriches marker data with all needed data
+	     * @function
+	     * @memberof module:DataEnrichment
+	     * @param  {Object} data - specified data for marker
+	     * @return {Object} enriched marker data
+	     */
+
+	    marker: function marker(data) {
+	        var enrichedData = [];
+
+	        _Helper.Helper.forEach(data, function (entry) {
+	            entry = Object.assign({}, DataEnrichment.DATA_MARKER, entry);
+
+	            if (entry.text) {
+	                entry.text = Object.assign({}, DataEnrichment.DATA_MARKER_TEXT, entry.text);
+	            }
+	            if (entry.icon) {
+	                entry.icon = Object.assign({}, DataEnrichment.DATA_MARKER_ICON, entry.icon);
+	            }
+
+	            if (typeof entry.position[0] === "number") {
+	                entry.position = new _LatLng.LatLng(entry.position[0], entry.position[1]);
+	            } else {
+	                _Helper.Helper.forEach(entry.position, function (pos, i) {
+	                    entry.position[i] = new _LatLng.LatLng(pos[0], pos[1]);
+	                });
+	            }
+
+	            if (entry.text) {
+	                entry.text.offset = new _Point.Point(entry.text.offset[0], entry.text.offset[1]);
+	            }
+	            if (entry.icon) {
+	                entry.icon.offset = new _Point.Point(entry.icon.offset[0], entry.icon.offset[1]);
+	            }
+	            if (entry.icon && typeof entry.icon.size !== "number") {
+	                entry.icon.size = new _Point.Point(entry.icon.size[0], entry.icon.size[1]);
+	            }
+
+	            enrichedData.push(entry);
+	        });
+
+	        return enrichedData;
+	    },
+
+	    /**
+	     * enriches map data with all needed data
+	     * @function
+	     * @memberof module:DataEnrichment
+	     * @param  {Object} data - specified data for mapsettings
+	     * @return {Object} enriched mapsettings data
+	     */
+	    mapSettings: function mapSettings() {
+	        var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	        var enrichedData = Object.assign({}, DataEnrichment.MAP_SETTINGS, data),
+	            bounds = new _Bounds.Bounds(new _LatLng.LatLng(enrichedData.bounds.northWest[0], enrichedData.bounds.northWest[1]), new _LatLng.LatLng(enrichedData.bounds.southEast[0], enrichedData.bounds.southEast[1])),
+	            center = new _LatLng.LatLng(enrichedData.center.lat, enrichedData.center.lng);
+
+	        if (_typeof(data.limitToBounds) === "object") {
+	            var boundsNW = new _LatLng.LatLng(data.limitToBounds.northWest[0], data.limitToBounds.northWest[1]);
+	            var boundsSE = new _LatLng.LatLng(data.limitToBounds.southEast[0], data.limitToBounds.southEast[1]);
+	            var boundsLimit = new _Bounds.Bounds(boundsNW, boundsSE);
+	            enrichedData.limitToBounds = boundsLimit;
+	        } else {
+	            enrichedData.limitToBounds = bounds;
+	        }
+
+	        enrichedData.clusterImage.size = new _Point.Point(enrichedData.clusterImage.size[0], enrichedData.clusterImage.size[1]);
+	        enrichedData.clusterImage.offset = new _Point.Point(enrichedData.clusterImage.offset[0], enrichedData.clusterImage.offset[1]);
+
+	        enrichedData.bounds = bounds;
+	        enrichedData.center = center;
+
+	        return enrichedData;
+	    }
+	};
+
+	/**
+	 * Default initial values for a Map
+	 * @type {Object}
+	 */
+	DataEnrichment.MAP_SETTINGS = {
+	    level: 0,
+	    center: {
+	        "lat": 0,
+	        "lng": 0
+	    },
+	    bounds: {
+	        "northWest": [90, -180],
+	        "southEast": [-90, 180]
+	    },
+	    clusterImage: {
+	        path: null,
+	        size: [0, 0],
+	        offset: [0, 0]
+	    },
+	    controls: {
+	        zoom: false,
+	        home: false,
+	        position: "bottom-right",
+	        theme: "dark"
+	    }
+	};
+	/**
+	 * Default initial values for a marker
+	 * @type {Object}
+	 */
+	DataEnrichment.DATA_MARKER = {
+	    "position": [0, 0],
+	    "visibility": {
+	        "min": 0,
+	        "max": Number.MAX_VALUE
+	    }
+	};
+	/**
+	 * Default initial values for a marker with text
+	 * @type {Object}
+	 */
+	DataEnrichment.DATA_MARKER_TEXT = {
+	    "content": "",
+	    "color": "#333333",
+	    "offset": [0, 0],
+	    "align": "center",
+	    "baseline": "hanging",
+	    "font": "10pt Arial"
+	};
+	/**
+	 * Default initial values for a marker with an icon
+	 * @type {Object}
+	 */
+	DataEnrichment.DATA_MARKER_ICON = {
+	    "type": "circle",
+	    "size": 2,
+	    "color": "#333333",
+	    "offset": [0, 0]
+	};
+	/**
+	 * Default initial values for cluster font
+	 * @type {Object}
+	 */
+	DataEnrichment.CLUSTER_FONT = {
+	    color: "#333",
+	    font: "bold 10px sans-serif"
+		};
+
+/***/ },
+/* 34 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// 0 -> Array#forEach
 	// 1 -> Array#map
 	// 2 -> Array#filter
@@ -2043,8 +2221,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	// 6 -> Array#findIndex
 	var ctx      = __webpack_require__(22)
 	  , IObject  = __webpack_require__(26)
-	  , toObject = __webpack_require__(9)
-	  , toLength = __webpack_require__(14)
+	  , toObject = __webpack_require__(10)
+	  , toLength = __webpack_require__(15)
 	  , asc      = __webpack_require__(69);
 	module.exports = function(TYPE){
 	  var IS_MAP        = TYPE == 1
@@ -2079,7 +2257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
@@ -2089,241 +2267,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var def = __webpack_require__(1).setDesc
+	var def = __webpack_require__(2).setDesc
 	  , has = __webpack_require__(25)
-	  , TAG = __webpack_require__(2)('toStringTag');
+	  , TAG = __webpack_require__(3)('toStringTag');
 
 	module.exports = function(it, tag, stat){
 	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
 	};
-
-/***/ },
-/* 36 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.DataEnrichment = undefined;
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-	var _Helper = __webpack_require__(3);
-
-	var _Point = __webpack_require__(6);
-
-	var _LatLng = __webpack_require__(19);
-
-	var _Bounds = __webpack_require__(37);
-
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file enriches delivered data with default values
-	 * @copyright Michael Duve 2016
-	 * @module DataEnrichment
-	 */
-	var DataEnrichment = exports.DataEnrichment = {
-	    /**
-	     * enriches marker data with all needed data
-	     * @function
-	     * @memberof module:DataEnrichment
-	     * @param  {Object} data - specified data for marker
-	     * @return {Object} enriched marker data
-	     */
-
-	    marker: function marker(data) {
-
-	        var enrichedData = [];
-
-	        _Helper.Helper.forEach(data, function (entry) {
-	            entry = Object.assign({}, DataEnrichment.DATA_MARKER, entry);
-
-	            var offset = new _Point.Point(entry.offset.x, entry.offset.y),
-	                latlng = new _LatLng.LatLng(entry.position.lat, entry.position.lng),
-	                size = new _Point.Point(entry.size.width, entry.size.height);
-
-	            enrichedData.push({
-	                offset: offset,
-	                latlng: latlng,
-	                size: size,
-	                hover: entry.hover,
-	                icon: entry.icon,
-	                content: entry.content
-	            });
-	        });
-
-	        return enrichedData;
-	    },
-
-	    /**
-	     * enriches label data with all needed data
-	     * @function
-	     * @memberof module:DataEnrichment
-	     * @param  {Object} data - specified data for label
-	     * @return {Object} enriched label data
-	     */
-	    label: function label(data) {
-	        var enrichedData = [];
-
-	        _Helper.Helper.forEach(data, function (entry) {
-	            entry = Object.assign({}, DataEnrichment.DATA_LABEL, entry);
-
-	            if (entry.text) entry.text = Object.assign({}, DataEnrichment.DATA_LABEL_TEXT, entry.text);
-	            if (entry.icon) entry.icon = Object.assign({}, DataEnrichment.DATA_LABEL_ICON, entry.icon);
-
-	            if (typeof entry.position[0] === "number") {
-	                entry.position = new _LatLng.LatLng(entry.position[0], entry.position[1]);
-	            } else {
-	                _Helper.Helper.forEach(entry.position, function (pos, i) {
-	                    entry.position[i] = new _LatLng.LatLng(pos[0], pos[1]);
-	                });
-	            }
-
-	            if (entry.text) entry.text.offset = new _Point.Point(entry.text.offset[0], entry.text.offset[1]);
-	            if (entry.icon) entry.icon.offset = new _Point.Point(entry.icon.offset[0], entry.icon.offset[1]);
-	            if (entry.icon && typeof entry.icon.size !== "number") entry.icon.size = new _Point.Point(entry.icon.size[0], entry.icon.size[1]);
-
-	            enrichedData.push(entry);
-	        });
-
-	        return enrichedData;
-	    },
-
-	    /**
-	     * enriches map data with all needed data
-	     * @function
-	     * @memberof module:DataEnrichment
-	     * @param  {Object} data - specified data for mapsettings
-	     * @return {Object} enriched mapsettings data
-	     */
-	    mapSettings: function mapSettings() {
-	        var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	        var enrichedData = Object.assign({}, DataEnrichment.MAP_SETTINGS, data),
-	            bounds = new _Bounds.Bounds(new _LatLng.LatLng(enrichedData.bounds.northWest[0], enrichedData.bounds.northWest[1]), new _LatLng.LatLng(enrichedData.bounds.southEast[0], enrichedData.bounds.southEast[1])),
-	            center = new _LatLng.LatLng(enrichedData.center.lat, enrichedData.center.lng);
-
-	        if (_typeof(data.limitToBounds) === "object") {
-	            var boundsNW = new _LatLng.LatLng(data.limitToBounds.northWest[0], data.limitToBounds.northWest[1]);
-	            var boundsSE = new _LatLng.LatLng(data.limitToBounds.southEast[0], data.limitToBounds.southEast[1]);
-	            var boundsLimit = new _Bounds.Bounds(boundsNW, boundsSE);
-	            enrichedData.limitToBounds = boundsLimit;
-	        } else {
-	            enrichedData.limitToBounds = bounds;
-	        }
-
-	        enrichedData.bounds = bounds;
-	        enrichedData.center = center;
-
-	        return enrichedData;
-	    },
-
-	    /**
-	     * enriches tooltip data with all needed data
-	     * @function
-	     * @memberof module:DataEnrichment
-	     * @param  {Object} data - specified data for tooltip
-	     * @return {Object} enriched tooltip data
-	     */
-	    tooltip: function tooltip() {
-	        var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	        return Object.assign({}, DataEnrichment.TOOLTIP, data);
-	    }
-	};
-
-	/**
-	 * Default initial values for a Marker
-	 * @type {Object}
-	 */
-	DataEnrichment.DATA_MARKER = {
-	    icon: null,
-	    hover: false,
-	    position: {
-	        lat: 0,
-	        lng: 0
-	    },
-	    offset: {
-	        x: 0,
-	        y: 0
-	    },
-	    size: {
-	        width: 32,
-	        height: 32
-	    },
-	    content: []
-	};
-	/**
-	 * Default initial values for a Map
-	 * @type {Object}
-	 */
-	DataEnrichment.MAP_SETTINGS = {
-	    level: 0,
-	    center: {
-	        "lat": 0,
-	        "lng": 0
-	    },
-	    bounds: {
-	        "northWest": [90, -180],
-	        "southEast": [-90, 180]
-	    },
-	    controls: {
-	        zoom: false,
-	        home: false,
-	        position: "bottom-right",
-	        theme: "dark"
-	    }
-	};
-	/**
-	 * Default initial values for a Label
-	 * @type {Object}
-	 */
-	DataEnrichment.DATA_LABEL = {
-	    "position": [0, 0],
-	    "visibility": {
-	        "min": 0,
-	        "max": Number.MAX_VALUE
-	    }
-	};
-	/**
-	 * Default initial values for a Label with text
-	 * @type {Object}
-	 */
-	DataEnrichment.DATA_LABEL_TEXT = {
-	    "content": "",
-	    "color": "#333333",
-	    "offset": [0, 0],
-	    "align": "center",
-	    "baseline": "hanging",
-	    "font": "10pt Arial"
-	};
-	/**
-	 * Default initial values for a Label with an icon
-	 * @type {Object}
-	 */
-	DataEnrichment.DATA_LABEL_ICON = {
-	    "type": "circle",
-	    "size": 2,
-	    "color": "#333333",
-	    "offset": [0, 0]
-	};
-	/**
-	 * Default initial values for a ToolTip
-	 * @type {Object}
-	 */
-	DataEnrichment.TOOLTIP = {
-	    image: "/hbs/image.hbs",
-	    text: "/hbs/text.hbs",
-	    headline: "/hbs/headline.hbs",
-	    crossheading: "/hbs/crossheading.hbs",
-	    iframe: "/hbs/iframe.hbs"
-		};
 
 /***/ },
 /* 37 */
@@ -2388,7 +2341,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        _classCallCheck(this, Bounds);
 
-	        if (northWest.lat < southEast.lat || northWest.lng > southEast.lng) throw new Error(northWest + ' needs to be top-left corner and ' + southEast + ' bottom-right');
+	        if (northWest.lat < southEast.lat || northWest.lng > southEast.lng) {
+	            throw new Error(northWest + ' needs to be top-left corner and ' + southEast + ' bottom-right');
+	        }
 	        this.nw = northWest;
 	        this.se = southEast;
 	        return this;
@@ -2411,19 +2366,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Events = __webpack_require__(5);
+	var _Events = __webpack_require__(6);
 
-	var _Helper = __webpack_require__(3);
+	var _Helper = __webpack_require__(1);
 
-	var _Publisher = __webpack_require__(13);
+	var _Publisher = __webpack_require__(14);
 
 	var _LatLng = __webpack_require__(19);
 
 	var _Bounds = __webpack_require__(37);
 
-	var _Point = __webpack_require__(6);
+	var _Point = __webpack_require__(4);
 
-	var _Rectangle = __webpack_require__(16);
+	var _Rectangle = __webpack_require__(8);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2522,7 +2477,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var oldData = this.data;
 	        this.data = Object.assign({}, this.data, obj);
 	        var centerUpdateDone = !oldData.center.equals(this.data.center) ? this.centerUpdated() : false;
-	        if (!centerUpdateDone && !oldData.viewport.equals(this.data.viewport)) this.updateOffsetToCenter();
+	        if (!centerUpdateDone && !oldData.viewport.equals(this.data.viewport)) {
+	            this.updateOffsetToCenter();
+	        }
 	        return this;
 	    };
 
@@ -2680,7 +2637,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    StateHandler.prototype.next = function next() {
 	        this.lastState = this.current;
-	        if (this.hasNext()) this.i++;
+	        if (this.hasNext()) {
+	            this.i++;
+	        }
 	        return this;
 	    };
 
@@ -2692,7 +2651,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    StateHandler.prototype.previous = function previous() {
 	        this.lastState = this.current;
-	        if (this.hasPrevious()) this.i--;
+	        if (this.hasPrevious()) {
+	            this.i--;
+	        }
 	        return this;
 	    };
 
@@ -2704,7 +2665,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    StateHandler.prototype.changeTo = function changeTo(state) {
-	        if (state >= 0 && state < this.length) this.i = state;
+	        if (state >= 0 && state < this.length) {
+	            this.i = state;
+	        }
 	        return this;
 	    };
 
@@ -2733,6 +2696,137 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Texture = undefined;
+
+	var _Helper = __webpack_require__(1);
+
+	var _Point = __webpack_require__(4);
+
+	var _Rectangle2 = __webpack_require__(8);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file represents an Image
+	 * @copyright Michael Duve 2016
+	 */
+
+	var Texture = exports.Texture = function (_Rectangle) {
+	    _inherits(Texture, _Rectangle);
+
+	    /**
+	     * @constructor
+	     * @param  {String} path = null - path to image
+	     * @param  {Point} size = new Point() - size of image
+	     * @param  {Point} offset = new Point() - offset of image to position
+	     * @return {Texture} instance of Texture for chaining
+	     */
+
+	    function Texture(_ref) {
+	        var _ret2;
+
+	        var _ref$path = _ref.path;
+	        var path = _ref$path === undefined ? null : _ref$path;
+	        var _ref$size = _ref.size;
+	        var size = _ref$size === undefined ? new _Point.Point() : _ref$size;
+	        var _ref$offset = _ref.offset;
+	        var offset = _ref$offset === undefined ? new _Point.Point() : _ref$offset;
+
+	        _classCallCheck(this, Texture);
+
+	        var _this = _possibleConstructorReturn(this, _Rectangle.call(this, offset.x, offset.y, size.x, size.y));
+
+	        var textureExists = void 0;
+	        _Helper.Helper.forEach(Texture.textures, function (texture) {
+	            if (path === texture.settings.path && size.equals(texture.settings.size) && offset.equals(texture.settings.offset)) {
+	                textureExists = texture;
+	                return false;
+	            }
+	        });
+	        if (textureExists) {
+	            var _ret;
+
+	            return _ret = textureExists, _possibleConstructorReturn(_this, _ret);
+	        }
+
+	        _this.settings = {
+	            path: path,
+	            size: size,
+	            offset: offset
+	        };
+	        _this.ready = false;
+
+	        _this.img = new Image();
+	        if (path !== null) {
+	            _Helper.Helper.loadImage(path, function (img) {
+	                _this.img = img;
+	                _this.ready = true;
+	                _this.initializeHitMap(size.x, size.y);
+	            });
+	        }
+	        Texture.textures.push(_this);
+	        return _ret2 = _this, _possibleConstructorReturn(_this, _ret2);
+	    }
+
+	    /**
+	     * initializes an offscreen canvas hitmap
+	     * @param  {Number} w - width of canvas
+	     * @param  {Number} h - height of canvas
+	     * @return {Texture} instance of Texture for chaining
+	     */
+
+
+	    Texture.prototype.initializeHitMap = function initializeHitMap(w, h) {
+	        this.hitMap = document.createElement("canvas");
+	        this.hitMap.width = w;
+	        this.hitMap.height = h;
+	        this.ctx = this.hitMap.getContext("2d");
+	        this.ctx.drawImage(this.img, 0, 0, w, h, 0, 0, w, h);
+	        return this;
+	    };
+
+	    /**
+	     * checks wheter texture was hit
+	     * @param  {Point} point - specified point to check against
+	     * @return {Boolean} wheter texture is hit or not
+	     */
+
+
+	    Texture.prototype.isHit = function isHit(point) {
+	        if (this.ctx) {
+	            var imgData = this.ctx.getImageData(point.x, point.y, 1, 1);
+	            var alpha = imgData.data[3];
+	            return alpha !== 0;
+	        }
+	        return false;
+	    };
+
+	    return Texture;
+	}(_Rectangle2.Rectangle);
+
+	/**
+	 * stores all initialized textures in this array
+	 * @type {Array}
+	 */
+
+
+		Texture.textures = [];
+
+/***/ },
+/* 41 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -2741,12 +2835,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
 	var cof = __webpack_require__(21)
-	  , TAG = __webpack_require__(2)('toStringTag')
+	  , TAG = __webpack_require__(3)('toStringTag')
 	  // ES3 wrong here
 	  , ARG = cof(function(){ return arguments; }()) == 'Arguments';
 
@@ -2762,12 +2856,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-	var toIObject = __webpack_require__(12)
-	  , getNames  = __webpack_require__(1).getNames
+	var toIObject = __webpack_require__(13)
+	  , getNames  = __webpack_require__(2).getNames
 	  , toString  = {}.toString;
 
 	var windowNames = typeof window == 'object' && Object.getOwnPropertyNames
@@ -2787,21 +2881,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	'use strict';
-	var LIBRARY        = __webpack_require__(44)
+	var LIBRARY        = __webpack_require__(45)
 	  , $export        = __webpack_require__(0)
 	  , redefine       = __webpack_require__(29)
-	  , hide           = __webpack_require__(18)
+	  , hide           = __webpack_require__(17)
 	  , has            = __webpack_require__(25)
 	  , Iterators      = __webpack_require__(27)
 	  , $iterCreate    = __webpack_require__(76)
-	  , setToStringTag = __webpack_require__(35)
-	  , getProto       = __webpack_require__(1).getProto
-	  , ITERATOR       = __webpack_require__(2)('iterator')
+	  , setToStringTag = __webpack_require__(36)
+	  , getProto       = __webpack_require__(2).getProto
+	  , ITERATOR       = __webpack_require__(3)('iterator')
 	  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
 	  , FF_ITERATOR    = '@@iterator'
 	  , KEYS           = 'keys'
@@ -2859,16 +2953,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports) {
 
 	module.exports = false;
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var global = __webpack_require__(8)
+	var global = __webpack_require__(9)
 	  , SHARED = '__core-js_shared__'
 	  , store  = global[SHARED] || (global[SHARED] = {});
 	module.exports = function(key){
@@ -2876,11 +2970,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.5 Object.freeze(O)
-	var isObject = __webpack_require__(4);
+	var isObject = __webpack_require__(5);
 
 	__webpack_require__(7)('freeze', function($freeze){
 	  return function freeze(it){
@@ -2889,11 +2983,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.11 Object.isExtensible(O)
-	var isObject = __webpack_require__(4);
+	var isObject = __webpack_require__(5);
 
 	__webpack_require__(7)('isExtensible', function($isExtensible){
 	  return function isExtensible(it){
@@ -2902,11 +2996,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.12 Object.isFrozen(O)
-	var isObject = __webpack_require__(4);
+	var isObject = __webpack_require__(5);
 
 	__webpack_require__(7)('isFrozen', function($isFrozen){
 	  return function isFrozen(it){
@@ -2915,11 +3009,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.13 Object.isSealed(O)
-	var isObject = __webpack_require__(4);
+	var isObject = __webpack_require__(5);
 
 	__webpack_require__(7)('isSealed', function($isSealed){
 	  return function isSealed(it){
@@ -2928,11 +3022,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.15 Object.preventExtensions(O)
-	var isObject = __webpack_require__(4);
+	var isObject = __webpack_require__(5);
 
 	__webpack_require__(7)('preventExtensions', function($preventExtensions){
 	  return function preventExtensions(it){
@@ -2941,11 +3035,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.17 Object.seal(O)
-	var isObject = __webpack_require__(4);
+	var isObject = __webpack_require__(5);
 
 	__webpack_require__(7)('seal', function($seal){
 	  return function seal(it){
@@ -2954,7 +3048,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2968,9 +3062,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*global PointerEvent,MSPointerEvent*/
 
 
-	var _Helper = __webpack_require__(3);
+	var _Helper = __webpack_require__(1);
 
-	var _Point = __webpack_require__(6);
+	var _Point = __webpack_require__(4);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3058,7 +3152,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.settings = Object.assign(this.getDefaultSettings(), settings);
 	        this.data = this.getDefaultData();
 	        this.pointerArray = {};
-	        if (this.settings.overwriteViewportSettings) this.handleViewport(this.settings.overwriteViewportSettings);
+	        if (this.settings.overwriteViewportSettings) {
+	            this.handleViewport(this.settings.overwriteViewportSettings);
+	        }
 	        this.init(this.settings.container);
 	    }
 
@@ -3085,7 +3181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            stopPropagation: true,
 	            preventDefault: true,
 	            autoFireHold: false,
-	            pinchBalanceTime: 500,
+	            pinchBalanceTime: 50,
 	            callbacks: this.getDefaultCallbacks(),
 	            events: this.getDefaultEventNames()
 	        };
@@ -3103,6 +3199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tapHold: null,
 	            doubletap: null,
 	            hold: null,
+	            hover: null,
 	            pan: null,
 	            swipe: null,
 	            flick: null,
@@ -3182,7 +3279,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Interact.prototype.handleViewport = function handleViewport(viewport) {
-	        if (typeof viewport !== "string") viewport = "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no";
+	        if (typeof viewport !== "string") {
+	            viewport = "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no";
+	        }
 	        var metaViewInHead = _Helper.Helper.find("meta[name=viewport]");
 	        var viewportMeta = metaViewInHead ? metaViewInHead : _Helper.Helper.find("head").appendChild(document.createElement("head").setAttribute("name", "viewport"));
 	        viewportMeta.setAttribute("content", viewport);
@@ -3221,8 +3320,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (_Helper.Helper.isIE()) {
 	            this.bindIEEvents();
 	        } else {
-	            if (_Helper.Helper.isTouch()) this.bindTouchEvents();
-	            if (_Helper.Helper.isMouse()) this.bindMouseEvents();
+	            if (_Helper.Helper.isTouch()) {
+	                this.bindTouchEvents();
+	            }
+	            if (_Helper.Helper.isMouse()) {
+	                this.bindMouseEvents();
+	            }
 	        }
 	        return this;
 	    };
@@ -3279,8 +3382,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Interact.prototype.preHandle = function preHandle(event) {
-	        if (this.settings.stopPropagation) event.stopPropagation();
-	        if (this.settings.preventDefault) event.preventDefault();
+	        if (this.settings.stopPropagation) {
+	            event.stopPropagation();
+	        }
+	        if (this.settings.preventDefault) {
+	            event.preventDefault();
+	        }
 	        return this.getEvent(event);
 	    };
 
@@ -3618,16 +3725,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Interact.prototype.moveHandler = function moveHandler(event) {
-	        // if touchstart event was not fired
-	        if (!this.data.down || this.data.pinched) return false;
 
 	        var e = this.preHandle(event);
+
+	        // if touchstart event was not fired
+	        if (!this.data.down || this.data.pinched) {
+	            if (e instanceof MouseEvent) {
+	                this.eventCallback(this.settings.callbacks.hover, this.getRelativePosition(e));
+	            }
+	            return false;
+	        }
 
 	        this.data.positionLast = this.data.positionMove ? this.data.positionMove : this.data.positionStart;
 	        this.data.timeLast = event.timeStamp;
 
 	        // if positions have not changed
-	        if (this.positionDidNotChange(e)) return false;
+	        if (this.positionDidNotChange(e)) {
+	            return false;
+	        }
 
 	        this.clearTimeouts(this.data.timeoutDefault);
 	        this.clearTimeouts(this.data.timeoutHold);
@@ -3648,12 +3763,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Interact.prototype.handlePinchAndZoom = function handlePinchAndZoom() {
-	        if (!this.data.distanceLast) this.data.distanceLast = this.data.distance;
+	        if (!this.data.distanceLast) {
+	            this.data.distanceLast = this.data.distance;
+	        }
 
 	        this.data.difference = this.data.distance - this.data.distanceLast;
 	        if (Math.abs(this.data.difference) >= 0.005) {
-	            if (this.settings.callbacks.pinch) this.eventCallback(this.settings.callbacks.pinch, this.data);
-	            if (this.settings.callbacks.zoom) this.eventCallback(this.settings.callbacks.zoom, this.data);
+	            if (this.settings.callbacks.pinch) {
+	                this.eventCallback(this.settings.callbacks.pinch, this.data);
+	            }
+	            if (this.settings.callbacks.zoom) {
+	                this.eventCallback(this.settings.callbacks.zoom, this.data);
+	            }
 	            this.data.distanceLast = this.data.distance;
 	        }
 	        return this;
@@ -3821,6 +3942,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (Object.keys(this.pointerArray).length > 1) {
 	                this.data.multitouch = true;
 	            } else if (Object.keys(this.pointerArray).length > 0) {
+	                this.data.positionStart = this.getRelativePosition(e[0]);
 	                this.data.down = true;
 	            }
 	        } // touch is used
@@ -3828,6 +3950,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (e.length > 1) {
 	                    this.data.multitouch = true;
 	                } else if (e.length > 0) {
+	                    this.data.positionStart = this.getRelativePosition(e[0]);
 	                    this.data.down = true;
 	                }
 	                this.data.positionMove = undefined;
@@ -3893,7 +4016,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Interact.prototype.eventCallback = function eventCallback(callback, args) {
-	        if (callback && typeof callback === "function") callback(args);
+	        if (callback && typeof callback === "function") {
+	            callback(args);
+	        }
 	        this.data.actionLast = null;
 	        return this;
 	    };
@@ -3934,10 +4059,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Interact.prototype.getScrollDirection = function getScrollDirection(event) {
 	        var axis = parseInt(event.axis, 10);
 	        var direction = [];
-	        if (this.isDownDirection(axis, event)) direction.push("down"); // down
-	        else if (this.isUpDirection(axis, event)) direction.push("up"); // up
-	        if (this.isRightDirection(axis, event)) direction.push("right"); // right
-	        else if (this.isLeftDirection(axis, event)) direction.push("left"); // left
+	        if (this.isDownDirection(axis, event)) {
+	            direction.push("down"); // down
+	        } else if (this.isUpDirection(axis, event)) {
+	            direction.push("up"); // up
+	        }
+	        if (this.isRightDirection(axis, event)) {
+	            direction.push("right"); // right
+	        } else if (this.isLeftDirection(axis, event)) {
+	            direction.push("left"); // left
+	        }
 	        return direction;
 	    };
 
@@ -3997,7 +4128,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Interact.prototype.getEvent = function getEvent(e) {
-	        if (e.touches && e.touches.length === 0) return e.changedTouches || e;
+	        if (e.touches && e.touches.length === 0) {
+	            return e.changedTouches || e;
+	        }
 	        return e.touches || e.changedTouches || e;
 	    };
 
@@ -4005,7 +4138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4018,27 +4151,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Helper = __webpack_require__(3);
+	var _Helper = __webpack_require__(1);
 
-	var _Events = __webpack_require__(5);
+	var _Events = __webpack_require__(6);
 
-	var _Point = __webpack_require__(6);
+	var _Point = __webpack_require__(4);
 
-	var _Publisher = __webpack_require__(13);
+	var _Publisher = __webpack_require__(14);
 
 	var _StateHandler = __webpack_require__(39);
 
-	var _Rectangle = __webpack_require__(16);
+	var _Rectangle = __webpack_require__(8);
 
 	var _View = __webpack_require__(65);
 
 	var _Marker = __webpack_require__(61);
 
-	var _DataEnrichment = __webpack_require__(36);
+	var _DataEnrichment = __webpack_require__(33);
 
 	var _ToolTip = __webpack_require__(64);
-
-	var _Label = __webpack_require__(59);
 
 	var _MarkerClusterer = __webpack_require__(62);
 
@@ -4099,6 +4230,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        /**
+	         * returns all clusters
+	         * @return {Array} array of clusters
+	         */
+
+	    }, {
+	        key: 'clusters',
+	        get: function get() {
+	            return !this.markerClusterer ? [] : this.markerClusterer.clusters;
+	        }
+
+	        /**
 	         * @constructor
 	         * @param  {HTMLElement} container = null - jQuery-object holding the container
 	         * @param  {Object} tilesData = {} - json object representing data of TileMap
@@ -4122,14 +4264,20 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        _classCallCheck(this, TileMap);
 
-	        if (!container) throw Error("You must define a container to initialize a TileMap");
+	        if (!container) {
+	            throw Error("You must define a container to initialize a TileMap");
+	        }
 
 	        this.container = container;
 	        this.id = id;
 	        this.settings = settings;
 
+	        this.markers = [];
+
 	        this.initialize(tilesData);
 	        this.initializeCanvas();
+
+	        this.thumbsLoaded = 0;
 
 	        _Helper.Helper.forEach(this.imgData, function (element, i) {
 	            var currentLevel = {
@@ -4146,11 +4294,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.levelHandler = new _StateHandler.StateHandler(this.levels);
 	        this.levelHandler.changeTo(this.settings.level);
 
-	        this.appendMarkerContainerToDom();
-	        this.initializeLabels();
-
 	        this.bindEvents();
-	        this.stateHandler.next();
 	        this.resizeCanvas();
 
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
@@ -4159,17 +4303,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            center: this.levelHandler.current.center
 	        });
 	        this.view.init();
-
 	        this.reset();
-
-	        window.requestAnimFrame(this.mainLoop.bind(this));
-
 	        return this;
 	    }
 
 	    /**
 	     * initialize map
-	     * @param  {Object} tilesData - data of tiles, markers and labels
+	     * @param  {Object} tilesData - data of tiles, markers and markers
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
@@ -4184,24 +4324,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.imgData = tilesData[_Events.Events.TileMap.IMG_DATA_NAME];
 	        this.markerData = tilesData[_Events.Events.TileMap.MARKER_DATA_NAME];
-	        this.labelData = tilesData[_Events.Events.TileMap.LABEL_DATA_NAME];
-
-	        this.stateHandler = new _StateHandler.StateHandler([{
-	            value: 0,
-	            description: "start"
-	        }, {
-	            value: 1,
-	            description: "view-initialized"
-	        }, {
-	            value: 2,
-	            description: "marker-initialized"
-	        }, {
-	            value: 3,
-	            description: "tooltip-initialized"
-	        }]);
 
 	        this.templates = this.settings.tooltip ? this.settings.tooltip.templates : {};
-	        this.templates = _DataEnrichment.DataEnrichment.tooltip(this.templates);
 
 	        this.levels = [];
 	        this.clusterHandlingTimeout = null;
@@ -4254,7 +4378,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    TileMap.prototype.reset = function reset() {
 	        var newLevel = this.checkIfLevelCanFitBounds();
-	        if (this.levelHandler.current.level !== this.settings.level) this.levelHandler.changeTo(newLevel);
+	        if (this.levelHandler.current.level !== this.settings.level) {
+	            this.levelHandler.changeTo(newLevel);
+	        }
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
 	            view: this.levelHandler.current.instance.view,
 	            bounds: this.levelHandler.current.bounds,
@@ -4269,23 +4395,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
-	     * initialize all labels
+	     * initialize all markers
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
 
-	    TileMap.prototype.initializeLabels = function initializeLabels() {
+	    TileMap.prototype.initializeMarkers = function initializeMarkers() {
 	        var _this2 = this;
 
-	        this.labelData = this.enrichLabelData(this.labelData);
-	        this.labels = [];
-	        _Helper.Helper.forEach(this.labelData, function (label) {
-	            var currentLabel = new _Label.Label({
+	        this.markerData = this.enrichMarkerData(this.markerData);
+	        _Helper.Helper.forEach(this.markerData, function (markerSettings) {
+	            var currentMarker = new _Marker.Marker({
 	                context: _this2.canvasContext,
 	                id: _this2.id,
-	                settings: label
+	                settings: markerSettings
 	            });
-	            _this2.labels.push(currentLabel);
+	            _this2.markers.push(currentMarker);
+	        });
+	        this.markers = this.markers.sort(function (a, b) {
+	            return b.latlng.lat - a.latlng.lat !== 0 ? b.latlng.lat - a.latlng.lat : b.latlng.lng - a.latlng.lng;
+	        });
+	        this.markerClusterer = new _MarkerClusterer.MarkerClusterer({
+	            markers: this.markers.filter(function (marker) {
+	                return marker.isClusterable();
+	            }),
+	            id: this.id,
+	            clusterImage: this.settings.clusterImage,
+	            context: this.canvasContext,
+	            container: this.markerContainer || document.body
 	        });
 	        return this;
 	    };
@@ -4311,30 +4448,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
-	     * reposition marker container
-	     * @return {View} instance of View for chaining
-	     */
-
-
-	    TileMap.prototype.repositionMarkerContainer = function repositionMarkerContainer() {
-	        if (this.markerContainer) {
-	            var newSize = this.view.view.getDistortedRect(this.view.distortionFactor);
-	            var width = parseFloat(newSize.width).toFixed(8);
-	            var height = parseFloat(newSize.height).toFixed(8);
-	            var left = parseFloat(newSize.left + this.view.offsetToCenter).toFixed(8);
-	            var top = parseFloat(newSize.top).toFixed(8);
-	            _Helper.Helper.css(this.markerContainer, {
-	                "width": width + 'px',
-	                "height": height + 'px',
-	                "transform": 'translate3d(' + left + 'px, ' + top + 'px, 0px)',
-	                "-ms-transform": 'translate(' + left + 'px, ' + top + 'px)'
-
-	            });
-	        }
-	        return this;
-	    };
-
-	    /**
 	     * enrich marker data
 	     * @param  {Object} markerData - data of markers
 	     * @return {Object} enriched marker data
@@ -4343,71 +4456,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    TileMap.prototype.enrichMarkerData = function enrichMarkerData(markerData) {
 	        return _DataEnrichment.DataEnrichment.marker(markerData);
-	    };
-
-	    /**
-	     * enrich label data
-	     * @param  {Object} labelData - data of labels
-	     * @return {Object} enriched label data
-	     */
-
-
-	    TileMap.prototype.enrichLabelData = function enrichLabelData(labelData) {
-	        return _DataEnrichment.DataEnrichment.label(labelData);
-	    };
-
-	    /**
-	     * initializes all markers
-	     * @param  {Object} markerData - data of all markers
-	     * @return {TileMap} instance of TileMap for chaining
-	     */
-
-
-	    TileMap.prototype.initializeMarkers = function initializeMarkers() {
-	        var _this3 = this;
-
-	        if (this.markerData && this.markerData.length) {
-	            (function () {
-	                var markers = [];
-	                _this3.markerData = _this3.enrichMarkerData(_this3.markerData);
-	                _Helper.Helper.forEach(_this3.markerData, function (currentData) {
-	                    markers.push(new _Marker.Marker({
-	                        data: currentData,
-	                        container: _this3.markerContainer,
-	                        id: _this3.id
-	                    }));
-	                });
-	                markers = markers.sort(function (a, b) {
-	                    return b.latlng.lat - a.latlng.lat !== 0 ? b.latlng.lat - a.latlng.lat : b.latlng.lng - a.latlng.lng;
-	                });
-	                _Helper.Helper.forEach(markers, function (marker, i) {
-	                    marker.icon.style.zIndex = i;
-	                });
-
-	                _this3.markerClusterer = new _MarkerClusterer.MarkerClusterer({
-	                    markers: markers,
-	                    id: _this3.id,
-	                    container: _this3.markerContainer
-	                });
-	            })();
-	        }
-	        this.stateHandler.next();
-	        return this;
-	    };
-
-	    /**
-	     * append marker container to DOM
-	    ´     * @return {TileMap} instance of TileMap for chaining
-	     */
-
-
-	    TileMap.prototype.appendMarkerContainerToDom = function appendMarkerContainerToDom() {
-	        if (this.markerData && this.markerData.length) {
-	            this.markerContainer = document.createElement("div");
-	            this.markerContainer.classList.add("marker-container");
-	            this.container.appendChild(this.markerContainer);
-	        }
-	        return this;
 	    };
 
 	    /**
@@ -4422,7 +4470,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            id: this.id,
 	            templates: this.templates
 	        });
-	        this.stateHandler.next();
 	        return this;
 	    };
 
@@ -4433,25 +4480,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    TileMap.prototype.bindEvents = function bindEvents() {
-	        var _this4 = this;
+	        var _this3 = this;
 
+	        this.eventManager.subscribe(_Events.Events.MarkerClusterer.CLUSTERIZE, function () {
+	            _this3.eventManager.publish(_Events.Events.TileMap.DRAW);
+	        });
+	        this.eventManager.subscribe(_Events.Events.MarkerClusterer.UNCLUSTERIZE, function () {
+	            _this3.eventManager.publish(_Events.Events.TileMap.DRAW);
+	        });
 	        this.eventManager.subscribe(_Events.Events.TileMap.RESIZE, function () {
-	            _this4.resize();
+	            _this3.resize();
 	        });
 	        this.eventManager.subscribe(_Events.Events.TileMap.DRAW, function () {
-	            _this4.redraw();
+	            _this3.redraw();
 	        });
 	        this.eventManager.subscribe(_Events.Events.View.THUMB_LOADED, function () {
-	            _this4.thumbLoaded();
+	            _this3.thumbLoaded();
 	        });
 	        this.eventManager.subscribe(_Events.Events.TileMap.ZOOM_TO_BOUNDS, function (data) {
-	            _this4.zoomToBounds(data.center, data.boundingBox);
+	            _this3.zoomToBounds(data.center, data.boundingBox);
 	        });
 	        this.eventManager.subscribe(_Events.Events.TileMap.NEXT_LEVEL, function () {
-	            _this4.changelevel(1);
+	            _this3.changelevel(1);
 	        });
 	        this.eventManager.subscribe(_Events.Events.TileMap.PREVIOUS_LEVEL, function () {
-	            _this4.changelevel(-1);
+	            _this3.changelevel(-1);
 	        });
 	        return this;
 	    };
@@ -4488,9 +4541,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    TileMap.prototype.thumbLoaded = function thumbLoaded() {
 	        this.redraw();
-	        if (this.stateHandler.current.value < 2) {
+	        this.thumbsLoaded++;
+	        if (this.thumbsLoaded === this.levels.length) {
+	            this.createTooltipContainer();
 	            this.initializeMarkers();
-	            if (this.markerData && this.markerData.length) this.createTooltipContainer();
+	            window.requestAnimFrame(this.mainLoop.bind(this));
 	        }
 	        return this;
 	    };
@@ -4623,16 +4678,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    TileMap.prototype.clusterHandler = function clusterHandler() {
-	        var _this5 = this;
+	        var _this4 = this;
 
 	        if (this.clusterHandlingTimeout) {
 	            this.clusterHandlingTimeout = clearTimeout(this.clusterHandlingTimeout);
 	        }
 	        this.clusterHandlingTimeout = setTimeout(function () {
-	            if (_this5.levelHandler.hasNext()) {
-	                _this5.eventManager.publish(_Events.Events.MarkerClusterer.CLUSTERIZE);
+	            if (_this4.levelHandler.hasNext()) {
+	                _this4.eventManager.publish(_Events.Events.MarkerClusterer.CLUSTERIZE);
 	            } else {
-	                _this5.eventManager.publish(_Events.Events.MarkerClusterer.UNCLUSTERIZE);
+	                _this4.eventManager.publish(_Events.Events.MarkerClusterer.UNCLUSTERIZE);
 	            }
 	        }, 150);
 	        return this;
@@ -4669,39 +4724,53 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    TileMap.prototype.mainLoop = function mainLoop() {
-	        var _this6 = this;
+	        var _this5 = this;
 
 	        var currentMillisecs = Date.now();
 	        var deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
 	        this.lastFrameMillisecs = currentMillisecs;
 	        this.deltaTiming = _Helper.Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
 
-	        if (this.velocity.length >= 0.1) this.moveView(this.velocity.multiply(0.9).clone.multiply(this.deltaTiming));
+	        this.moveByVelocity = this.velocity.multiply(0.95).clone.multiply(this.deltaTiming);
+	        if (this.velocity.length >= 0.3) {
+	            this.moveView(this.moveByVelocity);
+	        }
 
 	        this.view.checkBoundaries();
 
 	        if (this.drawIsNeeded) {
 	            this.canvasContext.clearRect(0, 0, this.width, this.height);
 	            this.view.draw();
-	            this.drawLabels();
-	            this.repositionMarkerContainer();
+	            this.drawClusters();
+	            this.drawMarkers();
 	            this.drawIsNeeded = false;
 	        }
 
 	        window.requestAnimFrame(function () {
-	            return _this6.mainLoop();
+	            return _this5.mainLoop();
 	        });
 	    };
 
 	    /**
-	     * draw all labels
+	     * draw all clusters
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
 
-	    TileMap.prototype.drawLabels = function drawLabels() {
-	        _Helper.Helper.forEach(this.labels, function (label) {
-	            return label.draw();
+	    TileMap.prototype.drawClusters = function drawClusters() {
+	        this.markerClusterer.drawClusters();
+	        return this;
+	    };
+
+	    /**
+	     * draw all markers
+	     * @return {TileMap} instance of TileMap for chaining
+	     */
+
+
+	    TileMap.prototype.drawMarkers = function drawMarkers() {
+	        _Helper.Helper.forEach(this.markers, function (marker) {
+	            return marker.draw();
 	        });
 	        return this;
 	    };
@@ -4722,21 +4791,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(87);
-	__webpack_require__(46);
+	__webpack_require__(47);
+	__webpack_require__(52);
 	__webpack_require__(51);
+	__webpack_require__(49);
 	__webpack_require__(50);
 	__webpack_require__(48);
-	__webpack_require__(49);
-	__webpack_require__(47);
 	__webpack_require__(105);
-	module.exports = __webpack_require__(10);
+	module.exports = __webpack_require__(11);
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(104);
@@ -4748,10 +4817,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(89);
 	__webpack_require__(91);
 	__webpack_require__(90);
-	module.exports = __webpack_require__(10).Array;
+	module.exports = __webpack_require__(11).Array;
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(106);
@@ -4759,21 +4828,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(100);
 	__webpack_require__(102);
 	__webpack_require__(103);
-	__webpack_require__(46);
+	__webpack_require__(47);
+	__webpack_require__(52);
 	__webpack_require__(51);
+	__webpack_require__(49);
 	__webpack_require__(50);
 	__webpack_require__(48);
-	__webpack_require__(49);
-	__webpack_require__(47);
 	__webpack_require__(97);
 	__webpack_require__(99);
 	__webpack_require__(101);
 	__webpack_require__(98);
 
-	module.exports = __webpack_require__(10).Object;
+	module.exports = __webpack_require__(11).Object;
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports) {
 
 	/*
@@ -5020,7 +5089,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5031,13 +5100,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Cluster = undefined;
 
-	var _Events = __webpack_require__(5);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Helper = __webpack_require__(3);
+	var _Events = __webpack_require__(6);
 
-	var _Point = __webpack_require__(6);
+	var _Helper = __webpack_require__(1);
 
-	var _Drawable2 = __webpack_require__(15);
+	var _DataEnrichment = __webpack_require__(33);
+
+	var _Point = __webpack_require__(4);
+
+	var _Rectangle = __webpack_require__(8);
+
+	var _Drawable2 = __webpack_require__(18);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5054,18 +5129,49 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Cluster = exports.Cluster = function (_Drawable) {
 	    _inherits(Cluster, _Drawable);
 
-	    /**
-	     * @constructor
-	     * @param  {HTMLDivElement} container =  null - parent container of
-	     * @param  {Number} id = 0 - id of parent instance
-	     * @return {Cluster} instance of Cluster for chaining
-	     */
+	    _createClass(Cluster, [{
+	        key: 'position',
+
+
+	        /**
+	         * calculates the actual position of a cluster
+	         * @return {Point} calculated position
+	         */
+	        get: function get() {
+	            return this.info.convertLatLngToPoint(this.latlng).translate(this.view.x, this.view.y).multiply(this.distortionFactor, 1).translate(this.offsetToCenter, 0);
+	        }
+
+	        /**
+	         * calculates actual dimension and position of a cluster
+	         * @return {Rectangle} calculated dimension
+	         */
+
+	    }, {
+	        key: 'boundingBox',
+	        get: function get() {
+	            return new _Rectangle.Rectangle(this.position.x, this.position.y, 1, 1).scaleCenter(this.texture.width, this.texture.height);
+	        }
+
+	        /**
+	         * @constructor
+	         * @param {CanvasRenderingContext2D} context = null - context of canvas
+	         * @param {Texture} texture = null - texture of cluster
+	         * @param {Object} font = DataEnrichment.CLUSTER_FONT - style of font in cluster
+	         * @param {Number} id = 0 - id of parent instance
+	         * @return {Cluster} instance of Cluster for chaining
+	         */
+
+	    }]);
 
 	    function Cluster(_ref) {
 	        var _ret;
 
-	        var _ref$container = _ref.container;
-	        var container = _ref$container === undefined ? null : _ref$container;
+	        var _ref$context = _ref.context;
+	        var context = _ref$context === undefined ? null : _ref$context;
+	        var _ref$texture = _ref.texture;
+	        var texture = _ref$texture === undefined ? null : _ref$texture;
+	        var _ref$font = _ref.font;
+	        var font = _ref$font === undefined ? _DataEnrichment.DataEnrichment.CLUSTER_FONT : _ref$font;
 	        var _ref$id = _ref.id;
 	        var id = _ref$id === undefined ? 0 : _ref$id;
 
@@ -5073,10 +5179,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var _this = _possibleConstructorReturn(this, _Drawable.call(this, id));
 
-	        _this.uniqueID = Cluster.count;
-	        Cluster.count++;
 	        _this.markers = [];
-	        _this.container = container;
+	        _this.textSettings = font;
+	        _this.texture = texture;
+	        _this.context = context;
+	        _this.isHovered = false;
 	        return _ret = _this, _possibleConstructorReturn(_this, _ret);
 	    }
 
@@ -5088,7 +5195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    Cluster.prototype.init = function init() {
 	        if (this.markers.length === 1) {
-	            _Helper.Helper.show(this.markers[0].icon);
+	            this.markers[0].visible = true;
 	        } else {
 	            this.createClusterMarker();
 	        }
@@ -5102,7 +5209,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Cluster.prototype.createClusterMarker = function createClusterMarker() {
-	        var p = void 0;
 	        var _iteratorNormalCompletion = true;
 	        var _didIteratorError = false;
 	        var _iteratorError = undefined;
@@ -5111,9 +5217,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            for (var _iterator = this.markers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	                var marker = _step.value;
 
-	                _Helper.Helper.hide(marker.icon);
-	                var currentPos = new _Point.Point(parseFloat(marker.icon.style.left), parseFloat(marker.icon.style.top));
-	                p = !p ? currentPos : p.add(currentPos);
+	                marker.visible = false;
 	            }
 	        } catch (err) {
 	            _didIteratorError = true;
@@ -5130,19 +5234,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 
-	        p.divide(this.markers.length);
-
-	        this.cluster = document.createElement("div");
-	        this.cluster.innerHTML = this.markers.length;
-	        this.cluster.classList.add("cluster");
-	        _Helper.Helper.css(this.cluster, {
-	            "left": p.x + '%',
-	            "top": p.y + '%',
-	            "transform": "translateZ(0)"
-	        });
-	        this.cluster.setAttribute("data-id", 'cluster-' + this.uniqueID);
-	        this.container.appendChild(this.cluster);
 	        this.bindEvents();
+	        return this;
+	    };
+
+	    /**
+	     * draw this cluster
+	     * @return {Cluster} instance of Cluster for chaining
+	     */
+
+
+	    Cluster.prototype.draw = function draw() {
+	        if (this.texture.ready) {
+	            if (this.isHovered) {
+	                this.context.drawImage(this.texture.img, this.texture.width, 0, this.texture.width, this.texture.height, this.boundingBox.x, this.boundingBox.y, this.texture.width, this.texture.height);
+	            } else {
+	                this.context.drawImage(this.texture.img, 0, 0, this.texture.width, this.texture.height, this.boundingBox.x, this.boundingBox.y, this.texture.width, this.texture.height);
+	            }
+	            this.context.beginPath();
+	            this.context.textAlign = "center";
+	            this.context.textBaseline = "middle";
+	            this.context.font = this.textSettings.font;
+	            this.context.fillStyle = this.textSettings.color;
+	            this.context.fillText(this.markers.length, this.boundingBox.center.x, this.boundingBox.center.y);
+	            this.context.closePath();
+	        }
 	        return this;
 	    };
 
@@ -5169,12 +5285,61 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
+	     * set active to true
+	     * @param  {Point} point - specified point to check against
+	     * @param  {Boolean} oneIsHit = false - if one item was hit before
+	     * @return {Boolean} indicate hit (true) or not
+	     */
+
+
+	    Cluster.prototype.isActive = function isActive(point) {
+	        var oneIsHit = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+	        var isHovered = !oneIsHit ? this.hit(point) : false;
+	        if (this.isHovered !== isHovered) {
+	            this.eventManager.publish(_Events.Events.TileMap.DRAW);
+	        }
+	        document.body.style.cursor = isHovered || oneIsHit ? 'pointer' : 'default';
+	        this.isHovered = isHovered;
+	        return isHovered;
+	    };
+
+	    /**
+	     * check hit of point
+	     * @param  {Point} point - specified point to check against
+	     * @return {Booelan} Wheter it is a hit or not
+	     */
+
+
+	    Cluster.prototype.hit = function hit(point) {
+	        if (this.boundingBox.containsPoint(point)) {
+	            var p = point.clone.substract(this.boundingBox.topLeft);
+	            return this.texture.isHit(p);
+	        }
+	        return false;
+	    };
+
+	    /**
 	     * execute bound action of cluster
 	     * @return {Cluster} instance of Cluster for chaining
 	     */
 
 
 	    Cluster.prototype.action = function action() {
+	        this.eventManager.publish(_Events.Events.TileMap.ZOOM_TO_BOUNDS, {
+	            boundingBox: this.boundingBox,
+	            center: this.calculateCenter()
+	        });
+	        return this;
+	    };
+
+	    /**
+	     * calculates the center of a cluster
+	     * @return {LatLng} center of cluster
+	     */
+
+
+	    Cluster.prototype.calculateCenter = function calculateCenter() {
 	        var center = void 0;
 	        var _iteratorNormalCompletion2 = true;
 	        var _didIteratorError2 = false;
@@ -5184,7 +5349,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            for (var _iterator2 = this.markers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
 	                var marker = _step2.value;
 
-	                center = !center ? marker.latlng : center.add(marker.latlng);
+	                center = !center ? marker.latlng.clone : center.add(marker.latlng);
 	            }
 	        } catch (err) {
 	            _didIteratorError2 = true;
@@ -5201,12 +5366,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 
-	        center.divide(this.markers.length);
-	        this.eventManager.publish(_Events.Events.TileMap.ZOOM_TO_BOUNDS, {
-	            boundingBox: this.boundingBox,
-	            center: center
-	        });
-	        return this;
+	        return center.divide(this.markers.length);
 	    };
 
 	    /**
@@ -5218,7 +5378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    Cluster.prototype.addMarker = function addMarker(marker) {
 	        this.markers.push(marker);
-	        this.boundingBox = !this.boundingBox ? marker.boundingBox : this.boundingBox;
+	        this.latlng = this.calculateCenter();
 	        return this;
 	    };
 
@@ -5228,294 +5388,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 
 
-	    Cluster.prototype.removeFromDOM = function removeFromDOM() {
-	        if (this.markers.length > 1) {
-	            var _iteratorNormalCompletion3 = true;
-	            var _didIteratorError3 = false;
-	            var _iteratorError3 = undefined;
+	    Cluster.prototype.remove = function remove() {
+	        var _iteratorNormalCompletion3 = true;
+	        var _didIteratorError3 = false;
+	        var _iteratorError3 = undefined;
 
+	        try {
+	            for (var _iterator3 = this.markers[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+	                var marker = _step3.value;
+
+	                marker.visible = true;
+	            }
+	        } catch (err) {
+	            _didIteratorError3 = true;
+	            _iteratorError3 = err;
+	        } finally {
 	            try {
-	                for (var _iterator3 = this.markers[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-	                    var marker = _step3.value;
-
-	                    _Helper.Helper.show(marker.icon);
+	                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+	                    _iterator3.return();
 	                }
-	            } catch (err) {
-	                _didIteratorError3 = true;
-	                _iteratorError3 = err;
 	            } finally {
-	                try {
-	                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-	                        _iterator3.return();
-	                    }
-	                } finally {
-	                    if (_didIteratorError3) {
-	                        throw _iteratorError3;
-	                    }
+	                if (_didIteratorError3) {
+	                    throw _iteratorError3;
 	                }
 	            }
-
-	            this.cluster.parentNode.removeChild(this.cluster);
 	        }
+
 	        this.unbindEvents();
 	        return this;
 	    };
 
 	    return Cluster;
-	}(_Drawable2.Drawable);
-
-	/**
-	 * counts all clusters
-	 * @type {Number}
-	 */
-
-
-		Cluster.count = 0;
-
-/***/ },
-/* 59 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.Label = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _Helper = __webpack_require__(3);
-
-	var _Drawable2 = __webpack_require__(15);
-
-	var _LatLng = __webpack_require__(19);
-
-	var _Point = __webpack_require__(6);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file shows an icon and/or a text at given position
-	 * @copyright Michael Duve 2016
-	 */
-
-	var Label = exports.Label = function (_Drawable) {
-	    _inherits(Label, _Drawable);
-
-	    _createClass(Label, [{
-	        key: 'position',
-
-
-	        /**
-	         * position of label
-	         * @return {Point} position
-	         */
-	        get: function get() {
-	            return this.info.convertLatLngToPoint(this.nearestPositionToCenter).translate(this.view.x, this.view.y).multiply(this.distortionFactor, 1).translate(this.offsetToCenter, 0);
-	        }
-
-	        /**
-	         * find nearest position to mapcenter
-	         * @return {LatLng} nearest position
-	         */
-
-	    }, {
-	        key: 'nearestPositionToCenter',
-	        get: function get() {
-	            return this.latlng instanceof _LatLng.LatLng ? this.latlng : this.getNearestPositionToCenter();
-	        }
-
-	        /**
-	        /**
-	         * @constructor
-	         * @param  {Object} settings = {} - settings for label
-	         * @param  {CanvasRenderingContext2D} context = null - canvas context
-	         * @param  {Number} id = 0 - id of parent instance
-	         * @return {Label} instance of Label for chaining
-	         */
-
-	    }]);
-
-	    function Label(_ref) {
-	        var _ret;
-
-	        var _ref$settings = _ref.settings;
-	        var settings = _ref$settings === undefined ? {} : _ref$settings;
-	        var _ref$context = _ref.context;
-	        var context = _ref$context === undefined ? null : _ref$context;
-	        var _ref$id = _ref.id;
-	        var id = _ref$id === undefined ? 0 : _ref$id;
-
-	        _classCallCheck(this, Label);
-
-	        var _this = _possibleConstructorReturn(this, _Drawable.call(this, id));
-
-	        _this.context = context;
-
-	        _this.latlng = settings.position;
-	        _this.text = settings.text;
-	        _this.icon = settings.icon;
-	        _this.content = settings.content;
-	        _this.visibility = settings.visibility;
-	        _this.offset = new _Point.Point();
-
-	        if (_this.icon && _this.icon.type === "circle") _this.drawIconType = _this.drawCircleIcon(_this.icon.size);else if (_this.icon && _this.icon.type === "square") _this.drawIconType = _this.drawSquareIcon(_this.icon.size);else if (_this.icon && _this.icon.type === "image") {
-	            _this.drawIconType = function () {};
-	            _Helper.Helper.loadImage(_this.icon.url, function (img) {
-	                _this.drawIconType = _this.drawImageIcon(img, _this.icon.size, _this.icon.offset);
-	            });
-	        }
-	        _this.drawElements = _this.decideWhatToDraw(_this.text, _this.icon);
-
-	        return _ret = _this, _possibleConstructorReturn(_this, _ret);
-	    }
-
-	    /**
-	     * find nearest position to mapcenter
-	     * @return {LatLng} nearest position
-	     */
-
-
-	    Label.prototype.getNearestPositionToCenter = function getNearestPositionToCenter() {
-	        var _this2 = this;
-
-	        var oldPos = this.latlng[0];
-	        this.latlng = this.latlng.sort(function (a, b) {
-	            var c = a.clone.multiply(1, _this2.distortionFactor);
-	            var d = b.clone.multiply(1, _this2.distortionFactor);
-	            var center = _this2.centerPosition.clone.multiply(1, _this2.distortionFactor);
-	            return center.distance(c) - center.distance(d);
-	        });
-	        return this.latlng[0].distance(oldPos) > 0.01 ? this.latlng[0] : oldPos;
-	    };
-
-	    /**
-	     * draw a label
-	     * @return {Label} instance of Label for chaining
-	     */
-
-
-	    Label.prototype.draw = function draw() {
-	        if (this.level >= this.visibility.min && this.level <= this.visibility.max) {
-	            var pos = this.position;
-	            var textPos = pos.clone.add(this.text.offset);
-
-	            this.context.beginPath();
-	            this.drawElements(pos, textPos);
-	            this.context.closePath();
-	        }
-	        return this;
-	    };
-
-	    /**
-	     * currying function for drawing text, icon or both
-	     * @param  {Object} text - data for text
-	     * @param  {Object} icon - data for icon
-	     * @return {Function} function to be called on draw
-	     */
-
-
-	    Label.prototype.decideWhatToDraw = function decideWhatToDraw(text, icon) {
-	        var _this3 = this;
-
-	        if (text && icon) {
-	            return function (pos, textPos) {
-	                _this3.drawText(textPos);
-	                _this3.drawIcon(pos);
-	            };
-	        } else if (icon) {
-	            return function (pos) {
-	                return _this3.drawIcon(pos);
-	            };
-	        } else if (text) {
-	            return function (pos, textPos) {
-	                return _this3.drawText(textPos);
-	            };
-	        }
-	    };
-
-	    /**
-	     * draw text of label
-	     * @param  {Point} pos - origin of label
-	     */
-
-
-	    Label.prototype.drawText = function drawText(pos) {
-	        this.context.textAlign = this.text.align;
-	        this.context.textBaseline = this.text.baseline;
-	        this.context.font = this.text.font;
-	        this.context.fillStyle = this.text.color;
-	        this.context.fillText(this.text.content, pos.x, pos.y);
-	    };
-
-	    /**
-	     * draw icon of label
-	     * @param  {Point} pos - origin of label
-	     */
-
-
-	    Label.prototype.drawIcon = function drawIcon(pos) {
-	        this.context.fillStyle = this.icon.color;
-	        this.drawIconType(pos);
-	        this.context.fill();
-	    };
-
-	    /**
-	     * currying function for drawing a circle
-	     * @param  {Number} size - size of circle
-	     * @return {Function} function for drawing circle icon
-	     */
-
-
-	    Label.prototype.drawCircleIcon = function drawCircleIcon(size) {
-	        var _this4 = this;
-
-	        return function (pos) {
-	            return _this4.context.arc(pos.x, pos.y, size, 0, 2 * Math.PI, false);
-	        };
-	    };
-
-	    /**
-	     * currying function for drawing a square
-	     * @param  {Number} size - size of square
-	     * @return {Function} function for drawing square icon
-	     */
-
-
-	    Label.prototype.drawSquareIcon = function drawSquareIcon(size) {
-	        var _this5 = this;
-
-	        return function (pos) {
-	            return _this5.context.rect(pos.x, pos.y, size, size);
-	        };
-	    };
-
-	    /**
-	     * currying function for drawing an image
-	     * @param  {Image} image - image to be drawn
-	     * @param  {Point} size - dimension of image
-	     * @param  {Point} offset - offset of image
-	     * @return {Function} function for drawing image icon
-	     */
-
-
-	    Label.prototype.drawImageIcon = function drawImageIcon(image, size, offset) {
-	        var _this6 = this;
-
-	        this.offset = offset;
-	        return function (pos) {
-	            return _this6.context.drawImage(image, pos.x + offset.x, pos.y + offset.y, size.x, size.y);
-	        };
-	    };
-
-	    return Label;
 	}(_Drawable2.Drawable);
 
 /***/ },
@@ -5532,30 +5435,32 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	__webpack_require__(54);
+	__webpack_require__(55);
+
+	__webpack_require__(57);
 
 	__webpack_require__(56);
 
-	__webpack_require__(55);
+	var _Helper = __webpack_require__(1);
 
-	var _Helper = __webpack_require__(3);
+	var _Events = __webpack_require__(6);
 
-	var _Events = __webpack_require__(5);
+	var _Publisher = __webpack_require__(14);
 
-	var _Publisher = __webpack_require__(13);
+	var _Point = __webpack_require__(4);
 
-	var _TileMap = __webpack_require__(53);
+	var _TileMap = __webpack_require__(54);
 
-	var _DataEnrichment = __webpack_require__(36);
+	var _DataEnrichment = __webpack_require__(33);
 
-	var _Interact = __webpack_require__(52);
+	var _Interact = __webpack_require__(53);
 
-	var _Point = __webpack_require__(6);
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	/* Polyfill start */
-	__webpack_require__(57);
+	__webpack_require__(58);
 	/* Polyfill end */
 
 	/**
@@ -5571,7 +5476,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param  {String|HTMLElement} container=".mjs" - Container, either string or dom-object
 	     * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
 	     * @param  {String|Object} markerData={} - data of markers, can be json or path to file
-	     * @param  {String|Object} labelData={} - data of markers, can be json or path to file
 	     * @param  {Object} mapSettings={} - settings for map, must be json
 	     * @return {MappedJS} instance of MappedJS for chaining
 	     */
@@ -5585,8 +5489,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var mapData = _ref$mapData === undefined ? {} : _ref$mapData;
 	        var _ref$markerData = _ref.markerData;
 	        var markerData = _ref$markerData === undefined ? {} : _ref$markerData;
-	        var _ref$labelData = _ref.labelData;
-	        var labelData = _ref$labelData === undefined ? {} : _ref$labelData;
 	        var _ref$mapSettings = _ref.mapSettings;
 	        var mapSettings = _ref$mapSettings === undefined ? {} : _ref$mapSettings;
 
@@ -5602,17 +5504,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this.mapData = loadedMapData;
 	            _this.initializeData(markerData, function (loadedMarkerData) {
 	                _this.mapData = Object.assign(_this.mapData, loadedMarkerData);
-	                _this.initializeData(labelData, function (loadedLabelData) {
-	                    _this.mapData = Object.assign(_this.mapData, loadedLabelData);
-	                    _this.initializeMap();
-	                    _this.addControls();
 
-	                    if (mapSettings.legend) _this.addInformationLayer("legend", mapSettings.legend);
-	                    if (mapSettings.locator) _this.addInformationLayer("location", mapSettings.locator);
+	                _this.initializeMap();
+	                _this.addControls();
 
-	                    _this.bindEvents();
-	                    _this.loadingFinished();
-	                });
+	                if (mapSettings.legend) {
+	                    _this.addInformationLayer("legend", mapSettings.legend);
+	                }
+	                if (mapSettings.locator) {
+	                    _this.addInformationLayer("location", mapSettings.locator);
+	                }
+
+	                _this.bindEvents();
+	                _this.loadingFinished();
 	            });
 	        });
 
@@ -5648,7 +5552,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        infoElement.classList.add(settings.position);
 	        infoElement.setAttribute('draggable', 'false');
 	        infoElement.setAttribute('unselectable', 'on');
-	        if (settings.show) infoElement.classList.add(_Events.Events.General.ACTIVE);
+	        if (settings.show) {
+	            infoElement.classList.add(_Events.Events.General.ACTIVE);
+	        }
 
 	        _Helper.Helper.loadImage(settings.path, function (img) {
 	            infoElement.appendChild(img);
@@ -5783,16 +5689,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	            callbacks: {
 	                tap: function tap(data) {
 	                    var pos = _this3.getAbsolutePosition(data.positionStart);
-	                    _this3.tileMap.velocity = new _Point.Point();
+	                    _Helper.Helper.forEach(_this3.tileMap.markers, function (marker) {
+	                        if (marker.hit(pos)) {
+	                            marker.action(pos);
+	                        }
+	                    });
+	                    _Helper.Helper.forEach(_this3.tileMap.markerClusterer.clusters, function (cluster) {
+	                        if (cluster.hit(pos)) {
+	                            cluster.action(pos);
+	                        }
+	                    });
+
 	                    var id = data.target.getAttribute("data-id");
-	                    if (id) _this3.eventManager.publish(id, pos);
+	                    if (id) {
+	                        _this3.eventManager.publish(id, pos);
+	                    }
+
+	                    _this3.tileMap.velocity = new _Point.Point();
 	                },
 	                doubletap: function doubletap(data) {
 	                    _this3.tileMap.velocity = new _Point.Point();
 	                    _this3.tileMap.zoom(0.2, _this3.getAbsolutePosition(data.positionStart));
 	                },
+	                hover: function hover(position) {
+	                    var pos = _this3.getAbsolutePosition(position);
+	                    _this3.hoverItems(pos);
+	                },
 	                pan: function pan(data) {
-	                    if (data.target.classList.contains("control")) return false;
+	                    if (data.target.classList.contains("control")) {
+	                        return false;
+	                    }
 	                    var change = data.positionLast.clone.substract(data.positionMove);
 	                    _this3.tileMap.velocity = new _Point.Point();
 	                    _this3.tileMap.moveView(_this3.getAbsolutePosition(change).multiply(-1, -1));
@@ -5807,10 +5733,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    _this3.tileMap.zoom(data.difference * 3, _this3.getAbsolutePosition(data.positionMove));
 	                },
 	                flick: function flick(data) {
-	                    _this3.tileMap.velocity = data.velocity.multiply(20);
+	                    _this3.tileMap.velocity = data.velocity.multiply(10);
 	                }
 	            }
 	        });
+	        return this;
+	    };
+
+	    /**
+	     * check hover of items
+	     * @param  {Point} pos - specified point to check against
+	     * @return {MappedJS} instance of MappedJS for chaining
+	     */
+
+
+	    MappedJS.prototype.hoverItems = function hoverItems(pos) {
+	        var oneIsHit = false;
+	        var items = [].concat(_toConsumableArray(this.tileMap.clusters), _toConsumableArray(this.tileMap.markers));
+	        for (var i = items.length - 1; i >= 0; i--) {
+	            var current = items[i];
+	            if (current.isActive(pos, oneIsHit)) {
+	                oneIsHit = true;
+	            }
+	        }
+	        document.body.style.cursor = oneIsHit ? 'pointer' : 'default';
 	        return this;
 	    };
 
@@ -5822,8 +5768,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    MappedJS.prototype.bindEvents = function bindEvents() {
 	        var _this4 = this;
-
-	        this.initializeInteractForMap();
 
 	        _Helper.Helper.addListener(window, _Events.Events.Handling.RESIZE, this.resizeHandler.bind(this));
 
@@ -5842,6 +5786,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.home.setAttribute("data-id", _Events.Events.General.HOME);
 	        this.eventManager.subscribe(_Events.Events.General.HOME, this.resetToInitialState.bind(this));
+
+	        this.initializeInteractForMap();
 
 	        return this;
 	    };
@@ -5887,7 +5833,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    MappedJS.prototype.keyPress = function keyPress(e) {
-	        if (this.container !== document.activeElement) return false;
+	        if (this.container !== document.activeElement) {
+	            return false;
+	        }
 	        switch (e.keyCode) {
 	            case 38:
 	                // up
@@ -5997,15 +5945,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Events = __webpack_require__(5);
+	var _Events = __webpack_require__(6);
 
-	var _Helper = __webpack_require__(3);
+	var _Helper = __webpack_require__(1);
 
-	var _Point = __webpack_require__(6);
+	var _Drawable2 = __webpack_require__(18);
 
-	var _Rectangle = __webpack_require__(16);
+	var _LatLng = __webpack_require__(19);
 
-	var _Drawable2 = __webpack_require__(15);
+	var _Point = __webpack_require__(4);
+
+	var _Rectangle = __webpack_require__(8);
+
+	var _Texture = __webpack_require__(40);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6015,7 +5967,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * @author Michael Duve <mduve@designmail.net>
-	 * @file represents a marker with an image, a position and content
+	 * @file shows an icon and/or a text at given position
 	 * @copyright Michael Duve 2016
 	 */
 
@@ -6023,25 +5975,46 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _inherits(Marker, _Drawable);
 
 	    _createClass(Marker, [{
-	        key: 'boundingBox',
+	        key: 'position',
 
 
 	        /**
-	         * gets bounding box of marker
-	         * @return {Rectangle} current dimension of this marker
+	         * position of marker
+	         * @return {Point} position
 	         */
 	        get: function get() {
-	            var bBox = this.icon.getBoundingClientRect();
-	            var parentBBox = this.container.getBoundingClientRect();
-	            return new _Rectangle.Rectangle(bBox.left - parentBBox.left, bBox.top - parentBBox.top, bBox.width, bBox.height).scaleCenter(2);
+	            return this.info.convertLatLngToPoint(this.nearestPositionToCenter).translate(this.view.x, this.view.y).multiply(this.distortionFactor, 1).translate(this.offsetToCenter, 0);
 	        }
 
 	        /**
+	         * get dimensions of marker
+	         * @return {Rectangle} dimensions
+	         */
+
+	    }, {
+	        key: 'boundingBox',
+	        get: function get() {
+	            return new _Rectangle.Rectangle(this.position.x + this.offset.x, this.position.y + this.offset.y, this.icon.size.x, this.icon.size.y);
+	        }
+
+	        /**
+	         * find nearest position to mapcenter
+	         * @return {LatLng} nearest position
+	         */
+
+	    }, {
+	        key: 'nearestPositionToCenter',
+	        get: function get() {
+	            return this.latlng instanceof _LatLng.LatLng ? this.latlng : this.getNearestPositionToCenter();
+	        }
+
+	        /**
+	        /**
 	         * @constructor
-	         * @param  {Object} data - enriched data
-	         * @param  {HTMLElement} container = null - parent container
+	         * @param  {Object} settings = {} - settings for marker
+	         * @param  {CanvasRenderingContext2D} context = null - canvas context
 	         * @param  {Number} id = 0 - id of parent instance
-	         * @return {Marker} - instance of Marker for chaining
+	         * @return {Marker} instance of Marker for chaining
 	         */
 
 	    }]);
@@ -6049,9 +6022,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function Marker(_ref) {
 	        var _ret;
 
-	        var data = _ref.data;
-	        var _ref$container = _ref.container;
-	        var container = _ref$container === undefined ? null : _ref$container;
+	        var _ref$settings = _ref.settings;
+	        var settings = _ref$settings === undefined ? {} : _ref$settings;
+	        var _ref$context = _ref.context;
+	        var context = _ref$context === undefined ? null : _ref$context;
 	        var _ref$id = _ref.id;
 	        var id = _ref$id === undefined ? 0 : _ref$id;
 
@@ -6059,43 +6033,87 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var _this = _possibleConstructorReturn(this, _Drawable.call(this, id));
 
-	        _this.container = container;
+	        _this.context = context;
 
-	        _this.uniqueID = Marker.count;
-	        Marker.count++;
+	        _this.latlng = settings.position;
+	        _this.text = settings.text;
+	        _this.icon = settings.icon;
+	        _this.content = settings.content;
+	        _this.visibility = settings.visibility;
+	        _this.offset = new _Point.Point();
+	        _this.isHovered = false;
+	        _this.active = false;
+	        _this.visible = true;
 
-	        _this.size = data.size;
+	        if (_this.icon && _this.icon.type === "circle") {
+	            _this.drawIconType = _this.drawCircleIcon(_this.icon.size);
+	        } else if (_this.icon && _this.icon.type === "square") {
+	            _this.drawIconType = _this.drawSquareIcon(_this.icon.size);
+	        } else if (_this.icon && _this.icon.type === "image") {
+	            _this.texture = new _Texture.Texture({
+	                path: _this.icon.url,
+	                size: _this.icon.size,
+	                offset: _this.icon.offset
+	            });
+	            _this.drawIconType = _this.drawImageIcon(_this.texture, _this.icon.size, _this.icon.offset);
+	        }
+	        _this.drawElements = _this.decideWhatToDraw(_this.text, _this.icon);
 
-	        _this.hover = data.hover;
-	        if (_this.hover) _this.size.divide(2, 1);
+	        _this.bindEvents();
 
-	        _this.img = data.icon;
-	        _this.offset = data.offset.add(new _Point.Point(-(_this.size.x / 2), -_this.size.y));
-	        _this.latlng = data.latlng;
-
-	        _this.content = data.content;
-	        _this.icon = _this.addMarkerToDOM(container);
-
-	        return _ret = _this.bindEvents().positionMarker(), _possibleConstructorReturn(_this, _ret);
+	        return _ret = _this, _possibleConstructorReturn(_this, _ret);
 	    }
 
 	    /**
-	     * bind all events
-	     * @return {Marker} instance of Marker for chaining
+	     * check if marker can be clustered
+	     * @return {Boolean} wheter it can be clustered or not
 	     */
 
 
-	    Marker.prototype.bindEvents = function bindEvents() {
+	    Marker.prototype.isClusterable = function isClusterable() {
+	        return this.icon && this.icon.type === "image" && this.latlng instanceof _LatLng.LatLng;
+	    };
+
+	    /**
+	     * find nearest position to mapcenter
+	     * @return {LatLng} nearest position
+	     */
+
+
+	    Marker.prototype.getNearestPositionToCenter = function getNearestPositionToCenter() {
 	        var _this2 = this;
 
-	        if (this.content.length) {
-	            this.icon.setAttribute("data-id", 'marker-' + this.uniqueID);
-	            this.eventManager.subscribe('marker-' + this.uniqueID, this.action.bind(this));
-	            this.eventManager.subscribe(_Events.Events.Marker.DEACTIVATE, function () {
-	                _this2.icon.classList.remove("active");
-	            });
+	        var oldPos = this.latlng[0];
+	        this.latlng = this.latlng.sort(function (a, b) {
+	            var c = a.clone.multiply(1, _this2.distortionFactor);
+	            var d = b.clone.multiply(1, _this2.distortionFactor);
+	            var center = _this2.centerPosition.clone.multiply(1, _this2.distortionFactor);
+	            return center.distance(c) - center.distance(d);
+	        });
+	        return this.latlng[0].distance(oldPos) > 0.01 ? this.latlng[0] : oldPos;
+	    };
+
+	    /**
+	     * set active to true
+	     * @param  {Point} point - specified point to check against
+	     * @param  {Boolean} oneIsHit = false - if one item was hit before
+	     * @return {Boolean} indicate hit (true) or not
+	     */
+
+
+	    Marker.prototype.isActive = function isActive(point) {
+	        var oneIsHit = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+
+	        if (!this.content || !this.visible) {
+	            return false;
 	        }
-	        return this;
+	        var isHovered = !oneIsHit ? this.hit(point) : false;
+	        if (this.isHovered !== isHovered) {
+	            this.eventManager.publish(_Events.Events.TileMap.DRAW);
+	        }
+	        document.body.style.cursor = isHovered || oneIsHit ? 'pointer' : 'default';
+	        this.isHovered = isHovered;
+	        return isHovered;
 	    };
 
 	    /**
@@ -6104,65 +6122,176 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 
 
-	    Marker.prototype.action = function action() {
-	        this.eventManager.publish(_Events.Events.ToolTip.OPEN, this.content);
-	        this.eventManager.publish(_Events.Events.Marker.DEACTIVATE);
-	        this.icon.classList.add("active");
-	    };
-
-	    /**
-	     * add a marker to the DOM
-	     * @param {HTMLElement} container - parent container to append to
-	     * @returns {HTMLElement} DOM-selector of appended markup
-	     */
-
-
-	    Marker.prototype.addMarkerToDOM = function addMarkerToDOM(container) {
-	        var icon = document.createElement("div");
-	        icon.classList.add("marker");
-	        _Helper.Helper.css(icon, {
-	            "width": this.size.x + 'px',
-	            "height": this.size.y + 'px',
-	            "margin-left": this.offset.x + 'px',
-	            "margin-top": this.offset.y + 'px',
-	            "transform": 'translateZ(0)',
-	            "background-image": 'url(' + this.img + ')',
-	            "background-size": (this.hover ? this.size.x * 2 : this.size.x) + 'px ' + this.size.y + 'px'
-	        });
-	        if (container) {
-	            _Helper.Helper.hide(icon);
-	            container.appendChild(icon);
+	    Marker.prototype.action = function action(point) {
+	        if (this.visible && this.isActive(point)) {
+	            this.eventManager.publish(_Events.Events.ToolTip.OPEN, this.content);
+	            this.active = true;
 	        }
-	        return icon;
 	    };
 
 	    /**
-	     * set initial position of this marker
+	     * bind all events
 	     * @return {Marker} instance of Marker for chaining
 	     */
 
 
-	    Marker.prototype.positionMarker = function positionMarker() {
-	        this.position = this.info.convertLatLngToPoint(this.latlng);
-	        var p = this.position.clone.divide(this.view.width, this.view.height).multiply(100);
-	        _Helper.Helper.css(this.icon, {
-	            "left": p.x + '%',
-	            "top": p.y + '%'
+	    Marker.prototype.bindEvents = function bindEvents() {
+	        var _this3 = this;
+
+	        this.eventManager.subscribe(_Events.Events.ToolTip.OPEN, function () {
+	            return _this3.active = false;
 	        });
-	        _Helper.Helper.show(this.icon);
+	        this.eventManager.subscribe(_Events.Events.ToolTip.CLOSE, function () {
+	            return _this3.active = false;
+	        });
 	        return this;
+	    };
+
+	    /**
+	     * draw a marker
+	     * @return {Marker} instance of Marker for chaining
+	     */
+
+
+	    Marker.prototype.draw = function draw() {
+	        if (this.visible && this.level >= this.visibility.min && this.level <= this.visibility.max) {
+	            var pos = this.position;
+	            var textPos = new _Point.Point();
+
+	            if (this.text) {
+	                textPos = pos.clone.add(this.text.offset);
+	            }
+	            if (this.texture.ready) {
+	                this.context.beginPath();
+	                this.drawElements(pos, textPos);
+	                this.context.closePath();
+	            }
+	        }
+	        return this;
+	    };
+
+	    /**
+	     * check hit of point
+	     * @param  {Point} point - specified point to check against
+	     * @return {Booelan} Wheter it is a hit or not
+	     */
+
+
+	    Marker.prototype.hit = function hit(point) {
+	        if (this.boundingBox.containsPoint(point)) {
+	            var p = point.clone.substract(this.boundingBox.topLeft);
+	            return this.texture.isHit(p);
+	        }
+	        return false;
+	    };
+
+	    /**
+	     * currying function for drawing text, icon or both
+	     * @param  {Object} text - data for text
+	     * @param  {Object} icon - data for icon
+	     * @return {Function} function to be called on draw
+	     */
+
+
+	    Marker.prototype.decideWhatToDraw = function decideWhatToDraw(text, icon) {
+	        var _this4 = this;
+
+	        if (text && icon) {
+	            return function (pos, textPos) {
+	                _this4.drawText(textPos);
+	                _this4.drawIcon(pos);
+	            };
+	        } else if (icon) {
+	            return function (pos) {
+	                return _this4.drawIcon(pos);
+	            };
+	        } else if (text) {
+	            return function (pos, textPos) {
+	                return _this4.drawText(textPos);
+	            };
+	        }
+	    };
+
+	    /**
+	     * draw text of marker
+	     * @param  {Point} pos - origin of marker
+	     */
+
+
+	    Marker.prototype.drawText = function drawText(pos) {
+	        this.context.textAlign = this.text.align;
+	        this.context.textBaseline = this.text.baseline;
+	        this.context.font = this.text.font;
+	        this.context.fillStyle = this.text.color;
+	        this.context.fillText(this.text.content, pos.x, pos.y);
+	    };
+
+	    /**
+	     * draw icon of marker
+	     * @param  {Point} pos - origin of marker
+	     */
+
+
+	    Marker.prototype.drawIcon = function drawIcon(pos) {
+	        this.context.fillStyle = this.icon.color;
+	        this.drawIconType(pos);
+	        this.context.fill();
+	    };
+
+	    /**
+	     * currying function for drawing a circle
+	     * @param  {Number} size - size of circle
+	     * @return {Function} function for drawing circle icon
+	     */
+
+
+	    Marker.prototype.drawCircleIcon = function drawCircleIcon(size) {
+	        var _this5 = this;
+
+	        return function (pos) {
+	            return _this5.context.arc(parseInt(pos.x, 10), parseInt(pos.y, 10), size, 0, 2 * Math.PI, false);
+	        };
+	    };
+
+	    /**
+	     * currying function for drawing a square
+	     * @param  {Number} size - size of square
+	     * @return {Function} function for drawing square icon
+	     */
+
+
+	    Marker.prototype.drawSquareIcon = function drawSquareIcon(size) {
+	        var _this6 = this;
+
+	        return function (pos) {
+	            return _this6.context.rect(parseInt(pos.x, 10), parseInt(pos.y, 10), size, size);
+	        };
+	    };
+
+	    /**
+	     * currying function for drawing an image
+	     * @param  {Texture} texture - texture to be drawn
+	     * @param  {Point} size - dimension of image
+	     * @param  {Point} offset - offset of image
+	     * @return {Function} function for drawing image icon
+	     */
+
+
+	    Marker.prototype.drawImageIcon = function drawImageIcon(texture, size, offset) {
+	        var _this7 = this;
+
+	        this.offset = offset;
+	        return function (pos) {
+	            if (_this7.content && (_this7.isHovered || _this7.active)) {
+	                _this7.context.drawImage(texture.img, size.x, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+	            } else {
+	                _this7.context.drawImage(texture.img, 0, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+	            }
+	        };
 	    };
 
 	    return Marker;
 	}(_Drawable2.Drawable);
-
-	/**
-	 * counts all markers
-	 * @type {Number}
-	 */
-
-
-		Marker.count = 0;
 
 /***/ },
 /* 62 */
@@ -6176,11 +6305,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.MarkerClusterer = undefined;
 
-	var _Events = __webpack_require__(5);
+	var _Events = __webpack_require__(6);
 
-	var _Publisher = __webpack_require__(13);
+	var _Helper = __webpack_require__(1);
 
-	var _Cluster = __webpack_require__(58);
+	var _Publisher = __webpack_require__(14);
+
+	var _Point = __webpack_require__(4);
+
+	var _Rectangle = __webpack_require__(8);
+
+	var _Texture = __webpack_require__(40);
+
+	var _Cluster = __webpack_require__(59);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6195,7 +6332,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @constructor
 	     * @param {Array} markers = [] - all markers
-	     * @param {HTMLElement} container = null - parent container
+	     * @param {CanvasRenderingContext2D} context = null - canvas context
+	     * @param {Texture} clusterImage = null - texture to be drawn
 	     * @param {Number} id = 0 - id of parent instance
 	     * @return {MarkerClusterer} instance of MarkerClusterer for chaining
 	     */
@@ -6203,20 +6341,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function MarkerClusterer(_ref) {
 	        var _ref$markers = _ref.markers;
 	        var markers = _ref$markers === undefined ? [] : _ref$markers;
-	        var _ref$container = _ref.container;
-	        var container = _ref$container === undefined ? null : _ref$container;
+	        var _ref$clusterImage = _ref.clusterImage;
+	        var clusterImage = _ref$clusterImage === undefined ? null : _ref$clusterImage;
+	        var _ref$context = _ref.context;
+	        var context = _ref$context === undefined ? null : _ref$context;
 	        var _ref$id = _ref.id;
 	        var id = _ref$id === undefined ? 0 : _ref$id;
 
 	        _classCallCheck(this, MarkerClusterer);
 
 	        this.markers = markers;
+	        this.markers = markers.sort(function (marker1, marker2) {
+	            return marker1.distance(marker2);
+	        });
 	        this.id = id;
-	        this.container = container;
+	        this.context = context;
+	        this.clusterImage = new _Texture.Texture({
+	            path: clusterImage.path,
+	            size: clusterImage.size,
+	            offset: clusterImage.offset
+	        });
+	        this.font = clusterImage.text;
 	        this.clusters = [];
 	        this.eventManager = new _Publisher.Publisher(this.id);
 	        this.bindEvents();
-	        this.clusterize();
 	        return this;
 	    }
 
@@ -6230,10 +6378,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = this;
 
 	        this.eventManager.subscribe(_Events.Events.MarkerClusterer.CLUSTERIZE, function () {
-	            _this.clusterize();
+	            return _this.clusterize();
 	        });
 	        this.eventManager.subscribe(_Events.Events.MarkerClusterer.UNCLUSTERIZE, function () {
-	            _this.deleteAllClusters();
+	            return _this.deleteAllClusters();
 	        });
 	    };
 
@@ -6245,49 +6393,53 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    MarkerClusterer.prototype.clusterize = function clusterize() {
 	        this.deleteAllClusters();
+
 	        var _iteratorNormalCompletion = true;
 	        var _didIteratorError = false;
 	        var _iteratorError = undefined;
 
 	        try {
-	            for (var _iterator = this.markers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	            markerLoop: for (var _iterator = this.markers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	                var marker = _step.value;
 
+
 	                var hits = [];
-	                var _iteratorNormalCompletion3 = true;
-	                var _didIteratorError3 = false;
-	                var _iteratorError3 = undefined;
+
+	                var _iteratorNormalCompletion2 = true;
+	                var _didIteratorError2 = false;
+	                var _iteratorError2 = undefined;
 
 	                try {
-	                    for (var _iterator3 = this.clusters[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-	                        var cluster = _step3.value;
+	                    clusterLoop: for (var _iterator2 = this.clusters[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	                        var _cluster2 = _step2.value;
 
-	                        if (marker.boundingBox.intersects(cluster.boundingBox)) {
-	                            hits.push(cluster);
+	                        if (marker.boundingBox.intersects(_cluster2.boundingBox)) {
+	                            hits.push(_cluster2);
 	                        }
 	                    }
 	                } catch (err) {
-	                    _didIteratorError3 = true;
-	                    _iteratorError3 = err;
+	                    _didIteratorError2 = true;
+	                    _iteratorError2 = err;
 	                } finally {
 	                    try {
-	                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-	                            _iterator3.return();
+	                        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                            _iterator2.return();
 	                        }
 	                    } finally {
-	                        if (_didIteratorError3) {
-	                            throw _iteratorError3;
+	                        if (_didIteratorError2) {
+	                            throw _iteratorError2;
 	                        }
 	                    }
 	                }
 
-	                if (!hits.length) {
-	                    var newCluster = this.createCluster(marker);
-	                    this.clusters.push(newCluster);
-	                } else {
+	                if (hits.length > 0) {
 	                    var nearestCluster = this.findNearestHit(marker, hits);
 	                    nearestCluster.addMarker(marker);
+	                    continue markerLoop;
 	                }
+
+	                var _cluster = this.createCluster(marker);
+	                this.clusters.push(_cluster);
 	            }
 	        } catch (err) {
 	            _didIteratorError = true;
@@ -6304,28 +6456,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            }
 	        }
 
-	        var _iteratorNormalCompletion2 = true;
-	        var _didIteratorError2 = false;
-	        var _iteratorError2 = undefined;
-
-	        try {
-	            for (var _iterator2 = this.clusters[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-	                var _cluster = _step2.value;
-
-	                _cluster.init();
-	            }
-	        } catch (err) {
-	            _didIteratorError2 = true;
-	            _iteratorError2 = err;
-	        } finally {
-	            try {
-	                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-	                    _iterator2.return();
-	                }
-	            } finally {
-	                if (_didIteratorError2) {
-	                    throw _iteratorError2;
-	                }
+	        for (var i = this.clusters.length - 1; i >= 0; i--) {
+	            var cluster = this.clusters[i];
+	            if (cluster.markers.length > 1) {
+	                cluster.init();
+	            } else {
+	                cluster.remove();
+	                this.clusters.splice(i, 1);
 	            }
 	        }
 
@@ -6343,19 +6480,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    MarkerClusterer.prototype.findNearestHit = function findNearestHit(marker, hits) {
 	        var lastDistance = void 0,
 	            minimalHit = void 0;
-	        var _iteratorNormalCompletion4 = true;
-	        var _didIteratorError4 = false;
-	        var _iteratorError4 = undefined;
+	        var _iteratorNormalCompletion3 = true;
+	        var _didIteratorError3 = false;
+	        var _iteratorError3 = undefined;
 
 	        try {
-	            for (var _iterator4 = hits[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-	                var hit = _step4.value;
+	            for (var _iterator3 = hits[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+	                var hit = _step3.value;
 
 	                if (!lastDistance) {
-	                    lastDistance = this.getDistance(marker, hit);
+	                    lastDistance = this.getDistance(marker.boundingBox, hit);
 	                    minimalHit = hit;
 	                } else {
-	                    var currentDistance = this.getDistance(marker, hit);
+	                    var currentDistance = this.getDistance(marker.boundingBox, hit);
 	                    if (currentDistance < lastDistance) {
 	                        lastDistance = currentDistance;
 	                        minimalHit = hit;
@@ -6363,16 +6500,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	        } catch (err) {
-	            _didIteratorError4 = true;
-	            _iteratorError4 = err;
+	            _didIteratorError3 = true;
+	            _iteratorError3 = err;
 	        } finally {
 	            try {
-	                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-	                    _iterator4.return();
+	                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+	                    _iterator3.return();
 	                }
 	            } finally {
-	                if (_didIteratorError4) {
-	                    throw _iteratorError4;
+	                if (_didIteratorError3) {
+	                    throw _iteratorError3;
 	                }
 	            }
 	        }
@@ -6389,7 +6526,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    MarkerClusterer.prototype.getDistance = function getDistance(marker, cluster) {
-	        return marker.boundingBox.center.distance(cluster.boundingBox.center);
+	        return marker.center.distance(cluster.boundingBox.center);
 	    };
 
 	    /**
@@ -6401,11 +6538,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    MarkerClusterer.prototype.createCluster = function createCluster(marker) {
 	        var newCluster = new _Cluster.Cluster({
-	            container: this.container,
+	            context: this.context,
+	            texture: this.clusterImage,
+	            font: this.font,
 	            id: this.id
 	        });
 	        newCluster.addMarker(marker);
 	        return newCluster;
+	    };
+
+	    MarkerClusterer.prototype.drawClusters = function drawClusters() {
+	        _Helper.Helper.forEach(this.clusters, function (cluster) {
+	            return cluster.draw();
+	        });
 	    };
 
 	    /**
@@ -6415,33 +6560,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    MarkerClusterer.prototype.deleteAllClusters = function deleteAllClusters() {
-	        var _iteratorNormalCompletion5 = true;
-	        var _didIteratorError5 = false;
-	        var _iteratorError5 = undefined;
-
-	        try {
-	            for (var _iterator5 = this.clusters[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-	                var cluster = _step5.value;
-
-	                cluster.removeFromDOM();
-	            }
-	        } catch (err) {
-	            _didIteratorError5 = true;
-	            _iteratorError5 = err;
-	        } finally {
-	            try {
-	                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-	                    _iterator5.return();
-	                }
-	            } finally {
-	                if (_didIteratorError5) {
-	                    throw _iteratorError5;
-	                }
-	            }
-	        }
-
+	        _Helper.Helper.forEach(this.clusters, function (cluster) {
+	            return cluster.remove();
+	        });
 	        this.clusters = [];
-	        _Cluster.Cluster.count = 0;
 	        return this;
 	    };
 
@@ -6462,13 +6584,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Events = __webpack_require__(5);
+	var _Events = __webpack_require__(6);
 
-	var _Helper = __webpack_require__(3);
+	var _Helper = __webpack_require__(1);
 
 	var _StateHandler = __webpack_require__(39);
 
-	var _Drawable2 = __webpack_require__(15);
+	var _Drawable2 = __webpack_require__(18);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6534,7 +6656,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var _this = _possibleConstructorReturn(this, _Drawable.call(this, id, x, y, w, h));
 
-	        if (!path || typeof path !== "string" || path.length === 0) throw new TypeError('Path ' + path + ' needs to be of type string and should not be empty');
+	        if (!path || typeof path !== "string" || path.length === 0) {
+	            throw new TypeError('Path ' + path + ' needs to be of type string and should not be empty');
+	        }
 	        _this.state = new _StateHandler.StateHandler(Tile.STATES);
 	        _this.context = context;
 	        _this.path = path;
@@ -6617,11 +6741,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Handlebars2 = _interopRequireDefault(_Handlebars);
 
-	var _Events = __webpack_require__(5);
+	var _Events = __webpack_require__(6);
 
-	var _Helper = __webpack_require__(3);
+	var _Helper = __webpack_require__(1);
 
-	var _Publisher = __webpack_require__(13);
+	var _Publisher = __webpack_require__(14);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6760,7 +6884,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        _Helper.Helper.addListener(window, _Events.Events.Handling.RESIZE, this.resizeHandler.bind(this));
 	        _Helper.Helper.addListener(this.close, _Events.Events.Handling.CLICK, function () {
-	            _this2.closeTooltip();
+	            _this2.eventManager.publish(_Events.Events.ToolTip.CLOSE);
 	        });
 	        this.eventManager.subscribe(_Events.Events.ToolTip.OPEN, this.open.bind(this));
 	        this.eventManager.subscribe(_Events.Events.ToolTip.CLOSE, function () {
@@ -6810,7 +6934,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    ToolTip.prototype.open = function open(data) {
-	        if (data) this.insertContent(data);
+	        if (data) {
+	            this.insertContent(data);
+	        }
 	        if (this.container.classList.contains(_Events.Events.ToolTip.CLOSE)) {
 	            this.setPosition();
 	            this.container.classList.remove(_Events.Events.ToolTip.CLOSE);
@@ -6828,7 +6954,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    ToolTip.prototype.closeTooltip = function closeTooltip() {
 	        if (this.container.classList.contains(_Events.Events.ToolTip.OPEN)) {
-	            this.eventManager.publish(_Events.Events.Marker.DEACTIVATE);
 	            this.setPosition();
 	            this.container.classList.remove(_Events.Events.ToolTip.OPEN);
 	            this.container.classList.add(_Events.Events.ToolTip.CLOSE);
@@ -6867,7 +6992,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _Helper.Helper.getFile(template, function (html) {
 	                _this4.templates[type] = (_Handlebars2.default || window.Handlebars).compile(html);
 	                _this4.loadedTemplates++;
-	                if (_this4.allTemplatesLoaded) _this4.container.appendChild(_this4.popup);
+	                if (_this4.allTemplatesLoaded) {
+	                    _this4.container.appendChild(_this4.popup);
+	                }
 	            });
 	        });
 	        return this;
@@ -6890,17 +7017,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Helper = __webpack_require__(3);
+	var _Helper = __webpack_require__(1);
 
-	var _Events = __webpack_require__(5);
+	var _Events = __webpack_require__(6);
 
-	var _Point = __webpack_require__(6);
+	var _Point = __webpack_require__(4);
 
-	var _Rectangle = __webpack_require__(16);
+	var _Rectangle = __webpack_require__(8);
 
 	var _Tile = __webpack_require__(63);
 
-	var _Drawable2 = __webpack_require__(15);
+	var _Drawable2 = __webpack_require__(18);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7315,7 +7442,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    View.prototype.drawVisibleTiles = function drawVisibleTiles() {
 	        _Helper.Helper.forEach(this.visibleTiles, function (tile) {
-	            return tile.draw();
+	            tile.draw();
 	        });
 	        return this;
 	    };
@@ -7349,7 +7476,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                context: _this4.context,
 	                id: _this4.id
 	            });
-	            _this4.tiles.push(new _Tile.Tile(tileData));
+	            var newTile = new _Tile.Tile(tileData);
+	            _this4.tiles.push(newTile);
 	        });
 	        return this;
 	    };
@@ -7364,9 +7492,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	// 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 	'use strict';
-	var toObject = __webpack_require__(9)
+	var toObject = __webpack_require__(10)
 	  , toIndex  = __webpack_require__(30)
-	  , toLength = __webpack_require__(14);
+	  , toLength = __webpack_require__(15);
 
 	module.exports = [].copyWithin || function copyWithin(target/*= 0*/, start/*= 0, end = @length*/){
 	  var O     = toObject(this)
@@ -7397,9 +7525,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	// 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 	'use strict';
-	var toObject = __webpack_require__(9)
+	var toObject = __webpack_require__(10)
 	  , toIndex  = __webpack_require__(30)
-	  , toLength = __webpack_require__(14);
+	  , toLength = __webpack_require__(15);
 	module.exports = [].fill || function fill(value /*, start = 0, end = @length */){
 	  var O      = toObject(this)
 	    , length = toLength(O.length)
@@ -7418,8 +7546,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// false -> Array#indexOf
 	// true  -> Array#includes
-	var toIObject = __webpack_require__(12)
-	  , toLength  = __webpack_require__(14)
+	var toIObject = __webpack_require__(13)
+	  , toLength  = __webpack_require__(15)
 	  , toIndex   = __webpack_require__(30);
 	module.exports = function(IS_INCLUDES){
 	  return function($this, el, fromIndex){
@@ -7443,9 +7571,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-	var isObject = __webpack_require__(4)
-	  , isArray  = __webpack_require__(34)
-	  , SPECIES  = __webpack_require__(2)('species');
+	var isObject = __webpack_require__(5)
+	  , isArray  = __webpack_require__(35)
+	  , SPECIES  = __webpack_require__(3)('species');
 	module.exports = function(original, length){
 	  var C;
 	  if(isArray(original)){
@@ -7463,8 +7591,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(4)
-	  , document = __webpack_require__(8).document
+	var isObject = __webpack_require__(5)
+	  , document = __webpack_require__(9).document
 	  // in old IE typeof document.createElement is 'object'
 	  , is = isObject(document) && isObject(document.createElement);
 	module.exports = function(it){
@@ -7476,7 +7604,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// all enumerable object keys, includes symbols
-	var $ = __webpack_require__(1);
+	var $ = __webpack_require__(2);
 	module.exports = function(it){
 	  var keys       = $.getKeys(it)
 	    , getSymbols = $.getSymbols;
@@ -7494,7 +7622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(8).document && document.documentElement;
+	module.exports = __webpack_require__(9).document && document.documentElement;
 
 /***/ },
 /* 73 */
@@ -7523,7 +7651,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// check on default Array iterator
 	var Iterators  = __webpack_require__(27)
-	  , ITERATOR   = __webpack_require__(2)('iterator')
+	  , ITERATOR   = __webpack_require__(3)('iterator')
 	  , ArrayProto = Array.prototype;
 
 	module.exports = function(it){
@@ -7553,13 +7681,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	'use strict';
-	var $              = __webpack_require__(1)
+	var $              = __webpack_require__(2)
 	  , descriptor     = __webpack_require__(28)
-	  , setToStringTag = __webpack_require__(35)
+	  , setToStringTag = __webpack_require__(36)
 	  , IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	__webpack_require__(18)(IteratorPrototype, __webpack_require__(2)('iterator'), function(){ return this; });
+	__webpack_require__(17)(IteratorPrototype, __webpack_require__(3)('iterator'), function(){ return this; });
 
 	module.exports = function(Constructor, NAME, next){
 	  Constructor.prototype = $.create(IteratorPrototype, {next: descriptor(1, next)});
@@ -7570,7 +7698,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ITERATOR     = __webpack_require__(2)('iterator')
+	var ITERATOR     = __webpack_require__(3)('iterator')
 	  , SAFE_CLOSING = false;
 
 	try {
@@ -7604,8 +7732,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $         = __webpack_require__(1)
-	  , toIObject = __webpack_require__(12);
+	var $         = __webpack_require__(2)
+	  , toIObject = __webpack_require__(13);
 	module.exports = function(object, el){
 	  var O      = toIObject(object)
 	    , keys   = $.getKeys(O)
@@ -7620,12 +7748,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.1 Object.assign(target, source, ...)
-	var $        = __webpack_require__(1)
-	  , toObject = __webpack_require__(9)
+	var $        = __webpack_require__(2)
+	  , toObject = __webpack_require__(10)
 	  , IObject  = __webpack_require__(26);
 
 	// should work with symbols and should have deterministic property order (V8 bug)
-	module.exports = __webpack_require__(11)(function(){
+	module.exports = __webpack_require__(12)(function(){
 	  var a = Object.assign
 	    , A = {}
 	    , B = {}
@@ -7668,8 +7796,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	/* eslint-disable no-proto */
-	var getDesc  = __webpack_require__(1).getDesc
-	  , isObject = __webpack_require__(4)
+	var getDesc  = __webpack_require__(2).getDesc
+	  , isObject = __webpack_require__(5)
 	  , anObject = __webpack_require__(20);
 	var check = function(O, proto){
 	  anObject(O);
@@ -7699,10 +7827,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	'use strict';
-	var global      = __webpack_require__(8)
-	  , $           = __webpack_require__(1)
+	var global      = __webpack_require__(9)
+	  , $           = __webpack_require__(2)
 	  , DESCRIPTORS = __webpack_require__(24)
-	  , SPECIES     = __webpack_require__(2)('species');
+	  , SPECIES     = __webpack_require__(3)('species');
 
 	module.exports = function(KEY){
 	  var C = global[KEY];
@@ -7740,7 +7868,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var $export = __webpack_require__(0)
 	  , defined = __webpack_require__(23)
-	  , fails   = __webpack_require__(11)
+	  , fails   = __webpack_require__(12)
 	  , spaces  = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
 	      '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF'
 	  , space   = '[' + spaces + ']'
@@ -7772,10 +7900,10 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var classof   = __webpack_require__(41)
-	  , ITERATOR  = __webpack_require__(2)('iterator')
+	var classof   = __webpack_require__(42)
+	  , ITERATOR  = __webpack_require__(3)('iterator')
 	  , Iterators = __webpack_require__(27);
-	module.exports = __webpack_require__(10).getIteratorMethod = function(it){
+	module.exports = __webpack_require__(11).getIteratorMethod = function(it){
 	  if(it != undefined)return it[ITERATOR]
 	    || it['@@iterator']
 	    || Iterators[classof(it)];
@@ -7787,7 +7915,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	'use strict';
-	var $                 = __webpack_require__(1)
+	var $                 = __webpack_require__(2)
 	  , $export           = __webpack_require__(0)
 	  , DESCRIPTORS       = __webpack_require__(24)
 	  , createDesc        = __webpack_require__(28)
@@ -7796,18 +7924,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , has               = __webpack_require__(25)
 	  , cof               = __webpack_require__(21)
 	  , invoke            = __webpack_require__(73)
-	  , fails             = __webpack_require__(11)
+	  , fails             = __webpack_require__(12)
 	  , anObject          = __webpack_require__(20)
-	  , aFunction         = __webpack_require__(40)
-	  , isObject          = __webpack_require__(4)
-	  , toObject          = __webpack_require__(9)
-	  , toIObject         = __webpack_require__(12)
+	  , aFunction         = __webpack_require__(41)
+	  , isObject          = __webpack_require__(5)
+	  , toObject          = __webpack_require__(10)
+	  , toIObject         = __webpack_require__(13)
 	  , toInteger         = __webpack_require__(31)
 	  , toIndex           = __webpack_require__(30)
-	  , toLength          = __webpack_require__(14)
+	  , toLength          = __webpack_require__(15)
 	  , IObject           = __webpack_require__(26)
 	  , IE_PROTO          = __webpack_require__(32)('__proto__')
-	  , createArrayMethod = __webpack_require__(33)
+	  , createArrayMethod = __webpack_require__(34)
 	  , arrayIndexOf      = __webpack_require__(68)(false)
 	  , ObjectProto       = Object.prototype
 	  , ArrayProto        = Array.prototype
@@ -7974,7 +8102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	// 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
-	$export($export.S, 'Array', {isArray: __webpack_require__(34)});
+	$export($export.S, 'Array', {isArray: __webpack_require__(35)});
 
 	var createArrayReduce = function(isRight){
 	  return function(callbackfn, memo){
@@ -8072,7 +8200,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	$export($export.P, 'Array', {copyWithin: __webpack_require__(66)});
 
-	__webpack_require__(17)('copyWithin');
+	__webpack_require__(16)('copyWithin');
 
 /***/ },
 /* 89 */
@@ -8083,7 +8211,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	$export($export.P, 'Array', {fill: __webpack_require__(67)});
 
-	__webpack_require__(17)('fill');
+	__webpack_require__(16)('fill');
 
 /***/ },
 /* 90 */
@@ -8093,7 +8221,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 	var $export = __webpack_require__(0)
-	  , $find   = __webpack_require__(33)(6)
+	  , $find   = __webpack_require__(34)(6)
 	  , KEY     = 'findIndex'
 	  , forced  = true;
 	// Shouldn't skip holes
@@ -8103,7 +8231,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 	  }
 	});
-	__webpack_require__(17)(KEY);
+	__webpack_require__(16)(KEY);
 
 /***/ },
 /* 91 */
@@ -8113,7 +8241,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 	var $export = __webpack_require__(0)
-	  , $find   = __webpack_require__(33)(5)
+	  , $find   = __webpack_require__(34)(5)
 	  , KEY     = 'find'
 	  , forced  = true;
 	// Shouldn't skip holes
@@ -8123,7 +8251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 	  }
 	});
-	__webpack_require__(17)(KEY);
+	__webpack_require__(16)(KEY);
 
 /***/ },
 /* 92 */
@@ -8133,10 +8261,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	var ctx         = __webpack_require__(22)
 	  , $export     = __webpack_require__(0)
-	  , toObject    = __webpack_require__(9)
+	  , toObject    = __webpack_require__(10)
 	  , call        = __webpack_require__(75)
 	  , isArrayIter = __webpack_require__(74)
-	  , toLength    = __webpack_require__(14)
+	  , toLength    = __webpack_require__(15)
 	  , getIterFn   = __webpack_require__(86);
 	$export($export.S + $export.F * !__webpack_require__(77)(function(iter){ Array.from(iter); }), 'Array', {
 	  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
@@ -8174,16 +8302,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 	'use strict';
-	var addToUnscopables = __webpack_require__(17)
+	var addToUnscopables = __webpack_require__(16)
 	  , step             = __webpack_require__(78)
 	  , Iterators        = __webpack_require__(27)
-	  , toIObject        = __webpack_require__(12);
+	  , toIObject        = __webpack_require__(13);
 
 	// 22.1.3.4 Array.prototype.entries()
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	module.exports = __webpack_require__(43)(Array, 'Array', function(iterated, kind){
+	module.exports = __webpack_require__(44)(Array, 'Array', function(iterated, kind){
 	  this._t = toIObject(iterated); // target
 	  this._i = 0;                   // next index
 	  this._k = kind;                // kind
@@ -8217,7 +8345,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var $export = __webpack_require__(0);
 
 	// WebKit Array.of isn't generic
-	$export($export.S + $export.F * __webpack_require__(11)(function(){
+	$export($export.S + $export.F * __webpack_require__(12)(function(){
 	  function F(){}
 	  return !(Array.of.call(F) instanceof F);
 	}), 'Array', {
@@ -8253,7 +8381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-	var toIObject = __webpack_require__(12);
+	var toIObject = __webpack_require__(13);
 
 	__webpack_require__(7)('getOwnPropertyDescriptor', function($getOwnPropertyDescriptor){
 	  return function getOwnPropertyDescriptor(it, key){
@@ -8267,7 +8395,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// 19.1.2.7 Object.getOwnPropertyNames(O)
 	__webpack_require__(7)('getOwnPropertyNames', function(){
-	  return __webpack_require__(42).get;
+	  return __webpack_require__(43).get;
 	});
 
 /***/ },
@@ -8275,7 +8403,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 Object.getPrototypeOf(O)
-	var toObject = __webpack_require__(9);
+	var toObject = __webpack_require__(10);
 
 	__webpack_require__(7)('getPrototypeOf', function($getPrototypeOf){
 	  return function getPrototypeOf(it){
@@ -8296,7 +8424,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(9);
+	var toObject = __webpack_require__(10);
 
 	__webpack_require__(7)('keys', function($keys){
 	  return function keys(it){
@@ -8319,9 +8447,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	'use strict';
 	// 19.1.3.6 Object.prototype.toString()
-	var classof = __webpack_require__(41)
+	var classof = __webpack_require__(42)
 	  , test    = {};
-	test[__webpack_require__(2)('toStringTag')] = 'z';
+	test[__webpack_require__(3)('toStringTag')] = 'z';
 	if(test + '' != '[object z]'){
 	  __webpack_require__(29)(Object.prototype, 'toString', function toString(){
 	    return '[object ' + classof(this) + ']';
@@ -8337,7 +8465,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var $at  = __webpack_require__(84)(true);
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(43)(String, 'String', function(iterated){
+	__webpack_require__(44)(String, 'String', function(iterated){
 	  this._t = String(iterated); // target
 	  this._i = 0;                // next index
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -8371,23 +8499,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	'use strict';
 	// ECMAScript 6 symbols shim
-	var $              = __webpack_require__(1)
-	  , global         = __webpack_require__(8)
+	var $              = __webpack_require__(2)
+	  , global         = __webpack_require__(9)
 	  , has            = __webpack_require__(25)
 	  , DESCRIPTORS    = __webpack_require__(24)
 	  , $export        = __webpack_require__(0)
 	  , redefine       = __webpack_require__(29)
-	  , $fails         = __webpack_require__(11)
-	  , shared         = __webpack_require__(45)
-	  , setToStringTag = __webpack_require__(35)
+	  , $fails         = __webpack_require__(12)
+	  , shared         = __webpack_require__(46)
+	  , setToStringTag = __webpack_require__(36)
 	  , uid            = __webpack_require__(32)
-	  , wks            = __webpack_require__(2)
+	  , wks            = __webpack_require__(3)
 	  , keyOf          = __webpack_require__(79)
-	  , $names         = __webpack_require__(42)
+	  , $names         = __webpack_require__(43)
 	  , enumKeys       = __webpack_require__(71)
-	  , isArray        = __webpack_require__(34)
+	  , isArray        = __webpack_require__(35)
 	  , anObject       = __webpack_require__(20)
-	  , toIObject      = __webpack_require__(12)
+	  , toIObject      = __webpack_require__(13)
 	  , createDesc     = __webpack_require__(28)
 	  , getDesc        = $.getDesc
 	  , setDesc        = $.setDesc
@@ -8528,7 +8656,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  $.getNames   = $names.get = $getOwnPropertyNames;
 	  $.getSymbols = $getOwnPropertySymbols;
 
-	  if(DESCRIPTORS && !__webpack_require__(44)){
+	  if(DESCRIPTORS && !__webpack_require__(45)){
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
 	  }
 	}

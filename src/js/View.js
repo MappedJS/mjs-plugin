@@ -365,7 +365,9 @@ export class View extends Drawable {
      * @return {View} instance of View for chaining
      */
     drawVisibleTiles() {
-        Helper.forEach(this.visibleTiles, (tile) => tile.draw());
+        Helper.forEach(this.visibleTiles, (tile) => {
+            tile.draw();
+        });
         return this;
     }
 
@@ -392,7 +394,8 @@ export class View extends Drawable {
                 context: this.context,
                 id: this.id
             });
-            this.tiles.push(new Tile(tileData));
+            const newTile = new Tile(tileData);
+            this.tiles.push(newTile);
         });
         return this;
     }

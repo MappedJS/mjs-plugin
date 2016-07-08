@@ -40,20 +40,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.520202,
-            "lng": 13.295848
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.520202, 13.295848]
     }, {
         "content": [{
             "type": "headline",
@@ -95,20 +88,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.504820,
-            "lng": 13.335083
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.504820, 13.335083]
     }, {
         "content": [{
             "type": "headline",
@@ -150,20 +136,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.508332,
-            "lng": 13.306174
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.508332, 13.306174]
     }, {
         "content": [{
             "type": "headline",
@@ -205,20 +184,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.515409,
-            "lng": 13.259472
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.515409, 13.259472]
     }, {
         "content": [{
             "type": "headline",
@@ -260,20 +232,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.488472,
-            "lng": 13.277443
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.488472, 13.277443]
     }, {
         "content": [{
             "type": "headline",
@@ -315,20 +280,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.487400,
-            "lng": 13.328700
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.487400, 13.328700]
     }, {
         "content": [{
             "type": "headline",
@@ -370,20 +328,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.487972,
-            "lng": 13.312695
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.487972, 13.312695]
     }, {
         "content": [{
             "type": "headline",
@@ -425,20 +376,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.485160,
-            "lng": 13.274011
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.485160, 13.274011]
     }, {
         "content": [{
             "type": "headline",
@@ -480,20 +424,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.517122,
-            "lng": 13.308071
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.517122, 13.308071]
     }, {
         "content": [{
             "type": "headline",
@@ -535,20 +472,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.474514,
-            "lng": 13.309138
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.474514, 13.309138]
     }, {
         "content": [{
             "type": "headline",
@@ -590,20 +520,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.512320,
-            "lng": 13.258634
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.512320, 13.258634]
     }, {
         "content": [{
             "type": "headline",
@@ -645,20 +568,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.518874,
-            "lng": 13.295694
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.518874, 13.295694]
     }, {
         "content": [{
             "type": "headline",
@@ -700,20 +616,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.489651,
-            "lng": 13.397310
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.489651, 13.397310]
     }, {
         "content": [{
             "type": "headline",
@@ -755,20 +664,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.496520,
-            "lng": 13.395750
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.496520, 13.395750]
     }, {
         "content": [{
             "type": "headline",
@@ -810,20 +712,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.517665,
-            "lng": 13.466089
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.517665, 13.466089]
     }, {
         "content": [{
             "type": "headline",
@@ -865,20 +760,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.515923,
-            "lng": 13.479573
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.515923, 13.479573]
     }, {
         "content": [{
             "type": "headline",
@@ -920,20 +808,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.481640,
-            "lng": 13.527838
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.481640, 13.527838]
     }, {
         "content": [{
             "type": "headline",
@@ -975,20 +856,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.537960,
-            "lng": 13.605470
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.537960, 13.605470]
     }, {
         "content": [{
             "type": "headline",
@@ -1030,20 +904,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.543956,
-            "lng": 13.544698
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.543956, 13.544698]
     }, {
         "content": [{
             "type": "headline",
@@ -1085,20 +952,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.521213,
-            "lng": 13.587187
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.521213, 13.587187]
     }, {
         "content": [{
             "type": "headline",
@@ -1140,20 +1000,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.536894,
-            "lng": 13.605352
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.536894, 13.605352]
     }, {
         "content": [{
             "type": "headline",
@@ -1195,20 +1048,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.543404,
-            "lng": 13.560385
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.543404, 13.560385]
     }, {
         "content": [{
             "type": "headline",
@@ -1250,20 +1096,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.506059,
-            "lng": 13.582154
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.506059, 13.582154]
     }, {
         "content": [{
             "type": "headline",
@@ -1305,20 +1144,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.564697,
-            "lng": 13.570722
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.564697, 13.570722]
     }, {
         "content": [{
             "type": "headline",
@@ -1360,20 +1192,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.546922,
-            "lng": 13.556763
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.546922, 13.556763]
     }, {
         "content": [{
             "type": "headline",
@@ -1415,20 +1240,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.506943,
-            "lng": 13.372779
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.506943, 13.372779]
     }, {
         "content": [{
             "type": "headline",
@@ -1470,20 +1288,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.521663,
-            "lng": 13.413069
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.521663, 13.413069]
     }, {
         "content": [{
             "type": "headline",
@@ -1525,20 +1336,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.518294,
-            "lng": 13.408565
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.518294, 13.408565]
     }, {
         "content": [{
             "type": "headline",
@@ -1580,20 +1384,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.516101,
-            "lng": 13.416539
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.516101, 13.416539]
     }, {
         "content": [{
             "type": "headline",
@@ -1635,20 +1432,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.513638,
-            "lng": 13.392479
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.513638, 13.392479]
     }, {
         "content": [{
             "type": "headline",
@@ -1690,20 +1480,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.510405,
-            "lng": 13.373650
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.510405, 13.373650]
     }, {
         "content": [{
             "type": "headline",
@@ -1745,20 +1528,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.526306,
-            "lng": 13.338630
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.526306, 13.338630]
     }, {
         "content": [{
             "type": "headline",
@@ -1800,20 +1576,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.525656,
-            "lng": 13.400862
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.525656, 13.400862]
     }, {
         "content": [{
             "type": "headline",
@@ -1855,20 +1624,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.446915,
-            "lng": 13.437883
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.446915, 13.437883]
     }, {
         "content": [{
             "type": "headline",
@@ -1910,20 +1672,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.423704,
-            "lng": 13.436118
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.423704, 13.436118]
     }, {
         "content": [{
             "type": "headline",
@@ -1965,20 +1720,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.422324,
-            "lng": 13.430988
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.422324, 13.430988]
     }, {
         "content": [{
             "type": "headline",
@@ -2020,20 +1768,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.448277,
-            "lng": 13.436949
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.448277, 13.436949]
     }, {
         "content": [{
             "type": "headline",
@@ -2075,20 +1816,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.474233,
-            "lng": 13.446184
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.474233, 13.446184]
     }, {
         "content": [{
             "type": "headline",
@@ -2130,20 +1864,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.538602,
-            "lng": 13.413489
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.538602, 13.413489]
     }, {
         "content": [{
             "type": "headline",
@@ -2185,20 +1912,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.536412,
-            "lng": 13.417083
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.536412, 13.417083]
     }, {
         "content": [{
             "type": "headline",
@@ -2240,20 +1960,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.569085,
-            "lng": 13.388772
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.569085, 13.388772]
     }, {
         "content": [{
             "type": "headline",
@@ -2295,20 +2008,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.562956,
-            "lng": 13.328673
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.562956, 13.328673]
     }, {
         "content": [{
             "type": "headline",
@@ -2350,20 +2056,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.585434,
-            "lng": 13.287015
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.585434, 13.287015]
     }, {
         "content": [{
             "type": "headline",
@@ -2405,20 +2104,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.633762,
-            "lng": 13.290941
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.633762, 13.290941]
     }, {
         "content": [{
             "type": "headline",
@@ -2460,20 +2152,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.591479,
-            "lng": 13.329644
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.591479, 13.329644]
     }, {
         "content": [{
             "type": "headline",
@@ -2515,20 +2200,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.634142,
-            "lng": 13.291806
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.634142, 13.291806]
     }, {
         "content": [{
             "type": "headline",
@@ -2570,20 +2248,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.537149,
-            "lng": 13.204720
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.537149, 13.204720]
     }, {
         "content": [{
             "type": "headline",
@@ -2625,20 +2296,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.535689,
-            "lng": 13.201396
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.535689, 13.201396]
     }, {
         "content": [{
             "type": "headline",
@@ -2680,20 +2344,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.568712,
-            "lng": 13.198593
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.568712, 13.198593]
     }, {
         "content": [{
             "type": "headline",
@@ -2735,20 +2392,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.520916,
-            "lng": 13.193290
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.520916, 13.193290]
     }, {
         "content": [{
             "type": "headline",
@@ -2790,20 +2440,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.452563,
-            "lng": 13.149766
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.452563, 13.149766]
     }, {
         "content": [{
             "type": "headline",
@@ -2845,20 +2488,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.457323,
-            "lng": 13.292878
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.457323, 13.292878]
     }, {
         "content": [{
             "type": "headline",
@@ -2900,20 +2536,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.456320,
-            "lng": 13.299280
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.456320, 13.299280]
     }, {
         "content": [{
             "type": "headline",
@@ -2955,20 +2584,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.433399,
-            "lng": 13.257633
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.433399, 13.257633]
     }, {
         "content": [{
             "type": "headline",
@@ -3010,20 +2632,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.464874,
-            "lng": 13.326384
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.464874, 13.326384]
     }, {
         "content": [{
             "type": "headline",
@@ -3065,20 +2680,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.458610,
-            "lng": 13.288692
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.458610, 13.288692]
     }, {
         "content": [{
             "type": "headline",
@@ -3120,20 +2728,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.428302,
-            "lng": 13.328123
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.428302, 13.328123]
     }, {
         "content": [{
             "type": "headline",
@@ -3175,20 +2776,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.437773,
-            "lng": 13.232577
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.437773, 13.232577]
     }, {
         "content": [{
             "type": "headline",
@@ -3230,20 +2824,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.467213,
-            "lng": 13.261523
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.467213, 13.261523]
     }, {
         "content": [{
             "type": "headline",
@@ -3285,20 +2872,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.418013,
-            "lng": 13.150609
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.418013, 13.150609]
     }, {
         "content": [{
             "type": "headline",
@@ -3340,20 +2920,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.425365,
-            "lng": 13.204550
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.425365, 13.204550]
     }, {
         "content": [{
             "type": "headline",
@@ -3395,20 +2968,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.412405,
-            "lng": 13.141802
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.412405, 13.141802]
     }, {
         "content": [{
             "type": "headline",
@@ -3450,20 +3016,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.427363,
-            "lng": 13.258381
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.427363, 13.258381]
     }, {
         "content": [{
             "type": "headline",
@@ -3505,20 +3064,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.458707,
-            "lng": 13.355073
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.458707, 13.355073]
     }, {
         "content": [{
             "type": "headline",
@@ -3560,20 +3112,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.496701,
-            "lng": 13.354371
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.496701, 13.354371]
     }, {
         "content": [{
             "type": "headline",
@@ -3615,20 +3160,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.412134,
-            "lng": 13.366967
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.412134, 13.366967]
     }, {
         "content": [{
             "type": "headline",
@@ -3670,20 +3208,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.399340,
-            "lng": 13.409943
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.399340, 13.409943]
     }, {
         "content": [{
             "type": "headline",
@@ -3725,20 +3256,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.412953,
-            "lng": 13.367640
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.412953, 13.367640]
     }, {
         "content": [{
             "type": "headline",
@@ -3780,20 +3304,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.472891,
-            "lng": 13.335963
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.472891, 13.335963]
     }, {
         "content": [{
             "type": "headline",
@@ -3835,20 +3352,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.454530,
-            "lng": 13.473710
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.454530, 13.473710]
     }, {
         "content": [{
             "type": "headline",
@@ -3890,20 +3400,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.445020,
-            "lng": 13.576632
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.445020, 13.576632]
     }, {
         "content": [{
             "type": "headline",
@@ -3945,20 +3448,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.451896,
-            "lng": 13.624531
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.451896, 13.624531]
     }, {
         "content": [{
             "type": "headline",
@@ -4000,20 +3496,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.463286,
-            "lng": 13.523347
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.463286, 13.523347]
     }, {
         "content": [{
             "type": "headline",
@@ -4055,20 +3544,13 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.412190,
-            "lng": 13.662345
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.412190, 13.662345]
     }, {
         "content": [{
             "type": "headline",
@@ -4110,19 +3592,12 @@
                 "credit": "Lorem Credit ipsum dolor sit amet"
             }
         }],
-        "icon": "img/icon.png",
-        "hover": true,
-        "offset": {
-            "x": 5,
-            "y": 0
-        },
-        "size": {
-            "width": 64,
-            "height": 32
-        },
-        "position": {
-            "lat": 52.422080,
-            "lng": 13.539332
-        }
+        "icon": {
+          "type": "image",
+          "size": [32, 32],
+          "offset": [-11, -32],
+          "url": "img/icon.png"
+      },
+        "position": [52.422080, 13.539332]
     }]
 }

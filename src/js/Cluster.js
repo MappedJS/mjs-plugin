@@ -5,8 +5,14 @@ import {
     Helper
 } from './Helper.js';
 import {
+    DataEnrichment
+} from './DataEnrichment.js';
+import {
     Point
 } from './Point.js';
+import {
+    Rectangle
+} from './Rectangle.js';
 import {
     Drawable
 } from './Drawable.js';
@@ -18,21 +24,46 @@ import {
  */
 export class Cluster extends Drawable {
 
+
+    /**
+     * calculates the actual position of a cluster
+     * @return {Point} calculated position
+     */
+    get position() {
+        return this.info.convertLatLngToPoint(this.latlng)
+            .translate(this.view.x, this.view.y)
+            .multiply(this.distortionFactor, 1)
+            .translate(this.offsetToCenter, 0);
+    }
+
+    /**
+     * calculates actual dimension and position of a cluster
+     * @return {Rectangle} calculated dimension
+     */
+    get boundingBox() {
+        return new Rectangle(this.position.x, this.position.y, 1, 1).scaleCenter(this.texture.width, this.texture.height);
+    }
+
     /**
      * @constructor
-     * @param  {HTMLDivElement} container =  null - parent container of
-     * @param  {Number} id = 0 - id of parent instance
+     * @param {CanvasRenderingContext2D} context = null - context of canvas
+     * @param {Texture} texture = null - texture of cluster
+     * @param {Object} font = DataEnrichment.CLUSTER_FONT - style of font in cluster
+     * @param {Number} id = 0 - id of parent instance
      * @return {Cluster} instance of Cluster for chaining
      */
     constructor({
-        container = null,
+        context = null,
+        texture = null,
+        font = DataEnrichment.CLUSTER_FONT,
         id = 0
     }) {
         super(id);
-        this.uniqueID = Cluster.count;
-        Cluster.count++;
         this.markers = [];
-        this.container = container;
+        this.textSettings = font;
+        this.texture = texture;
+        this.context = context;
+        this.isHovered = false;
         return this;
     }
 
@@ -42,7 +73,7 @@ export class Cluster extends Drawable {
      */
     init() {
         if (this.markers.length === 1) {
-            Helper.show(this.markers[0].icon);
+            this.markers[0].visible = true;
         } else {
             this.createClusterMarker();
         }
@@ -54,25 +85,32 @@ export class Cluster extends Drawable {
      * @return {Cluster} instance of Cluster for chaining
      */
     createClusterMarker() {
-        let p;
         for (const marker of this.markers) {
-            Helper.hide(marker.icon);
-            const currentPos = new Point(parseFloat(marker.icon.style.left), parseFloat(marker.icon.style.top));
-            p = (!p) ? currentPos : p.add(currentPos);
+            marker.visible = false;
         }
-        p.divide(this.markers.length);
-
-        this.cluster = document.createElement("div");
-        this.cluster.innerHTML = this.markers.length;
-        this.cluster.classList.add("cluster");
-        Helper.css(this.cluster, {
-            "left": `${p.x}%`,
-            "top": `${p.y}%`,
-            "transform": "translateZ(0)"
-        });
-        this.cluster.setAttribute("data-id", `cluster-${this.uniqueID}`);
-        this.container.appendChild(this.cluster);
         this.bindEvents();
+        return this;
+    }
+
+    /**
+     * draw this cluster
+     * @return {Cluster} instance of Cluster for chaining
+     */
+    draw() {
+        if (this.texture.ready) {
+            if (this.isHovered) {
+                this.context.drawImage(this.texture.img, this.texture.width, 0, this.texture.width, this.texture.height, this.boundingBox.x, this.boundingBox.y, this.texture.width, this.texture.height);
+            } else {
+                this.context.drawImage(this.texture.img, 0, 0, this.texture.width, this.texture.height, this.boundingBox.x, this.boundingBox.y, this.texture.width, this.texture.height);
+            }
+            this.context.beginPath();
+            this.context.textAlign = "center";
+            this.context.textBaseline = "middle";
+            this.context.font = this.textSettings.font;
+            this.context.fillStyle = this.textSettings.color;
+            this.context.fillText(this.markers.length, this.boundingBox.center.x, this.boundingBox.center.y);
+            this.context.closePath();
+        }
         return this;
     }
 
@@ -95,20 +133,56 @@ export class Cluster extends Drawable {
     }
 
     /**
+     * set active to true
+     * @param  {Point} point - specified point to check against
+     * @param  {Boolean} oneIsHit = false - if one item was hit before
+     * @return {Boolean} indicate hit (true) or not
+     */
+    isActive(point, oneIsHit = false) {
+        const isHovered = (!oneIsHit) ? this.hit(point) : false;
+        if (this.isHovered !== isHovered) {
+            this.eventManager.publish(Events.TileMap.DRAW);
+        }
+        document.body.style.cursor = (isHovered || oneIsHit) ? 'pointer': 'default';
+        this.isHovered = isHovered;
+        return isHovered;
+    }
+
+    /**
+     * check hit of point
+     * @param  {Point} point - specified point to check against
+     * @return {Booelan} Wheter it is a hit or not
+     */
+    hit(point) {
+        if (this.boundingBox.containsPoint(point)) {
+            const p = point.clone.substract(this.boundingBox.topLeft);
+            return this.texture.isHit(p);
+        }
+        return false;
+    }
+
+    /**
      * execute bound action of cluster
      * @return {Cluster} instance of Cluster for chaining
      */
     action() {
-        let center;
-        for (const marker of this.markers) {
-            center = (!center) ? marker.latlng : center.add(marker.latlng);
-        }
-        center.divide(this.markers.length);
         this.eventManager.publish(Events.TileMap.ZOOM_TO_BOUNDS, {
             boundingBox: this.boundingBox,
-            center: center
+            center: this.calculateCenter()
         });
         return this;
+    }
+
+    /**
+     * calculates the center of a cluster
+     * @return {LatLng} center of cluster
+     */
+    calculateCenter() {
+        let center;
+        for (const marker of this.markers) {
+            center = (!center) ? marker.latlng.clone : center.add(marker.latlng);
+        }
+        return center.divide(this.markers.length);
     }
 
     /**
@@ -118,7 +192,7 @@ export class Cluster extends Drawable {
      */
     addMarker(marker) {
         this.markers.push(marker);
-        this.boundingBox = (!this.boundingBox) ? marker.boundingBox : this.boundingBox;
+        this.latlng = this.calculateCenter();
         return this;
     }
 
@@ -126,21 +200,12 @@ export class Cluster extends Drawable {
      * remove this cluster
      * @return {Cluster} instance of Cluster for chaining
      */
-    removeFromDOM() {
-        if (this.markers.length > 1) {
-            for (const marker of this.markers) {
-                Helper.show(marker.icon);
-            }
-            this.cluster.parentNode.removeChild(this.cluster);
+    remove() {
+        for (const marker of this.markers) {
+            marker.visible = true;
         }
         this.unbindEvents();
         return this;
     }
 
 }
-
-/**
- * counts all clusters
- * @type {Number}
- */
-Cluster.count = 0;

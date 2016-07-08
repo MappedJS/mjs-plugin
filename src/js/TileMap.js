@@ -29,9 +29,6 @@ import {
     ToolTip
 } from './ToolTip.js';
 import {
-    Label
-} from './Label.js';
-import {
     MarkerClusterer
 } from './MarkerClusterer.js';
 import {
@@ -78,6 +75,14 @@ export class TileMap {
     }
 
     /**
+     * returns all clusters
+     * @return {Array} array of clusters
+     */
+    get clusters() {
+        return (!this.markerClusterer) ? [] : this.markerClusterer.clusters;
+    }
+
+    /**
      * @constructor
      * @param  {HTMLElement} container = null - jQuery-object holding the container
      * @param  {Object} tilesData = {} - json object representing data of TileMap
@@ -91,14 +96,20 @@ export class TileMap {
         settings = {},
         id
     }) {
-        if (!container) throw Error("You must define a container to initialize a TileMap");
+        if (!container) {
+            throw Error("You must define a container to initialize a TileMap");
+        }
 
         this.container = container;
         this.id = id;
         this.settings = settings;
 
+        this.markers = [];
+
         this.initialize(tilesData);
         this.initializeCanvas();
+
+        this.thumbsLoaded = 0;
 
         Helper.forEach(this.imgData, (element, i) => {
             const currentLevel = {
@@ -115,11 +126,7 @@ export class TileMap {
         this.levelHandler = new StateHandler(this.levels);
         this.levelHandler.changeTo(this.settings.level);
 
-        this.appendMarkerContainerToDom();
-        this.initializeLabels();
-
         this.bindEvents();
-        this.stateHandler.next();
         this.resizeCanvas();
 
         this.eventManager.publish(Events.MapInformation.UPDATE, {
@@ -128,17 +135,13 @@ export class TileMap {
             center: this.levelHandler.current.center
         });
         this.view.init();
-
         this.reset();
-
-        window.requestAnimFrame(this.mainLoop.bind(this));
-
         return this;
     }
 
     /**
      * initialize map
-     * @param  {Object} tilesData - data of tiles, markers and labels
+     * @param  {Object} tilesData - data of tiles, markers and markers
      * @return {TileMap} instance of TileMap for chaining
      */
     initialize(tilesData) {
@@ -151,24 +154,8 @@ export class TileMap {
 
         this.imgData = tilesData[Events.TileMap.IMG_DATA_NAME];
         this.markerData = tilesData[Events.TileMap.MARKER_DATA_NAME];
-        this.labelData = tilesData[Events.TileMap.LABEL_DATA_NAME];
-
-        this.stateHandler = new StateHandler([{
-            value: 0,
-            description: "start"
-        }, {
-            value: 1,
-            description: "view-initialized"
-        }, {
-            value: 2,
-            description: "marker-initialized"
-        }, {
-            value: 3,
-            description: "tooltip-initialized"
-        }]);
 
         this.templates = (this.settings.tooltip) ? this.settings.tooltip.templates : {};
-        this.templates = DataEnrichment.tooltip(this.templates);
 
         this.levels = [];
         this.clusterHandlingTimeout = null;
@@ -217,7 +204,9 @@ export class TileMap {
      */
     reset() {
         const newLevel = this.checkIfLevelCanFitBounds();
-        if (this.levelHandler.current.level !== this.settings.level) this.levelHandler.changeTo(newLevel);
+        if (this.levelHandler.current.level !== this.settings.level) {
+            this.levelHandler.changeTo(newLevel);
+        }
         this.eventManager.publish(Events.MapInformation.UPDATE, {
             view: this.levelHandler.current.instance.view,
             bounds: this.levelHandler.current.bounds,
@@ -232,19 +221,28 @@ export class TileMap {
     }
 
     /**
-     * initialize all labels
+     * initialize all markers
      * @return {TileMap} instance of TileMap for chaining
      */
-    initializeLabels() {
-        this.labelData = this.enrichLabelData(this.labelData);
-        this.labels = [];
-        Helper.forEach(this.labelData, (label) => {
-            const currentLabel = new Label({
+    initializeMarkers() {
+        this.markerData = this.enrichMarkerData(this.markerData);
+        Helper.forEach(this.markerData, (markerSettings) => {
+            const currentMarker = new Marker({
                 context: this.canvasContext,
                 id: this.id,
-                settings: label
+                settings: markerSettings
             });
-            this.labels.push(currentLabel);
+            this.markers.push(currentMarker);
+        });
+        this.markers = this.markers.sort((a, b) => ((b.latlng.lat - a.latlng.lat !== 0) ? b.latlng.lat - a.latlng.lat : b.latlng.lng - a.latlng.lng));
+        this.markerClusterer = new MarkerClusterer({
+            markers: this.markers.filter((marker) => {
+                return marker.isClusterable();
+            }),
+            id: this.id,
+            clusterImage: this.settings.clusterImage,
+            context: this.canvasContext,
+            container: this.markerContainer || document.body
         });
         return this;
     }
@@ -268,87 +266,12 @@ export class TileMap {
     }
 
     /**
-     * reposition marker container
-     * @return {View} instance of View for chaining
-     */
-    repositionMarkerContainer() {
-        if (this.markerContainer) {
-            const newSize = this.view.view.getDistortedRect(this.view.distortionFactor);
-            const width = parseFloat(newSize.width).toFixed(8);
-            const height = parseFloat(newSize.height).toFixed(8);
-            const left = parseFloat(newSize.left + this.view.offsetToCenter).toFixed(8);
-            const top = parseFloat(newSize.top).toFixed(8);
-            Helper.css(this.markerContainer, {
-                "width": `${width}px`,
-                "height": `${height}px`,
-                "transform": `translate3d(${left}px, ${top}px, 0px)`,
-                "-ms-transform": `translate(${left}px, ${top}px)`
-
-            });
-        }
-        return this;
-    }
-
-    /**
      * enrich marker data
      * @param  {Object} markerData - data of markers
      * @return {Object} enriched marker data
      */
     enrichMarkerData(markerData) {
         return DataEnrichment.marker(markerData);
-    }
-
-    /**
-     * enrich label data
-     * @param  {Object} labelData - data of labels
-     * @return {Object} enriched label data
-     */
-    enrichLabelData(labelData) {
-        return DataEnrichment.label(labelData);
-    }
-
-    /**
-     * initializes all markers
-     * @param  {Object} markerData - data of all markers
-     * @return {TileMap} instance of TileMap for chaining
-     */
-    initializeMarkers() {
-        if (this.markerData && this.markerData.length) {
-            let markers = [];
-            this.markerData = this.enrichMarkerData(this.markerData);
-            Helper.forEach(this.markerData, (currentData) => {
-                markers.push(new Marker({
-                    data: currentData,
-                    container: this.markerContainer,
-                    id: this.id
-                }));
-            });
-            markers = markers.sort((a, b) => ((b.latlng.lat - a.latlng.lat !== 0) ? b.latlng.lat - a.latlng.lat : b.latlng.lng - a.latlng.lng));
-            Helper.forEach(markers, (marker, i) => {
-                marker.icon.style.zIndex = i;
-            });
-
-            this.markerClusterer = new MarkerClusterer({
-                markers: markers,
-                id: this.id,
-                container: this.markerContainer
-            });
-        }
-        this.stateHandler.next();
-        return this;
-    }
-
-    /**
-     * append marker container to DOM
-´     * @return {TileMap} instance of TileMap for chaining
-     */
-    appendMarkerContainerToDom() {
-        if (this.markerData && this.markerData.length) {
-            this.markerContainer = document.createElement("div");
-            this.markerContainer.classList.add("marker-container");
-            this.container.appendChild(this.markerContainer);
-        }
-        return this;
     }
 
     /**
@@ -361,7 +284,6 @@ export class TileMap {
             id: this.id,
             templates: this.templates
         });
-        this.stateHandler.next();
         return this;
     }
 
@@ -370,6 +292,12 @@ export class TileMap {
      * @return {TileMap} instance of TileMap for chaining
      */
     bindEvents() {
+        this.eventManager.subscribe(Events.MarkerClusterer.CLUSTERIZE, () => {
+            this.eventManager.publish(Events.TileMap.DRAW);
+        });
+        this.eventManager.subscribe(Events.MarkerClusterer.UNCLUSTERIZE, () => {
+            this.eventManager.publish(Events.TileMap.DRAW);
+        });
         this.eventManager.subscribe(Events.TileMap.RESIZE, () => {
             this.resize();
         });
@@ -419,9 +347,11 @@ export class TileMap {
      */
     thumbLoaded() {
         this.redraw();
-        if (this.stateHandler.current.value < 2) {
+        this.thumbsLoaded++;
+        if (this.thumbsLoaded === this.levels.length) {
+            this.createTooltipContainer();
             this.initializeMarkers();
-            if (this.markerData && this.markerData.length) this.createTooltipContainer();
+            window.requestAnimFrame(this.mainLoop.bind(this));
         }
         return this;
     }
@@ -581,15 +511,18 @@ export class TileMap {
         this.lastFrameMillisecs = currentMillisecs;
         this.deltaTiming = Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
 
-        if (this.velocity.length >= 0.1) this.moveView(this.velocity.multiply(0.9).clone.multiply(this.deltaTiming));
+        this.moveByVelocity = this.velocity.multiply(0.95).clone.multiply(this.deltaTiming);
+        if (this.velocity.length >= 0.3) {
+            this.moveView(this.moveByVelocity);
+        }
 
         this.view.checkBoundaries();
 
         if (this.drawIsNeeded) {
             this.canvasContext.clearRect(0, 0, this.width, this.height);
             this.view.draw();
-            this.drawLabels();
-            this.repositionMarkerContainer();
+            this.drawClusters();
+            this.drawMarkers();
             this.drawIsNeeded = false;
         }
 
@@ -597,11 +530,20 @@ export class TileMap {
     }
 
     /**
-     * draw all labels
+     * draw all clusters
      * @return {TileMap} instance of TileMap for chaining
      */
-    drawLabels() {
-        Helper.forEach(this.labels, (label) => label.draw());
+    drawClusters() {
+        this.markerClusterer.drawClusters();
+        return this;
+    }
+
+    /**
+     * draw all markers
+     * @return {TileMap} instance of TileMap for chaining
+     */
+    drawMarkers() {
+        Helper.forEach(this.markers, (marker) => marker.draw());
         return this;
     }
 }

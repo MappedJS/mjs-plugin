@@ -76,7 +76,9 @@ export class Interact {
         this.settings = Object.assign(this.getDefaultSettings(), settings);
         this.data = this.getDefaultData();
         this.pointerArray = {};
-        if (this.settings.overwriteViewportSettings) this.handleViewport(this.settings.overwriteViewportSettings);
+        if (this.settings.overwriteViewportSettings) {
+            this.handleViewport(this.settings.overwriteViewportSettings);
+        }
         this.init(this.settings.container);
     }
 
@@ -101,7 +103,7 @@ export class Interact {
             stopPropagation: true,
             preventDefault: true,
             autoFireHold: false,
-            pinchBalanceTime: 500,
+            pinchBalanceTime: 50,
             callbacks: this.getDefaultCallbacks(),
             events: this.getDefaultEventNames()
         };
@@ -117,6 +119,7 @@ export class Interact {
             tapHold: null,
             doubletap: null,
             hold: null,
+            hover: null,
             pan: null,
             swipe: null,
             flick: null,
@@ -190,7 +193,9 @@ export class Interact {
      * @return {Interact} Returns this instance
      */
     handleViewport(viewport) {
-        if (typeof viewport !== "string") viewport = "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no";
+        if (typeof viewport !== "string") {
+            viewport = "width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no";
+        }
         const metaViewInHead = Helper.find("meta[name=viewport]");
         const viewportMeta = (metaViewInHead) ? metaViewInHead : Helper.find("head").appendChild(document.createElement("head").setAttribute("name", "viewport"));
         viewportMeta.setAttribute("content", viewport);
@@ -225,8 +230,12 @@ export class Interact {
         if (Helper.isIE()) {
             this.bindIEEvents();
         } else {
-            if (Helper.isTouch()) this.bindTouchEvents();
-            if (Helper.isMouse()) this.bindMouseEvents();
+            if (Helper.isTouch()) {
+                this.bindTouchEvents();
+            }
+            if (Helper.isMouse()) {
+                this.bindMouseEvents();
+            }
         }
         return this;
     }
@@ -273,8 +282,12 @@ export class Interact {
      * @return {Object} normalized Event
      */
     preHandle(event) {
-        if (this.settings.stopPropagation) event.stopPropagation();
-        if (this.settings.preventDefault) event.preventDefault();
+        if (this.settings.stopPropagation) {
+            event.stopPropagation();
+        }
+        if (this.settings.preventDefault) {
+            event.preventDefault();
+        }
         return this.getEvent(event);
     }
 
@@ -573,16 +586,24 @@ export class Interact {
      * @return {Boolean} always returns false
      */
     moveHandler(event) {
-        // if touchstart event was not fired
-        if (!this.data.down || this.data.pinched) return false;
 
         const e = this.preHandle(event);
+
+        // if touchstart event was not fired
+        if (!this.data.down || this.data.pinched) {
+            if (e instanceof MouseEvent) {
+                this.eventCallback(this.settings.callbacks.hover, this.getRelativePosition(e));
+            }
+            return false;
+        }
 
         this.data.positionLast = (this.data.positionMove) ? this.data.positionMove : this.data.positionStart;
         this.data.timeLast = event.timeStamp;
 
         // if positions have not changed
-        if (this.positionDidNotChange(e)) return false;
+        if (this.positionDidNotChange(e)) {
+            return false;
+        }
 
         this.clearTimeouts(this.data.timeoutDefault);
         this.clearTimeouts(this.data.timeoutHold);
@@ -601,12 +622,18 @@ export class Interact {
      * @return {Interact} instance of Interact for chaining
      */
     handlePinchAndZoom() {
-        if (!this.data.distanceLast) this.data.distanceLast = this.data.distance;
+        if (!this.data.distanceLast) {
+            this.data.distanceLast = this.data.distance;
+        }
 
         this.data.difference = this.data.distance - this.data.distanceLast;
         if (Math.abs(this.data.difference) >= 0.005) {
-            if (this.settings.callbacks.pinch) this.eventCallback(this.settings.callbacks.pinch, this.data);
-            if (this.settings.callbacks.zoom) this.eventCallback(this.settings.callbacks.zoom, this.data);
+            if (this.settings.callbacks.pinch) {
+                this.eventCallback(this.settings.callbacks.pinch, this.data);
+            }
+            if (this.settings.callbacks.zoom) {
+                this.eventCallback(this.settings.callbacks.zoom, this.data);
+            }
             this.data.distanceLast = this.data.distance;
         }
         return this;
@@ -618,7 +645,9 @@ export class Interact {
      * @return {Boolean} Whether or not position has changed
      */
     positionDidNotChange(e) {
-        return Helper.isIE() && (this.getRelativePosition(e).equals(this.data.positionLast) || this.getRelativePosition(e).equals(this.data.positionStart)) || (!Helper.isIE() && Helper.isTouch() && this.getRelativePosition(e[0]).equals(this.data.positionLast));
+        return Helper.isIE() && (this.getRelativePosition(e).equals(this.data.positionLast) ||
+        this.getRelativePosition(e).equals(this.data.positionStart)) ||
+        (!Helper.isIE() && Helper.isTouch() && this.getRelativePosition(e[0]).equals(this.data.positionLast));
     }
 
     /**
@@ -760,6 +789,7 @@ export class Interact {
             if (Object.keys(this.pointerArray).length > 1) {
                 this.data.multitouch = true;
             } else if (Object.keys(this.pointerArray).length > 0) {
+                this.data.positionStart = this.getRelativePosition(e[0]);
                 this.data.down = true;
             }
         } // touch is used
@@ -767,6 +797,7 @@ export class Interact {
             if (e.length > 1) {
                 this.data.multitouch = true;
             } else if (e.length > 0) {
+                this.data.positionStart = this.getRelativePosition(e[0]);
                 this.data.down = true;
             }
             this.data.positionMove = undefined;
@@ -822,7 +853,9 @@ export class Interact {
      * @return {Interact} Returns this instance
      */
     eventCallback(callback, args) {
-        if (callback && typeof callback === "function") callback(args);
+        if (callback && typeof callback === "function") {
+            callback(args);
+        }
         this.data.actionLast = null;
         return this;
     }
@@ -857,10 +890,16 @@ export class Interact {
     getScrollDirection(event) {
         const axis = parseInt(event.axis, 10);
         const direction = [];
-        if (this.isDownDirection(axis, event)) direction.push("down"); // down
-        else if (this.isUpDirection(axis, event)) direction.push("up"); // up
-        if (this.isRightDirection(axis, event)) direction.push("right"); // right
-        else if (this.isLeftDirection(axis, event)) direction.push("left"); // left
+        if (this.isDownDirection(axis, event)) {
+            direction.push("down"); // down
+        } else if (this.isUpDirection(axis, event)) {
+            direction.push("up"); // up
+        }
+        if (this.isRightDirection(axis, event)) {
+            direction.push("right"); // right
+        } else if (this.isLeftDirection(axis, event)) {
+            direction.push("left"); // left
+        }
         return direction;
     }
 
@@ -910,7 +949,9 @@ export class Interact {
      * @return {Event} cross-device event
      */
     getEvent(e) {
-        if (e.touches && e.touches.length === 0) return e.changedTouches || e;
+        if (e.touches && e.touches.length === 0) {
+            return e.changedTouches || e;
+        }
         return e.touches || e.changedTouches || e;
     }
 }

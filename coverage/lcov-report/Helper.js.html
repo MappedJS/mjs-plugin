@@ -35,9 +35,9 @@
         <span class='fraction'>7/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">23.91% </span>
+        <span class="strong">24% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/46</span>
+        <span class='fraction'>12/50</span>
       </div>
     </div>
   </div>
@@ -249,7 +249,17 @@
 204
 205
 206
-207</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,6 +277,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -362,27 +374,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -400,6 +394,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -413,10 +413,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -472,7 +492,9 @@ export const Helper = <span class="fstat-no" title="function not covered" ><span
      */
     requestJSON(filename, callback) {
 <span class="cstat-no" title="statement not covered" >        Helper.getFile(filename, <span class="fstat-no" title="function not covered" >(jsonFileData) =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >            if (callback) <span class="cstat-no" title="statement not covered" >c</span>allback(JSON.parse(jsonFileData));</span>
+<span class="cstat-no" title="statement not covered" >            if (callback) {</span>
+<span class="cstat-no" title="statement not covered" >                callback(JSON.parse(jsonFileData));</span>
+            }
         });
 <span class="cstat-no" title="statement not covered" >        return this;</span>
     },
@@ -567,7 +589,9 @@ export const Helper = <span class="fstat-no" title="function not covered" ><span
     loadImage(path, cb) {
 <span class="cstat-no" title="statement not covered" >        const img = new Image();</span>
 <span class="cstat-no" title="statement not covered" >        img.onload = <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
-<span class="cstat-no" title="statement not covered" >            if (cb &amp;&amp; typeof cb === "function") <span class="cstat-no" title="statement not covered" >c</span>b(img);</span>
+<span class="cstat-no" title="statement not covered" >            if (cb &amp;&amp; typeof cb === "function") {</span>
+<span class="cstat-no" title="statement not covered" >                cb(img);</span>
+            }
         };
 <span class="cstat-no" title="statement not covered" >        img.src = path;</span>
 <span class="cstat-no" title="statement not covered" >        return this;</span>
@@ -584,8 +608,12 @@ export const Helper = <span class="fstat-no" title="function not covered" ><span
 <span class="cstat-no" title="statement not covered" >        const xhr = new XMLHttpRequest();</span>
 <span class="cstat-no" title="statement not covered" >        xhr.onreadystatechange = <span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >            if (xhr.readyState === XMLHttpRequest.DONE) {</span>
-<span class="cstat-no" title="statement not covered" >                i</span>f (xhr.status === 200 &amp;&amp; callback) <span class="cstat-no" title="statement not covered" >callback(xhr.responseText);</span>
-                else <span class="cstat-no" title="statement not covered" >throw new Error("The JSON submitted seems not valid", xhr);</span>
+<span class="cstat-no" title="statement not covered" >                if (xhr.status === 200 &amp;&amp; callback) {</span>
+<span class="cstat-no" title="statement not covered" >                    callback(xhr.responseText);</span>
+                }
+                else {
+<span class="cstat-no" title="statement not covered" >                    throw new Error("The JSON submitted seems not valid", xhr);</span>
+                }
             }
         };
 <span class="cstat-no" title="statement not covered" >        xhr.open("GET", url, true);</span>
@@ -620,7 +648,9 @@ export const Helper = <span class="fstat-no" title="function not covered" ><span
      */
     forEach(a, cb) {
         for (const i in a) {
-            if (a[i] !== undefined &amp;&amp; typeof cb === "function") cb(a[i], i);
+            if (a[i] !== undefined &amp;&amp; typeof cb === "function") {
+                cb(a[i], i);
+            }
         }
         return this;
     },
@@ -667,7 +697,7 @@ export const Helper = <span class="fstat-no" title="function not covered" ><span
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 05 2016 13:01:27 GMT+0200 (CEST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jul 09 2016 01:18:13 GMT+0200 (CEST)
 </div>
 </div>
 <script src="prettify.js"></script>

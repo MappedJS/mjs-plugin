@@ -51,7 +51,9 @@ export class Tile extends Drawable {
         id = 0
     }) {
         super(id, x, y, w, h);
-        if (!path || typeof path !== "string" || path.length === 0) throw new TypeError(`Path ${path} needs to be of type string and should not be empty`);
+        if (!path || typeof path !== "string" || path.length === 0) {
+            throw new TypeError(`Path ${path} needs to be of type string and should not be empty`);
+        }
         this.state = new StateHandler(Tile.STATES);
         this.context = context;
         this.path = path;

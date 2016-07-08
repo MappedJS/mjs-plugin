@@ -93,7 +93,9 @@ export class MapInformation {
         const oldData = this.data;
         this.data = Object.assign({}, this.data, obj);
         const centerUpdateDone = (!oldData.center.equals(this.data.center)) ? this.centerUpdated() : false;
-        if (!centerUpdateDone && !oldData.viewport.equals(this.data.viewport)) this.updateOffsetToCenter();
+        if (!centerUpdateDone && !oldData.viewport.equals(this.data.viewport)) {
+            this.updateOffsetToCenter();
+        }
         return this;
     }
 

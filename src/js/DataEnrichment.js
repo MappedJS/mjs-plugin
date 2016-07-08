@@ -26,43 +26,17 @@ export const DataEnrichment = {
      * @return {Object} enriched marker data
      */
     marker(data) {
-
         const enrichedData = [];
 
         Helper.forEach(data, (entry) => {
             entry = Object.assign({}, DataEnrichment.DATA_MARKER, entry);
 
-            const offset = new Point(entry.offset.x, entry.offset.y),
-                latlng = new LatLng(entry.position.lat, entry.position.lng),
-                size = new Point(entry.size.width, entry.size.height);
-
-            enrichedData.push({
-                offset: offset,
-                latlng: latlng,
-                size: size,
-                hover: entry.hover,
-                icon: entry.icon,
-                content: entry.content
-            });
-        });
-
-        return enrichedData;
-    },
-    /**
-     * enriches label data with all needed data
-     * @function
-     * @memberof module:DataEnrichment
-     * @param  {Object} data - specified data for label
-     * @return {Object} enriched label data
-     */
-    label(data) {
-        const enrichedData = [];
-
-        Helper.forEach(data, (entry) => {
-            entry = Object.assign({}, DataEnrichment.DATA_LABEL, entry);
-
-            if (entry.text) entry.text = Object.assign({}, DataEnrichment.DATA_LABEL_TEXT, entry.text);
-            if (entry.icon) entry.icon = Object.assign({}, DataEnrichment.DATA_LABEL_ICON, entry.icon);
+            if (entry.text) {
+                entry.text = Object.assign({}, DataEnrichment.DATA_MARKER_TEXT, entry.text);
+            }
+            if (entry.icon) {
+                entry.icon = Object.assign({}, DataEnrichment.DATA_MARKER_ICON, entry.icon);
+            }
 
             if (typeof entry.position[0] === "number") {
                 entry.position = new LatLng(entry.position[0], entry.position[1]);
@@ -72,10 +46,16 @@ export const DataEnrichment = {
                 });
             }
 
-            if (entry.text) entry.text.offset = new Point(entry.text.offset[0], entry.text.offset[1]);
-            if (entry.icon) entry.icon.offset = new Point(entry.icon.offset[0], entry.icon.offset[1]);
-            if (entry.icon && typeof entry.icon.size !== "number") entry.icon.size = new Point(entry.icon.size[0], entry.icon.size[1]);
-
+            if (entry.text) {
+                entry.text.offset = new Point(entry.text.offset[0], entry.text.offset[1]);
+            }
+            if (entry.icon) {
+                entry.icon.offset = new Point(entry.icon.offset[0], entry.icon.offset[1]);
+            }
+            if (entry.icon && typeof entry.icon.size !== "number") {
+                entry.icon.size = new Point(entry.icon.size[0], entry.icon.size[1]);
+            }
+            
             enrichedData.push(entry);
         });
 
@@ -102,44 +82,16 @@ export const DataEnrichment = {
             enrichedData.limitToBounds = bounds;
         }
 
+        enrichedData.clusterImage.size = new Point(enrichedData.clusterImage.size[0], enrichedData.clusterImage.size[1]);
+        enrichedData.clusterImage.offset = new Point(enrichedData.clusterImage.offset[0], enrichedData.clusterImage.offset[1]);
+
         enrichedData.bounds = bounds;
         enrichedData.center = center;
 
         return enrichedData;
-    },
-    /**
-     * enriches tooltip data with all needed data
-     * @function
-     * @memberof module:DataEnrichment
-     * @param  {Object} data - specified data for tooltip
-     * @return {Object} enriched tooltip data
-     */
-    tooltip(data = {}) {
-        return Object.assign({}, DataEnrichment.TOOLTIP, data);
     }
 };
 
-/**
- * Default initial values for a Marker
- * @type {Object}
- */
-DataEnrichment.DATA_MARKER = {
-    icon: null,
-    hover: false,
-    position: {
-        lat: 0,
-        lng: 0
-    },
-    offset: {
-        x: 0,
-        y: 0
-    },
-    size: {
-        width: 32,
-        height: 32
-    },
-    content: []
-};
 /**
  * Default initial values for a Map
  * @type {Object}
@@ -154,6 +106,11 @@ DataEnrichment.MAP_SETTINGS = {
         "northWest": [90, -180],
         "southEast": [-90, 180]
     },
+    clusterImage: {
+        path: null,
+        size: [0, 0],
+        offset: [0, 0]
+    },
     controls: {
         zoom: false,
         home: false,
@@ -162,10 +119,10 @@ DataEnrichment.MAP_SETTINGS = {
     }
 };
 /**
- * Default initial values for a Label
+ * Default initial values for a marker
  * @type {Object}
  */
-DataEnrichment.DATA_LABEL = {
+DataEnrichment.DATA_MARKER = {
     "position": [0, 0],
     "visibility": {
         "min": 0,
@@ -173,10 +130,10 @@ DataEnrichment.DATA_LABEL = {
     }
 };
 /**
- * Default initial values for a Label with text
+ * Default initial values for a marker with text
  * @type {Object}
  */
-DataEnrichment.DATA_LABEL_TEXT = {
+DataEnrichment.DATA_MARKER_TEXT = {
     "content": "",
     "color": "#333333",
     "offset": [0, 0],
@@ -185,23 +142,20 @@ DataEnrichment.DATA_LABEL_TEXT = {
     "font": "10pt Arial"
 };
 /**
- * Default initial values for a Label with an icon
+ * Default initial values for a marker with an icon
  * @type {Object}
  */
-DataEnrichment.DATA_LABEL_ICON = {
+DataEnrichment.DATA_MARKER_ICON = {
     "type": "circle",
     "size": 2,
     "color": "#333333",
     "offset": [0, 0]
 };
 /**
- * Default initial values for a ToolTip
+ * Default initial values for cluster font
  * @type {Object}
  */
-DataEnrichment.TOOLTIP = {
-    image: "/hbs/image.hbs",
-    text: "/hbs/text.hbs",
-    headline: "/hbs/headline.hbs",
-    crossheading: "/hbs/crossheading.hbs",
-    iframe: "/hbs/iframe.hbs"
+DataEnrichment.CLUSTER_FONT = {
+    color: "#333",
+    font: "bold 10px sans-serif"
 };
