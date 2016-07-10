@@ -1,30 +1,82 @@
-/* line 30, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
-.mappedJS {
+/* line 38, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs {
 	position: relative;
 	overflow: hidden;
+	background: #f4f4f4;
 }
 
-/* line 33, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
-.mappedJS:focus {
+/* line 42, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs:before {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent url("data:image/png;base64,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") center center no-repeat;
+	-webkit-transform-origin: 50% 70%;
+	   -moz-transform-origin: 50% 70%;
+	    -ms-transform-origin: 50% 70%;
+	     -o-transform-origin: 50% 70%;
+	        transform-origin: 50% 70%;
+	background-size: 100px 150px;
+	-webkit-animation: flyIn .7s 1 ease, wiggle 2s infinite ease .7s;
+	   -moz-animation: flyIn .7s 1 ease, wiggle 2s infinite ease .7s;
+	     -o-animation: flyIn .7s 1 ease, wiggle 2s infinite ease .7s;
+	        animation: flyIn .7s 1 ease, wiggle 2s infinite ease .7s;
+}
+
+/* line 54, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs:after {
+	position: absolute;
+	content: "loading";
+	top: 50%;
+	left: 50%;
+	width: 200px;
+	height: 50px;
+	margin-top: 100px;
+	margin-left: -100px;
+	color: #14aa79;
+	text-align: center;
+	-webkit-animation: fadeIn .7s 1 ease-in-out;
+	   -moz-animation: fadeIn .7s 1 ease-in-out;
+	     -o-animation: fadeIn .7s 1 ease-in-out;
+	        animation: fadeIn .7s 1 ease-in-out;
+	font-family: "Vedana", sans-serif;
+	font-weight: 100;
+	font-size: 21px;
+}
+
+/* line 71, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs.loaded:after, .mjs.loaded:before {
+	-webkit-animation: none;
+	   -moz-animation: none;
+	     -o-animation: none;
+	        animation: none;
+	display: none;
+}
+
+/* line 77, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs:focus {
 	outline: 0;
 }
 
-/* line 36, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
-.mappedJS * {
+/* line 80, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs * {
 	-moz-box-sizing: border-box;
 	     box-sizing: border-box;
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
 }
 
-/* line 41, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
-.mappedJS canvas,
-.mappedJS img {
+/* line 85, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs canvas,
+.mjs img {
 	display: block;
 }
 
-/* line 45, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
-.mappedJS .map-content {
+/* line 89, /Users/mduve/repository/mjs/plugin/src/styles/mappedJS.scss */
+.mjs .map-content {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -33,7 +85,7 @@
 }
 
 /* line 5, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container {
+.mjs .info-container {
 	position: absolute;
 	padding: 5px;
 	border-radius: 3px;
@@ -41,7 +93,7 @@
 }
 
 /* line 10, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container:after {
+.mjs .info-container:after {
 	position: absolute;
 	width: 15px;
 	height: 30px;
@@ -56,7 +108,7 @@
 }
 
 /* line 23, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container * {
+.mjs .info-container * {
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
@@ -64,7 +116,7 @@
 }
 
 /* line 26, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container img {
+.mjs .info-container img {
 	-webkit-user-drag: none;
 	user-drag: none;
 	-webkit-user-select: none;
@@ -75,7 +127,7 @@
 }
 
 /* line 32, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-right, .mappedJS .info-container.top-right {
+.mjs .info-container.bottom-right, .mjs .info-container.top-right {
 	left: 100%;
 	right: auto;
 	padding-right: 0;
@@ -84,7 +136,7 @@
 }
 
 /* line 39, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-right:after, .mappedJS .info-container.top-right:after {
+.mjs .info-container.bottom-right:after, .mjs .info-container.top-right:after {
 	right: 100%;
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
@@ -92,23 +144,23 @@
 }
 
 /* line 45, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-right.active, .mappedJS .info-container.top-right.active {
+.mjs .info-container.bottom-right.active, .mjs .info-container.top-right.active {
 	right: 0;
 	left: auto;
 }
 
 /* line 50, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-right {
+.mjs .info-container.bottom-right {
 	bottom: 3px;
 }
 
 /* line 53, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.top-right {
+.mjs .info-container.top-right {
 	top: 3px;
 }
 
 /* line 56, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-left, .mappedJS .info-container.top-left {
+.mjs .info-container.bottom-left, .mjs .info-container.top-left {
 	right: 100%;
 	left: auto;
 	padding-left: 0;
@@ -117,7 +169,7 @@
 }
 
 /* line 63, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-left:after, .mappedJS .info-container.top-left:after {
+.mjs .info-container.bottom-left:after, .mjs .info-container.top-left:after {
 	left: 100%;
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
@@ -125,23 +177,23 @@
 }
 
 /* line 69, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-left.active, .mappedJS .info-container.top-left.active {
+.mjs .info-container.bottom-left.active, .mjs .info-container.top-left.active {
 	left: 0;
 	right: auto;
 }
 
 /* line 74, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.bottom-left {
+.mjs .info-container.bottom-left {
 	bottom: 3px;
 }
 
 /* line 77, /Users/mduve/repository/mjs/plugin/src/styles/_info_container.scss */
-.mappedJS .info-container.top-left {
+.mjs .info-container.top-left {
 	top: 3px;
 }
 
 /* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_marker.scss */
-.mappedJS .marker-container {
+.mjs .marker-container {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -151,7 +203,7 @@
 }
 
 /* line 9, /Users/mduve/repository/mjs/plugin/src/styles/_marker.scss */
-.mappedJS .marker {
+.mjs .marker {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -160,12 +212,12 @@
 }
 
 /* line 15, /Users/mduve/repository/mjs/plugin/src/styles/_marker.scss */
-.mappedJS .marker:hover, .mappedJS .marker.active {
+.mjs .marker:hover, .mjs .marker.active {
 	background-position: center right;
 }
 
 /* line 2, /Users/mduve/repository/mjs/plugin/src/styles/_cluster.scss */
-.mappedJS .cluster {
+.mjs .cluster {
 	position: absolute;
 	width: 64px;
 	height: 64px;
@@ -184,44 +236,44 @@
 }
 
 /* line 18, /Users/mduve/repository/mjs/plugin/src/styles/_cluster.scss */
-.mappedJS .cluster:hover, .mappedJS .cluster.active {
+.mjs .cluster:hover, .mjs .cluster.active {
 	background-position: center right;
 	line-height: 42px;
 	color: #333;
 }
 
 /* line 5, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container {
+.mjs .control-container {
 	position: absolute;
 	z-index: 150;
 }
 
 /* line 8, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.bottom-right {
+.mjs .control-container.bottom-right {
 	bottom: 3px;
 	right: 3px;
 }
 
 /* line 12, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.bottom-left {
+.mjs .control-container.bottom-left {
 	bottom: 3px;
 	left: 3px;
 }
 
 /* line 16, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.top-left {
+.mjs .control-container.top-left {
 	top: 3px;
 	left: 3px;
 }
 
 /* line 20, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.top-right {
+.mjs .control-container.top-right {
 	top: 3px;
 	right: 3px;
 }
 
 /* line 24, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container .control {
+.mjs .control-container .control {
 	width: 36px;
 	height: 36px;
 	cursor: pointer;
@@ -231,79 +283,79 @@
 }
 
 /* line 32, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container .zoom-in {
+.mjs .control-container .zoom-in {
 	border-bottom: 1px solid;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }
 
 /* line 37, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container .zoom-out {
+.mjs .control-container .zoom-out {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
 
 /* line 41, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container .home {
+.mjs .control-container .home {
 	margin-bottom: 3px;
 }
 
 /* line 45, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.dark .control {
+.mjs .control-container.dark .control {
 	background-color: rgba(0, 0, 0, 0.5);
 	box-shadow: 0px 0px 0px 1px rgba(204, 204, 204, 0.2);
 }
 
 /* line 48, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.dark .control:hover {
+.mjs .control-container.dark .control:hover {
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* line 52, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.dark .zoom-in {
+.mjs .control-container.dark .zoom-in {
 	border-bottom-color: #888;
 	background-position: 100% 50%;
 }
 
 /* line 56, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.dark .zoom-out {
+.mjs .control-container.dark .zoom-out {
 	background-position: 100% 75%;
 }
 
 /* line 59, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.dark .home {
+.mjs .control-container.dark .home {
 	background-position: 100% 25%;
 }
 
 /* line 64, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.light .control {
+.mjs .control-container.light .control {
 	background-color: rgba(255, 255, 255, 0.5);
 	box-shadow: 0px 0px 0px 1px rgba(51, 51, 51, 0.2);
 }
 
 /* line 67, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.light .control:hover {
+.mjs .control-container.light .control:hover {
 	background-color: #fff;
 }
 
 /* line 71, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.light .zoom-in {
+.mjs .control-container.light .zoom-in {
 	border-bottom-color: #eee;
 	background-position: 0% 50%;
 }
 
 /* line 75, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.light .zoom-out {
+.mjs .control-container.light .zoom-out {
 	background-position: 0% 75%;
 }
 
 /* line 78, /Users/mduve/repository/mjs/plugin/src/styles/_controls.scss */
-.mappedJS .control-container.light .home {
+.mjs .control-container.light .home {
 	background-position: 0% 25%;
 }
 
 /* line 4, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
-.mappedJS .tooltip-container {
+.mjs .tooltip-container {
 	position: absolute;
 	bottom: -100%;
 	left: -100%;
@@ -314,7 +366,7 @@
 }
 
 /* line 12, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
-.mappedJS .tooltip-container .close-button {
+.mjs .tooltip-container .close-button {
 	position: absolute;
 	z-index: 1000;
 	top: 5px;
@@ -331,7 +383,7 @@
 }
 
 /* line 28, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
-.mappedJS .tooltip-container .close-button:hover {
+.mjs .tooltip-container .close-button:hover {
 	background-position: 100% 0%;
 }
 
@@ -388,7 +440,7 @@
 }
 
 /* line 72, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
-.mappedJS .tooltip-container .tooltip-content {
+.mjs .tooltip-container .tooltip-content {
 	height: 100%;
 	padding: 9px 9px 9px;
 	overflow-y: auto;
@@ -398,91 +450,91 @@
 }
 
 /* line 78, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip.scss */
-.mappedJS .tooltip-container .tooltip-content > * {
+.mjs .tooltip-container .tooltip-content > * {
 	width: 100%;
 }
 
 /* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_caption.scss */
-.mappedJS .tooltip-container .tooltip-content .caption {
+.mjs .tooltip-container .tooltip-content .caption {
 	display: block;
 	margin: 6px auto 36px auto;
 	font-size: 12px;
 }
 
 /* line 5, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_caption.scss */
-.mappedJS .tooltip-container .tooltip-content .caption .credit {
+.mjs .tooltip-container .tooltip-content .caption .credit {
 	display: block;
 	font-size: 85%;
 	color: #888;
 }
 
 /* line 2, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_image.scss */
-.mappedJS .tooltip-container .tooltip-content .mjs-image {
+.mjs .tooltip-container .tooltip-content .mjs-image {
 	margin: 18px 0 0 0;
 	height: auto;
 	max-height: 100%;
 }
 
 /* line 6, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_image.scss */
-.mappedJS .tooltip-container .tooltip-content .mjs-image img {
+.mjs .tooltip-container .tooltip-content .mjs-image img {
 	max-height: 100%;
 	max-width: 100%;
 	margin: 0 auto;
 }
 
 /* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_text.scss */
-.mappedJS .tooltip-container .tooltip-content p {
+.mjs .tooltip-container .tooltip-content p {
 	margin: 0 0 9px 0;
 	font-size: 15px;
 	text-align: justify;
 }
 
 /* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
-.mappedJS .tooltip-container .tooltip-content h2 {
+.mjs .tooltip-container .tooltip-content h2 {
 	margin: 0 0 6px 0;
 	font-size: 24px;
 }
 
 /* line 4, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
-.mappedJS .tooltip-container .tooltip-content h2 > * {
+.mjs .tooltip-container .tooltip-content h2 > * {
 	display: block;
 }
 
 /* line 7, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
-.mappedJS .tooltip-container .tooltip-content h2 .kicker {
+.mjs .tooltip-container .tooltip-content h2 .kicker {
 	font-size: 40%;
 	text-transform: uppercase;
 	font-weight: 700;
 }
 
 /* line 12, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
-.mappedJS .tooltip-container .tooltip-content h2 .headline {
+.mjs .tooltip-container .tooltip-content h2 .headline {
 	font-size: 100%;
 	font-weight: 700;
 }
 
 /* line 16, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_headline.scss */
-.mappedJS .tooltip-container .tooltip-content h2 .subheadline {
+.mjs .tooltip-container .tooltip-content h2 .subheadline {
 	font-size: 60%;
 	font-style: italic;
 	font-weight: 100;
 }
 
 /* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_crossheading.scss */
-.mappedJS .tooltip-container .tooltip-content h3 {
+.mjs .tooltip-container .tooltip-content h3 {
 	margin: 24px 0 3px 0;
 	font-weight: 700;
 	font-size: 110%;
 }
 
 /* line 1, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_iframe.scss */
-.mappedJS .tooltip-container .tooltip-content .mjs-iframe {
+.mjs .tooltip-container .tooltip-content .mjs-iframe {
 	width: auto;
 	margin: 0 auto;
 }
 
 /* line 4, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_iframe.scss */
-.mappedJS .tooltip-container .tooltip-content .mjs-iframe .embed-content {
+.mjs .tooltip-container .tooltip-content .mjs-iframe .embed-content {
 	position: relative;
 	display: block;
 	height: 0;
@@ -492,7 +544,7 @@
 }
 
 /* line 11, /Users/mduve/repository/mjs/plugin/src/styles/_tooltip_iframe.scss */
-.mappedJS .tooltip-container .tooltip-content .mjs-iframe .embed-content iframe {
+.mjs .tooltip-container .tooltip-content .mjs-iframe .embed-content iframe {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -500,4 +552,322 @@
 	width: 100%;
 	height: 100%;
 	border: 0;
+}
+
+@-webkit-keyframes flyIn {
+	0% {
+		-webkit-transform: translateY(100%) scale(0.6) scaleY(0.5);
+		        transform: translateY(100%) scale(0.6) scaleY(0.5);
+	}
+	60% {
+		-webkit-transform: translateY(-7%) scaleY(1.12);
+		        transform: translateY(-7%) scaleY(1.12);
+	}
+	75% {
+		-webkit-transform: translateY(3%);
+		        transform: translateY(3%);
+	}
+	100% {
+		-webkit-transform: translateY(0%) scale(1) scaleY(1);
+		        transform: translateY(0%) scale(1) scaleY(1);
+	}
+}
+
+@-moz-keyframes flyIn {
+	0% {
+		-moz-transform: translateY(100%) scale(0.6) scaleY(0.5);
+		     transform: translateY(100%) scale(0.6) scaleY(0.5);
+	}
+	60% {
+		-moz-transform: translateY(-7%) scaleY(1.12);
+		     transform: translateY(-7%) scaleY(1.12);
+	}
+	75% {
+		-moz-transform: translateY(3%);
+		     transform: translateY(3%);
+	}
+	100% {
+		-moz-transform: translateY(0%) scale(1) scaleY(1);
+		     transform: translateY(0%) scale(1) scaleY(1);
+	}
+}
+
+@-o-keyframes flyIn {
+	0% {
+		-o-transform: translateY(100%) scale(0.6) scaleY(0.5);
+		   transform: translateY(100%) scale(0.6) scaleY(0.5);
+	}
+	60% {
+		-o-transform: translateY(-7%) scaleY(1.12);
+		   transform: translateY(-7%) scaleY(1.12);
+	}
+	75% {
+		-o-transform: translateY(3%);
+		   transform: translateY(3%);
+	}
+	100% {
+		-o-transform: translateY(0%) scale(1) scaleY(1);
+		   transform: translateY(0%) scale(1) scaleY(1);
+	}
+}
+
+@keyframes flyIn {
+	0% {
+		-webkit-transform: translateY(100%) scale(0.6) scaleY(0.5);
+		   -moz-transform: translateY(100%) scale(0.6) scaleY(0.5);
+		     -o-transform: translateY(100%) scale(0.6) scaleY(0.5);
+		        transform: translateY(100%) scale(0.6) scaleY(0.5);
+	}
+	60% {
+		-webkit-transform: translateY(-7%) scaleY(1.12);
+		   -moz-transform: translateY(-7%) scaleY(1.12);
+		     -o-transform: translateY(-7%) scaleY(1.12);
+		        transform: translateY(-7%) scaleY(1.12);
+	}
+	75% {
+		-webkit-transform: translateY(3%);
+		   -moz-transform: translateY(3%);
+		     -o-transform: translateY(3%);
+		        transform: translateY(3%);
+	}
+	100% {
+		-webkit-transform: translateY(0%) scale(1) scaleY(1);
+		   -moz-transform: translateY(0%) scale(1) scaleY(1);
+		     -o-transform: translateY(0%) scale(1) scaleY(1);
+		        transform: translateY(0%) scale(1) scaleY(1);
+	}
+}
+
+@-webkit-keyframes wiggle {
+	0% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	20% {
+		-webkit-transform: rotate(-2deg);
+		        transform: rotate(-2deg);
+	}
+	35% {
+		-webkit-transform: rotate(2deg);
+		        transform: rotate(2deg);
+	}
+	50% {
+		-webkit-transform: rotate(-2deg);
+		        transform: rotate(-2deg);
+	}
+	65% {
+		-webkit-transform: rotate(1deg);
+		        transform: rotate(1deg);
+	}
+	80% {
+		-webkit-transform: rotate(-1deg);
+		        transform: rotate(-1deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+}
+
+@-moz-keyframes wiggle {
+	0% {
+		-moz-transform: rotate(0deg);
+		     transform: rotate(0deg);
+	}
+	20% {
+		-moz-transform: rotate(-2deg);
+		     transform: rotate(-2deg);
+	}
+	35% {
+		-moz-transform: rotate(2deg);
+		     transform: rotate(2deg);
+	}
+	50% {
+		-moz-transform: rotate(-2deg);
+		     transform: rotate(-2deg);
+	}
+	65% {
+		-moz-transform: rotate(1deg);
+		     transform: rotate(1deg);
+	}
+	80% {
+		-moz-transform: rotate(-1deg);
+		     transform: rotate(-1deg);
+	}
+	100% {
+		-moz-transform: rotate(0deg);
+		     transform: rotate(0deg);
+	}
+}
+
+@-o-keyframes wiggle {
+	0% {
+		-o-transform: rotate(0deg);
+		   transform: rotate(0deg);
+	}
+	20% {
+		-o-transform: rotate(-2deg);
+		   transform: rotate(-2deg);
+	}
+	35% {
+		-o-transform: rotate(2deg);
+		   transform: rotate(2deg);
+	}
+	50% {
+		-o-transform: rotate(-2deg);
+		   transform: rotate(-2deg);
+	}
+	65% {
+		-o-transform: rotate(1deg);
+		   transform: rotate(1deg);
+	}
+	80% {
+		-o-transform: rotate(-1deg);
+		   transform: rotate(-1deg);
+	}
+	100% {
+		-o-transform: rotate(0deg);
+		   transform: rotate(0deg);
+	}
+}
+
+@keyframes wiggle {
+	0% {
+		-webkit-transform: rotate(0deg);
+		   -moz-transform: rotate(0deg);
+		     -o-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+	20% {
+		-webkit-transform: rotate(-2deg);
+		   -moz-transform: rotate(-2deg);
+		     -o-transform: rotate(-2deg);
+		        transform: rotate(-2deg);
+	}
+	35% {
+		-webkit-transform: rotate(2deg);
+		   -moz-transform: rotate(2deg);
+		     -o-transform: rotate(2deg);
+		        transform: rotate(2deg);
+	}
+	50% {
+		-webkit-transform: rotate(-2deg);
+		   -moz-transform: rotate(-2deg);
+		     -o-transform: rotate(-2deg);
+		        transform: rotate(-2deg);
+	}
+	65% {
+		-webkit-transform: rotate(1deg);
+		   -moz-transform: rotate(1deg);
+		     -o-transform: rotate(1deg);
+		        transform: rotate(1deg);
+	}
+	80% {
+		-webkit-transform: rotate(-1deg);
+		   -moz-transform: rotate(-1deg);
+		     -o-transform: rotate(-1deg);
+		        transform: rotate(-1deg);
+	}
+	100% {
+		-webkit-transform: rotate(0deg);
+		   -moz-transform: rotate(0deg);
+		     -o-transform: rotate(0deg);
+		        transform: rotate(0deg);
+	}
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		-webkit-transform: scale(0);
+		        transform: scale(0);
+		opacity: 0.0;
+	}
+	60% {
+		-webkit-transform: scale(1.1);
+		        transform: scale(1.1);
+	}
+	80% {
+		-webkit-transform: scale(0.9);
+		        transform: scale(0.9);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: scale(1);
+		        transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadeIn {
+	0% {
+		-moz-transform: scale(0);
+		     transform: scale(0);
+		opacity: 0.0;
+	}
+	60% {
+		-moz-transform: scale(1.1);
+		     transform: scale(1.1);
+	}
+	80% {
+		-moz-transform: scale(0.9);
+		     transform: scale(0.9);
+		opacity: 1;
+	}
+	100% {
+		-moz-transform: scale(1);
+		     transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeIn {
+	0% {
+		-o-transform: scale(0);
+		   transform: scale(0);
+		opacity: 0.0;
+	}
+	60% {
+		-o-transform: scale(1.1);
+		   transform: scale(1.1);
+	}
+	80% {
+		-o-transform: scale(0.9);
+		   transform: scale(0.9);
+		opacity: 1;
+	}
+	100% {
+		-o-transform: scale(1);
+		   transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		-webkit-transform: scale(0);
+		   -moz-transform: scale(0);
+		     -o-transform: scale(0);
+		        transform: scale(0);
+		opacity: 0.0;
+	}
+	60% {
+		-webkit-transform: scale(1.1);
+		   -moz-transform: scale(1.1);
+		     -o-transform: scale(1.1);
+		        transform: scale(1.1);
+	}
+	80% {
+		-webkit-transform: scale(0.9);
+		   -moz-transform: scale(0.9);
+		     -o-transform: scale(0.9);
+		        transform: scale(0.9);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: scale(1);
+		   -moz-transform: scale(1);
+		     -o-transform: scale(1);
+		        transform: scale(1);
+		opacity: 1;
+	}
 }

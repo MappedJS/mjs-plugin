@@ -71,7 +71,15 @@ export class TileMap {
      * @return {View} view
      */
     get view() {
-        return this.levelHandler.current.instance;
+        return this.currentLevel.instance;
+    }
+
+    /**
+     * current level
+     * @return {Object} information of level
+     */
+    get currentLevel() {
+        return this.levelHandler.current;
     }
 
     /**
@@ -100,80 +108,75 @@ export class TileMap {
             throw Error("You must define a container to initialize a TileMap");
         }
 
-        this.container = container;
-        this.id = id;
-        this.settings = settings;
-
-        this.markers = [];
-
-        this.initialize(tilesData);
+        this.initializeInstanceVariables(id, container, settings, tilesData);
         this.initializeCanvas();
+        this.initializeLevels(tilesData);
+        this.bindEvents();
+        this.resizeCanvas();
+        this.view.init();
 
-        this.thumbsLoaded = 0;
+        this.eventManager.publish(Events.MapInformation.UPDATE, {
+            view: this.view.view,
+            viewport: this.viewport,
+            bounds: this.currentLevel.bounds,
+            zoom: this.currentLevel.zoom,
+            center: this.currentLevel.center
+        });
 
-        Helper.forEach(this.imgData, (element, i) => {
+        this.reset();
+        return this;
+    }
+
+    /**
+     * initializes all levels
+     * @param  {Object} tilesData = {} - json object representing data of TileMap
+     * @return {TileMap} instance of TileMap for chaining
+     */
+    initializeLevels(tilesData) {
+        Helper.forEach(tilesData[Events.TileMap.IMG_DATA_NAME], (element, i) => {
             const currentLevel = {
                 value: element,
                 level: i,
                 instance: this.createViewFromData(element),
-                bounds: settings.bounds,
-                center: settings.center,
-                zoom: settings.zoom
+                bounds: this.settings.bounds,
+                center: this.settings.center,
+                zoom: this.settings.zoom
             };
             this.levels.push(currentLevel);
         });
 
         this.levelHandler = new StateHandler(this.levels);
         this.levelHandler.changeTo(this.settings.level);
-
-        this.bindEvents();
-        this.resizeCanvas();
-
-        this.eventManager.publish(Events.MapInformation.UPDATE, {
-            bounds: this.levelHandler.current.bounds,
-            zoom: this.levelHandler.current.zoom,
-            center: this.levelHandler.current.center
-        });
-        this.view.init();
-        this.reset();
         return this;
     }
 
     /**
-     * initialize map
-     * @param  {Object} tilesData - data of tiles, markers and markers
+     * initialize all variables
+     * @param  {Number} id = 0 - id of parent instance
+     * @param  {HTMLElement} container = null - jQuery-object holding the container
+     * @param  {Object} tilesData = {} - json object representing data of TileMap
+     * @param  {Object} settings = {} - json object representing settings of TileMap
+
      * @return {TileMap} instance of TileMap for chaining
      */
-    initialize(tilesData) {
+    initializeInstanceVariables(id, container, settings, tilesData) {
+        this.container = container;
+        this.id = id;
+        this.settings = settings;
+        this.markers = [];
+        this.thumbsLoaded = 0;
         this.info = new MapInformation(this.id);
         this.eventManager = new Publisher(this.id);
-
-        this.eventManager.publish(Events.MapInformation.UPDATE, {
-            viewport: this.viewport
-        });
-
-        this.imgData = tilesData[Events.TileMap.IMG_DATA_NAME];
         this.markerData = tilesData[Events.TileMap.MARKER_DATA_NAME];
-
-        this.templates = (this.settings.tooltip) ? this.settings.tooltip.templates : {};
-
         this.levels = [];
         this.clusterHandlingTimeout = null;
-
-        this.lastFrameMillisecs = Date.now();
-        this.deltaTiming = 1.0;
-        this.bestDeltaTiming = 1000.0 / 60.0;
-
-        this.velocity = new Point();
-        this.drawIsNeeded = false;
-
+        this.templates = (this.settings.tooltip) ? this.settings.tooltip.templates : {};
         this.initial = {
             bounds: this.settings.bounds,
             center: this.settings.center,
             level: this.settings.level,
             zoom: this.settings.zoom
         };
-
         return this;
     }
 
@@ -204,14 +207,14 @@ export class TileMap {
      */
     reset() {
         const newLevel = this.checkIfLevelCanFitBounds();
-        if (this.levelHandler.current.level !== this.settings.level) {
+        if (this.currentLevel.level !== this.settings.level) {
             this.levelHandler.changeTo(newLevel);
         }
         this.eventManager.publish(Events.MapInformation.UPDATE, {
-            view: this.levelHandler.current.instance.view,
-            bounds: this.levelHandler.current.bounds,
-            level: this.levelHandler.current.level,
-            center: this.levelHandler.current.center,
+            view: this.view.view,
+            bounds: this.currentLevel.bounds,
+            level: this.currentLevel.level,
+            center: this.currentLevel.center,
             zoomFactor: this.initial.zoom
         });
         this.view.reset(this.initial.center, this.initial.zoom);
@@ -244,6 +247,7 @@ export class TileMap {
             context: this.canvasContext,
             container: this.markerContainer || document.body
         });
+        this.eventManager.publish(Events.MarkerClusterer.CLUSTERIZE);
         return this;
     }
 
@@ -261,7 +265,7 @@ export class TileMap {
             minZoom: (data.zoom) ? data.zoom.min : 1,
             context: this.canvasContext,
             centerSmallMap: this.settings.centerSmallMap,
-            limitToBounds: this.settings.limitToBounds || this.levelHandler.current.bounds
+            limitToBounds: this.settings.limitToBounds || this.currentLevel.bounds
         });
     }
 
@@ -349,9 +353,9 @@ export class TileMap {
         this.redraw();
         this.thumbsLoaded++;
         if (this.thumbsLoaded === this.levels.length) {
-            this.createTooltipContainer();
             this.initializeMarkers();
             window.requestAnimFrame(this.mainLoop.bind(this));
+            this.createTooltipContainer();
         }
         return this;
     }
@@ -378,29 +382,29 @@ export class TileMap {
      * @return {TileMap} instance of TileMap for chaining
      */
     changelevel(direction) {
-        const lastLevel = this.levelHandler.current.level,
+        const lastLevel = this.currentLevel.level,
             lastCenter = this.view.view.center;
         let extrema;
         if (direction < 0) {
             this.levelHandler.previous();
             extrema = this.view.maxZoom;
-        } else {
+        } else if (direction > 0) {
             this.levelHandler.next();
             extrema = this.view.minZoom;
         }
         this.eventManager.publish(Events.MapInformation.UPDATE, {
-            bounds: this.levelHandler.current.bounds,
-            zoom: this.levelHandler.current.zoom,
-            center: this.levelHandler.current.center
+            bounds: this.currentLevel.bounds,
+            zoom: this.currentLevel.zoom,
+            center: this.currentLevel.center
         });
         if (!this.view.isInitialized) {
             this.view.init();
         }
-        if (lastLevel !== this.levelHandler.current.level) {
+        if (lastLevel !== this.currentLevel.level) {
             this.setViewToOldView(lastCenter, extrema);
         }
         this.eventManager.publish(Events.MapInformation.UPDATE, {
-            level: this.levelHandler.current.level
+            level: this.currentLevel.level
         });
         return this;
     }
@@ -414,6 +418,11 @@ export class TileMap {
         this.canvas.classList.add("mjs-canvas");
         this.container.appendChild(this.canvas);
         this.canvasContext = this.canvas.getContext("2d");
+        this.lastFrameMillisecs = Date.now();
+        this.deltaTiming = 1.0;
+        this.bestDeltaTiming = 1000.0 / 60.0;
+        this.velocity = new Point();
+        this.drawIsNeeded = false;
         return this;
     }
 

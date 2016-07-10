@@ -1,10 +1,10 @@
 @charset "UTF-8";
-
 $gutter: 3px;
-
 $icons: url('../../img/icons.png') center center no-repeat;
+$preloader-size: 100px;
 
 $themes: (
+    background: #f4f4f4,
     dark: (
         popupBg: rgb(0, 0, 0),
         background: rgba(0, 0, 0, .5),
@@ -12,7 +12,6 @@ $themes: (
         border: #888,
         shadow: 0px 0px 0px 1px rgba(204, 204, 204, 0.2),
         color: #efefef
-
     ),
     light: (
         popupBg: rgb(255, 255, 255),
@@ -24,14 +23,59 @@ $themes: (
     )
 );
 
+$colors: (
+    "highlight": #ea1c4c,
+    "base": #14aa79,
+    "dark": #404342,
+    "lighterdark": #2d2d2d,
+    "light": #e5e6e6,
+    "lightest": #fff,
+    "darkest": #000
+);
+
 $dark-theme: map-get($themes, dark);
 $light-theme: map-get($themes, light);
-
-.mappedJS {
+.mjs {
     position: relative;
     overflow: hidden;
+    background: map-get($themes, background);
+    &:before {
+        position: absolute;
+        content:"";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent url('data:image/png;base64,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') center center no-repeat;
+        transform-origin: 50% 70%;
+        background-size: 100px 150px;
+        animation: flyIn .7s 1 ease, wiggle 2s infinite ease .7s;
+    }
+    &:after {
+        position: absolute;
+        content:"loading";
+        top: 50%;
+        left: 50%;
+        width: $preloader-size * 2;
+        height: $preloader-size/2;
+        margin-top: ($preloader-size);
+        margin-left: -($preloader-size);
+        color: map-get($colors, base);
+        text-align: center;
+        animation: fadeIn .7s 1 ease-in-out;
+        font-family: "Vedana", sans-serif;
+        font-weight: 100;
+        font-size: 21px;
+    }
+    &.loaded {
+        &:after,
+        &:before {
+            animation: none;
+            display: none;
+        }
+    }
     &:focus {
-            outline: 0;
+        outline: 0;
     }
     * {
         box-sizing: border-box;
@@ -54,5 +98,61 @@ $light-theme: map-get($themes, light);
     @import "_cluster.scss";
     @import "_controls.scss";
     @import "_tooltip.scss";
+}
 
+@keyframes flyIn {
+	0% {
+		transform: translateY(100%) scale(0.6) scaleY(0.5);
+	}
+	60%{
+		transform: translateY(-7%) scaleY(1.12);
+	}
+	75%{
+		transform: translateY(3%);
+	}
+	100% {
+		transform: translateY(0%) scale(1) scaleY(1);
+	}
+}
+
+@keyframes wiggle {
+	0% {
+		transform: rotate(0deg);
+	}
+	20% {
+		transform: rotate(-2deg);
+	}
+	35% {
+		transform: rotate(2deg);
+	}
+	50% {
+		transform: rotate(-2deg);
+	}
+	65% {
+		transform: rotate(1deg);
+	}
+	80% {
+		transform: rotate(-1deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		transform: scale(0);
+		opacity: 0.0;
+	}
+	60% {
+		transform: scale(1.1);
+	}
+	80% {
+		transform: scale(0.9);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
 }
