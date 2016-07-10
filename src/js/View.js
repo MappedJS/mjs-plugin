@@ -59,6 +59,7 @@ export class View extends Drawable {
     }) {
         super(id);
 
+        this.tiles = [];
         this.maxZoom = maxZoom;
         this.minZoom = minZoom;
         this.limitToBounds = limitToBounds;
@@ -67,11 +68,6 @@ export class View extends Drawable {
 
         this.originalMapView = view.clone;
 
-        this.eventManager.publish(Events.MapInformation.UPDATE, {
-            view: view
-        });
-
-        this.tiles = [];
         this.data = data;
         this.context = context;
 
@@ -357,6 +353,9 @@ export class View extends Drawable {
      * @return {View} instance of View for chaining
      */
     draw() {
+        if (!this.isInitialized) {
+            this.init();
+        }
         return this.drawThumbnail().drawVisibleTiles();
     }
 
@@ -366,6 +365,7 @@ export class View extends Drawable {
      */
     drawVisibleTiles() {
         Helper.forEach(this.visibleTiles, (tile) => {
+
             tile.draw();
         });
         return this;

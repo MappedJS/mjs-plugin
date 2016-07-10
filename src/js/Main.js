@@ -421,6 +421,7 @@ export class MappedJS {
      * @return {MappedJS} instance of MappedJS for chaining
      */
     loadingFinished() {
+        this.container.classList.add("loaded");
         return this;
     }
 

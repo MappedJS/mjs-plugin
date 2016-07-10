@@ -2718,8 +2718,10 @@ States of a tile
     * [.height](#TileMap+height) ⇒ <code>Number</code>
     * [.viewport](#TileMap+viewport) ⇒ <code>[Rectangle](#Rectangle)</code>
     * [.view](#TileMap+view) ⇒ <code>[View](#View)</code>
+    * [.currentLevel](#TileMap+currentLevel) ⇒ <code>Object</code>
     * [.clusters](#TileMap+clusters) ⇒ <code>Array</code>
-    * [.initialize(tilesData)](#TileMap+initialize) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.initializeLevels(tilesData)](#TileMap+initializeLevels) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.initializeInstanceVariables(id, container, tilesData, settings)](#TileMap+initializeInstanceVariables) ⇒ <code>[TileMap](#TileMap)</code>
     * [.checkIfLevelCanFitBounds()](#TileMap+checkIfLevelCanFitBounds) ⇒ <code>Number</code>
     * [.reset()](#TileMap+reset) ⇒ <code>[TileMap](#TileMap)</code>
     * [.initializeMarkers()](#TileMap+initializeMarkers) ⇒ <code>[TileMap](#TileMap)</code>
@@ -2782,6 +2784,13 @@ current view
 
 **Kind**: instance property of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[View](#View)</code> - view  
+<a name="TileMap+currentLevel"></a>
+
+### tileMap.currentLevel ⇒ <code>Object</code>
+current level
+
+**Kind**: instance property of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>Object</code> - information of level  
 <a name="TileMap+clusters"></a>
 
 ### tileMap.clusters ⇒ <code>Array</code>
@@ -2789,16 +2798,30 @@ returns all clusters
 
 **Kind**: instance property of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>Array</code> - array of clusters  
-<a name="TileMap+initialize"></a>
+<a name="TileMap+initializeLevels"></a>
 
-### tileMap.initialize(tilesData) ⇒ <code>[TileMap](#TileMap)</code>
-initialize map
+### tileMap.initializeLevels(tilesData) ⇒ <code>[TileMap](#TileMap)</code>
+initializes all levels
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 **Params**
 
-- tilesData <code>Object</code> - data of tiles, markers and markers
+- tilesData <code>Object</code> - = {} - json object representing data of TileMap
+
+<a name="TileMap+initializeInstanceVariables"></a>
+
+### tileMap.initializeInstanceVariables(id, container, tilesData, settings) ⇒ <code>[TileMap](#TileMap)</code>
+initialize all variables
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
+**Params**
+
+- id <code>Number</code> - = 0 - id of parent instance
+- container <code>HTMLElement</code> - = null - jQuery-object holding the container
+- tilesData <code>Object</code> - = {} - json object representing data of TileMap
+- settings <code>Object</code> - = {} - json object representing settings of TileMap
 
 <a name="TileMap+checkIfLevelCanFitBounds"></a>
 
