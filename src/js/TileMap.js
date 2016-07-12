@@ -530,8 +530,8 @@ export class TileMap {
         if (this.drawIsNeeded) {
             this.canvasContext.clearRect(0, 0, this.width, this.height);
             this.view.draw();
-            this.drawClusters();
             this.drawMarkers();
+            this.drawClusters();
             this.drawIsNeeded = false;
         }
 
