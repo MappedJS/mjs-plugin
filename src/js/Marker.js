@@ -43,6 +43,9 @@ export class Marker extends Drawable {
      * @return {Rectangle} dimensions
      */
     get boundingBox() {
+        if (!this.icon) {
+            return new Rectangle();
+        }
         return new Rectangle(this.position.x + this.offset.x, this.position.y + this.offset.y, this.icon.size.x, this.icon.size.y);
     }
 
@@ -177,11 +180,9 @@ export class Marker extends Drawable {
             if (this.text) {
                 textPos = pos.clone.add(this.text.offset);
             }
-            if (this.texture.ready) {
-                this.context.beginPath();
-                this.drawElements(pos, textPos);
-                this.context.closePath();
-            }
+            this.context.beginPath();
+            this.drawElements(pos, textPos);
+            this.context.closePath();
         }
         return this;
     }
@@ -209,10 +210,16 @@ export class Marker extends Drawable {
         if (text && icon) {
             return (pos, textPos) => {
                 this.drawText(textPos);
-                this.drawIcon(pos);
+                if (this.texture.ready) {
+                    this.drawIcon(pos);
+                }
             };
         } else if (icon) {
-            return (pos) => this.drawIcon(pos);
+            return (pos) => {
+                if (this.texture.ready) {
+                    this.drawIcon(pos);
+                }
+            };
         } else if (text) {
             return (pos, textPos) => this.drawText(textPos);
         }

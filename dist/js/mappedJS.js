@@ -4754,8 +4754,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.drawIsNeeded) {
 	            this.canvasContext.clearRect(0, 0, this.width, this.height);
 	            this.view.draw();
-	            this.drawClusters();
 	            this.drawMarkers();
+	            this.drawClusters();
 	            this.drawIsNeeded = false;
 	        }
 
@@ -6008,6 +6008,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'boundingBox',
 	        get: function get() {
+	            if (!this.icon) {
+	                return new _Rectangle.Rectangle();
+	            }
 	            return new _Rectangle.Rectangle(this.position.x + this.offset.x, this.position.y + this.offset.y, this.icon.size.x, this.icon.size.y);
 	        }
 
@@ -6175,11 +6178,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (this.text) {
 	                textPos = pos.clone.add(this.text.offset);
 	            }
-	            if (this.texture.ready) {
-	                this.context.beginPath();
-	                this.drawElements(pos, textPos);
-	                this.context.closePath();
-	            }
+	            this.context.beginPath();
+	            this.drawElements(pos, textPos);
+	            this.context.closePath();
 	        }
 	        return this;
 	    };
@@ -6213,11 +6214,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (text && icon) {
 	            return function (pos, textPos) {
 	                _this4.drawText(textPos);
-	                _this4.drawIcon(pos);
+	                if (_this4.texture.ready) {
+	                    _this4.drawIcon(pos);
+	                }
 	            };
 	        } else if (icon) {
 	            return function (pos) {
-	                return _this4.drawIcon(pos);
+	                if (_this4.texture.ready) {
+	                    _this4.drawIcon(pos);
+	                }
 	            };
 	        } else if (text) {
 	            return function (pos, textPos) {
