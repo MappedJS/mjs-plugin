@@ -63,6 +63,7 @@ export const Helper = {
      */
     hide(elem) {
         elem.style.display = "none";
+        return this;
     },
     /**
      * applies css to given HTMLElement
