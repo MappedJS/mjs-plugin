@@ -55,7 +55,7 @@ export const DataEnrichment = {
             if (entry.icon && typeof entry.icon.size !== "number") {
                 entry.icon.size = new Point(entry.icon.size[0], entry.icon.size[1]);
             }
-            
+
             enrichedData.push(entry);
         });
 

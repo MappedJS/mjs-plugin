@@ -86,11 +86,9 @@ export class Marker extends Drawable {
 
         if (this.icon && this.icon.type === "circle") {
             this.drawIconType = this.drawCircleIcon(this.icon.size);
-        }
-        else if (this.icon && this.icon.type === "square") {
+        } else if (this.icon && this.icon.type === "square") {
             this.drawIconType = this.drawSquareIcon(this.icon.size);
-        }
-        else if (this.icon && this.icon.type === "image") {
+        } else if (this.icon && this.icon.type === "image") {
             this.texture = new Texture({
                 path: this.icon.url,
                 size: this.icon.size,
@@ -142,7 +140,7 @@ export class Marker extends Drawable {
         if (this.isHovered !== isHovered) {
             this.eventManager.publish(Events.TileMap.DRAW);
         }
-        document.body.style.cursor = (isHovered || oneIsHit) ? 'pointer': 'default';
+        document.body.style.cursor = (isHovered || oneIsHit) ? 'pointer' : 'default';
         this.isHovered = isHovered;
         return isHovered;
     }
@@ -242,9 +240,9 @@ export class Marker extends Drawable {
      * @param  {Point} pos - origin of marker
      */
     drawIcon(pos) {
-            this.context.fillStyle = this.icon.color;
-            this.drawIconType(pos);
-            this.context.fill();
+        this.context.fillStyle = this.icon.color;
+        this.drawIconType(pos);
+        this.context.fill();
     }
 
     /**

@@ -463,7 +463,7 @@ export class TileMap {
     zoom(factor, position) {
         if (factor !== 0) {
             const levelChanged = this.view.zoom(factor, position);
-            if (levelChanged === 1 && this.levelHandler.hasNext() || levelChanged === -1 && this.levelHandler.hasPrevious() ) {
+            if (levelChanged === 1 && this.levelHandler.hasNext() || levelChanged === -1 && this.levelHandler.hasPrevious()) {
                 this.zoom(factor, position);
             }
             this.clusterHandler();

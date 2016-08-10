@@ -90,8 +90,8 @@ export class ToolTip {
      * @return {ToolTip} instance of ToolTip for chaining
      */
     registerHandlebarHelpers() {
-        if (Handlebars||window.Handlebars) {
-            (Handlebars||window.Handlebars).registerHelper('getRatio', (w, h) => (h / w * 100 + "%"));
+        if (Handlebars || window.Handlebars) {
+            (Handlebars || window.Handlebars).registerHelper('getRatio', (w, h) => (h / w * 100 + "%"));
         }
         return this;
     }
@@ -203,7 +203,7 @@ export class ToolTip {
     compileTemplates() {
         Helper.forEach(this.templates, (template, type) => {
             Helper.getFile(template, (html) => {
-                this.templates[type] = (Handlebars||window.Handlebars).compile(html);
+                this.templates[type] = (Handlebars || window.Handlebars).compile(html);
                 this.loadedTemplates++;
                 if (this.allTemplatesLoaded) {
                     this.container.appendChild(this.popup);
