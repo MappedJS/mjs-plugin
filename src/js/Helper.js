@@ -63,6 +63,7 @@ export const Helper = {
      */
     hide(elem) {
         elem.style.display = "none";
+        return this;
     },
     /**
      * applies css to given HTMLElement
@@ -133,8 +134,7 @@ export const Helper = {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200 && callback) {
                     callback(xhr.responseText);
-                }
-                else {
+                } else {
                     throw new Error("The JSON submitted seems not valid", xhr);
                 }
             }

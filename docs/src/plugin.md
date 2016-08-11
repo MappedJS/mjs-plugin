@@ -310,6 +310,8 @@ gets cross-browser scroll-event
     * [new Bounds(northWest, southEast)](#new_Bounds_new)
     * [.width](#Bounds+width) ⇒ <code>Number</code>
     * [.height](#Bounds+height) ⇒ <code>Number</code>
+    * [.equals(bounds)](#Bounds+equals) ⇒ <code>Boolean</code>
+    * [.toString()](#Bounds+toString) ⇒ <code>String</code>
 
 <a name="new_Bounds_new"></a>
 
@@ -334,6 +336,24 @@ get height of boundaries
 
 **Kind**: instance property of <code>[Bounds](#Bounds)</code>  
 **Returns**: <code>Number</code> - distance between north and south boundary  
+<a name="Bounds+equals"></a>
+
+### bounds.equals(bounds) ⇒ <code>Boolean</code>
+check if specified bounds equals this bounds
+
+**Kind**: instance method of <code>[Bounds](#Bounds)</code>  
+**Returns**: <code>Boolean</code> - Whether they are equal or not  
+**Params**
+
+- bounds <code>[Bounds](#Bounds)</code> - specified bounds
+
+<a name="Bounds+toString"></a>
+
+### bounds.toString() ⇒ <code>String</code>
+string representation
+
+**Kind**: instance method of <code>[Bounds](#Bounds)</code>  
+**Returns**: <code>String</code> - string representation of object  
 <a name="Cluster"></a>
 
 ## Cluster
@@ -2722,7 +2742,6 @@ States of a tile
     * [.clusters](#TileMap+clusters) ⇒ <code>Array</code>
     * [.initializeLevels(tilesData)](#TileMap+initializeLevels) ⇒ <code>[TileMap](#TileMap)</code>
     * [.initializeInstanceVariables(id, container, tilesData, settings)](#TileMap+initializeInstanceVariables) ⇒ <code>[TileMap](#TileMap)</code>
-    * [.checkIfLevelCanFitBounds()](#TileMap+checkIfLevelCanFitBounds) ⇒ <code>Number</code>
     * [.reset()](#TileMap+reset) ⇒ <code>[TileMap](#TileMap)</code>
     * [.initializeMarkers()](#TileMap+initializeMarkers) ⇒ <code>[TileMap](#TileMap)</code>
     * [.createViewFromData(data)](#TileMap+createViewFromData) ⇒ <code>[View](#View)</code>
@@ -2742,6 +2761,7 @@ States of a tile
     * [.resizeCanvas()](#TileMap+resizeCanvas) ⇒ <code>[TileMap](#TileMap)</code>
     * [.resizeView()](#TileMap+resizeView) ⇒ <code>[TileMap](#TileMap)</code>
     * [.mainLoop()](#TileMap+mainLoop)
+    * [.checkAoIBoundaries()](#TileMap+checkAoIBoundaries) ⇒ <code>[TileMap](#TileMap)</code>
     * [.drawClusters()](#TileMap+drawClusters) ⇒ <code>[TileMap](#TileMap)</code>
     * [.drawMarkers()](#TileMap+drawMarkers) ⇒ <code>[TileMap](#TileMap)</code>
 
@@ -2823,13 +2843,6 @@ initialize all variables
 - tilesData <code>Object</code> - = {} - json object representing data of TileMap
 - settings <code>Object</code> - = {} - json object representing settings of TileMap
 
-<a name="TileMap+checkIfLevelCanFitBounds"></a>
-
-### tileMap.checkIfLevelCanFitBounds() ⇒ <code>Number</code>
-check if level can fit boundaries and if not iterate to closer level
-
-**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
-**Returns**: <code>Number</code> - level  
 <a name="TileMap+reset"></a>
 
 ### tileMap.reset() ⇒ <code>[TileMap](#TileMap)</code>
@@ -2993,6 +3006,13 @@ Handles resizing of view
 main draw call
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+<a name="TileMap+checkAoIBoundaries"></a>
+
+### tileMap.checkAoIBoundaries() ⇒ <code>[TileMap](#TileMap)</code>
+checks area of interest boundaries and resets positions if outside
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 <a name="TileMap+drawClusters"></a>
 
 ### tileMap.drawClusters() ⇒ <code>[TileMap](#TileMap)</code>
@@ -3143,7 +3163,7 @@ precompiles all Handlebars templates
 **Kind**: global class  
 
 * [View](#View)
-    * [new View(view, data, context, maxZoom, minZoom, limitToBounds, centerSmallMap, id)](#new_View_new)
+    * [new View(view, data, context, maxZoom, minZoom, aoiBounds, id)](#new_View_new)
     * [.visibleTiles](#View+visibleTiles) ⇒ <code>array</code>
     * [.init()](#View+init) ⇒ <code>[View](#View)</code>
     * [.reset()](#View+reset) ⇒ <code>[View](#View)</code>
@@ -3166,7 +3186,7 @@ precompiles all Handlebars templates
 
 <a name="new_View_new"></a>
 
-### new View(view, data, context, maxZoom, minZoom, limitToBounds, centerSmallMap, id)
+### new View(view, data, context, maxZoom, minZoom, aoiBounds, id)
 **Returns**: <code>[View](#View)</code> - instance of View for chaining  
 **Params**
 
@@ -3175,8 +3195,7 @@ precompiles all Handlebars templates
 - context <code>CanvasRenderingContext2D</code> - = null - canvas context for drawing
 - maxZoom <code>Number</code> - = 1.5 - maximal zoom of view
 - minZoom <code>Number</code> - = 0.8 - minimal zoom of view
-- limitToBounds <code>Number</code> - where to limit panning
-- centerSmallMap <code>Boolean</code> - = false - if map is smaller than viewport, center it
+- aoiBounds <code>Number</code> - where to limit panning
 - id <code>Number</code> - = 0 - id of parent instance
 
 <a name="View+visibleTiles"></a>
@@ -3381,8 +3400,8 @@ Eventnames for ToolTip class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- OPEN <code>Object</code> - when a tooltip should be openend  
-- CLOSE <code>Object</code> - when a tooltip should be closed  
+- OPEN <code>String</code> - when a tooltip should be openend  
+- CLOSE <code>String</code> - when a tooltip should be closed  
 
 <a name="Events.Publisher"></a>
 
@@ -3392,9 +3411,9 @@ Eventnames for Publisher class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- PUBLISH <code>Object</code> - notifies all subscribers  
-- SUBSCRIBE <code>Object</code> - subscribes to a topic  
-- UNSUBSCRIBE <code>Object</code> - unsubscribes from a topic  
+- PUBLISH <code>String</code> - notifies all subscribers  
+- SUBSCRIBE <code>String</code> - subscribes to a topic  
+- UNSUBSCRIBE <code>String</code> - unsubscribes from a topic  
 
 <a name="Events.TileMap"></a>
 
@@ -3404,13 +3423,13 @@ Eventnames for TileMap class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- IMG_DATA_NAME <code>Object</code> - name of img data  
-- MARKER_DATA_NAME <code>Object</code> - name of marker data  
-- NEXT_LEVEL <code>Object</code> - next level of view  
-- PREVIOUS_LEVEL <code>Object</code> - previous level of view  
-- RESIZE <code>Object</code> - resize of view needed  
-- ZOOM_TO_BOUNDS <code>Object</code> - zoom to bounds  
-- DRAW <code>Object</code> - draw is needed  
+- IMG_DATA_NAME <code>String</code> - name of img data  
+- MARKER_DATA_NAME <code>String</code> - name of marker data  
+- NEXT_LEVEL <code>String</code> - next level of view  
+- PREVIOUS_LEVEL <code>String</code> - previous level of view  
+- RESIZE <code>String</code> - resize of view needed  
+- ZOOM_TO_BOUNDS <code>String</code> - zoom to bounds  
+- DRAW <code>String</code> - draw is needed  
 
 <a name="Events.Handling"></a>
 
@@ -3420,15 +3439,15 @@ Eventnames for Handling in all classes
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- RESIZE <code>Object</code> - resize of window happened needed  
-- CLICK <code>Object</code> - click occured  
-- TOUCHSTART <code>Object</code> - Touch started  
-- TOUCHEND <code>Object</code> - Touch ended  
-- MOUSEDOWN <code>Object</code> - Mouse started  
-- MOUSEUP <code>Object</code> - Mouse ended  
-- KEYDOWN <code>Object</code> - key pressed  
-- KEYUP <code>Object</code> - key released  
-- ENTER <code>Object</code> - entering of mouse  
+- RESIZE <code>String</code> - resize of window happened needed  
+- CLICK <code>String</code> - click occured  
+- TOUCHSTART <code>String</code> - Touch started  
+- TOUCHEND <code>String</code> - Touch ended  
+- MOUSEDOWN <code>String</code> - Mouse started  
+- MOUSEUP <code>String</code> - Mouse ended  
+- KEYDOWN <code>String</code> - key pressed  
+- KEYUP <code>String</code> - key released  
+- ENTER <code>String</code> - entering of mouse  
 
 <a name="Events.View"></a>
 
@@ -3438,7 +3457,7 @@ Eventnames for View class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- THUMB_LOADED <code>Object</code> - thumbnail was loaded  
+- THUMB_LOADED <code>String</code> - thumbnail was loaded  
 
 <a name="Events.MarkerClusterer"></a>
 
@@ -3448,8 +3467,8 @@ Eventnames for MarkerClusterer class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- CLUSTERIZE <code>Object</code> - create cluster  
-- UNCLUSTERIZE <code>Object</code> - destroy cluster  
+- CLUSTERIZE <code>String</code> - create cluster  
+- UNCLUSTERIZE <code>String</code> - destroy cluster  
 
 <a name="Events.MapInformation"></a>
 
@@ -3459,7 +3478,7 @@ Eventnames for MapInformation class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- UPDATE <code>Object</code> - updates informations  
+- UPDATE <code>String</code> - updates informations  
 
 <a name="Events.General"></a>
 
@@ -3469,8 +3488,8 @@ Eventnames for MappedJS class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- ACTIVE <code>Object</code> - DomElement is marked active  
-- ZOOM_IN <code>Object</code> - zoom in button  
-- ZOOM_OUT <code>Object</code> - zoom out button  
-- HOME <code>Object</code> - home button  
+- ACTIVE <code>String</code> - DomElement is marked active  
+- ZOOM_IN <code>String</code> - zoom in button  
+- ZOOM_OUT <code>String</code> - zoom out button  
+- HOME <code>String</code> - home button  
 

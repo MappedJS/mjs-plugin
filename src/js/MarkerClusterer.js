@@ -96,7 +96,7 @@ export class MarkerClusterer {
 
         }
 
-        for (let i = this.clusters.length-1; i >= 0; i--) {
+        for (let i = this.clusters.length - 1; i >= 0; i--) {
             const cluster = this.clusters[i];
             if (cluster.markers.length > 1) {
                 cluster.init();

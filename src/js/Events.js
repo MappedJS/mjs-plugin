@@ -9,8 +9,8 @@ export const Events = {
      * Eventnames for ToolTip class
      * @type {Object}
      * @memberof Events
-     * @property {Object} OPEN - when a tooltip should be openend
-     * @property {Object} CLOSE - when a tooltip should be closed
+     * @property {String} OPEN - when a tooltip should be openend
+     * @property {String} CLOSE - when a tooltip should be closed
      */
     ToolTip: {
         OPEN: "tooltip-open",
@@ -20,9 +20,9 @@ export const Events = {
      * Eventnames for Publisher class
      * @type {Object}
      * @memberof Events
-     * @property {Object} PUBLISH - notifies all subscribers
-     * @property {Object} SUBSCRIBE - subscribes to a topic
-     * @property {Object} UNSUBSCRIBE - unsubscribes from a topic
+     * @property {String} PUBLISH - notifies all subscribers
+     * @property {String} SUBSCRIBE - subscribes to a topic
+     * @property {String} UNSUBSCRIBE - unsubscribes from a topic
      */
     Publisher: {
         PUBLISH: "publish",
@@ -33,13 +33,13 @@ export const Events = {
      * Eventnames for TileMap class
      * @type {Object}
      * @memberof Events
-     * @property {Object} IMG_DATA_NAME - name of img data
-     * @property {Object} MARKER_DATA_NAME - name of marker data
-     * @property {Object} NEXT_LEVEL - next level of view
-     * @property {Object} PREVIOUS_LEVEL - previous level of view
-     * @property {Object} RESIZE - resize of view needed
-     * @property {Object} ZOOM_TO_BOUNDS - zoom to bounds
-     * @property {Object} DRAW - draw is needed
+     * @property {String} IMG_DATA_NAME - name of img data
+     * @property {String} MARKER_DATA_NAME - name of marker data
+     * @property {String} NEXT_LEVEL - next level of view
+     * @property {String} PREVIOUS_LEVEL - previous level of view
+     * @property {String} RESIZE - resize of view needed
+     * @property {String} ZOOM_TO_BOUNDS - zoom to bounds
+     * @property {String} DRAW - draw is needed
      */
     TileMap: {
         IMG_DATA_NAME: "img_data",
@@ -54,15 +54,15 @@ export const Events = {
      * Eventnames for Handling in all classes
      * @type {Object}
      * @memberof Events
-     * @property {Object} RESIZE - resize of window happened needed
-     * @property {Object} CLICK - click occured
-     * @property {Object} TOUCHSTART - Touch started
-     * @property {Object} TOUCHEND - Touch ended
-     * @property {Object} MOUSEDOWN - Mouse started
-     * @property {Object} MOUSEUP - Mouse ended
-     * @property {Object} KEYDOWN - key pressed
-     * @property {Object} KEYUP - key released
-     * @property {Object} ENTER - entering of mouse
+     * @property {String} RESIZE - resize of window happened needed
+     * @property {String} CLICK - click occured
+     * @property {String} TOUCHSTART - Touch started
+     * @property {String} TOUCHEND - Touch ended
+     * @property {String} MOUSEDOWN - Mouse started
+     * @property {String} MOUSEUP - Mouse ended
+     * @property {String} KEYDOWN - key pressed
+     * @property {String} KEYUP - key released
+     * @property {String} ENTER - entering of mouse
      */
     Handling: {
         RESIZE: "resize orientationchange",
@@ -79,7 +79,7 @@ export const Events = {
      * Eventnames for View class
      * @type {Object}
      * @memberof Events
-     * @property {Object} THUMB_LOADED - thumbnail was loaded
+     * @property {String} THUMB_LOADED - thumbnail was loaded
      */
     View: {
         THUMB_LOADED: "thumb-loaded"
@@ -88,8 +88,8 @@ export const Events = {
      * Eventnames for MarkerClusterer class
      * @type {Object}
      * @memberof Events
-     * @property {Object} CLUSTERIZE - create cluster
-     * @property {Object} UNCLUSTERIZE - destroy cluster
+     * @property {String} CLUSTERIZE - create cluster
+     * @property {String} UNCLUSTERIZE - destroy cluster
      */
     MarkerClusterer: {
         CLUSTERIZE: "clusterize",
@@ -100,7 +100,7 @@ export const Events = {
      * Eventnames for MapInformation class
      * @type {Object}
      * @memberof Events
-     * @property {Object} UPDATE - updates informations
+     * @property {String} UPDATE - updates informations
      */
     MapInformation: {
         UPDATE: "information-update"
@@ -109,10 +109,10 @@ export const Events = {
      * Eventnames for MappedJS class
      * @type {Object}
      * @memberof Events
-     * @property {Object} ACTIVE - DomElement is marked active
-     * @property {Object} ZOOM_IN - zoom in button
-     * @property {Object} ZOOM_OUT - zoom out button
-     * @property {Object} HOME - home button
+     * @property {String} ACTIVE - DomElement is marked active
+     * @property {String} ZOOM_IN - zoom in button
+     * @property {String} ZOOM_OUT - zoom out button
+     * @property {String} HOME - home button
      */
     General: {
         ACTIVE: "active",

@@ -646,8 +646,8 @@ export class Interact {
      */
     positionDidNotChange(e) {
         return Helper.isIE() && (this.getRelativePosition(e).equals(this.data.positionLast) ||
-        this.getRelativePosition(e).equals(this.data.positionStart)) ||
-        (!Helper.isIE() && Helper.isTouch() && this.getRelativePosition(e[0]).equals(this.data.positionLast));
+                this.getRelativePosition(e).equals(this.data.positionStart)) ||
+            (!Helper.isIE() && Helper.isTouch() && this.getRelativePosition(e[0]).equals(this.data.positionLast));
     }
 
     /**

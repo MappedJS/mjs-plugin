@@ -280,13 +280,13 @@ export class MappedJS {
     hoverItems(pos) {
         let oneIsHit = false;
         const items = [...this.tileMap.clusters, ...this.tileMap.markers];
-        for (let i = items.length-1; i >= 0; i--) {
+        for (let i = items.length - 1; i >= 0; i--) {
             const current = items[i];
             if (current.isActive(pos, oneIsHit)) {
                 oneIsHit = true;
             }
         }
-        document.body.style.cursor = (oneIsHit) ? 'pointer': 'default';
+        document.body.style.cursor = (oneIsHit) ? 'pointer' : 'default';
         return this;
     }
 

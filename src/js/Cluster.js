@@ -143,7 +143,7 @@ export class Cluster extends Drawable {
         if (this.isHovered !== isHovered) {
             this.eventManager.publish(Events.TileMap.DRAW);
         }
-        document.body.style.cursor = (isHovered || oneIsHit) ? 'pointer': 'default';
+        document.body.style.cursor = (isHovered || oneIsHit) ? 'pointer' : 'default';
         this.isHovered = isHovered;
         return isHovered;
     }

@@ -110,20 +110,18 @@ export class TileMap {
 
         this.initializeInstanceVariables(id, container, settings, tilesData);
         this.initializeCanvas();
+
+        this.eventManager.publish(Events.MapInformation.UPDATE, {
+            viewport: this.viewport,
+            bounds: this.settings.bounds
+        });
+
         this.initializeLevels(tilesData);
         this.bindEvents();
         this.resizeCanvas();
-        this.view.init();
-
-        this.eventManager.publish(Events.MapInformation.UPDATE, {
-            view: this.view.view,
-            viewport: this.viewport,
-            bounds: this.currentLevel.bounds,
-            zoom: this.currentLevel.zoom,
-            center: this.currentLevel.center
-        });
 
         this.reset();
+
         return this;
     }
 
@@ -144,9 +142,7 @@ export class TileMap {
             };
             this.levels.push(currentLevel);
         });
-
         this.levelHandler = new StateHandler(this.levels);
-        this.levelHandler.changeTo(this.settings.level);
         return this;
     }
 
@@ -156,7 +152,6 @@ export class TileMap {
      * @param  {HTMLElement} container = null - jQuery-object holding the container
      * @param  {Object} tilesData = {} - json object representing data of TileMap
      * @param  {Object} settings = {} - json object representing settings of TileMap
-
      * @return {TileMap} instance of TileMap for chaining
      */
     initializeInstanceVariables(id, container, settings, tilesData) {
@@ -181,44 +176,43 @@ export class TileMap {
     }
 
     /**
-     * check if level can fit boundaries and if not iterate to closer level
-     * @return {Number} level
-     */
-    checkIfLevelCanFitBounds() {
-        let newLevel = this.settings.level;
-        let fits = false;
-
-        while (!fits) {
-            const initialView = this.levelHandler.states[newLevel].instance;
-            const newView = initialView.originalMapView.clone.scale(initialView.maxZoom).getDistortedRect(this.info.getDistortionFactorForLatitude(this.initial.center));
-
-            if (!newView.containsRect(this.viewport)) {
-                newLevel++;
-            } else {
-                fits = true;
-            }
-        }
-        return newLevel;
-    }
-
-    /**
      * resets view to initial state
      * @return {TileMap} instance of TileMap for chaining
      */
     reset() {
-        const newLevel = this.checkIfLevelCanFitBounds();
-        if (this.currentLevel.level !== this.settings.level) {
-            this.levelHandler.changeTo(newLevel);
+        const xScale = this.settings.aoiBounds.width / this.settings.bounds.width;
+        const yScale = this.settings.aoiBounds.height / this.settings.bounds.height;
+
+        let scaleTemp = 1;
+        this.levelHandler.changeTo(0);
+        
+        for (const i in this.levels) {
+            if (this.levels.hasOwnProperty(i)) {
+                const level = this.levels[i];
+                const currentView = level.instance.originalMapView.clone;
+                currentView.scale(xScale, yScale).scale(level.instance.maxZoom).scaleX(this.info.getDistortionFactorForLatitude(this.settings.aoiBounds.center));
+                if (this.viewport.containsRect(currentView)) {
+                    this.levelHandler.next();
+                } else {
+                    currentView.scale(1 / level.instance.maxZoom);
+                    scaleTemp = Math.min(this.viewport.width / currentView.width, this.viewport.height / currentView.height);
+                    break;
+                }
+            }
         }
+
+        this.view.init();
+
         this.eventManager.publish(Events.MapInformation.UPDATE, {
             view: this.view.view,
+            viewport: this.viewport,
             bounds: this.currentLevel.bounds,
-            level: this.currentLevel.level,
-            center: this.currentLevel.center,
-            zoomFactor: this.initial.zoom
+            zoom: this.currentLevel.zoom,
+            center: this.settings.aoiBounds.center
         });
-        this.view.reset(this.initial.center, this.initial.zoom);
-        this.clusterHandler();
+
+        this.view.reset(this.settings.aoiBounds.center, scaleTemp);
+
         this.redraw();
         return this;
     }
@@ -264,8 +258,7 @@ export class TileMap {
             maxZoom: (data.zoom) ? data.zoom.max : 1,
             minZoom: (data.zoom) ? data.zoom.min : 1,
             context: this.canvasContext,
-            centerSmallMap: this.settings.centerSmallMap,
-            limitToBounds: this.settings.limitToBounds || this.currentLevel.bounds
+            aoiBounds: this.settings.aoiBounds || this.currentLevel.bounds
         });
     }
 
@@ -463,7 +456,7 @@ export class TileMap {
     zoom(factor, position) {
         if (factor !== 0) {
             const levelChanged = this.view.zoom(factor, position);
-            if (levelChanged === 1 && this.levelHandler.hasNext() || levelChanged === -1 && this.levelHandler.hasPrevious() ) {
+            if (levelChanged === 1 && this.levelHandler.hasNext() || levelChanged === -1 && this.levelHandler.hasPrevious()) {
                 this.zoom(factor, position);
             }
             this.clusterHandler();
@@ -525,6 +518,8 @@ export class TileMap {
             this.moveView(this.moveByVelocity);
         }
 
+        this.checkAoIBoundaries();
+
         this.view.checkBoundaries();
 
         if (this.drawIsNeeded) {
@@ -536,6 +531,47 @@ export class TileMap {
         }
 
         window.requestAnimFrame(() => this.mainLoop());
+    }
+
+    /**
+     * checks area of interest boundaries and resets positions if outside
+     * @return {TileMap} instance of TileMap for chaining
+     */
+    checkAoIBoundaries() {
+        if (!this.settings.aoiBounds.equals(this.settings.bounds)) {
+            const normalizedMapPosition = this.view.view.topLeft.multiply(this.view.distortionFactor, 1);
+            const posCenter = this.viewport.center;
+
+            const aoiBoxNW = this.info.convertLatLngToPoint(this.settings.aoiBounds.nw);
+            const aoiBoxSE = this.info.convertLatLngToPoint(this.settings.aoiBounds.se);
+
+            aoiBoxNW.multiply(this.view.distortionFactor, 1).add(new Point(this.view.offsetToCenter, 0));
+            aoiBoxSE.multiply(this.view.distortionFactor, 1).add(new Point(this.view.offsetToCenter, 0));
+
+            aoiBoxNW.add(normalizedMapPosition);
+            aoiBoxSE.add(normalizedMapPosition);
+
+            const aoiBox = new Rectangle(aoiBoxNW.x, aoiBoxNW.y, aoiBoxSE.x - aoiBoxNW.x, aoiBoxSE.y - aoiBoxNW.y);
+
+            if (!aoiBox.containsPoint(posCenter)) {
+                const diffTopLeft = aoiBox.clone.topLeft.substract(posCenter);
+                const diffBottomRight = aoiBox.clone.bottomRight.substract(posCenter);
+                if (diffTopLeft.x > 0) {
+                    this.moveView(new Point(-1 * diffTopLeft.x, 0));
+                }
+                if (diffTopLeft.y > 0) {
+                    this.moveView(new Point(0, -1 * diffTopLeft.y));
+                }
+                if (diffBottomRight.x < 0) {
+                    this.moveView(new Point(-1 * diffBottomRight.x, 0));
+                }
+                if (diffBottomRight.y < 0) {
+                    this.moveView(new Point(0, -1 * diffBottomRight.y));
+                }
+            }
+
+        }
+        return this;
     }
 
     /**
