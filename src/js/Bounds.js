@@ -50,7 +50,7 @@ export class Bounds {
      * @return {Boolean} Whether they are equal or not
      */
     equals(bounds) {
-        return this.nw.equals(bounds.nw) && this.se.equals(bounds.se);
+        return (bounds instanceof Bounds) && this.nw.equals(bounds.nw) && this.se.equals(bounds.se);
     }
 
     /**

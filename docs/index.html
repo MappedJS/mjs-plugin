@@ -86,7 +86,7 @@
 <p><a name="module_DataEnrichment"></a></p>
 <h2 id="dataenrichment">DataEnrichment</h2>
 <p>enriches delivered data with default values</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#109;&#100;&#x75;&#118;&#101;&#x40;&#100;&#x65;&#x73;&#x69;&#x67;&#110;&#x6d;&#x61;&#x69;&#108;&#46;&#110;&#101;&#116;">&#109;&#100;&#x75;&#118;&#101;&#x40;&#100;&#x65;&#x73;&#x69;&#x67;&#110;&#x6d;&#x61;&#x69;&#108;&#46;&#110;&#101;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x6d;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#115;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#105;&#108;&#46;&#x6e;&#101;&#x74;">&#x6d;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#115;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#105;&#108;&#46;&#x6e;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_DataEnrichment">DataEnrichment</a><ul>
 <li><a href="#module_DataEnrichment.marker">.marker(data)</a> ⇒ <code>Object</code></li>
@@ -111,7 +111,7 @@
 <p><a name="module_Helper"></a></p>
 <h2 id="helper">Helper</h2>
 <p>Helper for general purposes</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x6d;&#100;&#117;&#118;&#x65;&#x40;&#x64;&#x65;&#x73;&#105;&#103;&#x6e;&#x6d;&#97;&#x69;&#108;&#46;&#110;&#101;&#x74;">&#x6d;&#100;&#117;&#118;&#x65;&#x40;&#x64;&#x65;&#x73;&#105;&#103;&#x6e;&#x6d;&#97;&#x69;&#108;&#46;&#110;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#x6d;&#100;&#117;&#x76;&#x65;&#64;&#100;&#x65;&#115;&#x69;&#103;&#x6e;&#x6d;&#x61;&#105;&#x6c;&#46;&#x6e;&#101;&#x74;">&#x6d;&#100;&#117;&#x76;&#x65;&#64;&#100;&#x65;&#115;&#x69;&#103;&#x6e;&#x6d;&#x61;&#105;&#x6c;&#46;&#x6e;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_Helper">Helper</a><ul>
 <li><a href="#module_Helper.requestJSON">.requestJSON(filename, callback)</a> ⇒ <code>Helper</code></li>
@@ -256,6 +256,8 @@
 <li><a href="#new_Bounds_new">new Bounds(northWest, southEast)</a></li>
 <li><a href="#Bounds+width">.width</a> ⇒ <code>Number</code></li>
 <li><a href="#Bounds+height">.height</a> ⇒ <code>Number</code></li>
+<li><a href="#Bounds+equals">.equals(bounds)</a> ⇒ <code>Boolean</code></li>
+<li><a href="#Bounds+toString">.toString()</a> ⇒ <code>String</code></li>
 </ul>
 </li>
 </ul>
@@ -272,7 +274,17 @@
 <p><strong>Kind</strong>: instance property of <code><a href="#Bounds">Bounds</a></code><br><strong>Returns</strong>: <code>Number</code> - distance between east and west boundary<br><a name="Bounds+height"></a></p>
 <h3 id="bounds-height-code-number-code-">bounds.height ⇒ <code>Number</code></h3>
 <p>get height of boundaries</p>
-<p><strong>Kind</strong>: instance property of <code><a href="#Bounds">Bounds</a></code><br><strong>Returns</strong>: <code>Number</code> - distance between north and south boundary<br><a name="Cluster"></a></p>
+<p><strong>Kind</strong>: instance property of <code><a href="#Bounds">Bounds</a></code><br><strong>Returns</strong>: <code>Number</code> - distance between north and south boundary<br><a name="Bounds+equals"></a></p>
+<h3 id="bounds-equals-bounds-code-boolean-code-">bounds.equals(bounds) ⇒ <code>Boolean</code></h3>
+<p>check if specified bounds equals this bounds</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Bounds">Bounds</a></code><br><strong>Returns</strong>: <code>Boolean</code> - Whether they are equal or not<br><strong>Params</strong></p>
+<ul>
+<li>bounds <code><a href="#Bounds">Bounds</a></code> - specified bounds</li>
+</ul>
+<p><a name="Bounds+toString"></a></p>
+<h3 id="bounds-tostring-code-string-code-">bounds.toString() ⇒ <code>String</code></h3>
+<p>string representation</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#Bounds">Bounds</a></code><br><strong>Returns</strong>: <code>String</code> - string representation of object<br><a name="Cluster"></a></p>
 <h2 id="cluster">Cluster</h2>
 <p><strong>Kind</strong>: global class  </p>
 <ul>
@@ -1902,7 +1914,6 @@
 <li><a href="#TileMap+clusters">.clusters</a> ⇒ <code>Array</code></li>
 <li><a href="#TileMap+initializeLevels">.initializeLevels(tilesData)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+initializeInstanceVariables">.initializeInstanceVariables(id, container, tilesData, settings)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
-<li><a href="#TileMap+checkIfLevelCanFitBounds">.checkIfLevelCanFitBounds()</a> ⇒ <code>Number</code></li>
 <li><a href="#TileMap+reset">.reset()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+initializeMarkers">.initializeMarkers()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+createViewFromData">.createViewFromData(data)</a> ⇒ <code><a href="#View">View</a></code></li>
@@ -1922,6 +1933,7 @@
 <li><a href="#TileMap+resizeCanvas">.resizeCanvas()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+resizeView">.resizeView()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+mainLoop">.mainLoop()</a></li>
+<li><a href="#TileMap+checkAoIBoundaries">.checkAoIBoundaries()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+drawClusters">.drawClusters()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+drawMarkers">.drawMarkers()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 </ul>
@@ -1971,10 +1983,7 @@
 <li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
 <li>settings <code>Object</code> - = {} - json object representing settings of TileMap</li>
 </ul>
-<p><a name="TileMap+checkIfLevelCanFitBounds"></a></p>
-<h3 id="tilemap-checkiflevelcanfitbounds-code-number-code-">tileMap.checkIfLevelCanFitBounds() ⇒ <code>Number</code></h3>
-<p>check if level can fit boundaries and if not iterate to closer level</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Number</code> - level<br><a name="TileMap+reset"></a></p>
+<p><a name="TileMap+reset"></a></p>
 <h3 id="tilemap-reset-code-tilemap-tilemap-code-">tileMap.reset() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
 <p>resets view to initial state</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+initializeMarkers"></a></p>
@@ -2062,7 +2071,10 @@
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+mainLoop"></a></p>
 <h3 id="tilemap-mainloop-">tileMap.mainLoop()</h3>
 <p>main draw call</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><a name="TileMap+drawClusters"></a></p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><a name="TileMap+checkAoIBoundaries"></a></p>
+<h3 id="tilemap-checkaoiboundaries-code-tilemap-tilemap-code-">tileMap.checkAoIBoundaries() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>checks area of interest boundaries and resets positions if outside</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+drawClusters"></a></p>
 <h3 id="tilemap-drawclusters-code-tilemap-tilemap-code-">tileMap.drawClusters() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
 <p>draw all clusters</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+drawMarkers"></a></p>
@@ -2154,7 +2166,7 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#View">View</a><ul>
-<li><a href="#new_View_new">new View(view, data, context, maxZoom, minZoom, limitToBounds, centerSmallMap, id)</a></li>
+<li><a href="#new_View_new">new View(view, data, context, maxZoom, minZoom, aoiBounds, id)</a></li>
 <li><a href="#View+visibleTiles">.visibleTiles</a> ⇒ <code>array</code></li>
 <li><a href="#View+init">.init()</a> ⇒ <code><a href="#View">View</a></code></li>
 <li><a href="#View+reset">.reset()</a> ⇒ <code><a href="#View">View</a></code></li>
@@ -2178,7 +2190,7 @@
 </li>
 </ul>
 <p><a name="new_View_new"></a></p>
-<h3 id="new-view-view-data-context-maxzoom-minzoom-limittobounds-centersmallmap-id-">new View(view, data, context, maxZoom, minZoom, limitToBounds, centerSmallMap, id)</h3>
+<h3 id="new-view-view-data-context-maxzoom-minzoom-aoibounds-id-">new View(view, data, context, maxZoom, minZoom, aoiBounds, id)</h3>
 <p><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><strong>Params</strong></p>
 <ul>
 <li>view <code><a href="#Rectangle">Rectangle</a></code> - = new Rectangle() - representation of map</li>
@@ -2186,8 +2198,7 @@
 <li>context <code>CanvasRenderingContext2D</code> - = null - canvas context for drawing</li>
 <li>maxZoom <code>Number</code> - = 1.5 - maximal zoom of view</li>
 <li>minZoom <code>Number</code> - = 0.8 - minimal zoom of view</li>
-<li>limitToBounds <code>Number</code> - where to limit panning</li>
-<li>centerSmallMap <code>Boolean</code> - = false - if map is smaller than viewport, center it</li>
+<li>aoiBounds <code>Number</code> - where to limit panning</li>
 <li>id <code>Number</code> - = 0 - id of parent instance</li>
 </ul>
 <p><a name="View+visibleTiles"></a></p>
@@ -2292,7 +2303,7 @@
 <p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="Events"></a></p>
 <h2 id="events-code-object-code-">Events : <code>object</code></h2>
 <p>Helper for naming events</p>
-<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#109;&#100;&#117;&#118;&#x65;&#64;&#x64;&#x65;&#115;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#101;&#x74;">&#109;&#100;&#117;&#118;&#x65;&#64;&#x64;&#x65;&#115;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#109;&#100;&#x75;&#x76;&#101;&#x40;&#x64;&#101;&#115;&#105;&#103;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#116;">&#109;&#100;&#x75;&#x76;&#101;&#x40;&#x64;&#101;&#115;&#105;&#103;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#Events">Events</a> : <code>object</code><ul>
 <li><a href="#Events.ToolTip">.ToolTip</a> : <code>Object</code></li>
@@ -2311,77 +2322,77 @@
 <p>Eventnames for ToolTip class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>OPEN <code>Object</code> - when a tooltip should be openend  </li>
-<li>CLOSE <code>Object</code> - when a tooltip should be closed  </li>
+<li>OPEN <code>String</code> - when a tooltip should be openend  </li>
+<li>CLOSE <code>String</code> - when a tooltip should be closed  </li>
 </ul>
 <p><a name="Events.Publisher"></a></p>
 <h3 id="events-publisher-code-object-code-">Events.Publisher : <code>Object</code></h3>
 <p>Eventnames for Publisher class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>PUBLISH <code>Object</code> - notifies all subscribers  </li>
-<li>SUBSCRIBE <code>Object</code> - subscribes to a topic  </li>
-<li>UNSUBSCRIBE <code>Object</code> - unsubscribes from a topic  </li>
+<li>PUBLISH <code>String</code> - notifies all subscribers  </li>
+<li>SUBSCRIBE <code>String</code> - subscribes to a topic  </li>
+<li>UNSUBSCRIBE <code>String</code> - unsubscribes from a topic  </li>
 </ul>
 <p><a name="Events.TileMap"></a></p>
 <h3 id="events-tilemap-code-object-code-">Events.TileMap : <code>Object</code></h3>
 <p>Eventnames for TileMap class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>IMG_DATA_NAME <code>Object</code> - name of img data  </li>
-<li>MARKER_DATA_NAME <code>Object</code> - name of marker data  </li>
-<li>NEXT_LEVEL <code>Object</code> - next level of view  </li>
-<li>PREVIOUS_LEVEL <code>Object</code> - previous level of view  </li>
-<li>RESIZE <code>Object</code> - resize of view needed  </li>
-<li>ZOOM_TO_BOUNDS <code>Object</code> - zoom to bounds  </li>
-<li>DRAW <code>Object</code> - draw is needed  </li>
+<li>IMG_DATA_NAME <code>String</code> - name of img data  </li>
+<li>MARKER_DATA_NAME <code>String</code> - name of marker data  </li>
+<li>NEXT_LEVEL <code>String</code> - next level of view  </li>
+<li>PREVIOUS_LEVEL <code>String</code> - previous level of view  </li>
+<li>RESIZE <code>String</code> - resize of view needed  </li>
+<li>ZOOM_TO_BOUNDS <code>String</code> - zoom to bounds  </li>
+<li>DRAW <code>String</code> - draw is needed  </li>
 </ul>
 <p><a name="Events.Handling"></a></p>
 <h3 id="events-handling-code-object-code-">Events.Handling : <code>Object</code></h3>
 <p>Eventnames for Handling in all classes</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>RESIZE <code>Object</code> - resize of window happened needed  </li>
-<li>CLICK <code>Object</code> - click occured  </li>
-<li>TOUCHSTART <code>Object</code> - Touch started  </li>
-<li>TOUCHEND <code>Object</code> - Touch ended  </li>
-<li>MOUSEDOWN <code>Object</code> - Mouse started  </li>
-<li>MOUSEUP <code>Object</code> - Mouse ended  </li>
-<li>KEYDOWN <code>Object</code> - key pressed  </li>
-<li>KEYUP <code>Object</code> - key released  </li>
-<li>ENTER <code>Object</code> - entering of mouse  </li>
+<li>RESIZE <code>String</code> - resize of window happened needed  </li>
+<li>CLICK <code>String</code> - click occured  </li>
+<li>TOUCHSTART <code>String</code> - Touch started  </li>
+<li>TOUCHEND <code>String</code> - Touch ended  </li>
+<li>MOUSEDOWN <code>String</code> - Mouse started  </li>
+<li>MOUSEUP <code>String</code> - Mouse ended  </li>
+<li>KEYDOWN <code>String</code> - key pressed  </li>
+<li>KEYUP <code>String</code> - key released  </li>
+<li>ENTER <code>String</code> - entering of mouse  </li>
 </ul>
 <p><a name="Events.View"></a></p>
 <h3 id="events-view-code-object-code-">Events.View : <code>Object</code></h3>
 <p>Eventnames for View class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>THUMB_LOADED <code>Object</code> - thumbnail was loaded  </li>
+<li>THUMB_LOADED <code>String</code> - thumbnail was loaded  </li>
 </ul>
 <p><a name="Events.MarkerClusterer"></a></p>
 <h3 id="events-markerclusterer-code-object-code-">Events.MarkerClusterer : <code>Object</code></h3>
 <p>Eventnames for MarkerClusterer class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>CLUSTERIZE <code>Object</code> - create cluster  </li>
-<li>UNCLUSTERIZE <code>Object</code> - destroy cluster  </li>
+<li>CLUSTERIZE <code>String</code> - create cluster  </li>
+<li>UNCLUSTERIZE <code>String</code> - destroy cluster  </li>
 </ul>
 <p><a name="Events.MapInformation"></a></p>
 <h3 id="events-mapinformation-code-object-code-">Events.MapInformation : <code>Object</code></h3>
 <p>Eventnames for MapInformation class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>UPDATE <code>Object</code> - updates informations  </li>
+<li>UPDATE <code>String</code> - updates informations  </li>
 </ul>
 <p><a name="Events.General"></a></p>
 <h3 id="events-general-code-object-code-">Events.General : <code>Object</code></h3>
 <p>Eventnames for MappedJS class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>ACTIVE <code>Object</code> - DomElement is marked active  </li>
-<li>ZOOM_IN <code>Object</code> - zoom in button  </li>
-<li>ZOOM_OUT <code>Object</code> - zoom out button  </li>
-<li>HOME <code>Object</code> - home button  </li>
+<li>ACTIVE <code>String</code> - DomElement is marked active  </li>
+<li>ZOOM_IN <code>String</code> - zoom in button  </li>
+<li>ZOOM_OUT <code>String</code> - zoom out button  </li>
+<li>HOME <code>String</code> - home button  </li>
 </ul>
             <footer class="site-footer">
                 <span class="site-footer-owner"><a href="https://github.com/dazlious/MappedJS">MappedJS</a> is maintained by <a href="https://github.com/dazlious">dazlious</a>.</span>

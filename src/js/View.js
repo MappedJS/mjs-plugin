@@ -222,11 +222,7 @@ export class View extends Drawable {
     setLatLngToPosition(latlng, position) {
         const currentPosition = this.view.topLeft.substract(position).multiply(-1),
             diff = currentPosition.substract(this.info.convertLatLngToPoint(latlng));
-        this.view.translate(0, diff.y);
-        this.eventManager.publish(Events.MapInformation.UPDATE, {
-            view: this.view
-        });
-        this.view.translate(diff.x + this.getDeltaXToCenter(position), 0);
+        this.view.translate(diff.x + this.getDeltaXToCenter(position), diff.y);
         this.eventManager.publish(Events.MapInformation.UPDATE, {
             view: this.view
         });
@@ -318,9 +314,7 @@ export class View extends Drawable {
      * @return {View} instance of View for chaining
      */
     moveView(pos) {
-        this.view.translate(0, pos.y);
-        this.calculateNewCenter();
-        this.view.translate(pos.x * (1 / this.distortionFactor), 0);
+        this.view.translate(pos.x * (1 / this.distortionFactor), pos.y);
         this.eventManager.publish(Events.MapInformation.UPDATE, {
             view: this.view
         });

@@ -83,8 +83,8 @@ describe('DataEnrichment', () => {
             expect(data.length).toEqual(1);
             expect(data[0]).toEqual(DataEnrichment.MAP_SETTINGS);
             expect(data[0].bounds).toBe(Bounds);
-            expect(data[0].limitToBounds).toBe(Bounds);
-            expect(data[0].limitToBounds).toEqual(data[0].bounds);
+            expect(data[0].aoiBounds).toBe(Bounds);
+            expect(data[0].aoiBounds).toEqual(data[0].bounds);
             expect(data[0].center).toBe(LatLng);
         });
     });
@@ -92,26 +92,26 @@ describe('DataEnrichment', () => {
     it("mapSettings({})", () => {
         const settings = {};
         DataEnrichment.mapSettings(settings, (data) => {
-            expect(typeof settings.limitToBounds !== "object").toEqual(true);
-            expect(data[0].limitToBounds).toEqual(data[0].bounds);
-            expect(data[0].limitToBounds).toBe(Bounds);
+            expect(typeof settings.aoiBounds !== "object").toEqual(true);
+            expect(data[0].aoiBounds).toEqual(data[0].bounds);
+            expect(data[0].aoiBounds).toBe(Bounds);
         });
     });
 
     it("mapSettings(settings)", () => {
         const settings = {
-            limitToBounds: {
+            aoiBounds: {
                 northWest: [52.777, 12.916],
                 southEast: [52.266, 13.938]
             }
         };
         DataEnrichment.mapSettings(settings, (data) => {
-            expect(typeof settings.limitToBounds === "object").toEqual(true);
-            expect(data[0].limitToBounds).not.toEqual(data[0].bounds);
-            expect(data[0].limitToBounds.nw.lat).toEqual(settings.limitToBounds.northWest[0]);
-            expect(data[0].limitToBounds.nw.lng).toEqual(settings.limitToBounds.northWest[1]);
-            expect(data[0].limitToBounds.se.lat).toEqual(settings.limitToBounds.southEast[0]);
-            expect(data[0].limitToBounds.se.lng).toEqual(settings.limitToBounds.southEast[1]);
+            expect(typeof settings.aoiBounds === "object").toEqual(true);
+            expect(data[0].aoiBounds).not.toEqual(data[0].bounds);
+            expect(data[0].aoiBounds.nw.lat).toEqual(settings.aoiBounds.northWest[0]);
+            expect(data[0].aoiBounds.nw.lng).toEqual(settings.aoiBounds.northWest[1]);
+            expect(data[0].aoiBounds.se.lat).toEqual(settings.aoiBounds.southEast[0]);
+            expect(data[0].aoiBounds.se.lng).toEqual(settings.aoiBounds.southEast[1]);
         });
     });
 
