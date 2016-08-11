@@ -110,20 +110,18 @@ export class TileMap {
 
         this.initializeInstanceVariables(id, container, settings, tilesData);
         this.initializeCanvas();
+
+        this.eventManager.publish(Events.MapInformation.UPDATE, {
+            viewport: this.viewport,
+            bounds: this.settings.bounds
+        });
+
         this.initializeLevels(tilesData);
         this.bindEvents();
         this.resizeCanvas();
-        this.view.init();
-
-        this.eventManager.publish(Events.MapInformation.UPDATE, {
-            view: this.view.view,
-            viewport: this.viewport,
-            bounds: this.currentLevel.bounds,
-            zoom: this.currentLevel.zoom,
-            center: this.currentLevel.center
-        });
 
         this.reset();
+
         return this;
     }
 
@@ -144,9 +142,7 @@ export class TileMap {
             };
             this.levels.push(currentLevel);
         });
-
         this.levelHandler = new StateHandler(this.levels);
-        this.levelHandler.changeTo(this.settings.level);
         return this;
     }
 
@@ -206,19 +202,36 @@ export class TileMap {
      * @return {TileMap} instance of TileMap for chaining
      */
     reset() {
-        const newLevel = this.checkIfLevelCanFitBounds();
-        if (this.currentLevel.level !== this.settings.level) {
-            this.levelHandler.changeTo(newLevel);
+        const xScale = this.settings.aoiBounds.width / this.settings.bounds.width;
+        const yScale = this.settings.aoiBounds.height / this.settings.bounds.height;
+
+        let scaleTemp = 1;
+        this.levelHandler.changeTo(0);
+        for (const i in this.levels) {
+            const level = this.levels[i];
+            const currentView = level.instance.originalMapView.clone;
+            currentView.scale(xScale, yScale).scale(level.instance.maxZoom).scaleX(this.info.getDistortionFactorForLatitude(this.settings.aoiBounds.center));
+            if (this.viewport.containsRect(currentView)) {
+                this.levelHandler.next();
+            } else {
+                currentView.scale(1 / level.instance.maxZoom);
+                scaleTemp = Math.min(this.viewport.width / currentView.width, this.viewport.height / currentView.height);
+                break;
+            }
         }
+
+        this.view.init();
+
         this.eventManager.publish(Events.MapInformation.UPDATE, {
             view: this.view.view,
+            viewport: this.viewport,
             bounds: this.currentLevel.bounds,
-            level: this.currentLevel.level,
-            center: this.currentLevel.center,
-            zoomFactor: this.initial.zoom
+            zoom: this.currentLevel.zoom,
+            center: this.settings.aoiBounds.center
         });
-        this.view.reset(this.initial.center, this.initial.zoom);
-        this.clusterHandler();
+
+        this.view.reset(this.settings.aoiBounds.center, scaleTemp);
+
         this.redraw();
         return this;
     }
@@ -264,8 +277,7 @@ export class TileMap {
             maxZoom: (data.zoom) ? data.zoom.max : 1,
             minZoom: (data.zoom) ? data.zoom.min : 1,
             context: this.canvasContext,
-            centerSmallMap: this.settings.centerSmallMap,
-            limitToBounds: this.settings.limitToBounds || this.currentLevel.bounds
+            aoiBounds: this.settings.aoiBounds || this.currentLevel.bounds
         });
     }
 

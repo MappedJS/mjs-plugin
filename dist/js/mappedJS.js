@@ -2122,13 +2122,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            bounds = new _Bounds.Bounds(new _LatLng.LatLng(enrichedData.bounds.northWest[0], enrichedData.bounds.northWest[1]), new _LatLng.LatLng(enrichedData.bounds.southEast[0], enrichedData.bounds.southEast[1])),
 	            center = new _LatLng.LatLng(enrichedData.center.lat, enrichedData.center.lng);
 
-	        if (_typeof(data.limitToBounds) === "object") {
-	            var boundsNW = new _LatLng.LatLng(data.limitToBounds.northWest[0], data.limitToBounds.northWest[1]);
-	            var boundsSE = new _LatLng.LatLng(data.limitToBounds.southEast[0], data.limitToBounds.southEast[1]);
+	        if (_typeof(data.aoiBounds) === "object") {
+	            var boundsNW = new _LatLng.LatLng(data.aoiBounds.northWest[0], data.aoiBounds.northWest[1]);
+	            var boundsSE = new _LatLng.LatLng(data.aoiBounds.southEast[0], data.aoiBounds.southEast[1]);
 	            var boundsLimit = new _Bounds.Bounds(boundsNW, boundsSE);
-	            enrichedData.limitToBounds = boundsLimit;
+	            enrichedData.aoiBounds = boundsLimit;
 	        } else {
-	            enrichedData.limitToBounds = bounds;
+	            enrichedData.aoiBounds = bounds;
 	        }
 
 	        enrichedData.clusterImage.size = new _Point.Point(enrichedData.clusterImage.size[0], enrichedData.clusterImage.size[1]);
@@ -2326,6 +2326,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        get: function get() {
 	            return Math.abs(this.se.lat - this.nw.lat);
 	        }
+	    }, {
+	        key: 'center',
+	        get: function get() {
+	            return this.nw.clone.add(this.se.clone.substract(this.nw).divide(2));
+	        }
 
 	        /**
 	         * @constructor
@@ -2349,6 +2354,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.se = southEast;
 	        return this;
 	    }
+
+	    /**
+	     * check if specified bounds equals this bounds
+	     * @param  {Bounds} bounds - specified bounds
+	     * @return {Boolean} Whether they are equal or not
+	     */
+
+
+	    Bounds.prototype.equals = function equals(bounds) {
+	        return this.nw.equals(bounds.nw) && this.se.equals(bounds.se);
+	    };
+
+	    /**
+	     * string representation
+	     * @return {String} string representation of object
+	     */
+
+
+	    Bounds.prototype.toString = function toString() {
+	        return '(' + this.nw + ', ' + this.se + ')';
+	    };
 
 	    return Bounds;
 	}();
@@ -4280,20 +4306,18 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.initializeInstanceVariables(id, container, settings, tilesData);
 	        this.initializeCanvas();
+
+	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
+	            viewport: this.viewport,
+	            bounds: this.settings.bounds
+	        });
+
 	        this.initializeLevels(tilesData);
 	        this.bindEvents();
 	        this.resizeCanvas();
-	        this.view.init();
-
-	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
-	            view: this.view.view,
-	            viewport: this.viewport,
-	            bounds: this.currentLevel.bounds,
-	            zoom: this.currentLevel.zoom,
-	            center: this.currentLevel.center
-	        });
 
 	        this.reset();
+
 	        return this;
 	    }
 
@@ -4318,9 +4342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	            _this.levels.push(currentLevel);
 	        });
-
 	        this.levelHandler = new _StateHandler.StateHandler(this.levels);
-	        this.levelHandler.changeTo(this.settings.level);
 	        return this;
 	    };
 
@@ -4385,19 +4407,36 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    TileMap.prototype.reset = function reset() {
-	        var newLevel = this.checkIfLevelCanFitBounds();
-	        if (this.currentLevel.level !== this.settings.level) {
-	            this.levelHandler.changeTo(newLevel);
+	        var xScale = this.settings.aoiBounds.width / this.settings.bounds.width;
+	        var yScale = this.settings.aoiBounds.height / this.settings.bounds.height;
+
+	        var scaleTemp = 1;
+	        this.levelHandler.changeTo(0);
+	        for (var i in this.levels) {
+	            var level = this.levels[i];
+	            var currentView = level.instance.originalMapView.clone;
+	            currentView.scale(xScale, yScale).scale(level.instance.maxZoom).scaleX(this.info.getDistortionFactorForLatitude(this.settings.aoiBounds.center));
+	            if (this.viewport.containsRect(currentView)) {
+	                this.levelHandler.next();
+	            } else {
+	                currentView.scale(1 / level.instance.maxZoom);
+	                scaleTemp = Math.min(this.viewport.width / currentView.width, this.viewport.height / currentView.height);
+	                break;
+	            }
 	        }
+
+	        this.view.init();
+
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
 	            view: this.view.view,
+	            viewport: this.viewport,
 	            bounds: this.currentLevel.bounds,
-	            level: this.currentLevel.level,
-	            center: this.currentLevel.center,
-	            zoomFactor: this.initial.zoom
+	            zoom: this.currentLevel.zoom,
+	            center: this.settings.aoiBounds.center
 	        });
-	        this.view.reset(this.initial.center, this.initial.zoom);
-	        this.clusterHandler();
+
+	        this.view.reset(this.settings.aoiBounds.center, scaleTemp);
+
 	        this.redraw();
 	        return this;
 	    };
@@ -4451,8 +4490,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            maxZoom: data.zoom ? data.zoom.max : 1,
 	            minZoom: data.zoom ? data.zoom.min : 1,
 	            context: this.canvasContext,
-	            centerSmallMap: this.settings.centerSmallMap,
-	            limitToBounds: this.settings.limitToBounds || this.currentLevel.bounds
+	            aoiBounds: this.settings.aoiBounds || this.currentLevel.bounds
 	        });
 	    };
 
@@ -7088,8 +7126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param  {CanvasRenderingContext2D} context = null - canvas context for drawing
 	         * @param  {Number} maxZoom = 1.5 - maximal zoom of view
 	         * @param  {Number} minZoom = 0.8 - minimal zoom of view
-	         * @param  {Number} limitToBounds - where to limit panning
-	         * @param  {Boolean} centerSmallMap = false - if map is smaller than viewport, center it
+	         * @param  {Number} aoiBounds - where to limit panning
 	         * @param  {Number} id = 0 - id of parent instance
 	         * @return {View} instance of View for chaining
 	         */
@@ -7109,9 +7146,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var maxZoom = _ref$maxZoom === undefined ? 1.5 : _ref$maxZoom;
 	        var _ref$minZoom = _ref.minZoom;
 	        var minZoom = _ref$minZoom === undefined ? 0.8 : _ref$minZoom;
-	        var _ref$centerSmallMap = _ref.centerSmallMap;
-	        var centerSmallMap = _ref$centerSmallMap === undefined ? false : _ref$centerSmallMap;
-	        var limitToBounds = _ref.limitToBounds;
+	        var aoiBounds = _ref.aoiBounds;
 	        var _ref$id = _ref.id;
 	        var id = _ref$id === undefined ? 0 : _ref$id;
 
@@ -7122,9 +7157,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.tiles = [];
 	        _this.maxZoom = maxZoom;
 	        _this.minZoom = minZoom;
-	        _this.limitToBounds = limitToBounds;
+	        _this.aoiBounds = aoiBounds;
 	        _this.isInitialized = false;
-	        _this.centerSmallMap = centerSmallMap;
 
 	        _this.originalMapView = view.clone;
 
@@ -7144,7 +7178,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
 	            view: this.originalMapView.clone
 	        });
-	        this.view.translate(0 - this.offsetToCenter, 0);
 	        this.initializeTiles();
 	        this.isInitialized = true;
 	        return this;
@@ -7170,8 +7203,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    View.prototype.getDistortedView = function getDistortedView() {
-	        var nw = this.info.convertLatLngToPoint(this.limitToBounds.nw),
-	            se = this.info.convertLatLngToPoint(this.limitToBounds.se),
+	        var nw = this.info.convertLatLngToPoint(this.bounds.nw),
+	            se = this.info.convertLatLngToPoint(this.bounds.se),
 	            limit = new _Rectangle.Rectangle(nw.x + this.view.x, nw.y + this.view.y, se.x - nw.x, se.y - nw.y);
 	        return limit.getDistortedRect(this.distortionFactor).translate(this.offsetToCenter, 0);
 	    };
@@ -7193,7 +7226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                distanceBottom = equalizedMap.bottom - this.viewport.bottom;
 
 	            offset.x = this.checkX(distanceLeft, distanceRight, equalizedMap.width, this.viewport.width);
-	            offset.y = this.checkX(distanceTop, distanceBottom, equalizedMap.height, this.viewport.height);
+	            offset.y = this.checkY(distanceTop, distanceBottom, equalizedMap.height, this.viewport.height);
 
 	            offset.multiply(1 / this.distortionFactor, 1);
 	            this.view.translate(offset.x, offset.y);
@@ -7242,17 +7275,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                x -= right;
 	            }
 	        } else {
-	            if (!this.centerSmallMap) {
-	                if (left < 0 && right < 0) {
-	                    x -= left;
-	                } else if (right > 0 && left > 0) {
-	                    x -= right;
-	                }
-	            } else {
-	                this.view.setCenterX(this.viewport.center.x);
-	                this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
-	                    view: this.view
-	                });
+	            if (left < 0 && right < 0) {
+	                x -= left;
+	            } else if (right > 0 && left > 0) {
+	                x -= right;
 	            }
 	        }
 	        return x;
@@ -7277,17 +7303,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                y -= bottom;
 	            }
 	        } else {
-	            if (!this.centerSmallMap) {
-	                if (top < 0 && bottom < 0) {
-	                    y -= top;
-	                } else if (bottom > 0 && top > 0) {
-	                    y -= bottom;
-	                }
-	            } else {
-	                this.view.setCenterX(this.viewport.center.x);
-	                this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
-	                    view: this.view
-	                });
+	            if (top < 0 && bottom < 0) {
+	                y -= top;
+	            } else if (bottom > 0 && top > 0) {
+	                y -= bottom;
 	            }
 	        }
 	        return y;
@@ -7320,14 +7339,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    View.prototype.setLatLngToPosition = function setLatLngToPosition(latlng, position) {
 	        var currentPosition = this.view.topLeft.substract(position).multiply(-1),
 	            diff = currentPosition.substract(this.info.convertLatLngToPoint(latlng));
-
 	        this.view.translate(0, diff.y);
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
 	            view: this.view
 	        });
-	        this.calculateNewCenter();
 	        this.view.translate(diff.x + this.getDeltaXToCenter(position), 0);
-	        this.calculateNewCenter();
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
 	            view: this.view
 	        });

@@ -73,13 +73,13 @@ export const DataEnrichment = {
             bounds = new Bounds(new LatLng(enrichedData.bounds.northWest[0], enrichedData.bounds.northWest[1]), new LatLng(enrichedData.bounds.southEast[0], enrichedData.bounds.southEast[1])),
             center = new LatLng(enrichedData.center.lat, enrichedData.center.lng);
 
-        if (typeof data.limitToBounds === "object") {
-            const boundsNW = new LatLng(data.limitToBounds.northWest[0], data.limitToBounds.northWest[1]);
-            const boundsSE = new LatLng(data.limitToBounds.southEast[0], data.limitToBounds.southEast[1]);
+        if (typeof data.aoiBounds === "object") {
+            const boundsNW = new LatLng(data.aoiBounds.northWest[0], data.aoiBounds.northWest[1]);
+            const boundsSE = new LatLng(data.aoiBounds.southEast[0], data.aoiBounds.southEast[1]);
             const boundsLimit = new Bounds(boundsNW, boundsSE);
-            enrichedData.limitToBounds = boundsLimit;
+            enrichedData.aoiBounds = boundsLimit;
         } else {
-            enrichedData.limitToBounds = bounds;
+            enrichedData.aoiBounds = bounds;
         }
 
         enrichedData.clusterImage.size = new Point(enrichedData.clusterImage.size[0], enrichedData.clusterImage.size[1]);

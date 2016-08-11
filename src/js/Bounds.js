@@ -25,6 +25,10 @@ export class Bounds {
         return Math.abs(this.se.lat - this.nw.lat);
     }
 
+    get center() {
+        return this.nw.clone.add(this.se.clone.substract(this.nw).divide(2));
+    }
+
     /**
      * @constructor
      * @param  {Number} northWest = new LatLng() - representation of northWest boundary
@@ -38,6 +42,23 @@ export class Bounds {
         this.nw = northWest;
         this.se = southEast;
         return this;
+    }
+
+    /**
+     * check if specified bounds equals this bounds
+     * @param  {Bounds} bounds - specified bounds
+     * @return {Boolean} Whether they are equal or not
+     */
+    equals(bounds) {
+        return this.nw.equals(bounds.nw) && this.se.equals(bounds.se);
+    }
+
+    /**
+     * string representation
+     * @return {String} string representation of object
+     */
+    toString() {
+        return `(${this.nw}, ${this.se})`;
     }
 
 }
