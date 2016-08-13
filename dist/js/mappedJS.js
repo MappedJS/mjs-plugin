@@ -7422,6 +7422,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        });
 
 	        this.setLatLngToPosition(latlngPosition, pos);
+
+	        this.calculateNewCenter();
 	        return this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
 	    };
 
@@ -7471,6 +7473,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
 	            view: this.view
 	        });
+	        this.calculateNewCenter();
 	        return this;
 	    };
 
