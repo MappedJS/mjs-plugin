@@ -6277,15 +6277,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (text && icon) {
 	            return function (pos, textPos) {
 	                _this4.drawText(textPos);
-	                if (_this4.texture.ready) {
-	                    _this4.drawIcon(pos);
-	                }
+	                _this4.drawIcon(pos);
 	            };
 	        } else if (icon) {
 	            return function (pos) {
-	                if (_this4.texture.ready) {
-	                    _this4.drawIcon(pos);
-	                }
+	                _this4.drawIcon(pos);
 	            };
 	        } else if (text) {
 	            return function (pos, textPos) {
@@ -6364,10 +6360,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.offset = offset;
 	        return function (pos) {
-	            if (_this7.content && (_this7.isHovered || _this7.active)) {
-	                _this7.context.drawImage(texture.img, size.x, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
-	            } else {
-	                _this7.context.drawImage(texture.img, 0, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+	            if (texture.ready) {
+	                if (_this7.content && (_this7.isHovered || _this7.active)) {
+	                    _this7.context.drawImage(texture.img, size.x, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+	                } else {
+	                    _this7.context.drawImage(texture.img, 0, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+	                }
 	            }
 	        };
 	    };

@@ -208,15 +208,11 @@ export class Marker extends Drawable {
         if (text && icon) {
             return (pos, textPos) => {
                 this.drawText(textPos);
-                if (this.texture.ready) {
-                    this.drawIcon(pos);
-                }
+                this.drawIcon(pos);
             };
         } else if (icon) {
             return (pos) => {
-                if (this.texture.ready) {
-                    this.drawIcon(pos);
-                }
+                this.drawIcon(pos);
             };
         } else if (text) {
             return (pos, textPos) => this.drawText(textPos);
@@ -273,10 +269,12 @@ export class Marker extends Drawable {
     drawImageIcon(texture, size, offset) {
         this.offset = offset;
         return (pos) => {
-            if (this.content && (this.isHovered || this.active)) {
-                this.context.drawImage(texture.img, size.x, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
-            } else {
-                this.context.drawImage(texture.img, 0, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+            if (texture.ready) {
+                if (this.content && (this.isHovered || this.active)) {
+                    this.context.drawImage(texture.img, size.x, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+                } else {
+                    this.context.drawImage(texture.img, 0, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+                }
             }
         };
     }
