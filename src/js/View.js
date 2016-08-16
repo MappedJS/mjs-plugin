@@ -275,6 +275,8 @@ export class View extends Drawable {
         });
 
         this.setLatLngToPosition(latlngPosition, pos);
+
+        this.calculateNewCenter();
         return this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
     }
 
@@ -318,6 +320,7 @@ export class View extends Drawable {
         this.eventManager.publish(Events.MapInformation.UPDATE, {
             view: this.view
         });
+        this.calculateNewCenter();
         return this;
     }
 
