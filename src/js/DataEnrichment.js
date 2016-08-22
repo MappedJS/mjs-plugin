@@ -147,7 +147,7 @@ DataEnrichment.DATA_MARKER_TEXT = {
  */
 DataEnrichment.DATA_MARKER_ICON = {
     "type": "circle",
-    "size": 2,
+    "size": [2, 2],
     "color": "#333333",
     "offset": [0, 0]
 };

@@ -85,7 +85,7 @@ export class Marker extends Drawable {
         this.visible = true;
 
         if (this.icon && this.icon.type === "circle") {
-            this.drawIconType = this.drawCircleIcon(this.icon.size);
+            this.drawIconType = this.drawCircleIcon(this.icon.size.x);
         } else if (this.icon && this.icon.type === "square") {
             this.drawIconType = this.drawSquareIcon(this.icon.size);
         } else if (this.icon && this.icon.type === "image") {
@@ -256,7 +256,7 @@ export class Marker extends Drawable {
      * @return {Function} function for drawing square icon
      */
     drawSquareIcon(size) {
-        return (pos) => this.context.rect(parseInt(pos.x, 10), parseInt(pos.y, 10), size, size);
+        return (pos) => this.context.rect(parseInt(pos.x, 10), parseInt(pos.y, 10), size.x, size.y);
     }
 
     /**
