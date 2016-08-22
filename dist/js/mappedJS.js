@@ -2196,7 +2196,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	DataEnrichment.DATA_MARKER_ICON = {
 	    "type": "circle",
-	    "size": 2,
+	    "size": [2, 2],
 	    "color": "#333333",
 	    "offset": [0, 0]
 	};
@@ -6126,7 +6126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _this.visible = true;
 
 	        if (_this.icon && _this.icon.type === "circle") {
-	            _this.drawIconType = _this.drawCircleIcon(_this.icon.size);
+	            _this.drawIconType = _this.drawCircleIcon(_this.icon.size.x);
 	        } else if (_this.icon && _this.icon.type === "square") {
 	            _this.drawIconType = _this.drawSquareIcon(_this.icon.size);
 	        } else if (_this.icon && _this.icon.type === "image") {
@@ -6342,7 +6342,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this6 = this;
 
 	        return function (pos) {
-	            return _this6.context.rect(parseInt(pos.x, 10), parseInt(pos.y, 10), size, size);
+	            return _this6.context.rect(parseInt(pos.x, 10), parseInt(pos.y, 10), size.x, size.y);
 	        };
 	    };
 
