@@ -6072,7 +6072,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!this.icon) {
 	                return new _Rectangle.Rectangle();
 	            }
-	            return new _Rectangle.Rectangle(this.position.x + this.offset.x, this.position.y + this.offset.y, this.icon.size.x, this.icon.size.y);
+	            var x = this.icon.type !== "image" ? this.position.x - this.icon.size.x / 2 : this.position.x + this.offset.x;
+	            var y = this.icon.type !== "image" ? this.position.y - this.icon.size.x / 2 : this.position.y + this.offset.y;
+	            var w = this.icon.size.x;
+	            var h = this.icon.type === "circle" ? this.icon.size.x : this.icon.size.y;
+	            return new _Rectangle.Rectangle(x, y, w, h);
 	        }
 
 	        /**
@@ -6149,7 +6153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    Marker.prototype.isClusterable = function isClusterable() {
-	        return this.icon && this.icon.type === "image" && this.latlng instanceof _LatLng.LatLng;
+	        return this.icon && this.latlng instanceof _LatLng.LatLng;
 	    };
 
 	    /**
@@ -6255,8 +6259,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    Marker.prototype.hit = function hit(point) {
 	        if (this.boundingBox.containsPoint(point)) {
-	            var p = point.clone.substract(this.boundingBox.topLeft);
-	            return this.texture.isHit(p);
+	            if (this.texture) {
+	                var p = point.clone.substract(this.boundingBox.topLeft);
+	                return this.texture.isHit(p);
+	            }
+	            return true;
 	        }
 	        return false;
 	    };
@@ -6325,7 +6332,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this5 = this;
 
 	        return function (pos) {
-	            return _this5.context.arc(parseInt(pos.x, 10), parseInt(pos.y, 10), size, 0, 2 * Math.PI, false);
+	            var focusFactor = 1.0;
+	            if (_this5.content && (_this5.isHovered || _this5.active)) {
+	                focusFactor = 1.2;
+	            }
+	            _this5.context.arc(pos.x, pos.y, size / 2 * focusFactor, 0, 2 * Math.PI, false);
 	        };
 	    };
 
@@ -6340,7 +6351,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this6 = this;
 
 	        return function (pos) {
-	            return _this6.context.rect(parseInt(pos.x, 10), parseInt(pos.y, 10), size.x, size.y);
+	            var focusFactor = 1.0;
+	            if (_this6.content && (_this6.isHovered || _this6.active)) {
+	                focusFactor = 1.2;
+	            }
+	            var w = size.x * focusFactor;
+	            var h = size.y * focusFactor;
+	            _this6.context.rect(pos.x - w / 2, pos.y - h / 2, w, h);
 	        };
 	    };
 
@@ -6360,9 +6377,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return function (pos) {
 	            if (texture.ready) {
 	                if (_this7.content && (_this7.isHovered || _this7.active)) {
-	                    _this7.context.drawImage(texture.img, size.x, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+	                    _this7.context.drawImage(texture.img, size.x, 0, size.x, size.y, pos.x + offset.x, pos.y + offset.y, size.x, size.y);
 	                } else {
-	                    _this7.context.drawImage(texture.img, 0, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+	                    _this7.context.drawImage(texture.img, 0, 0, size.x, size.y, pos.x + offset.x, pos.y + offset.y, size.x, size.y);
 	                }
 	            }
 	        };
