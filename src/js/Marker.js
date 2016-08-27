@@ -46,7 +46,11 @@ export class Marker extends Drawable {
         if (!this.icon) {
             return new Rectangle();
         }
-        return new Rectangle(this.position.x + this.offset.x, this.position.y + this.offset.y, this.icon.size.x, this.icon.size.y);
+        const x = (this.icon.type !== "image") ? this.position.x - (this.icon.size.x / 2) : this.position.x + this.offset.x;
+        const y = (this.icon.type !== "image") ? this.position.y - (this.icon.size.x / 2) : this.position.y + this.offset.y;
+        const w = this.icon.size.x;
+        const h = (this.icon.type === "circle") ? this.icon.size.x : this.icon.size.y;
+        return new Rectangle(x, y, w, h);
     }
 
     /**
@@ -108,7 +112,7 @@ export class Marker extends Drawable {
      * @return {Boolean} wheter it can be clustered or not
      */
     isClusterable() {
-        return this.icon && this.icon.type === "image" && this.latlng instanceof LatLng;
+        return this.icon && this.latlng instanceof LatLng;
     }
 
     /**
@@ -192,8 +196,11 @@ export class Marker extends Drawable {
      */
     hit(point) {
         if (this.boundingBox.containsPoint(point)) {
-            const p = point.clone.substract(this.boundingBox.topLeft);
-            return this.texture.isHit(p);
+            if (this.texture) {
+                const p = point.clone.substract(this.boundingBox.topLeft);
+                return this.texture.isHit(p);
+            }
+            return true;
         }
         return false;
     }
@@ -247,7 +254,13 @@ export class Marker extends Drawable {
      * @return {Function} function for drawing circle icon
      */
     drawCircleIcon(size) {
-        return (pos) => this.context.arc(parseInt(pos.x, 10), parseInt(pos.y, 10), size, 0, 2 * Math.PI, false);
+        return (pos) => {
+            let focusFactor = 1.0;
+            if (this.content && (this.isHovered || this.active)) {
+                focusFactor = 1.2;
+            }
+            this.context.arc(pos.x, pos.y, (size / 2) * focusFactor, 0, 2 * Math.PI, false);
+        };
     }
 
     /**
@@ -256,7 +269,15 @@ export class Marker extends Drawable {
      * @return {Function} function for drawing square icon
      */
     drawSquareIcon(size) {
-        return (pos) => this.context.rect(parseInt(pos.x, 10), parseInt(pos.y, 10), size.x, size.y);
+        return (pos) => {
+            let focusFactor = 1.0;
+            if (this.content && (this.isHovered || this.active)) {
+                focusFactor = 1.2;
+            }
+            const w = size.x * focusFactor;
+            const h = size.y * focusFactor;
+            this.context.rect(pos.x - (w / 2), pos.y - (h / 2), w, h);
+        };
     }
 
     /**
@@ -271,9 +292,9 @@ export class Marker extends Drawable {
         return (pos) => {
             if (texture.ready) {
                 if (this.content && (this.isHovered || this.active)) {
-                    this.context.drawImage(texture.img, size.x, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+                    this.context.drawImage(texture.img, size.x, 0, size.x, size.y, pos.x + offset.x, pos.y + offset.y, size.x, size.y);
                 } else {
-                    this.context.drawImage(texture.img, 0, 0, size.x, size.y, parseInt(pos.x + offset.x, 10), parseInt(pos.y + offset.y, 10), size.x, size.y);
+                    this.context.drawImage(texture.img, 0, 0, size.x, size.y, pos.x + offset.x, pos.y + offset.y, size.x, size.y);
                 }
             }
         };
