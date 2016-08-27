@@ -185,7 +185,7 @@ export class TileMap {
 
         let scaleTemp = 1;
         this.levelHandler.changeTo(0);
-        
+
         for (const i in this.levels) {
             if (this.levels.hasOwnProperty(i)) {
                 const level = this.levels[i];
@@ -385,11 +385,6 @@ export class TileMap {
             this.levelHandler.next();
             extrema = this.view.minZoom;
         }
-        this.eventManager.publish(Events.MapInformation.UPDATE, {
-            bounds: this.currentLevel.bounds,
-            zoom: this.currentLevel.zoom,
-            center: this.currentLevel.center
-        });
         if (!this.view.isInitialized) {
             this.view.init();
         }
@@ -397,6 +392,9 @@ export class TileMap {
             this.setViewToOldView(lastCenter, extrema);
         }
         this.eventManager.publish(Events.MapInformation.UPDATE, {
+            bounds: this.currentLevel.bounds,
+            zoom: this.currentLevel.zoom,
+            center: this.currentLevel.center,
             level: this.currentLevel.level
         });
         return this;

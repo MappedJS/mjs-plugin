@@ -4613,11 +4613,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.levelHandler.next();
 	            extrema = this.view.minZoom;
 	        }
-	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
-	            bounds: this.currentLevel.bounds,
-	            zoom: this.currentLevel.zoom,
-	            center: this.currentLevel.center
-	        });
 	        if (!this.view.isInitialized) {
 	            this.view.init();
 	        }
@@ -4625,6 +4620,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.setViewToOldView(lastCenter, extrema);
 	        }
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
+	            bounds: this.currentLevel.bounds,
+	            zoom: this.currentLevel.zoom,
+	            center: this.currentLevel.center,
 	            level: this.currentLevel.level
 	        });
 	        return this;
@@ -7418,10 +7416,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            zoomFactor: newZoom,
 	            view: this.view
 	        });
-
 	        this.setLatLngToPosition(latlngPosition, pos);
-
-	        this.calculateNewCenter();
 	        return this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
 	    };
 

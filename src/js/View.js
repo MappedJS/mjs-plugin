@@ -273,10 +273,7 @@ export class View extends Drawable {
             zoomFactor: newZoom,
             view: this.view
         });
-
         this.setLatLngToPosition(latlngPosition, pos);
-
-        this.calculateNewCenter();
         return this.changeZoomLevelIfNecessary(factor, viewportIsSmaller);
     }
 
