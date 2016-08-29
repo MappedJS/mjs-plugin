@@ -21,7 +21,7 @@ $icon-height: (7*$gutter);
         background: {
             color: map-get($light-theme, popupBg);
             size: 200%;
-            image: url('../../img/icons.png');
+            image: $icons;
             position: 0% 0%;
             repeat: no-repeat;
         }
