@@ -1354,7 +1354,7 @@ Creates a LatLng from specified LatLng
 **Kind**: global class  
 
 * [MappedJS](#MappedJS)
-    * [new MappedJS(container, mapData, markerData, mapSettings)](#new_MappedJS_new)
+    * [new MappedJS(container, path, mapData, markerData, mapSettings)](#new_MappedJS_new)
     * _instance_
         * [.generateUniqueID()](#MappedJS+generateUniqueID) ⇒ <code>Number</code>
         * [.addInformationLayer(type, settings)](#MappedJS+addInformationLayer) ⇒ <code>[MappedJS](#MappedJS)</code>
@@ -1379,11 +1379,12 @@ Creates a LatLng from specified LatLng
 
 <a name="new_MappedJS_new"></a>
 
-### new MappedJS(container, mapData, markerData, mapSettings)
+### new MappedJS(container, path, mapData, markerData, mapSettings)
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
 **Params**
 
 - container <code>String</code> | <code>HTMLElement</code> <code> = &quot;.mjs&quot;</code> - Container, either string or dom-object
+- path <code>String</code> <code> = &quot;./&quot;</code> - path to data
 - mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file
 - markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file
 - mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json
@@ -1557,6 +1558,7 @@ instance counter
 **Kind**: global class  
 
 * [MapInformation](#MapInformation)
+    * [new MapInformation(id, path)](#new_MapInformation_new)
     * _instance_
         * [.offsetToCenter](#MapInformation+offsetToCenter)
         * [.pixelPerLatLng](#MapInformation+pixelPerLatLng) ⇒ <code>[Point](#Point)</code>
@@ -1571,6 +1573,15 @@ instance counter
         * [.destroy()](#MapInformation+destroy)
     * _static_
         * [.instances](#MapInformation.instances) : <code>Object</code>
+
+<a name="new_MapInformation_new"></a>
+
+### new MapInformation(id, path)
+**Returns**: <code>[MapInformation](#MapInformation)</code> - singleton instance of MapInformation for chaining  
+**Params**
+
+- id <code>Number</code> <code> = 0</code> - id of MapInformation instance
+- path <code>String</code> <code> = &quot;./&quot;</code> - path to data
 
 <a name="MapInformation+offsetToCenter"></a>
 
@@ -2733,7 +2744,7 @@ States of a tile
 **Kind**: global class  
 
 * [TileMap](#TileMap)
-    * [new TileMap(container, tilesData, settings, id)](#new_TileMap_new)
+    * [new TileMap(container, path, tilesData, settings, id)](#new_TileMap_new)
     * [.width](#TileMap+width) ⇒ <code>Number</code>
     * [.height](#TileMap+height) ⇒ <code>Number</code>
     * [.viewport](#TileMap+viewport) ⇒ <code>[Rectangle](#Rectangle)</code>
@@ -2741,7 +2752,7 @@ States of a tile
     * [.currentLevel](#TileMap+currentLevel) ⇒ <code>Object</code>
     * [.clusters](#TileMap+clusters) ⇒ <code>Array</code>
     * [.initializeLevels(tilesData)](#TileMap+initializeLevels) ⇒ <code>[TileMap](#TileMap)</code>
-    * [.initializeInstanceVariables(id, container, tilesData, settings)](#TileMap+initializeInstanceVariables) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.initializeInstanceVariables(id, container, tilesData, settings, path)](#TileMap+initializeInstanceVariables) ⇒ <code>[TileMap](#TileMap)</code>
     * [.reset()](#TileMap+reset) ⇒ <code>[TileMap](#TileMap)</code>
     * [.initializeMarkers()](#TileMap+initializeMarkers) ⇒ <code>[TileMap](#TileMap)</code>
     * [.createViewFromData(data)](#TileMap+createViewFromData) ⇒ <code>[View](#View)</code>
@@ -2767,11 +2778,12 @@ States of a tile
 
 <a name="new_TileMap_new"></a>
 
-### new TileMap(container, tilesData, settings, id)
+### new TileMap(container, path, tilesData, settings, id)
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 **Params**
 
 - container <code>HTMLElement</code> - = null - jQuery-object holding the container
+- path <code>String</code> <code> = &quot;./&quot;</code> - path to data
 - tilesData <code>Object</code> - = {} - json object representing data of TileMap
 - settings <code>Object</code> - = {} - json object representing settings of TileMap
 - id <code>Number</code> - = 0 - id of parent instance
@@ -2831,7 +2843,7 @@ initializes all levels
 
 <a name="TileMap+initializeInstanceVariables"></a>
 
-### tileMap.initializeInstanceVariables(id, container, tilesData, settings) ⇒ <code>[TileMap](#TileMap)</code>
+### tileMap.initializeInstanceVariables(id, container, tilesData, settings, path) ⇒ <code>[TileMap](#TileMap)</code>
 initialize all variables
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
@@ -2842,6 +2854,7 @@ initialize all variables
 - container <code>HTMLElement</code> - = null - jQuery-object holding the container
 - tilesData <code>Object</code> - = {} - json object representing data of TileMap
 - settings <code>Object</code> - = {} - json object representing settings of TileMap
+- path <code>String</code> <code> = &quot;./&quot;</code> - path to data
 
 <a name="TileMap+reset"></a>
 

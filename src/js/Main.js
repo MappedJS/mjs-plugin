@@ -37,6 +37,7 @@ export class MappedJS {
     /**
      * @constructor
      * @param  {String|HTMLElement} container=".mjs" - Container, either string or dom-object
+     * @param  {String} path="./" - path to data
      * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
      * @param  {String|Object} markerData={} - data of markers, can be json or path to file
      * @param  {Object} mapSettings={} - settings for map, must be json
@@ -44,6 +45,7 @@ export class MappedJS {
      */
     constructor({
         container = ".mjs",
+        path = "./",
         mapData = {},
         markerData = {},
         mapSettings = {}
@@ -54,6 +56,9 @@ export class MappedJS {
         MappedJS.count++;
 
         this.eventManager = new Publisher(this.id);
+
+        this.path = path;
+
         this.initializeData(mapData, (loadedMapData) => {
             this.mapData = loadedMapData;
             this.initializeData(markerData, (loadedMarkerData) => {
@@ -177,7 +182,7 @@ export class MappedJS {
      */
     initializeData(mapData, cb) {
         if (typeof mapData === "string") {
-            Helper.requestJSON(mapData, (data) => {
+            Helper.requestJSON(this.path + mapData, (data) => {
                 cb(data);
             });
         } else {
@@ -193,6 +198,7 @@ export class MappedJS {
     initializeMap() {
         this.tileMap = new TileMap({
             container: this.content,
+            path: this.path,
             tilesData: this.mapData,
             id: this.id,
             settings: this.mapSettings

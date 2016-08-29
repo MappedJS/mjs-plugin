@@ -206,7 +206,7 @@ export class View extends Drawable {
      * @return {View} instance of View for chaining
      */
     loadThumb() {
-        Helper.loadImage(this.data.thumb, (img) => {
+        Helper.loadImage(this.info.path + this.data.thumb, (img) => {
             this.thumb = img;
             this.eventManager.publish(Events.View.THUMB_LOADED);
         });
@@ -363,7 +363,9 @@ export class View extends Drawable {
     initializeTiles() {
         const currentLevel = this.data.tiles;
         Helper.forEach(currentLevel, (currentTileData) => {
-            const tileData = Object.assign({}, currentTileData, {
+            const changedData = currentTileData;
+            changedData.path = this.info.path + currentTileData.path;
+            const tileData = Object.assign({}, changedData, {
                 context: this.context,
                 id: this.id
             });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head lang="de">
         <title>Berlin: All christmas markets</title>
         <meta charset="UTF-8">
@@ -17,20 +18,24 @@
                 margin: 0;
                 font-family: Verdana, sans-serif;
             }
+
             body * {
                 box-sizing: border-box;
             }
+
             body,
             html {
                 width: 100%;
                 height: 100%;
             }
+
             .mjs {
                 width: 100%;
                 height: 100%;
             }
         </style>
     </head>
+
     <body>
 
         <div class="mjs">
@@ -41,6 +46,7 @@
         <script>
             var mappedJS = new de.MappedJS({
                 container: ".mjs",
+                path: "http://localhost/test/",
                 mapData: "mapData.json",
                 markerData: "marker.json",
                 mapSettings: {
@@ -82,4 +88,5 @@
             });
         </script>
     </body>
+
 </html>
