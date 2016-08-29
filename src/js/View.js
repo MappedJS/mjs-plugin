@@ -137,6 +137,7 @@ export class View extends Drawable {
             const diff = Helper.clamp(Math.max(diffInHeight, diffInWidth), 0, Number.MAX_VALUE);
             this.zoom(diff, this.viewport.center, true);
         }
+        this.calculateNewCenter();
         return this;
     }
 

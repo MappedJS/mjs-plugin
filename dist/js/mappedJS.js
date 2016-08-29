@@ -4432,7 +4432,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.view.reset(this.settings.aoiBounds.center, scaleTemp);
 
+	        this.view.zoom(0, this.view.viewport.center);
+	        this.eventManager.publish(_Events.Events.MarkerClusterer.CLUSTERIZE);
+
 	        this.redraw();
+
 	        return this;
 	    };
 
@@ -4457,16 +4461,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.markers = this.markers.sort(function (a, b) {
 	            return b.latlng.lat - a.latlng.lat !== 0 ? b.latlng.lat - a.latlng.lat : b.latlng.lng - a.latlng.lng;
 	        });
-	        this.markerClusterer = new _MarkerClusterer.MarkerClusterer({
-	            markers: this.markers.filter(function (marker) {
-	                return marker.isClusterable();
-	            }),
-	            id: this.id,
-	            clusterImage: this.settings.clusterImage,
-	            context: this.canvasContext,
-	            container: this.markerContainer || document.body
-	        });
-	        this.eventManager.publish(_Events.Events.MarkerClusterer.CLUSTERIZE);
+	        if (this.markers.length > 0) {
+	            this.markerClusterer = new _MarkerClusterer.MarkerClusterer({
+	                markers: this.markers.filter(function (marker) {
+	                    return marker.isClusterable();
+	                }),
+	                id: this.id,
+	                clusterImage: this.settings.clusterImage,
+	                context: this.canvasContext,
+	                container: this.markerContainer || document.body
+	            });
+	            this.eventManager.publish(_Events.Events.MarkerClusterer.CLUSTERIZE);
+	        }
 	        return this;
 	    };
 
@@ -4847,7 +4853,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    TileMap.prototype.drawClusters = function drawClusters() {
-	        this.markerClusterer.drawClusters();
+	        if (this.markerClusterer) {
+	            this.markerClusterer.drawClusters();
+	        }
 	        return this;
 	    };
 
@@ -5790,11 +5798,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            marker.action(pos);
 	                        }
 	                    });
-	                    _Helper.Helper.forEach(_this3.tileMap.markerClusterer.clusters, function (cluster) {
-	                        if (cluster.hit(pos)) {
-	                            cluster.action(pos);
-	                        }
-	                    });
+	                    if (_this3.tileMap.markerClusterer) {
+	                        _Helper.Helper.forEach(_this3.tileMap.markerClusterer.clusters, function (cluster) {
+	                            if (cluster.hit(pos)) {
+	                                cluster.action(pos);
+	                            }
+	                        });
+	                    }
 
 	                    var id = data.target.getAttribute("data-id");
 	                    if (id) {
@@ -7304,6 +7314,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var diff = _Helper.Helper.clamp(Math.max(diffInHeight, diffInWidth), 0, Number.MAX_VALUE);
 	            this.zoom(diff, this.viewport.center, true);
 	        }
+	        this.calculateNewCenter();
 	        return this;
 	    };
 
