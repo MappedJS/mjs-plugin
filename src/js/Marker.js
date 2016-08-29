@@ -94,7 +94,7 @@ export class Marker extends Drawable {
             this.drawIconType = this.drawSquareIcon(this.icon.size);
         } else if (this.icon && this.icon.type === "image") {
             this.texture = new Texture({
-                path: this.icon.url,
+                path: this.info.path + this.icon.url,
                 size: this.icon.size,
                 offset: this.icon.offset
             });
