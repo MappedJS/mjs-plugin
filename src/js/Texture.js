@@ -29,6 +29,8 @@ export class Texture extends Rectangle {
     }) {
         super(offset.x, offset.y, size.x, size.y);
 
+        this.offset = offset;
+
         let textureExists;
         Helper.forEach(Texture.textures, (texture) => {
             if (path === texture.settings.path && size.equals(texture.settings.size) && offset.equals(texture.settings.offset)) {
@@ -81,9 +83,13 @@ export class Texture extends Rectangle {
      */
     isHit(point) {
         if (this.ctx) {
-            const imgData = this.ctx.getImageData(point.x, point.y, 1, 1);
-            const alpha = imgData.data[3];
-            return alpha !== 0;
+            try {
+                const imgData = this.ctx.getImageData(point.x, point.y, 1, 1);
+                const alpha = imgData.data[3];
+                return alpha !== 0;
+            } catch (err) {
+                return new Rectangle(0, 0, this.width, this.height).containsPoint(point);
+            }
         }
         return false;
     }

@@ -157,5 +157,6 @@ DataEnrichment.DATA_MARKER_ICON = {
  */
 DataEnrichment.CLUSTER_FONT = {
     color: "#333",
-    font: "bold 10px sans-serif"
+    font: "bold 10px sans-serif",
+    offset: [0, 0]
 };

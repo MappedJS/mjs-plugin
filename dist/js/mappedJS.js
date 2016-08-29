@@ -2206,7 +2206,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	DataEnrichment.CLUSTER_FONT = {
 	    color: "#333",
-	    font: "bold 10px sans-serif"
+	    font: "bold 10px sans-serif",
+	    offset: [0, 0]
 		};
 
 /***/ },
@@ -2780,6 +2781,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var _this = _possibleConstructorReturn(this, _Rectangle.call(this, offset.x, offset.y, size.x, size.y));
 
+	        _this.offset = offset;
+
 	        var textureExists = void 0;
 	        _Helper.Helper.forEach(Texture.textures, function (texture) {
 	            if (path === texture.settings.path && size.equals(texture.settings.size) && offset.equals(texture.settings.offset)) {
@@ -2838,9 +2841,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    Texture.prototype.isHit = function isHit(point) {
 	        if (this.ctx) {
-	            var imgData = this.ctx.getImageData(point.x, point.y, 1, 1);
-	            var alpha = imgData.data[3];
-	            return alpha !== 0;
+	            try {
+	                var imgData = this.ctx.getImageData(point.x, point.y, 1, 1);
+	                var alpha = imgData.data[3];
+	                return alpha !== 0;
+	            } catch (err) {
+	                return new _Rectangle2.Rectangle(0, 0, this.width, this.height).containsPoint(point);
+	            }
 	        }
 	        return false;
 	    };
@@ -5262,7 +5269,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = _possibleConstructorReturn(this, _Drawable.call(this, id));
 
 	        _this.markers = [];
-	        _this.textSettings = font;
+	        _this.textSettings = Object.assign({}, _DataEnrichment.DataEnrichment.CLUSTER_FONT, font);
 	        _this.texture = texture;
 	        _this.context = context;
 	        _this.isHovered = false;
@@ -5338,7 +5345,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.context.textBaseline = "middle";
 	            this.context.font = this.textSettings.font;
 	            this.context.fillStyle = this.textSettings.color;
-	            this.context.fillText(this.markers.length, this.boundingBox.center.x, this.boundingBox.center.y);
+	            this.context.fillText(this.markers.length, this.boundingBox.center.x + this.textSettings.offset[0], this.boundingBox.center.y + this.textSettings.offset[1]);
 	            this.context.closePath();
 	        }
 	        return this;
