@@ -1537,7 +1537,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Publisher = __webpack_require__(14);
 
-	var _MapInformation = __webpack_require__(38);
+	var _MapInformation = __webpack_require__(34);
 
 	var _Rectangle2 = __webpack_require__(8);
 
@@ -2054,7 +2054,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LatLng = __webpack_require__(19);
 
-	var _Bounds = __webpack_require__(37);
+	var _Bounds = __webpack_require__(38);
 
 	/**
 	 * @author Michael Duve <mduve@designmail.net>
@@ -2213,176 +2213,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// 0 -> Array#forEach
-	// 1 -> Array#map
-	// 2 -> Array#filter
-	// 3 -> Array#some
-	// 4 -> Array#every
-	// 5 -> Array#find
-	// 6 -> Array#findIndex
-	var ctx      = __webpack_require__(22)
-	  , IObject  = __webpack_require__(26)
-	  , toObject = __webpack_require__(10)
-	  , toLength = __webpack_require__(15)
-	  , asc      = __webpack_require__(69);
-	module.exports = function(TYPE){
-	  var IS_MAP        = TYPE == 1
-	    , IS_FILTER     = TYPE == 2
-	    , IS_SOME       = TYPE == 3
-	    , IS_EVERY      = TYPE == 4
-	    , IS_FIND_INDEX = TYPE == 6
-	    , NO_HOLES      = TYPE == 5 || IS_FIND_INDEX;
-	  return function($this, callbackfn, that){
-	    var O      = toObject($this)
-	      , self   = IObject(O)
-	      , f      = ctx(callbackfn, that, 3)
-	      , length = toLength(self.length)
-	      , index  = 0
-	      , result = IS_MAP ? asc($this, length) : IS_FILTER ? asc($this, 0) : undefined
-	      , val, res;
-	    for(;length > index; index++)if(NO_HOLES || index in self){
-	      val = self[index];
-	      res = f(val, index, O);
-	      if(TYPE){
-	        if(IS_MAP)result[index] = res;            // map
-	        else if(res)switch(TYPE){
-	          case 3: return true;                    // some
-	          case 5: return val;                     // find
-	          case 6: return index;                   // findIndex
-	          case 2: result.push(val);               // filter
-	        } else if(IS_EVERY)return false;          // every
-	      }
-	    }
-	    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
-	  };
-	};
-
-/***/ },
-/* 35 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// 7.2.2 IsArray(argument)
-	var cof = __webpack_require__(21);
-	module.exports = Array.isArray || function(arg){
-	  return cof(arg) == 'Array';
-	};
-
-/***/ },
-/* 36 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var def = __webpack_require__(2).setDesc
-	  , has = __webpack_require__(25)
-	  , TAG = __webpack_require__(3)('toStringTag');
-
-	module.exports = function(it, tag, stat){
-	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
-	};
-
-/***/ },
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.Bounds = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _LatLng = __webpack_require__(19);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file represents boundaries of a geographic coordinate system
-	 * @copyright Michael Duve 2016
-	 */
-
-	var Bounds = exports.Bounds = function () {
-	    _createClass(Bounds, [{
-	        key: 'width',
-
-
-	        /**
-	         * get width of boundaries
-	         * @return {Number} distance between east and west boundary
-	         */
-	        get: function get() {
-	            return Math.abs(this.se.lng - this.nw.lng);
-	        }
-
-	        /**
-	         * get height of boundaries
-	         * @return {Number} distance between north and south boundary
-	         */
-
-	    }, {
-	        key: 'height',
-	        get: function get() {
-	            return Math.abs(this.se.lat - this.nw.lat);
-	        }
-	    }, {
-	        key: 'center',
-	        get: function get() {
-	            return this.nw.clone.add(this.se.clone.substract(this.nw).divide(2));
-	        }
-
-	        /**
-	         * @constructor
-	         * @param  {Number} northWest = new LatLng() - representation of northWest boundary
-	         * @param  {Number} southEast = new LatLng() - representation of southEast boundary
-	         * @return {Bounds} instance of Bounds for chaining
-	         */
-
-	    }]);
-
-	    function Bounds() {
-	        var northWest = arguments.length <= 0 || arguments[0] === undefined ? new _LatLng.LatLng() : arguments[0];
-	        var southEast = arguments.length <= 1 || arguments[1] === undefined ? new _LatLng.LatLng() : arguments[1];
-
-	        _classCallCheck(this, Bounds);
-
-	        if (northWest.lat < southEast.lat || northWest.lng > southEast.lng) {
-	            throw new Error(northWest + ' needs to be top-left corner and ' + southEast + ' bottom-right');
-	        }
-	        this.nw = northWest;
-	        this.se = southEast;
-	        return this;
-	    }
-
-	    /**
-	     * check if specified bounds equals this bounds
-	     * @param  {Bounds} bounds - specified bounds
-	     * @return {Boolean} Whether they are equal or not
-	     */
-
-
-	    Bounds.prototype.equals = function equals(bounds) {
-	        return bounds instanceof Bounds && this.nw.equals(bounds.nw) && this.se.equals(bounds.se);
-	    };
-
-	    /**
-	     * string representation
-	     * @return {String} string representation of object
-	     */
-
-
-	    Bounds.prototype.toString = function toString() {
-	        return '(' + this.nw + ', ' + this.se + ')';
-	    };
-
-	    return Bounds;
-	}();
-
-/***/ },
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
 	"use strict";
 	'use strict';
 
@@ -2401,7 +2231,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LatLng = __webpack_require__(19);
 
-	var _Bounds = __webpack_require__(37);
+	var _Bounds = __webpack_require__(38);
 
 	var _Point = __webpack_require__(4);
 
@@ -2440,6 +2270,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * @constructor
+	         * @param {Number} id=0 - id of MapInformation instance
+	         * @param {String} path="./" - path to data
 	         * @return {MapInformation} singleton instance of MapInformation for chaining
 	         */
 
@@ -2447,11 +2279,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    function MapInformation() {
 	        var id = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	        var path = arguments.length <= 1 || arguments[1] === undefined ? "./" : arguments[1];
 
 	        _classCallCheck(this, MapInformation);
 
 	        if (!MapInformation.instances[id]) {
 	            this.id = id;
+	            this.path = path;
 	            this.data = {
 	                center: new _LatLng.LatLng(),
 	                view: new _Rectangle.Rectangle(),
@@ -2588,6 +2422,176 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 		MapInformation.instances = {};
+
+/***/ },
+/* 35 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 0 -> Array#forEach
+	// 1 -> Array#map
+	// 2 -> Array#filter
+	// 3 -> Array#some
+	// 4 -> Array#every
+	// 5 -> Array#find
+	// 6 -> Array#findIndex
+	var ctx      = __webpack_require__(22)
+	  , IObject  = __webpack_require__(26)
+	  , toObject = __webpack_require__(10)
+	  , toLength = __webpack_require__(15)
+	  , asc      = __webpack_require__(69);
+	module.exports = function(TYPE){
+	  var IS_MAP        = TYPE == 1
+	    , IS_FILTER     = TYPE == 2
+	    , IS_SOME       = TYPE == 3
+	    , IS_EVERY      = TYPE == 4
+	    , IS_FIND_INDEX = TYPE == 6
+	    , NO_HOLES      = TYPE == 5 || IS_FIND_INDEX;
+	  return function($this, callbackfn, that){
+	    var O      = toObject($this)
+	      , self   = IObject(O)
+	      , f      = ctx(callbackfn, that, 3)
+	      , length = toLength(self.length)
+	      , index  = 0
+	      , result = IS_MAP ? asc($this, length) : IS_FILTER ? asc($this, 0) : undefined
+	      , val, res;
+	    for(;length > index; index++)if(NO_HOLES || index in self){
+	      val = self[index];
+	      res = f(val, index, O);
+	      if(TYPE){
+	        if(IS_MAP)result[index] = res;            // map
+	        else if(res)switch(TYPE){
+	          case 3: return true;                    // some
+	          case 5: return val;                     // find
+	          case 6: return index;                   // findIndex
+	          case 2: result.push(val);               // filter
+	        } else if(IS_EVERY)return false;          // every
+	      }
+	    }
+	    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+	  };
+	};
+
+/***/ },
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 7.2.2 IsArray(argument)
+	var cof = __webpack_require__(21);
+	module.exports = Array.isArray || function(arg){
+	  return cof(arg) == 'Array';
+	};
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var def = __webpack_require__(2).setDesc
+	  , has = __webpack_require__(25)
+	  , TAG = __webpack_require__(3)('toStringTag');
+
+	module.exports = function(it, tag, stat){
+	  if(it && !has(it = stat ? it : it.prototype, TAG))def(it, TAG, {configurable: true, value: tag});
+	};
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.Bounds = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _LatLng = __webpack_require__(19);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file represents boundaries of a geographic coordinate system
+	 * @copyright Michael Duve 2016
+	 */
+
+	var Bounds = exports.Bounds = function () {
+	    _createClass(Bounds, [{
+	        key: 'width',
+
+
+	        /**
+	         * get width of boundaries
+	         * @return {Number} distance between east and west boundary
+	         */
+	        get: function get() {
+	            return Math.abs(this.se.lng - this.nw.lng);
+	        }
+
+	        /**
+	         * get height of boundaries
+	         * @return {Number} distance between north and south boundary
+	         */
+
+	    }, {
+	        key: 'height',
+	        get: function get() {
+	            return Math.abs(this.se.lat - this.nw.lat);
+	        }
+	    }, {
+	        key: 'center',
+	        get: function get() {
+	            return this.nw.clone.add(this.se.clone.substract(this.nw).divide(2));
+	        }
+
+	        /**
+	         * @constructor
+	         * @param  {Number} northWest = new LatLng() - representation of northWest boundary
+	         * @param  {Number} southEast = new LatLng() - representation of southEast boundary
+	         * @return {Bounds} instance of Bounds for chaining
+	         */
+
+	    }]);
+
+	    function Bounds() {
+	        var northWest = arguments.length <= 0 || arguments[0] === undefined ? new _LatLng.LatLng() : arguments[0];
+	        var southEast = arguments.length <= 1 || arguments[1] === undefined ? new _LatLng.LatLng() : arguments[1];
+
+	        _classCallCheck(this, Bounds);
+
+	        if (northWest.lat < southEast.lat || northWest.lng > southEast.lng) {
+	            throw new Error(northWest + ' needs to be top-left corner and ' + southEast + ' bottom-right');
+	        }
+	        this.nw = northWest;
+	        this.se = southEast;
+	        return this;
+	    }
+
+	    /**
+	     * check if specified bounds equals this bounds
+	     * @param  {Bounds} bounds - specified bounds
+	     * @return {Boolean} Whether they are equal or not
+	     */
+
+
+	    Bounds.prototype.equals = function equals(bounds) {
+	        return bounds instanceof Bounds && this.nw.equals(bounds.nw) && this.se.equals(bounds.se);
+	    };
+
+	    /**
+	     * string representation
+	     * @return {String} string representation of object
+	     */
+
+
+	    Bounds.prototype.toString = function toString() {
+	        return '(' + this.nw + ', ' + this.se + ')';
+	    };
+
+	    return Bounds;
+	}();
 
 /***/ },
 /* 39 */
@@ -2920,7 +2924,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , has            = __webpack_require__(25)
 	  , Iterators      = __webpack_require__(27)
 	  , $iterCreate    = __webpack_require__(76)
-	  , setToStringTag = __webpack_require__(36)
+	  , setToStringTag = __webpack_require__(37)
 	  , getProto       = __webpack_require__(2).getProto
 	  , ITERATOR       = __webpack_require__(3)('iterator')
 	  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
@@ -4200,7 +4204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _MarkerClusterer = __webpack_require__(62);
 
-	var _MapInformation = __webpack_require__(38);
+	var _MapInformation = __webpack_require__(34);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4281,6 +4285,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * @constructor
 	         * @param  {HTMLElement} container = null - jQuery-object holding the container
+	         * @param  {String} path="./" - path to data
 	         * @param  {Object} tilesData = {} - json object representing data of TileMap
 	         * @param  {Object} settings = {} - json object representing settings of TileMap
 	         * @param  {Number} id = 0 - id of parent instance
@@ -4292,6 +4297,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function TileMap(_ref) {
 	        var _ref$container = _ref.container;
 	        var container = _ref$container === undefined ? null : _ref$container;
+	        var _ref$path = _ref.path;
+	        var path = _ref$path === undefined ? "./" : _ref$path;
 	        var _ref$tilesData = _ref.tilesData;
 	        var tilesData = _ref$tilesData === undefined ? {} : _ref$tilesData;
 	        var _ref$settings = _ref.settings;
@@ -4304,7 +4311,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            throw Error("You must define a container to initialize a TileMap");
 	        }
 
-	        this.initializeInstanceVariables(id, container, settings, tilesData);
+	        this.initializeInstanceVariables(id, container, settings, tilesData, path);
 	        this.initializeCanvas();
 
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
@@ -4352,17 +4359,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * @param  {HTMLElement} container = null - jQuery-object holding the container
 	     * @param  {Object} tilesData = {} - json object representing data of TileMap
 	     * @param  {Object} settings = {} - json object representing settings of TileMap
+	     * @param  {String} path="./" - path to data
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
 
-	    TileMap.prototype.initializeInstanceVariables = function initializeInstanceVariables(id, container, settings, tilesData) {
+	    TileMap.prototype.initializeInstanceVariables = function initializeInstanceVariables(id, container, settings, tilesData, path) {
 	        this.container = container;
 	        this.id = id;
 	        this.settings = settings;
 	        this.markers = [];
 	        this.thumbsLoaded = 0;
-	        this.info = new _MapInformation.MapInformation(this.id);
+	        this.info = new _MapInformation.MapInformation(this.id, path);
 	        this.eventManager = new _Publisher.Publisher(this.id);
 	        this.markerData = tilesData[_Events.Events.TileMap.MARKER_DATA_NAME];
 	        this.levels = [];
@@ -5548,6 +5556,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * @constructor
 	     * @param  {String|HTMLElement} container=".mjs" - Container, either string or dom-object
+	     * @param  {String} path="./" - path to data
 	     * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
 	     * @param  {String|Object} markerData={} - data of markers, can be json or path to file
 	     * @param  {Object} mapSettings={} - settings for map, must be json
@@ -5559,6 +5568,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var _ref$container = _ref.container;
 	        var container = _ref$container === undefined ? ".mjs" : _ref$container;
+	        var _ref$path = _ref.path;
+	        var path = _ref$path === undefined ? "./" : _ref$path;
 	        var _ref$mapData = _ref.mapData;
 	        var mapData = _ref$mapData === undefined ? {} : _ref$mapData;
 	        var _ref$markerData = _ref.markerData;
@@ -5574,6 +5585,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        MappedJS.count++;
 
 	        this.eventManager = new _Publisher.Publisher(this.id);
+
+	        this.path = path;
+
 	        this.initializeData(mapData, function (loadedMapData) {
 	            _this.mapData = loadedMapData;
 	            _this.initializeData(markerData, function (loadedMarkerData) {
@@ -5711,7 +5725,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    MappedJS.prototype.initializeData = function initializeData(mapData, cb) {
 	        if (typeof mapData === "string") {
-	            _Helper.Helper.requestJSON(mapData, function (data) {
+	            _Helper.Helper.requestJSON(this.path + mapData, function (data) {
 	                cb(data);
 	            });
 	        } else {
@@ -5729,6 +5743,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    MappedJS.prototype.initializeMap = function initializeMap() {
 	        this.tileMap = new _TileMap.TileMap({
 	            container: this.content,
+	            path: this.path,
 	            tilesData: this.mapData,
 	            id: this.id,
 	            settings: this.mapSettings
@@ -6412,6 +6427,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Texture = __webpack_require__(40);
 
+	var _MapInformation = __webpack_require__(34);
+
 	var _Cluster = __webpack_require__(59);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6450,9 +6467,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return marker1.distance(marker2);
 	        });
 	        this.id = id;
+	        this.info = new _MapInformation.MapInformation(this.id, null);
 	        this.context = context;
 	        this.clusterImage = new _Texture.Texture({
-	            path: clusterImage.path,
+	            path: this.info.path + clusterImage.path,
 	            size: clusterImage.size,
 	            offset: clusterImage.offset
 	        });
@@ -7358,7 +7376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    View.prototype.loadThumb = function loadThumb() {
 	        var _this3 = this;
 
-	        _Helper.Helper.loadImage(this.data.thumb, function (img) {
+	        _Helper.Helper.loadImage(this.info.path + this.data.thumb, function (img) {
 	            _this3.thumb = img;
 	            _this3.eventManager.publish(_Events.Events.View.THUMB_LOADED);
 	        });
@@ -7539,7 +7557,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var currentLevel = this.data.tiles;
 	        _Helper.Helper.forEach(currentLevel, function (currentTileData) {
-	            var tileData = Object.assign({}, currentTileData, {
+	            var changedData = currentTileData;
+	            changedData.path = _this4.info.path + currentTileData.path;
+	            var tileData = Object.assign({}, changedData, {
 	                context: _this4.context,
 	                id: _this4.id
 	            });
@@ -7639,7 +7659,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
 	var isObject = __webpack_require__(5)
-	  , isArray  = __webpack_require__(35)
+	  , isArray  = __webpack_require__(36)
 	  , SPECIES  = __webpack_require__(3)('species');
 	module.exports = function(original, length){
 	  var C;
@@ -7750,7 +7770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	var $              = __webpack_require__(2)
 	  , descriptor     = __webpack_require__(28)
-	  , setToStringTag = __webpack_require__(36)
+	  , setToStringTag = __webpack_require__(37)
 	  , IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
@@ -8002,7 +8022,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , toLength          = __webpack_require__(15)
 	  , IObject           = __webpack_require__(26)
 	  , IE_PROTO          = __webpack_require__(32)('__proto__')
-	  , createArrayMethod = __webpack_require__(34)
+	  , createArrayMethod = __webpack_require__(35)
 	  , arrayIndexOf      = __webpack_require__(68)(false)
 	  , ObjectProto       = Object.prototype
 	  , ArrayProto        = Array.prototype
@@ -8169,7 +8189,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	// 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
-	$export($export.S, 'Array', {isArray: __webpack_require__(35)});
+	$export($export.S, 'Array', {isArray: __webpack_require__(36)});
 
 	var createArrayReduce = function(isRight){
 	  return function(callbackfn, memo){
@@ -8288,7 +8308,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 	var $export = __webpack_require__(0)
-	  , $find   = __webpack_require__(34)(6)
+	  , $find   = __webpack_require__(35)(6)
 	  , KEY     = 'findIndex'
 	  , forced  = true;
 	// Shouldn't skip holes
@@ -8308,7 +8328,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 	var $export = __webpack_require__(0)
-	  , $find   = __webpack_require__(34)(5)
+	  , $find   = __webpack_require__(35)(5)
 	  , KEY     = 'find'
 	  , forced  = true;
 	// Shouldn't skip holes
@@ -8574,13 +8594,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , redefine       = __webpack_require__(29)
 	  , $fails         = __webpack_require__(12)
 	  , shared         = __webpack_require__(46)
-	  , setToStringTag = __webpack_require__(36)
+	  , setToStringTag = __webpack_require__(37)
 	  , uid            = __webpack_require__(32)
 	  , wks            = __webpack_require__(3)
 	  , keyOf          = __webpack_require__(79)
 	  , $names         = __webpack_require__(43)
 	  , enumKeys       = __webpack_require__(71)
-	  , isArray        = __webpack_require__(35)
+	  , isArray        = __webpack_require__(36)
 	  , anObject       = __webpack_require__(20)
 	  , toIObject      = __webpack_require__(13)
 	  , createDesc     = __webpack_require__(28)

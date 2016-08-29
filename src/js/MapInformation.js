@@ -44,11 +44,14 @@ export class MapInformation {
 
     /**
      * @constructor
+     * @param {Number} id=0 - id of MapInformation instance
+     * @param {String} path="./" - path to data
      * @return {MapInformation} singleton instance of MapInformation for chaining
      */
-    constructor(id = 0) {
+    constructor(id = 0, path = "./") {
         if (!MapInformation.instances[id]) {
             this.id = id;
+            this.path = path;
             this.data = {
                 center: new LatLng(),
                 view: new Rectangle(),

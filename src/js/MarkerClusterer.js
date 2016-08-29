@@ -17,6 +17,9 @@ import {
     Texture
 } from './Texture.js';
 import {
+    MapInformation
+} from './MapInformation.js';
+import {
     Cluster
 } from './Cluster.js';
 
@@ -46,9 +49,10 @@ export class MarkerClusterer {
             return marker1.distance(marker2);
         });
         this.id = id;
+        this.info = new MapInformation(this.id, null);
         this.context = context;
         this.clusterImage = new Texture({
-            path: clusterImage.path,
+            path: this.info.path + clusterImage.path,
             size: clusterImage.size,
             offset: clusterImage.offset,
         });

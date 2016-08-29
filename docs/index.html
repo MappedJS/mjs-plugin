@@ -86,7 +86,7 @@
 <p><a name="module_DataEnrichment"></a></p>
 <h2 id="dataenrichment">DataEnrichment</h2>
 <p>enriches delivered data with default values</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x6d;&#x64;&#117;&#118;&#101;&#64;&#100;&#101;&#115;&#105;&#x67;&#x6e;&#109;&#x61;&#x69;&#108;&#46;&#x6e;&#x65;&#x74;">&#x6d;&#x64;&#117;&#118;&#101;&#64;&#100;&#101;&#115;&#105;&#x67;&#x6e;&#109;&#x61;&#x69;&#108;&#46;&#x6e;&#x65;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#109;&#100;&#117;&#118;&#x65;&#x40;&#100;&#x65;&#x73;&#105;&#x67;&#x6e;&#x6d;&#97;&#x69;&#x6c;&#46;&#110;&#x65;&#x74;">&#109;&#100;&#117;&#118;&#x65;&#x40;&#100;&#x65;&#x73;&#105;&#x67;&#x6e;&#x6d;&#97;&#x69;&#x6c;&#46;&#110;&#x65;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_DataEnrichment">DataEnrichment</a><ul>
 <li><a href="#module_DataEnrichment.marker">.marker(data)</a> ⇒ <code>Object</code></li>
@@ -111,7 +111,7 @@
 <p><a name="module_Helper"></a></p>
 <h2 id="helper">Helper</h2>
 <p>Helper for general purposes</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x6d;&#x64;&#117;&#x76;&#101;&#64;&#x64;&#x65;&#115;&#x69;&#x67;&#x6e;&#x6d;&#97;&#x69;&#x6c;&#46;&#x6e;&#101;&#116;">&#x6d;&#x64;&#117;&#x76;&#101;&#64;&#x64;&#x65;&#115;&#x69;&#x67;&#x6e;&#x6d;&#97;&#x69;&#x6c;&#46;&#x6e;&#101;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#109;&#x64;&#x75;&#x76;&#101;&#x40;&#100;&#101;&#x73;&#x69;&#103;&#x6e;&#x6d;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#x74;">&#109;&#x64;&#x75;&#x76;&#101;&#x40;&#100;&#101;&#x73;&#x69;&#103;&#x6e;&#x6d;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_Helper">Helper</a><ul>
 <li><a href="#module_Helper.requestJSON">.requestJSON(filename, callback)</a> ⇒ <code>Helper</code></li>
@@ -965,7 +965,7 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#MappedJS">MappedJS</a><ul>
-<li><a href="#new_MappedJS_new">new MappedJS(container, mapData, markerData, mapSettings)</a></li>
+<li><a href="#new_MappedJS_new">new MappedJS(container, path, mapData, markerData, mapSettings)</a></li>
 <li><em>instance</em><ul>
 <li><a href="#MappedJS+generateUniqueID">.generateUniqueID()</a> ⇒ <code>Number</code></li>
 <li><a href="#MappedJS+addInformationLayer">.addInformationLayer(type, settings)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
@@ -995,10 +995,11 @@
 </li>
 </ul>
 <p><a name="new_MappedJS_new"></a></p>
-<h3 id="new-mappedjs-container-mapdata-markerdata-mapsettings-">new MappedJS(container, mapData, markerData, mapSettings)</h3>
+<h3 id="new-mappedjs-container-path-mapdata-markerdata-mapsettings-">new MappedJS(container, path, mapData, markerData, mapSettings)</h3>
 <p><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
 <ul>
 <li>container <code>String</code> | <code>HTMLElement</code> <code> = &quot;.mjs&quot;</code> - Container, either string or dom-object</li>
+<li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
 <li>mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file</li>
 <li>markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file</li>
 <li>mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json</li>
@@ -1096,6 +1097,7 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#MapInformation">MapInformation</a><ul>
+<li><a href="#new_MapInformation_new">new MapInformation(id, path)</a></li>
 <li><em>instance</em><ul>
 <li><a href="#MapInformation+offsetToCenter">.offsetToCenter</a></li>
 <li><a href="#MapInformation+pixelPerLatLng">.pixelPerLatLng</a> ⇒ <code><a href="#Point">Point</a></code></li>
@@ -1116,6 +1118,13 @@
 </li>
 </ul>
 </li>
+</ul>
+<p><a name="new_MapInformation_new"></a></p>
+<h3 id="new-mapinformation-id-path-">new MapInformation(id, path)</h3>
+<p><strong>Returns</strong>: <code><a href="#MapInformation">MapInformation</a></code> - singleton instance of MapInformation for chaining<br><strong>Params</strong></p>
+<ul>
+<li>id <code>Number</code> <code> = 0</code> - id of MapInformation instance</li>
+<li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
 </ul>
 <p><a name="MapInformation+offsetToCenter"></a></p>
 <h3 id="mapinformation-offsettocenter">mapInformation.offsetToCenter</h3>
@@ -1905,7 +1914,7 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#TileMap">TileMap</a><ul>
-<li><a href="#new_TileMap_new">new TileMap(container, tilesData, settings, id)</a></li>
+<li><a href="#new_TileMap_new">new TileMap(container, path, tilesData, settings, id)</a></li>
 <li><a href="#TileMap+width">.width</a> ⇒ <code>Number</code></li>
 <li><a href="#TileMap+height">.height</a> ⇒ <code>Number</code></li>
 <li><a href="#TileMap+viewport">.viewport</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
@@ -1913,7 +1922,7 @@
 <li><a href="#TileMap+currentLevel">.currentLevel</a> ⇒ <code>Object</code></li>
 <li><a href="#TileMap+clusters">.clusters</a> ⇒ <code>Array</code></li>
 <li><a href="#TileMap+initializeLevels">.initializeLevels(tilesData)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
-<li><a href="#TileMap+initializeInstanceVariables">.initializeInstanceVariables(id, container, tilesData, settings)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+initializeInstanceVariables">.initializeInstanceVariables(id, container, tilesData, settings, path)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+reset">.reset()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+initializeMarkers">.initializeMarkers()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+createViewFromData">.createViewFromData(data)</a> ⇒ <code><a href="#View">View</a></code></li>
@@ -1940,10 +1949,11 @@
 </li>
 </ul>
 <p><a name="new_TileMap_new"></a></p>
-<h3 id="new-tilemap-container-tilesdata-settings-id-">new TileMap(container, tilesData, settings, id)</h3>
+<h3 id="new-tilemap-container-path-tilesdata-settings-id-">new TileMap(container, path, tilesData, settings, id)</h3>
 <p><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
 <ul>
 <li>container <code>HTMLElement</code> - = null - jQuery-object holding the container</li>
+<li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
 <li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
 <li>settings <code>Object</code> - = {} - json object representing settings of TileMap</li>
 <li>id <code>Number</code> - = 0 - id of parent instance</li>
@@ -1974,7 +1984,7 @@
 <li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
 </ul>
 <p><a name="TileMap+initializeInstanceVariables"></a></p>
-<h3 id="tilemap-initializeinstancevariables-id-container-tilesdata-settings-code-tilemap-tilemap-code-">tileMap.initializeInstanceVariables(id, container, tilesData, settings) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<h3 id="tilemap-initializeinstancevariables-id-container-tilesdata-settings-path-code-tilemap-tilemap-code-">tileMap.initializeInstanceVariables(id, container, tilesData, settings, path) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
 <p>initialize all variables</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
 <ul>
@@ -1982,6 +1992,7 @@
 <li>container <code>HTMLElement</code> - = null - jQuery-object holding the container</li>
 <li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
 <li>settings <code>Object</code> - = {} - json object representing settings of TileMap</li>
+<li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
 </ul>
 <p><a name="TileMap+reset"></a></p>
 <h3 id="tilemap-reset-code-tilemap-tilemap-code-">tileMap.reset() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
@@ -2303,7 +2314,7 @@
 <p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="Events"></a></p>
 <h2 id="events-code-object-code-">Events : <code>object</code></h2>
 <p>Helper for naming events</p>
-<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x6d;&#100;&#117;&#118;&#x65;&#x40;&#100;&#101;&#x73;&#x69;&#x67;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#x65;&#116;">&#x6d;&#100;&#117;&#118;&#x65;&#x40;&#100;&#101;&#x73;&#x69;&#x67;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#x65;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x6d;&#x64;&#117;&#x76;&#x65;&#64;&#x64;&#x65;&#x73;&#105;&#x67;&#x6e;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x6e;&#x65;&#116;">&#x6d;&#x64;&#117;&#x76;&#x65;&#64;&#x64;&#x65;&#x73;&#105;&#x67;&#x6e;&#x6d;&#x61;&#x69;&#108;&#x2e;&#x6e;&#x65;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#Events">Events</a> : <code>object</code><ul>
 <li><a href="#Events.ToolTip">.ToolTip</a> : <code>Object</code></li>

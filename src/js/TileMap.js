@@ -93,6 +93,7 @@ export class TileMap {
     /**
      * @constructor
      * @param  {HTMLElement} container = null - jQuery-object holding the container
+     * @param  {String} path="./" - path to data
      * @param  {Object} tilesData = {} - json object representing data of TileMap
      * @param  {Object} settings = {} - json object representing settings of TileMap
      * @param  {Number} id = 0 - id of parent instance
@@ -100,6 +101,7 @@ export class TileMap {
      */
     constructor({
         container = null,
+        path = "./",
         tilesData = {},
         settings = {},
         id
@@ -108,7 +110,7 @@ export class TileMap {
             throw Error("You must define a container to initialize a TileMap");
         }
 
-        this.initializeInstanceVariables(id, container, settings, tilesData);
+        this.initializeInstanceVariables(id, container, settings, tilesData, path);
         this.initializeCanvas();
 
         this.eventManager.publish(Events.MapInformation.UPDATE, {
@@ -152,15 +154,16 @@ export class TileMap {
      * @param  {HTMLElement} container = null - jQuery-object holding the container
      * @param  {Object} tilesData = {} - json object representing data of TileMap
      * @param  {Object} settings = {} - json object representing settings of TileMap
+     * @param  {String} path="./" - path to data
      * @return {TileMap} instance of TileMap for chaining
      */
-    initializeInstanceVariables(id, container, settings, tilesData) {
+    initializeInstanceVariables(id, container, settings, tilesData, path) {
         this.container = container;
         this.id = id;
         this.settings = settings;
         this.markers = [];
         this.thumbsLoaded = 0;
-        this.info = new MapInformation(this.id);
+        this.info = new MapInformation(this.id, path);
         this.eventManager = new Publisher(this.id);
         this.markerData = tilesData[Events.TileMap.MARKER_DATA_NAME];
         this.levels = [];
