@@ -6148,7 +6148,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this.drawIconType = _this.drawSquareIcon(_this.icon.size);
 	        } else if (_this.icon && _this.icon.type === "image") {
 	            _this.texture = new _Texture.Texture({
-	                path: _this.icon.url,
+	                path: _this.info.path + _this.icon.url,
 	                size: _this.icon.size,
 	                offset: _this.icon.offset
 	            });
