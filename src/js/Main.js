@@ -232,11 +232,13 @@ export class MappedJS {
                             marker.action(pos);
                         }
                     });
-                    Helper.forEach(this.tileMap.markerClusterer.clusters, (cluster) => {
-                        if (cluster.hit(pos)) {
-                            cluster.action(pos);
-                        }
-                    });
+                    if (this.tileMap.markerClusterer) {
+                        Helper.forEach(this.tileMap.markerClusterer.clusters, (cluster) => {
+                            if (cluster.hit(pos)) {
+                                cluster.action(pos);
+                            }
+                        });
+                    }
 
                     const id = data.target.getAttribute("data-id");
                     if (id) {

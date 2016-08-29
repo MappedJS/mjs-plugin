@@ -216,7 +216,11 @@ export class TileMap {
 
         this.view.reset(this.settings.aoiBounds.center, scaleTemp);
 
+        this.view.zoom(0, this.view.viewport.center);
+        this.eventManager.publish(Events.MarkerClusterer.CLUSTERIZE);
+
         this.redraw();
+
         return this;
     }
 
@@ -235,16 +239,18 @@ export class TileMap {
             this.markers.push(currentMarker);
         });
         this.markers = this.markers.sort((a, b) => ((b.latlng.lat - a.latlng.lat !== 0) ? b.latlng.lat - a.latlng.lat : b.latlng.lng - a.latlng.lng));
-        this.markerClusterer = new MarkerClusterer({
-            markers: this.markers.filter((marker) => {
-                return marker.isClusterable();
-            }),
-            id: this.id,
-            clusterImage: this.settings.clusterImage,
-            context: this.canvasContext,
-            container: this.markerContainer || document.body
-        });
-        this.eventManager.publish(Events.MarkerClusterer.CLUSTERIZE);
+        if (this.markers.length > 0) {
+            this.markerClusterer = new MarkerClusterer({
+                markers: this.markers.filter((marker) => {
+                    return marker.isClusterable();
+                }),
+                id: this.id,
+                clusterImage: this.settings.clusterImage,
+                context: this.canvasContext,
+                container: this.markerContainer || document.body
+            });
+            this.eventManager.publish(Events.MarkerClusterer.CLUSTERIZE);
+        }
         return this;
     }
 
@@ -580,7 +586,9 @@ export class TileMap {
      * @return {TileMap} instance of TileMap for chaining
      */
     drawClusters() {
-        this.markerClusterer.drawClusters();
+        if (this.markerClusterer) {
+            this.markerClusterer.drawClusters();
+        }
         return this;
     }
 
