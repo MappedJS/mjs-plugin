@@ -60,7 +60,7 @@ export class Cluster extends Drawable {
     }) {
         super(id);
         this.markers = [];
-        this.textSettings = font;
+        this.textSettings = Object.assign({}, DataEnrichment.CLUSTER_FONT, font);
         this.texture = texture;
         this.context = context;
         this.isHovered = false;
@@ -108,7 +108,7 @@ export class Cluster extends Drawable {
             this.context.textBaseline = "middle";
             this.context.font = this.textSettings.font;
             this.context.fillStyle = this.textSettings.color;
-            this.context.fillText(this.markers.length, this.boundingBox.center.x, this.boundingBox.center.y);
+            this.context.fillText(this.markers.length, this.boundingBox.center.x + this.textSettings.offset[0], this.boundingBox.center.y + this.textSettings.offset[1]);
             this.context.closePath();
         }
         return this;
