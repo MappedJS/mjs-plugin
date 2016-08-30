@@ -36,33 +36,27 @@ export class MappedJS {
 
     /**
      * @constructor
-     * @param  {String|HTMLElement} container=".mjs" - Container, either string or dom-object
-     * @param  {String} path="./" - path to data
      * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
      * @param  {String|Object} markerData={} - data of markers, can be json or path to file
      * @param  {Object} mapSettings={} - settings for map, must be json
      * @return {MappedJS} instance of MappedJS for chaining
      */
     constructor({
-        container = ".mjs",
-        path = "./",
         mapData = {},
         markerData = {},
         mapSettings = {}
     }) {
-        this.initializeSettings(container, mapSettings);
+        this.initializeSettings(mapSettings);
 
         this.id = this.generateUniqueID();
         MappedJS.count++;
 
         this.eventManager = new Publisher(this.id);
 
-        this.path = path;
-
         this.initializeData(mapData, (loadedMapData) => {
             this.mapData = loadedMapData;
             this.initializeData(markerData, (loadedMarkerData) => {
-                this.mapData = Object.assign(this.mapData, loadedMarkerData);
+                this.markerData = loadedMarkerData;
 
                 this.initializeMap();
                 this.addControls();
@@ -159,34 +153,34 @@ export class MappedJS {
 
     /**
      * initializes the settings and handles errors
-     * @param  {String|HTMLElement} container - Container, either string or DOM object
      * @param  {Object} settings - list of settings
      * @return {MappedJS} instance of MappedJS for chaining
      */
-    initializeSettings(container, settings = {}) {
-        this.container = (typeof container === "string") ? Helper.find(container) : container;
+    initializeSettings(settings = {}) {
+        this.mapSettings = DataEnrichment.mapSettings(settings);
+        this.container = (typeof this.mapSettings.container === "string") ? Helper.find(this.mapSettings.container) : this.mapSettings.container;
+        this.path = this.mapSettings.path;
         this.container.classList.add("mappedJS");
         this.content = document.createElement("div");
         this.content.classList.add("map-content");
         this.container.appendChild(this.content);
         this.container.setAttribute("tabindex", MappedJS.count);
-        this.mapSettings = DataEnrichment.mapSettings(settings);
         return this;
     }
 
     /**
      * initializes the data, asynchronous
-     * @param  {Object} mapData - data of map tiles, can be json or path to file
+     * @param  {Object} data - data of map tiles, can be json or path to file
      * @param  {Helper~requestJSONCallback} cb - called, when data is received
      * @return {MappedJS} instance of MappedJS for chaining
      */
-    initializeData(mapData, cb) {
-        if (typeof mapData === "string") {
-            Helper.requestJSON(this.path + mapData, (data) => {
+    initializeData(data, cb) {
+        if (typeof data === "string") {
+            Helper.requestJSON(this.path + data, (data) => {
                 cb(data);
             });
         } else {
-            cb((typeof mapData === "object") ? mapData : null);
+            cb((typeof data === "object") ? data : null);
         }
         return this;
     }
@@ -199,7 +193,8 @@ export class MappedJS {
         this.tileMap = new TileMap({
             container: this.content,
             path: this.path,
-            tilesData: this.mapData,
+            mapData: this.mapData,
+            markerData: this.markerData,
             id: this.id,
             settings: this.mapSettings
         });
@@ -226,6 +221,9 @@ export class MappedJS {
             overwriteViewportSettings: true,
             callbacks: {
                 tap: (data) => {
+                    if (data.target.classList.contains("control")) {
+                        return false;
+                    }
                     const pos = this.getAbsolutePosition(data.positionStart);
                     Helper.forEach(this.tileMap.markers, (marker) => {
                         if (marker.hit(pos)) {
@@ -239,15 +237,12 @@ export class MappedJS {
                             }
                         });
                     }
-
-                    const id = data.target.getAttribute("data-id");
-                    if (id) {
-                        this.eventManager.publish(id, pos);
-                    }
-
                     this.tileMap.velocity = new Point();
                 },
                 doubletap: (data) => {
+                    if (data.target.classList.contains("control")) {
+                        return false;
+                    }
                     this.tileMap.velocity = new Point();
                     this.tileMap.zoom(0.2, this.getAbsolutePosition(data.positionStart));
                 },
@@ -273,7 +268,7 @@ export class MappedJS {
                     this.tileMap.zoom(data.difference * 3, this.getAbsolutePosition(data.positionMove));
                 },
                 flick: (data) => {
-                    this.tileMap.velocity = data.velocity.multiply(10);
+                    this.tileMap.velocity = data.velocity.multiply(this.tileMap.width * (1 / 30), this.tileMap.height * (1 / 30));
                 }
             }
         });
@@ -313,14 +308,34 @@ export class MappedJS {
             this.container.focus();
         });
 
-        this.zoomIn.setAttribute("data-id", Events.General.ZOOM_IN);
         this.eventManager.subscribe(Events.General.ZOOM_IN, this.zoomInToCenter.bind(this));
-
-        this.zoomOut.setAttribute("data-id", Events.General.ZOOM_OUT);
         this.eventManager.subscribe(Events.General.ZOOM_OUT, this.zoomOutToCenter.bind(this));
-
-        this.home.setAttribute("data-id", Events.General.HOME);
         this.eventManager.subscribe(Events.General.HOME, this.resetToInitialState.bind(this));
+
+
+        Helper.addListener(this.zoomIn, Events.Handling.CLICK, () => {
+            this.eventManager.publish(Events.General.ZOOM_IN);
+        });
+
+        Helper.addListener(this.zoomOut, Events.Handling.CLICK, () => {
+            this.eventManager.publish(Events.General.ZOOM_OUT);
+        });
+
+        Helper.addListener(this.home, Events.Handling.CLICK, () => {
+            this.eventManager.publish(Events.General.HOME);
+        });
+
+        Helper.addListener(this.zoomIn, Events.Handling.TOUCHSTART, () => {
+            this.eventManager.publish(Events.General.ZOOM_IN);
+        });
+
+        Helper.addListener(this.zoomOut, Events.Handling.TOUCHSTART, () => {
+            this.eventManager.publish(Events.General.ZOOM_OUT);
+        });
+
+        Helper.addListener(this.home, Events.Handling.TOUCHSTART, () => {
+            this.eventManager.publish(Events.General.HOME);
+        });
 
         this.initializeInteractForMap();
 

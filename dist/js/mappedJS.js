@@ -678,8 +678,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * Eventnames for TileMap class
 	   * @type {Object}
 	   * @memberof Events
-	   * @property {String} IMG_DATA_NAME - name of img data
-	   * @property {String} MARKER_DATA_NAME - name of marker data
 	   * @property {String} NEXT_LEVEL - next level of view
 	   * @property {String} PREVIOUS_LEVEL - previous level of view
 	   * @property {String} RESIZE - resize of view needed
@@ -687,8 +685,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * @property {String} DRAW - draw is needed
 	   */
 	  TileMap: {
-	    IMG_DATA_NAME: "img_data",
-	    MARKER_DATA_NAME: "marker",
 	    NEXT_LEVEL: "next-level",
 	    PREVIOUS_LEVEL: "previous-level",
 	    RESIZE: "resize",
@@ -2147,6 +2143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	DataEnrichment.MAP_SETTINGS = {
 	    level: 0,
+	    path: "./",
 	    center: {
 	        "lat": 0,
 	        "lng": 0
@@ -4293,7 +4290,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @constructor
 	         * @param  {HTMLElement} container = null - jQuery-object holding the container
 	         * @param  {String} path="./" - path to data
-	         * @param  {Object} tilesData = {} - json object representing data of TileMap
+	         * @param  {Object} mapData = {} - json object representing data of TileMap
 	         * @param  {Object} settings = {} - json object representing settings of TileMap
 	         * @param  {Number} id = 0 - id of parent instance
 	         * @return {TileMap} instance of TileMap for chaining
@@ -4306,8 +4303,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var container = _ref$container === undefined ? null : _ref$container;
 	        var _ref$path = _ref.path;
 	        var path = _ref$path === undefined ? "./" : _ref$path;
-	        var _ref$tilesData = _ref.tilesData;
-	        var tilesData = _ref$tilesData === undefined ? {} : _ref$tilesData;
+	        var _ref$mapData = _ref.mapData;
+	        var mapData = _ref$mapData === undefined ? {} : _ref$mapData;
+	        var _ref$markerData = _ref.markerData;
+	        var markerData = _ref$markerData === undefined ? {} : _ref$markerData;
 	        var _ref$settings = _ref.settings;
 	        var settings = _ref$settings === undefined ? {} : _ref$settings;
 	        var id = _ref.id;
@@ -4318,7 +4317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            throw Error("You must define a container to initialize a TileMap");
 	        }
 
-	        this.initializeInstanceVariables(id, container, settings, tilesData, path);
+	        this.initializeInstanceVariables(id, container, settings, markerData, path);
 	        this.initializeCanvas();
 
 	        this.eventManager.publish(_Events.Events.MapInformation.UPDATE, {
@@ -4326,7 +4325,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            bounds: this.settings.bounds
 	        });
 
-	        this.initializeLevels(tilesData);
+	        this.initializeLevels(mapData);
 	        this.bindEvents();
 	        this.resizeCanvas();
 
@@ -4337,15 +4336,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * initializes all levels
-	     * @param  {Object} tilesData = {} - json object representing data of TileMap
+	     * @param  {Object} data = {} - json object representing data of TileMap
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
 
-	    TileMap.prototype.initializeLevels = function initializeLevels(tilesData) {
+	    TileMap.prototype.initializeLevels = function initializeLevels(data) {
 	        var _this = this;
 
-	        _Helper.Helper.forEach(tilesData[_Events.Events.TileMap.IMG_DATA_NAME], function (element, i) {
+	        _Helper.Helper.forEach(data, function (element, i) {
 	            var currentLevel = {
 	                value: element,
 	                level: i,
@@ -4364,14 +4363,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * initialize all variables
 	     * @param  {Number} id = 0 - id of parent instance
 	     * @param  {HTMLElement} container = null - jQuery-object holding the container
-	     * @param  {Object} tilesData = {} - json object representing data of TileMap
+	     * @param  {Object} markerData = {} - json object representing data of TileMap
 	     * @param  {Object} settings = {} - json object representing settings of TileMap
 	     * @param  {String} path="./" - path to data
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
 
-	    TileMap.prototype.initializeInstanceVariables = function initializeInstanceVariables(id, container, settings, tilesData, path) {
+	    TileMap.prototype.initializeInstanceVariables = function initializeInstanceVariables(id, container, settings, markerData, path) {
 	        this.container = container;
 	        this.id = id;
 	        this.settings = settings;
@@ -4379,7 +4378,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.thumbsLoaded = 0;
 	        this.info = new _MapInformation.MapInformation(this.id, path);
 	        this.eventManager = new _Publisher.Publisher(this.id);
-	        this.markerData = tilesData[_Events.Events.TileMap.MARKER_DATA_NAME];
+	        this.markerData = markerData;
 	        this.levels = [];
 	        this.clusterHandlingTimeout = null;
 	        this.templates = this.settings.tooltip ? this.settings.tooltip.templates : {};
@@ -4777,18 +4776,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    TileMap.prototype.mainLoop = function mainLoop() {
 	        var _this5 = this;
 
-	        var currentMillisecs = Date.now();
-	        var deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
-	        this.lastFrameMillisecs = currentMillisecs;
-	        this.deltaTiming = _Helper.Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
-
-	        this.moveByVelocity = this.velocity.multiply(0.95).clone.multiply(this.deltaTiming);
-	        if (this.velocity.length >= 0.3) {
-	            this.moveView(this.moveByVelocity);
-	        }
+	        this.calculateDeltaTiming();
+	        this.calculateVelocity();
 
 	        this.checkAoIBoundaries();
-
 	        this.view.checkBoundaries();
 
 	        if (this.drawIsNeeded) {
@@ -4802,6 +4793,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        window.requestAnimFrame(function () {
 	            return _this5.mainLoop();
 	        });
+	    };
+
+	    TileMap.prototype.calculateDeltaTiming = function calculateDeltaTiming() {
+	        var currentMillisecs = Date.now();
+	        var deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
+	        this.lastFrameMillisecs = currentMillisecs;
+	        this.deltaTiming = _Helper.Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
+	    };
+
+	    TileMap.prototype.calculateVelocity = function calculateVelocity() {
+	        this.moveByVelocity = this.velocity.multiply(0.96).clone.multiply(this.deltaTiming);
+	        if (this.velocity.length >= 0.2) {
+	            this.moveView(this.moveByVelocity);
+	        }
 	    };
 
 	    /**
@@ -5570,8 +5575,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * @constructor
-	     * @param  {String|HTMLElement} container=".mjs" - Container, either string or dom-object
-	     * @param  {String} path="./" - path to data
 	     * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
 	     * @param  {String|Object} markerData={} - data of markers, can be json or path to file
 	     * @param  {Object} mapSettings={} - settings for map, must be json
@@ -5581,10 +5584,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    function MappedJS(_ref) {
 	        var _this = this;
 
-	        var _ref$container = _ref.container;
-	        var container = _ref$container === undefined ? ".mjs" : _ref$container;
-	        var _ref$path = _ref.path;
-	        var path = _ref$path === undefined ? "./" : _ref$path;
 	        var _ref$mapData = _ref.mapData;
 	        var mapData = _ref$mapData === undefined ? {} : _ref$mapData;
 	        var _ref$markerData = _ref.markerData;
@@ -5594,19 +5593,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        _classCallCheck(this, MappedJS);
 
-	        this.initializeSettings(container, mapSettings);
+	        this.initializeSettings(mapSettings);
 
 	        this.id = this.generateUniqueID();
 	        MappedJS.count++;
 
 	        this.eventManager = new _Publisher.Publisher(this.id);
 
-	        this.path = path;
-
 	        this.initializeData(mapData, function (loadedMapData) {
 	            _this.mapData = loadedMapData;
 	            _this.initializeData(markerData, function (loadedMarkerData) {
-	                _this.mapData = Object.assign(_this.mapData, loadedMarkerData);
+	                _this.markerData = loadedMarkerData;
 
 	                _this.initializeMap();
 	                _this.addControls();
@@ -5711,40 +5708,40 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * initializes the settings and handles errors
-	     * @param  {String|HTMLElement} container - Container, either string or DOM object
 	     * @param  {Object} settings - list of settings
 	     * @return {MappedJS} instance of MappedJS for chaining
 	     */
 
 
-	    MappedJS.prototype.initializeSettings = function initializeSettings(container) {
-	        var settings = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	    MappedJS.prototype.initializeSettings = function initializeSettings() {
+	        var settings = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-	        this.container = typeof container === "string" ? _Helper.Helper.find(container) : container;
+	        this.mapSettings = _DataEnrichment.DataEnrichment.mapSettings(settings);
+	        this.container = typeof this.mapSettings.container === "string" ? _Helper.Helper.find(this.mapSettings.container) : this.mapSettings.container;
+	        this.path = this.mapSettings.path;
 	        this.container.classList.add("mappedJS");
 	        this.content = document.createElement("div");
 	        this.content.classList.add("map-content");
 	        this.container.appendChild(this.content);
 	        this.container.setAttribute("tabindex", MappedJS.count);
-	        this.mapSettings = _DataEnrichment.DataEnrichment.mapSettings(settings);
 	        return this;
 	    };
 
 	    /**
 	     * initializes the data, asynchronous
-	     * @param  {Object} mapData - data of map tiles, can be json or path to file
+	     * @param  {Object} data - data of map tiles, can be json or path to file
 	     * @param  {Helper~requestJSONCallback} cb - called, when data is received
 	     * @return {MappedJS} instance of MappedJS for chaining
 	     */
 
 
-	    MappedJS.prototype.initializeData = function initializeData(mapData, cb) {
-	        if (typeof mapData === "string") {
-	            _Helper.Helper.requestJSON(this.path + mapData, function (data) {
+	    MappedJS.prototype.initializeData = function initializeData(data, cb) {
+	        if (typeof data === "string") {
+	            _Helper.Helper.requestJSON(this.path + data, function (data) {
 	                cb(data);
 	            });
 	        } else {
-	            cb((typeof mapData === "undefined" ? "undefined" : _typeof(mapData)) === "object" ? mapData : null);
+	            cb((typeof data === "undefined" ? "undefined" : _typeof(data)) === "object" ? data : null);
 	        }
 	        return this;
 	    };
@@ -5759,7 +5756,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.tileMap = new _TileMap.TileMap({
 	            container: this.content,
 	            path: this.path,
-	            tilesData: this.mapData,
+	            mapData: this.mapData,
+	            markerData: this.markerData,
 	            id: this.id,
 	            settings: this.mapSettings
 	        });
@@ -5792,6 +5790,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            overwriteViewportSettings: true,
 	            callbacks: {
 	                tap: function tap(data) {
+	                    if (data.target.classList.contains("control")) {
+	                        return false;
+	                    }
 	                    var pos = _this3.getAbsolutePosition(data.positionStart);
 	                    _Helper.Helper.forEach(_this3.tileMap.markers, function (marker) {
 	                        if (marker.hit(pos)) {
@@ -5805,15 +5806,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            }
 	                        });
 	                    }
-
-	                    var id = data.target.getAttribute("data-id");
-	                    if (id) {
-	                        _this3.eventManager.publish(id, pos);
-	                    }
-
 	                    _this3.tileMap.velocity = new _Point.Point();
 	                },
 	                doubletap: function doubletap(data) {
+	                    if (data.target.classList.contains("control")) {
+	                        return false;
+	                    }
 	                    _this3.tileMap.velocity = new _Point.Point();
 	                    _this3.tileMap.zoom(0.2, _this3.getAbsolutePosition(data.positionStart));
 	                },
@@ -5839,7 +5837,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    _this3.tileMap.zoom(data.difference * 3, _this3.getAbsolutePosition(data.positionMove));
 	                },
 	                flick: function flick(data) {
-	                    _this3.tileMap.velocity = data.velocity.multiply(10);
+	                    _this3.tileMap.velocity = data.velocity.multiply(_this3.tileMap.width * (1 / 30), _this3.tileMap.height * (1 / 30));
 	                }
 	            }
 	        });
@@ -5884,14 +5882,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this4.container.focus();
 	        });
 
-	        this.zoomIn.setAttribute("data-id", _Events.Events.General.ZOOM_IN);
 	        this.eventManager.subscribe(_Events.Events.General.ZOOM_IN, this.zoomInToCenter.bind(this));
-
-	        this.zoomOut.setAttribute("data-id", _Events.Events.General.ZOOM_OUT);
 	        this.eventManager.subscribe(_Events.Events.General.ZOOM_OUT, this.zoomOutToCenter.bind(this));
-
-	        this.home.setAttribute("data-id", _Events.Events.General.HOME);
 	        this.eventManager.subscribe(_Events.Events.General.HOME, this.resetToInitialState.bind(this));
+
+	        _Helper.Helper.addListener(this.zoomIn, _Events.Events.Handling.CLICK, function () {
+	            _this4.eventManager.publish(_Events.Events.General.ZOOM_IN);
+	        });
+
+	        _Helper.Helper.addListener(this.zoomOut, _Events.Events.Handling.CLICK, function () {
+	            _this4.eventManager.publish(_Events.Events.General.ZOOM_OUT);
+	        });
+
+	        _Helper.Helper.addListener(this.home, _Events.Events.Handling.CLICK, function () {
+	            _this4.eventManager.publish(_Events.Events.General.HOME);
+	        });
+
+	        _Helper.Helper.addListener(this.zoomIn, _Events.Events.Handling.TOUCHSTART, function () {
+	            _this4.eventManager.publish(_Events.Events.General.ZOOM_IN);
+	        });
+
+	        _Helper.Helper.addListener(this.zoomOut, _Events.Events.Handling.TOUCHSTART, function () {
+	            _this4.eventManager.publish(_Events.Events.General.ZOOM_OUT);
+	        });
+
+	        _Helper.Helper.addListener(this.home, _Events.Events.Handling.TOUCHSTART, function () {
+	            _this4.eventManager.publish(_Events.Events.General.HOME);
+	        });
 
 	        this.initializeInteractForMap();
 
@@ -6486,11 +6503,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.id = id;
 	        this.info = new _MapInformation.MapInformation(this.id, null);
 	        this.context = context;
-	        this.clusterImage = new _Texture.Texture({
-	            path: this.info.path + clusterImage.path,
-	            size: clusterImage.size,
-	            offset: clusterImage.offset
-	        });
+	        if (clusterImage.path) {
+	            this.clusterImage = new _Texture.Texture({
+	                path: this.info.path + clusterImage.path,
+	                size: clusterImage.size,
+	                offset: clusterImage.offset
+	            });
+	        }
 	        this.font = clusterImage.text;
 	        this.clusters = [];
 	        this.eventManager = new _Publisher.Publisher(this.id);

@@ -86,7 +86,7 @@
 <p><a name="module_DataEnrichment"></a></p>
 <h2 id="dataenrichment">DataEnrichment</h2>
 <p>enriches delivered data with default values</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#109;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#x73;&#x69;&#x67;&#110;&#109;&#x61;&#105;&#108;&#46;&#x6e;&#x65;&#116;">&#109;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#x73;&#x69;&#x67;&#110;&#109;&#x61;&#105;&#108;&#46;&#x6e;&#x65;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#109;&#100;&#x75;&#x76;&#x65;&#x40;&#x64;&#101;&#115;&#105;&#x67;&#110;&#109;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#x74;">&#109;&#100;&#x75;&#x76;&#x65;&#x40;&#x64;&#101;&#115;&#105;&#x67;&#110;&#109;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_DataEnrichment">DataEnrichment</a><ul>
 <li><a href="#module_DataEnrichment.marker">.marker(data)</a> ⇒ <code>Object</code></li>
@@ -111,7 +111,7 @@
 <p><a name="module_Helper"></a></p>
 <h2 id="helper">Helper</h2>
 <p>Helper for general purposes</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#109;&#100;&#x75;&#x76;&#x65;&#x40;&#x64;&#101;&#x73;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#110;&#101;&#x74;">&#109;&#100;&#x75;&#x76;&#x65;&#x40;&#x64;&#101;&#x73;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#110;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#109;&#100;&#117;&#x76;&#101;&#x40;&#x64;&#x65;&#115;&#105;&#x67;&#x6e;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x6e;&#x65;&#x74;">&#109;&#100;&#117;&#x76;&#101;&#x40;&#x64;&#x65;&#115;&#105;&#x67;&#x6e;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x6e;&#x65;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_Helper">Helper</a><ul>
 <li><a href="#module_Helper.requestJSON">.requestJSON(filename, callback)</a> ⇒ <code>Helper</code></li>
@@ -965,13 +965,13 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#MappedJS">MappedJS</a><ul>
-<li><a href="#new_MappedJS_new">new MappedJS(container, path, mapData, markerData, mapSettings)</a></li>
+<li><a href="#new_MappedJS_new">new MappedJS(mapData, markerData, mapSettings)</a></li>
 <li><em>instance</em><ul>
 <li><a href="#MappedJS+generateUniqueID">.generateUniqueID()</a> ⇒ <code>Number</code></li>
 <li><a href="#MappedJS+addInformationLayer">.addInformationLayer(type, settings)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
 <li><a href="#MappedJS+addControls">.addControls()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
-<li><a href="#MappedJS+initializeSettings">.initializeSettings(container, settings)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
-<li><a href="#MappedJS+initializeData">.initializeData(mapData, cb)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+initializeSettings">.initializeSettings(settings)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
+<li><a href="#MappedJS+initializeData">.initializeData(data, cb)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
 <li><a href="#MappedJS+initializeMap">.initializeMap()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
 <li><a href="#MappedJS+getAbsolutePosition">.getAbsolutePosition(point)</a> ⇒ <code><a href="#Point">Point</a></code></li>
 <li><a href="#MappedJS+initializeInteractForMap">.initializeInteractForMap()</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
@@ -995,11 +995,9 @@
 </li>
 </ul>
 <p><a name="new_MappedJS_new"></a></p>
-<h3 id="new-mappedjs-container-path-mapdata-markerdata-mapsettings-">new MappedJS(container, path, mapData, markerData, mapSettings)</h3>
+<h3 id="new-mappedjs-mapdata-markerdata-mapsettings-">new MappedJS(mapData, markerData, mapSettings)</h3>
 <p><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
 <ul>
-<li>container <code>String</code> | <code>HTMLElement</code> <code> = &quot;.mjs&quot;</code> - Container, either string or dom-object</li>
-<li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
 <li>mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file</li>
 <li>markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file</li>
 <li>mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json</li>
@@ -1019,19 +1017,18 @@
 <h3 id="mappedjs-addcontrols-code-mappedjs-mappedjs-code-">mappedJS.addControls() ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
 <p>add controls (zoom, home) to DOM</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><a name="MappedJS+initializeSettings"></a></p>
-<h3 id="mappedjs-initializesettings-container-settings-code-mappedjs-mappedjs-code-">mappedJS.initializeSettings(container, settings) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<h3 id="mappedjs-initializesettings-settings-code-mappedjs-mappedjs-code-">mappedJS.initializeSettings(settings) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
 <p>initializes the settings and handles errors</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
 <ul>
-<li>container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object</li>
 <li>settings <code>Object</code> - list of settings</li>
 </ul>
 <p><a name="MappedJS+initializeData"></a></p>
-<h3 id="mappedjs-initializedata-mapdata-cb-code-mappedjs-mappedjs-code-">mappedJS.initializeData(mapData, cb) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
+<h3 id="mappedjs-initializedata-data-cb-code-mappedjs-mappedjs-code-">mappedJS.initializeData(data, cb) ⇒ <code><a href="#MappedJS">MappedJS</a></code></h3>
 <p>initializes the data, asynchronous</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#MappedJS">MappedJS</a></code><br><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
 <ul>
-<li>mapData <code>Object</code> - data of map tiles, can be json or path to file</li>
+<li>data <code>Object</code> - data of map tiles, can be json or path to file</li>
 <li>cb <code>Helper~requestJSONCallback</code> - called, when data is received</li>
 </ul>
 <p><a name="MappedJS+initializeMap"></a></p>
@@ -1914,15 +1911,15 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#TileMap">TileMap</a><ul>
-<li><a href="#new_TileMap_new">new TileMap(container, path, tilesData, settings, id)</a></li>
+<li><a href="#new_TileMap_new">new TileMap(container, path, mapData, settings, id)</a></li>
 <li><a href="#TileMap+width">.width</a> ⇒ <code>Number</code></li>
 <li><a href="#TileMap+height">.height</a> ⇒ <code>Number</code></li>
 <li><a href="#TileMap+viewport">.viewport</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
 <li><a href="#TileMap+view">.view</a> ⇒ <code><a href="#View">View</a></code></li>
 <li><a href="#TileMap+currentLevel">.currentLevel</a> ⇒ <code>Object</code></li>
 <li><a href="#TileMap+clusters">.clusters</a> ⇒ <code>Array</code></li>
-<li><a href="#TileMap+initializeLevels">.initializeLevels(tilesData)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
-<li><a href="#TileMap+initializeInstanceVariables">.initializeInstanceVariables(id, container, tilesData, settings, path)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+initializeLevels">.initializeLevels(data)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+initializeInstanceVariables">.initializeInstanceVariables(id, container, markerData, settings, path)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+reset">.reset()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+initializeMarkers">.initializeMarkers()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+createViewFromData">.createViewFromData(data)</a> ⇒ <code><a href="#View">View</a></code></li>
@@ -1949,12 +1946,12 @@
 </li>
 </ul>
 <p><a name="new_TileMap_new"></a></p>
-<h3 id="new-tilemap-container-path-tilesdata-settings-id-">new TileMap(container, path, tilesData, settings, id)</h3>
+<h3 id="new-tilemap-container-path-mapdata-settings-id-">new TileMap(container, path, mapData, settings, id)</h3>
 <p><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
 <ul>
 <li>container <code>HTMLElement</code> - = null - jQuery-object holding the container</li>
 <li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
-<li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
+<li>mapData <code>Object</code> - = {} - json object representing data of TileMap</li>
 <li>settings <code>Object</code> - = {} - json object representing settings of TileMap</li>
 <li>id <code>Number</code> - = 0 - id of parent instance</li>
 </ul>
@@ -1977,20 +1974,20 @@
 <h3 id="tilemap-clusters-code-array-code-">tileMap.clusters ⇒ <code>Array</code></h3>
 <p>returns all clusters</p>
 <p><strong>Kind</strong>: instance property of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Array</code> - array of clusters<br><a name="TileMap+initializeLevels"></a></p>
-<h3 id="tilemap-initializelevels-tilesdata-code-tilemap-tilemap-code-">tileMap.initializeLevels(tilesData) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<h3 id="tilemap-initializelevels-data-code-tilemap-tilemap-code-">tileMap.initializeLevels(data) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
 <p>initializes all levels</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
 <ul>
-<li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
+<li>data <code>Object</code> - = {} - json object representing data of TileMap</li>
 </ul>
 <p><a name="TileMap+initializeInstanceVariables"></a></p>
-<h3 id="tilemap-initializeinstancevariables-id-container-tilesdata-settings-path-code-tilemap-tilemap-code-">tileMap.initializeInstanceVariables(id, container, tilesData, settings, path) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<h3 id="tilemap-initializeinstancevariables-id-container-markerdata-settings-path-code-tilemap-tilemap-code-">tileMap.initializeInstanceVariables(id, container, markerData, settings, path) ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
 <p>initialize all variables</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
 <ul>
 <li>id <code>Number</code> - = 0 - id of parent instance</li>
 <li>container <code>HTMLElement</code> - = null - jQuery-object holding the container</li>
-<li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
+<li>markerData <code>Object</code> - = {} - json object representing data of TileMap</li>
 <li>settings <code>Object</code> - = {} - json object representing settings of TileMap</li>
 <li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
 </ul>
@@ -2314,7 +2311,7 @@
 <p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="Events"></a></p>
 <h2 id="events-code-object-code-">Events : <code>object</code></h2>
 <p>Helper for naming events</p>
-<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#109;&#100;&#117;&#x76;&#x65;&#64;&#x64;&#101;&#x73;&#105;&#103;&#110;&#109;&#97;&#105;&#108;&#x2e;&#110;&#x65;&#116;">&#109;&#100;&#117;&#x76;&#x65;&#64;&#x64;&#101;&#x73;&#105;&#103;&#110;&#109;&#97;&#105;&#108;&#x2e;&#110;&#x65;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#109;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#115;&#x69;&#x67;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#101;&#x74;">&#109;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#115;&#x69;&#x67;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#Events">Events</a> : <code>object</code><ul>
 <li><a href="#Events.ToolTip">.ToolTip</a> : <code>Object</code></li>
@@ -2350,8 +2347,6 @@
 <p>Eventnames for TileMap class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>IMG_DATA_NAME <code>String</code> - name of img data  </li>
-<li>MARKER_DATA_NAME <code>String</code> - name of marker data  </li>
 <li>NEXT_LEVEL <code>String</code> - next level of view  </li>
 <li>PREVIOUS_LEVEL <code>String</code> - previous level of view  </li>
 <li>RESIZE <code>String</code> - resize of view needed  </li>

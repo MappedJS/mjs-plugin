@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head lang="de">
         <title>Multiple Instances Example</title>
         <meta charset="UTF-8">
@@ -17,14 +18,17 @@
                 margin: 0;
                 font-family: Verdana, sans-serif;
             }
+
             body * {
                 box-sizing: border-box;
             }
+
             body,
             html {
                 width: 100%;
                 height: 100%;
             }
+
             #map-1,
             #map-2,
             #map-3 {
@@ -33,13 +37,16 @@
                 width: 50%;
                 height: 100%;
             }
+
             #map-1 {
                 left: 0;
             }
+
             #map-2 {
                 right: 0;
                 height: 50%;
             }
+
             #map-3 {
                 top: 50%;
                 height: 50%;
@@ -47,6 +54,7 @@
             }
         </style>
     </head>
+
     <body>
 
         <div id="map-1" class="mjs">
@@ -64,10 +72,10 @@
         <script src="../../dist/js/mappedJS.js"></script>
         <script>
             var map1 = new de.MappedJS({
-                container: "#map-1",
                 mapData: "mapData.json",
                 markerData: "marker.json",
                 mapSettings: {
+                    "container": "#map-1",
                     "center": {
                         "lat": 52.5215,
                         "lng": 13.427
@@ -97,10 +105,10 @@
             });
 
             var map2 = new de.MappedJS({
-                container: "#map-2",
                 mapData: "mapData.json",
                 markerData: "marker.json",
                 mapSettings: {
+                    "container": "#map-2",
                     "center": {
                         "lat": 52.5215,
                         "lng": 13.427
@@ -130,10 +138,10 @@
             });
 
             var map3 = new de.MappedJS({
-                container: "#map-3",
                 mapData: "mapData.json",
                 markerData: "marker.json",
                 mapSettings: {
+                    "container": "#map-3",
                     "center": {
                         "lat": 52.5215,
                         "lng": 13.427
@@ -160,7 +168,7 @@
                     }
                 }
             });
-
         </script>
     </body>
+
 </html>

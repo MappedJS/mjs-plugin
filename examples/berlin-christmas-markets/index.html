@@ -45,7 +45,6 @@
         <script src="../../dist/js/mappedJS.js"></script>
         <script>
             var mappedJS = new de.MappedJS({
-                container: ".mjs",
                 mapData: "mapData.json",
                 markerData: "marker.json",
                 mapSettings: {
@@ -57,6 +56,8 @@
                         "northWest": [52.777, 12.916],
                         "southEast": [52.266, 13.938]
                     },
+                    "container": ".mjs",
+                    "path": "./",
                     "level": 1,
                     "zoom": 1,
                     "tooltip": {

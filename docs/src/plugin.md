@@ -1354,13 +1354,13 @@ Creates a LatLng from specified LatLng
 **Kind**: global class  
 
 * [MappedJS](#MappedJS)
-    * [new MappedJS(container, path, mapData, markerData, mapSettings)](#new_MappedJS_new)
+    * [new MappedJS(mapData, markerData, mapSettings)](#new_MappedJS_new)
     * _instance_
         * [.generateUniqueID()](#MappedJS+generateUniqueID) ⇒ <code>Number</code>
         * [.addInformationLayer(type, settings)](#MappedJS+addInformationLayer) ⇒ <code>[MappedJS](#MappedJS)</code>
         * [.addControls()](#MappedJS+addControls) ⇒ <code>[MappedJS](#MappedJS)</code>
-        * [.initializeSettings(container, settings)](#MappedJS+initializeSettings) ⇒ <code>[MappedJS](#MappedJS)</code>
-        * [.initializeData(mapData, cb)](#MappedJS+initializeData) ⇒ <code>[MappedJS](#MappedJS)</code>
+        * [.initializeSettings(settings)](#MappedJS+initializeSettings) ⇒ <code>[MappedJS](#MappedJS)</code>
+        * [.initializeData(data, cb)](#MappedJS+initializeData) ⇒ <code>[MappedJS](#MappedJS)</code>
         * [.initializeMap()](#MappedJS+initializeMap) ⇒ <code>[MappedJS](#MappedJS)</code>
         * [.getAbsolutePosition(point)](#MappedJS+getAbsolutePosition) ⇒ <code>[Point](#Point)</code>
         * [.initializeInteractForMap()](#MappedJS+initializeInteractForMap) ⇒ <code>[MappedJS](#MappedJS)</code>
@@ -1379,12 +1379,10 @@ Creates a LatLng from specified LatLng
 
 <a name="new_MappedJS_new"></a>
 
-### new MappedJS(container, path, mapData, markerData, mapSettings)
+### new MappedJS(mapData, markerData, mapSettings)
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
 **Params**
 
-- container <code>String</code> | <code>HTMLElement</code> <code> = &quot;.mjs&quot;</code> - Container, either string or dom-object
-- path <code>String</code> <code> = &quot;./&quot;</code> - path to data
 - mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file
 - markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file
 - mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json
@@ -1417,26 +1415,25 @@ add controls (zoom, home) to DOM
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
 <a name="MappedJS+initializeSettings"></a>
 
-### mappedJS.initializeSettings(container, settings) ⇒ <code>[MappedJS](#MappedJS)</code>
+### mappedJS.initializeSettings(settings) ⇒ <code>[MappedJS](#MappedJS)</code>
 initializes the settings and handles errors
 
 **Kind**: instance method of <code>[MappedJS](#MappedJS)</code>  
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
 **Params**
 
-- container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object
 - settings <code>Object</code> - list of settings
 
 <a name="MappedJS+initializeData"></a>
 
-### mappedJS.initializeData(mapData, cb) ⇒ <code>[MappedJS](#MappedJS)</code>
+### mappedJS.initializeData(data, cb) ⇒ <code>[MappedJS](#MappedJS)</code>
 initializes the data, asynchronous
 
 **Kind**: instance method of <code>[MappedJS](#MappedJS)</code>  
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
 **Params**
 
-- mapData <code>Object</code> - data of map tiles, can be json or path to file
+- data <code>Object</code> - data of map tiles, can be json or path to file
 - cb <code>Helper~requestJSONCallback</code> - called, when data is received
 
 <a name="MappedJS+initializeMap"></a>
@@ -2744,15 +2741,15 @@ States of a tile
 **Kind**: global class  
 
 * [TileMap](#TileMap)
-    * [new TileMap(container, path, tilesData, settings, id)](#new_TileMap_new)
+    * [new TileMap(container, path, mapData, settings, id)](#new_TileMap_new)
     * [.width](#TileMap+width) ⇒ <code>Number</code>
     * [.height](#TileMap+height) ⇒ <code>Number</code>
     * [.viewport](#TileMap+viewport) ⇒ <code>[Rectangle](#Rectangle)</code>
     * [.view](#TileMap+view) ⇒ <code>[View](#View)</code>
     * [.currentLevel](#TileMap+currentLevel) ⇒ <code>Object</code>
     * [.clusters](#TileMap+clusters) ⇒ <code>Array</code>
-    * [.initializeLevels(tilesData)](#TileMap+initializeLevels) ⇒ <code>[TileMap](#TileMap)</code>
-    * [.initializeInstanceVariables(id, container, tilesData, settings, path)](#TileMap+initializeInstanceVariables) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.initializeLevels(data)](#TileMap+initializeLevels) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.initializeInstanceVariables(id, container, markerData, settings, path)](#TileMap+initializeInstanceVariables) ⇒ <code>[TileMap](#TileMap)</code>
     * [.reset()](#TileMap+reset) ⇒ <code>[TileMap](#TileMap)</code>
     * [.initializeMarkers()](#TileMap+initializeMarkers) ⇒ <code>[TileMap](#TileMap)</code>
     * [.createViewFromData(data)](#TileMap+createViewFromData) ⇒ <code>[View](#View)</code>
@@ -2778,13 +2775,13 @@ States of a tile
 
 <a name="new_TileMap_new"></a>
 
-### new TileMap(container, path, tilesData, settings, id)
+### new TileMap(container, path, mapData, settings, id)
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 **Params**
 
 - container <code>HTMLElement</code> - = null - jQuery-object holding the container
 - path <code>String</code> <code> = &quot;./&quot;</code> - path to data
-- tilesData <code>Object</code> - = {} - json object representing data of TileMap
+- mapData <code>Object</code> - = {} - json object representing data of TileMap
 - settings <code>Object</code> - = {} - json object representing settings of TileMap
 - id <code>Number</code> - = 0 - id of parent instance
 
@@ -2832,18 +2829,18 @@ returns all clusters
 **Returns**: <code>Array</code> - array of clusters  
 <a name="TileMap+initializeLevels"></a>
 
-### tileMap.initializeLevels(tilesData) ⇒ <code>[TileMap](#TileMap)</code>
+### tileMap.initializeLevels(data) ⇒ <code>[TileMap](#TileMap)</code>
 initializes all levels
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 **Params**
 
-- tilesData <code>Object</code> - = {} - json object representing data of TileMap
+- data <code>Object</code> - = {} - json object representing data of TileMap
 
 <a name="TileMap+initializeInstanceVariables"></a>
 
-### tileMap.initializeInstanceVariables(id, container, tilesData, settings, path) ⇒ <code>[TileMap](#TileMap)</code>
+### tileMap.initializeInstanceVariables(id, container, markerData, settings, path) ⇒ <code>[TileMap](#TileMap)</code>
 initialize all variables
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
@@ -2852,7 +2849,7 @@ initialize all variables
 
 - id <code>Number</code> - = 0 - id of parent instance
 - container <code>HTMLElement</code> - = null - jQuery-object holding the container
-- tilesData <code>Object</code> - = {} - json object representing data of TileMap
+- markerData <code>Object</code> - = {} - json object representing data of TileMap
 - settings <code>Object</code> - = {} - json object representing settings of TileMap
 - path <code>String</code> <code> = &quot;./&quot;</code> - path to data
 
@@ -3436,8 +3433,6 @@ Eventnames for TileMap class
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- IMG_DATA_NAME <code>String</code> - name of img data  
-- MARKER_DATA_NAME <code>String</code> - name of marker data  
 - NEXT_LEVEL <code>String</code> - next level of view  
 - PREVIOUS_LEVEL <code>String</code> - previous level of view  
 - RESIZE <code>String</code> - resize of view needed  

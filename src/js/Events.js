@@ -33,8 +33,6 @@ export const Events = {
      * Eventnames for TileMap class
      * @type {Object}
      * @memberof Events
-     * @property {String} IMG_DATA_NAME - name of img data
-     * @property {String} MARKER_DATA_NAME - name of marker data
      * @property {String} NEXT_LEVEL - next level of view
      * @property {String} PREVIOUS_LEVEL - previous level of view
      * @property {String} RESIZE - resize of view needed
@@ -42,8 +40,6 @@ export const Events = {
      * @property {String} DRAW - draw is needed
      */
     TileMap: {
-        IMG_DATA_NAME: "img_data",
-        MARKER_DATA_NAME: "marker",
         NEXT_LEVEL: "next-level",
         PREVIOUS_LEVEL: "previous-level",
         RESIZE: "resize",

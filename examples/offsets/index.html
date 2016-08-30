@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head lang="de">
         <title>Offsets Example</title>
         <meta charset="UTF-8">
@@ -17,14 +18,17 @@
                 margin: 0;
                 font-family: Verdana, sans-serif;
             }
+
             body * {
                 box-sizing: border-box;
             }
+
             body,
             html {
                 width: 100%;
                 height: 100%;
             }
+
             .mjs {
                 margin: 10% auto;
                 padding: 10%;
@@ -34,6 +38,7 @@
             }
         </style>
     </head>
+
     <body>
 
         <div class="mjs">
@@ -43,10 +48,11 @@
         <script src="../../dist/js/mappedJS.js"></script>
         <script>
             var mappedJS = new de.MappedJS({
-                container: ".mjs",
+
                 mapData: "mapData.json",
                 markerData: "marker.json",
                 mapSettings: {
+                    "container": ".mjs",
                     "center": {
                         "lat": 52.5215,
                         "lng": 13.427
@@ -59,7 +65,7 @@
                     "zoom": 1
                 }
             });
-
         </script>
     </body>
+
 </html>
