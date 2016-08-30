@@ -98,6 +98,7 @@ export const DataEnrichment = {
  */
 DataEnrichment.MAP_SETTINGS = {
     level: 0,
+    path: "./",
     center: {
         "lat": 0,
         "lng": 0

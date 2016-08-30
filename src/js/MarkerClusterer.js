@@ -51,11 +51,13 @@ export class MarkerClusterer {
         this.id = id;
         this.info = new MapInformation(this.id, null);
         this.context = context;
-        this.clusterImage = new Texture({
-            path: this.info.path + clusterImage.path,
-            size: clusterImage.size,
-            offset: clusterImage.offset,
-        });
+        if (clusterImage.path) {
+            this.clusterImage = new Texture({
+                path: this.info.path + clusterImage.path,
+                size: clusterImage.size,
+                offset: clusterImage.offset,
+            });
+        }
         this.font = clusterImage.text;
         this.clusters = [];
         this.eventManager = new Publisher(this.id);

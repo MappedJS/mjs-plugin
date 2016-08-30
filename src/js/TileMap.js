@@ -94,7 +94,7 @@ export class TileMap {
      * @constructor
      * @param  {HTMLElement} container = null - jQuery-object holding the container
      * @param  {String} path="./" - path to data
-     * @param  {Object} tilesData = {} - json object representing data of TileMap
+     * @param  {Object} mapData = {} - json object representing data of TileMap
      * @param  {Object} settings = {} - json object representing settings of TileMap
      * @param  {Number} id = 0 - id of parent instance
      * @return {TileMap} instance of TileMap for chaining
@@ -102,7 +102,8 @@ export class TileMap {
     constructor({
         container = null,
         path = "./",
-        tilesData = {},
+        mapData = {},
+        markerData = {},
         settings = {},
         id
     }) {
@@ -110,7 +111,7 @@ export class TileMap {
             throw Error("You must define a container to initialize a TileMap");
         }
 
-        this.initializeInstanceVariables(id, container, settings, tilesData, path);
+        this.initializeInstanceVariables(id, container, settings, markerData, path);
         this.initializeCanvas();
 
         this.eventManager.publish(Events.MapInformation.UPDATE, {
@@ -118,7 +119,7 @@ export class TileMap {
             bounds: this.settings.bounds
         });
 
-        this.initializeLevels(tilesData);
+        this.initializeLevels(mapData);
         this.bindEvents();
         this.resizeCanvas();
 
@@ -129,11 +130,11 @@ export class TileMap {
 
     /**
      * initializes all levels
-     * @param  {Object} tilesData = {} - json object representing data of TileMap
+     * @param  {Object} data = {} - json object representing data of TileMap
      * @return {TileMap} instance of TileMap for chaining
      */
-    initializeLevels(tilesData) {
-        Helper.forEach(tilesData[Events.TileMap.IMG_DATA_NAME], (element, i) => {
+    initializeLevels(data) {
+        Helper.forEach(data, (element, i) => {
             const currentLevel = {
                 value: element,
                 level: i,
@@ -152,12 +153,12 @@ export class TileMap {
      * initialize all variables
      * @param  {Number} id = 0 - id of parent instance
      * @param  {HTMLElement} container = null - jQuery-object holding the container
-     * @param  {Object} tilesData = {} - json object representing data of TileMap
+     * @param  {Object} markerData = {} - json object representing data of TileMap
      * @param  {Object} settings = {} - json object representing settings of TileMap
      * @param  {String} path="./" - path to data
      * @return {TileMap} instance of TileMap for chaining
      */
-    initializeInstanceVariables(id, container, settings, tilesData, path) {
+    initializeInstanceVariables(id, container, settings, markerData, path) {
         this.container = container;
         this.id = id;
         this.settings = settings;
@@ -165,7 +166,7 @@ export class TileMap {
         this.thumbsLoaded = 0;
         this.info = new MapInformation(this.id, path);
         this.eventManager = new Publisher(this.id);
-        this.markerData = tilesData[Events.TileMap.MARKER_DATA_NAME];
+        this.markerData = markerData;
         this.levels = [];
         this.clusterHandlingTimeout = null;
         this.templates = (this.settings.tooltip) ? this.settings.tooltip.templates : {};
@@ -515,18 +516,10 @@ export class TileMap {
      * main draw call
      */
     mainLoop() {
-        const currentMillisecs = Date.now();
-        const deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
-        this.lastFrameMillisecs = currentMillisecs;
-        this.deltaTiming = Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
-
-        this.moveByVelocity = this.velocity.multiply(0.95).clone.multiply(this.deltaTiming);
-        if (this.velocity.length >= 0.3) {
-            this.moveView(this.moveByVelocity);
-        }
+        this.calculateDeltaTiming();
+        this.calculateVelocity();
 
         this.checkAoIBoundaries();
-
         this.view.checkBoundaries();
 
         if (this.drawIsNeeded) {
@@ -538,6 +531,20 @@ export class TileMap {
         }
 
         window.requestAnimFrame(() => this.mainLoop());
+    }
+
+    calculateDeltaTiming() {
+        const currentMillisecs = Date.now();
+        const deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
+        this.lastFrameMillisecs = currentMillisecs;
+        this.deltaTiming = Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
+    }
+
+    calculateVelocity() {
+        this.moveByVelocity = this.velocity.multiply(0.96).clone.multiply(this.deltaTiming);
+        if (this.velocity.length >= 0.2) {
+            this.moveView(this.moveByVelocity);
+        }
     }
 
     /**

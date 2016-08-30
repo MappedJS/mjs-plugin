@@ -1,74 +1,83 @@
-{
-    "marker": [
-        {
-            "position": [52.55, 13.3],
-            "text": {
-                "content": "Marker",
-                "color": "#333333",
-                "offset": [0, 5],
-                "align": "center",
-                "baseline": "hanging",
-                "font": "10pt Arial"
-            },
-            "icon": {
-                "type": "image",
-                "size": [32, 32],
-                "offset": [-11, -32],
-                "url": "img/icon-interactable.png"
-            }
-        },
-        {
-            "position": [[52.506725, 13.229573], [52.514072, 13.345305], [52.527950, 13.125600], [52.517405, 13.398682], [52.536113, 13.433050], [52.552125, 13.465810], [52.604561, 13.524158]],
-            "icon": {
-                "type": "image",
-                "size": [32, 32],
-                "offset": [-11, -32],
-                "url": "img/icon-interactable.png"
-            },
-            "content": [{
-                "type": "headline",
-                "content": {
-                    "kicker": "Kicker Lorem ipsum",
-                    "headline": "Head Dolor sit amet lorem long",
-                    "subheadline": "Subhead Dolor sit amet lorem long"
-                }
-            }, {
-                "type": "image",
-                "content": {
-                    "url": "http://dummyimage.com/993x559/#ccc",
-                    "caption": "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
-                    "credit": "Lorem Credit ipsum dolor sit amet"
-                }
-            }, {
-                "type": "text",
-                "content": {"text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."}
-            }, {
-                "type": "crossheading",
-                "content": {"text": "Lorem ipsum dolor sit amet"}
-            }, {
-                "type": "text",
-                "content": {"text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."}
-            }, {
-                "type": "iframe",
-                "content": {
-                    "url": "https://www.youtube.com/embed/5QIYZmysDNM",
-                    "width": 560,
-                    "height": 315,
-                    "caption": "Lorem ipsum dolor sit amet caption style",
-                    "credit": "Source: YouTube"
-                }
-            }, {
-                "type": "image",
-                "content": {
-                    "url": "http://dummyimage.com/993x559/#ccc",
-                    "caption": "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
-                    "credit": "Lorem Credit ipsum dolor sit amet"
-                }
-            }],
-            "visibility": {
-                "min": 0,
-                "max": 3
-            }
+[{
+    "position": [52.55, 13.3],
+    "text": {
+        "content": "Marker",
+        "color": "#333333",
+        "offset": [0, 5],
+        "align": "center",
+        "baseline": "hanging",
+        "font": "10pt Arial"
+    },
+    "icon": {
+        "type": "image",
+        "size": [32, 32],
+        "offset": [-11, -32],
+        "url": "img/icon-interactable.png"
+    }
+}, {
+    "position": [
+        [52.506725, 13.229573],
+        [52.514072, 13.345305],
+        [52.527950, 13.125600],
+        [52.517405, 13.398682],
+        [52.536113, 13.433050],
+        [52.552125, 13.465810],
+        [52.604561, 13.524158]
+    ],
+    "icon": {
+        "type": "image",
+        "size": [32, 32],
+        "offset": [-11, -32],
+        "url": "img/icon-interactable.png"
+    },
+    "content": [{
+        "type": "headline",
+        "content": {
+            "kicker": "Kicker Lorem ipsum",
+            "headline": "Head Dolor sit amet lorem long",
+            "subheadline": "Subhead Dolor sit amet lorem long"
         }
-    ]
-}
+    }, {
+        "type": "image",
+        "content": {
+            "url": "http://dummyimage.com/993x559/#ccc",
+            "caption": "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+            "credit": "Lorem Credit ipsum dolor sit amet"
+        }
+    }, {
+        "type": "text",
+        "content": {
+            "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        }
+    }, {
+        "type": "crossheading",
+        "content": {
+            "text": "Lorem ipsum dolor sit amet"
+        }
+    }, {
+        "type": "text",
+        "content": {
+            "text": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        }
+    }, {
+        "type": "iframe",
+        "content": {
+            "url": "https://www.youtube.com/embed/5QIYZmysDNM",
+            "width": 560,
+            "height": 315,
+            "caption": "Lorem ipsum dolor sit amet caption style",
+            "credit": "Source: YouTube"
+        }
+    }, {
+        "type": "image",
+        "content": {
+            "url": "http://dummyimage.com/993x559/#ccc",
+            "caption": "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+            "credit": "Lorem Credit ipsum dolor sit amet"
+        }
+    }],
+    "visibility": {
+        "min": 0,
+        "max": 3
+    }
+}]
