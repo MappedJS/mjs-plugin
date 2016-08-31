@@ -507,33 +507,66 @@ export class TileMap {
     mainLoop() {
         this.calculateDeltaTiming();
         this.calculateVelocity();
-
         this.checkAoIBoundaries();
-        this.view.checkBoundaries();
-
+        this.checkBoundaries();
         if (this.drawIsNeeded) {
-            this.canvasContext.clearRect(0, 0, this.width, this.height);
-            this.view.draw();
+            this.clearCanvas();
+            this.drawView();
             this.drawMarkers();
             this.drawClusters();
             this.drawIsNeeded = false;
         }
-
         window.requestAnimFrame(() => this.mainLoop());
     }
 
+    /**
+     * clears whole canvas
+     * @return {TileMap} instance of TileMap for chaining
+     */
+    clearCanvas() {
+        this.canvasContext.clearRect(0, 0, this.width, this.height);
+    }
+
+    /**
+     * draws current view
+     * @return {TileMap} instance of TileMap for chaining
+     */
+    drawView() {
+        this.view.draw();
+        return this;
+    }
+
+    /**
+     * checks boundaries
+     * @return {TileMap} instance of TileMap for chaining
+     */
+    checkBoundaries() {
+        this.view.checkBoundaries();
+        return this;
+    }
+
+    /**
+     * calculates current delta timing
+     * @return {TileMap} instance of TileMap for chaining
+     */
     calculateDeltaTiming() {
         const currentMillisecs = Date.now();
         const deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
         this.lastFrameMillisecs = currentMillisecs;
         this.deltaTiming = Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
+        return this;
     }
 
+    /**
+     * calculates current velocity
+     * @return {TileMap} instance of TileMap for chaining
+     */
     calculateVelocity() {
         this.moveByVelocity = this.velocity.multiply(0.96).clone.multiply(this.deltaTiming);
         if (this.velocity.length >= 0.2) {
             this.moveView(this.moveByVelocity);
         }
+        return this;
     }
 
     /**

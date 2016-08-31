@@ -93,7 +93,7 @@ export class Point {
      * @return {Boolean} is true, if x and y are the same
      */
     equals(point) {
-        return this.x === point.x && this.y === point.y;
+        return (point instanceof Point) && this.x === point.x && this.y === point.y;
     }
 
     /**

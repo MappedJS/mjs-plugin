@@ -25,6 +25,10 @@ export class Bounds {
         return Math.abs(this.se.lat - this.nw.lat);
     }
 
+    /**
+     * get center of boundaries
+     * @return {LatLng} half the distance between northwest and southeast boundary
+     */
     get center() {
         return this.nw.clone.add(this.se.clone.substract(this.nw).divide(2));
     }
