@@ -310,6 +310,7 @@ gets cross-browser scroll-event
     * [new Bounds(northWest, southEast)](#new_Bounds_new)
     * [.width](#Bounds+width) ⇒ <code>Number</code>
     * [.height](#Bounds+height) ⇒ <code>Number</code>
+    * [.center](#Bounds+center) ⇒ <code>[LatLng](#LatLng)</code>
     * [.equals(bounds)](#Bounds+equals) ⇒ <code>Boolean</code>
     * [.toString()](#Bounds+toString) ⇒ <code>String</code>
 
@@ -336,6 +337,13 @@ get height of boundaries
 
 **Kind**: instance property of <code>[Bounds](#Bounds)</code>  
 **Returns**: <code>Number</code> - distance between north and south boundary  
+<a name="Bounds+center"></a>
+
+### bounds.center ⇒ <code>[LatLng](#LatLng)</code>
+get center of boundaries
+
+**Kind**: instance property of <code>[Bounds](#Bounds)</code>  
+**Returns**: <code>[LatLng](#LatLng)</code> - half the distance between northwest and southeast boundary  
 <a name="Bounds+equals"></a>
 
 ### bounds.equals(bounds) ⇒ <code>Boolean</code>
@@ -2899,6 +2907,11 @@ States of a tile
     * [.resizeCanvas()](#TileMap+resizeCanvas) ⇒ <code>[TileMap](#TileMap)</code>
     * [.resizeView()](#TileMap+resizeView) ⇒ <code>[TileMap](#TileMap)</code>
     * [.mainLoop()](#TileMap+mainLoop)
+    * [.clearCanvas()](#TileMap+clearCanvas) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.drawView()](#TileMap+drawView) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.checkBoundaries()](#TileMap+checkBoundaries) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.calculateDeltaTiming()](#TileMap+calculateDeltaTiming) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.calculateVelocity()](#TileMap+calculateVelocity) ⇒ <code>[TileMap](#TileMap)</code>
     * [.checkAoIBoundaries()](#TileMap+checkAoIBoundaries) ⇒ <code>[TileMap](#TileMap)</code>
     * [.drawClusters()](#TileMap+drawClusters) ⇒ <code>[TileMap](#TileMap)</code>
     * [.drawMarkers()](#TileMap+drawMarkers) ⇒ <code>[TileMap](#TileMap)</code>
@@ -3135,6 +3148,41 @@ Handles resizing of view
 main draw call
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+<a name="TileMap+clearCanvas"></a>
+
+### tileMap.clearCanvas() ⇒ <code>[TileMap](#TileMap)</code>
+clears whole canvas
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
+<a name="TileMap+drawView"></a>
+
+### tileMap.drawView() ⇒ <code>[TileMap](#TileMap)</code>
+draws current view
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
+<a name="TileMap+checkBoundaries"></a>
+
+### tileMap.checkBoundaries() ⇒ <code>[TileMap](#TileMap)</code>
+checks boundaries
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
+<a name="TileMap+calculateDeltaTiming"></a>
+
+### tileMap.calculateDeltaTiming() ⇒ <code>[TileMap](#TileMap)</code>
+calculates current delta timing
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
+<a name="TileMap+calculateVelocity"></a>
+
+### tileMap.calculateVelocity() ⇒ <code>[TileMap](#TileMap)</code>
+calculates current velocity
+
+**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
+**Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 <a name="TileMap+checkAoIBoundaries"></a>
 
 ### tileMap.checkAoIBoundaries() ⇒ <code>[TileMap](#TileMap)</code>

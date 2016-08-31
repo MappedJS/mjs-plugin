@@ -551,7 +551,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	  Point.prototype.equals = function equals(point) {
-	    return this.x === point.x && this.y === point.y;
+	    return point instanceof Point && this.x === point.x && this.y === point.y;
 	  };
 
 	  /**
@@ -1836,7 +1836,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	  LatLng.prototype.equals = function equals(coord) {
-	    return this.lat === coord.lat && this.lng === coord.lng;
+	    return coord instanceof LatLng && this.lat === coord.lat && this.lng === coord.lng;
 	  };
 
 	  /**
@@ -2361,6 +2361,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        get: function get() {
 	            return Math.abs(this.se.lat - this.nw.lat);
 	        }
+
+	        /**
+	         * get center of boundaries
+	         * @return {LatLng} half the distance between northwest and southeast boundary
+	         */
+
 	    }, {
 	        key: 'center',
 	        get: function get() {
@@ -4767,35 +4773,78 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.calculateDeltaTiming();
 	        this.calculateVelocity();
-
 	        this.checkAoIBoundaries();
-	        this.view.checkBoundaries();
-
+	        this.checkBoundaries();
 	        if (this.drawIsNeeded) {
-	            this.canvasContext.clearRect(0, 0, this.width, this.height);
-	            this.view.draw();
+	            this.clearCanvas();
+	            this.drawView();
 	            this.drawMarkers();
 	            this.drawClusters();
 	            this.drawIsNeeded = false;
 	        }
-
 	        window.requestAnimFrame(function () {
 	            return _this5.mainLoop();
 	        });
 	    };
+
+	    /**
+	     * clears whole canvas
+	     * @return {TileMap} instance of TileMap for chaining
+	     */
+
+
+	    TileMap.prototype.clearCanvas = function clearCanvas() {
+	        this.canvasContext.clearRect(0, 0, this.width, this.height);
+	    };
+
+	    /**
+	     * draws current view
+	     * @return {TileMap} instance of TileMap for chaining
+	     */
+
+
+	    TileMap.prototype.drawView = function drawView() {
+	        this.view.draw();
+	        return this;
+	    };
+
+	    /**
+	     * checks boundaries
+	     * @return {TileMap} instance of TileMap for chaining
+	     */
+
+
+	    TileMap.prototype.checkBoundaries = function checkBoundaries() {
+	        this.view.checkBoundaries();
+	        return this;
+	    };
+
+	    /**
+	     * calculates current delta timing
+	     * @return {TileMap} instance of TileMap for chaining
+	     */
+
 
 	    TileMap.prototype.calculateDeltaTiming = function calculateDeltaTiming() {
 	        var currentMillisecs = Date.now();
 	        var deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
 	        this.lastFrameMillisecs = currentMillisecs;
 	        this.deltaTiming = _Helper.Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
+	        return this;
 	    };
+
+	    /**
+	     * calculates current velocity
+	     * @return {TileMap} instance of TileMap for chaining
+	     */
+
 
 	    TileMap.prototype.calculateVelocity = function calculateVelocity() {
 	        this.moveByVelocity = this.velocity.multiply(0.96).clone.multiply(this.deltaTiming);
 	        if (this.velocity.length >= 0.2) {
 	            this.moveView(this.moveByVelocity);
 	        }
+	        return this;
 	    };
 
 	    /**

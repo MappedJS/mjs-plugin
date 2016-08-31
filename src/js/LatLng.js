@@ -94,7 +94,7 @@ export class LatLng {
      * @return {Boolean} Returns if specified coord equals this coord
      */
     equals(coord) {
-        return this.lat === coord.lat && this.lng === coord.lng;
+        return (coord instanceof LatLng) && this.lat === coord.lat && this.lng === coord.lng;
     }
 
     /**
