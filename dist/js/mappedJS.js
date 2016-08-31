@@ -4375,6 +4375,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.settings = settings;
 	        this.markers = [];
 	        this.thumbsLoaded = 0;
+	        this.path = path;
 	        this.info = new _MapInformation.MapInformation(this.id, path);
 	        this.eventManager = new _Publisher.Publisher(this.id);
 	        this.markerData = markerData;
@@ -4498,7 +4499,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 
 
-	    TileMap.prototype.createSidebarContainer = function createSidebarContainer() {
+	    TileMap.prototype.createSidebarContainer = function createSidebarContainer(path) {
 	        this.sidebar = new _SideBar.SideBar({
 	            container: this.container.parentNode,
 	            path: this.path,
@@ -6975,6 +6976,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this4 = this;
 
 	        _Helper.Helper.forEach(this.templates, function (template, type) {
+	            console.log(_this4.path, template);
 	            _Helper.Helper.getFile(_this4.path + template, function (html) {
 	                _this4.templates[type] = (_Handlebars2.default || window.Handlebars).compile(html);
 	                _this4.loadedTemplates++;
