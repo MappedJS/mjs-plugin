@@ -1,7 +1,15 @@
-import {DataEnrichment} from "../src/js/DataEnrichment.js";
-import {Point} from "../src/js/Point.js";
-import {LatLng} from "../src/js/LatLng.js";
-import {Bounds} from "../src/js/Bounds.js";
+import {
+    DataEnrichment
+} from "../src/js/DataEnrichment.js";
+import {
+    Point
+} from "../src/js/Point.js";
+import {
+    LatLng
+} from "../src/js/LatLng.js";
+import {
+    Bounds
+} from "../src/js/Bounds.js";
 
 describe('DataEnrichment', () => {
     "use strict";
@@ -33,7 +41,15 @@ describe('DataEnrichment', () => {
 
     it("marker(textAndIcon)", () => {
         const item = {
-            "position": [[52.506725, 13.229573], [52.514072, 13.345305], [52.527950, 13.125600], [52.517405, 13.398682], [52.536113, 13.433050], [52.552125, 13.465810], [52.604561, 13.524158]],
+            "position": [
+                [52.506725, 13.229573],
+                [52.514072, 13.345305],
+                [52.527950, 13.125600],
+                [52.517405, 13.398682],
+                [52.536113, 13.433050],
+                [52.552125, 13.465810],
+                [52.604561, 13.524158]
+            ],
             "text": {
                 "content": "B2",
                 "color": "#333333",
@@ -61,8 +77,7 @@ describe('DataEnrichment', () => {
         };
         const item3 = {
             "position": [52.604561, 13.524158],
-            "icon": {
-            }
+            "icon": {}
         };
         DataEnrichment.marker([item, item2, item3], (data) => {
             expect(data[0].text.offset).toEqual(new Point(0, 5));
@@ -78,8 +93,8 @@ describe('DataEnrichment', () => {
         });
     });
 
-    it("mapSettings()", () => {
-        DataEnrichment.mapSettings(undefined, (data) => {
+    it("settings()", () => {
+        DataEnrichment.settings(undefined, (data) => {
             expect(data.length).toEqual(1);
             expect(data[0]).toEqual(DataEnrichment.MAP_SETTINGS);
             expect(data[0].bounds).toBe(Bounds);
@@ -89,23 +104,23 @@ describe('DataEnrichment', () => {
         });
     });
 
-    it("mapSettings({})", () => {
+    it("settings({})", () => {
         const settings = {};
-        DataEnrichment.mapSettings(settings, (data) => {
+        DataEnrichment.settings(settings, (data) => {
             expect(typeof settings.aoiBounds !== "object").toEqual(true);
             expect(data[0].aoiBounds).toEqual(data[0].bounds);
             expect(data[0].aoiBounds).toBe(Bounds);
         });
     });
 
-    it("mapSettings(settings)", () => {
+    it("settings(settings)", () => {
         const settings = {
             aoiBounds: {
                 northWest: [52.777, 12.916],
                 southEast: [52.266, 13.938]
             }
         };
-        DataEnrichment.mapSettings(settings, (data) => {
+        DataEnrichment.settings(settings, (data) => {
             expect(typeof settings.aoiBounds === "object").toEqual(true);
             expect(data[0].aoiBounds).not.toEqual(data[0].bounds);
             expect(data[0].aoiBounds.nw.lat).toEqual(settings.aoiBounds.northWest[0]);

@@ -65,10 +65,10 @@ export const DataEnrichment = {
      * enriches map data with all needed data
      * @function
      * @memberof module:DataEnrichment
-     * @param  {Object} data - specified data for mapsettings
-     * @return {Object} enriched mapsettings data
+     * @param  {Object} data - specified data for settings
+     * @return {Object} enriched settings data
      */
-    mapSettings(data = {}) {
+    settings(data = {}) {
         const enrichedData = Object.assign({}, DataEnrichment.MAP_SETTINGS, data),
             bounds = new Bounds(new LatLng(enrichedData.bounds.northWest[0], enrichedData.bounds.northWest[1]), new LatLng(enrichedData.bounds.southEast[0], enrichedData.bounds.southEast[1])),
             center = new LatLng(enrichedData.center.lat, enrichedData.center.lng);
@@ -84,6 +84,7 @@ export const DataEnrichment = {
 
         enrichedData.clusterImage.size = new Point(enrichedData.clusterImage.size[0], enrichedData.clusterImage.size[1]);
         enrichedData.clusterImage.offset = new Point(enrichedData.clusterImage.offset[0], enrichedData.clusterImage.offset[1]);
+        enrichedData.clusterImage.text = Object.assign({}, DataEnrichment.CLUSTER_FONT, enrichedData.clusterImage.text);
 
         enrichedData.bounds = bounds;
         enrichedData.center = center;

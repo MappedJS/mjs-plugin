@@ -155,7 +155,7 @@ export class Marker extends Drawable {
      */
     action(point) {
         if (this.visible && this.isActive(point)) {
-            this.eventManager.publish(Events.ToolTip.OPEN, this.content);
+            this.eventManager.publish(Events.SideBar.OPEN, this.content);
             this.active = true;
         }
     }
@@ -165,8 +165,8 @@ export class Marker extends Drawable {
      * @return {Marker} instance of Marker for chaining
      */
     bindEvents() {
-        this.eventManager.subscribe(Events.ToolTip.OPEN, () => this.active = false);
-        this.eventManager.subscribe(Events.ToolTip.CLOSE, () => this.active = false);
+        this.eventManager.subscribe(Events.SideBar.OPEN, () => this.active = false);
+        this.eventManager.subscribe(Events.SideBar.CLOSE, () => this.active = false);
         return this;
     }
 

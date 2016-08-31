@@ -1,7 +1,7 @@
 $icon-width: (7*$gutter);
 $icon-height: (7*$gutter);
 
-.tooltip-container {
+.sidebar-container {
     position: absolute;
     bottom: -100%;
     left: -100%;
@@ -30,7 +30,7 @@ $icon-height: (7*$gutter);
         }
     }
     @at-root .mappedJS.left {
-        .tooltip-container {
+        .sidebar-container {
             bottom: -100%;
             left: -100%;
             box-shadow: 2px 0 2px 0 rgba(0, 0, 0, .25);
@@ -42,34 +42,34 @@ $icon-height: (7*$gutter);
             overflow: hidden;
         }
 
-        &.tooltip-open .map-content {
+        &.sidebar-open .map-content {
             left: 40%;
             width: 60%;
         }
 
-        &.tooltip-close .map-content {
+        &.sidebar-close .map-content {
             left: 0;
             width: 100%;
         }
 
-        &.tooltip-open .tooltip-container {
+        &.sidebar-open .sidebar-container {
             left: 0;
             bottom: 0;
         }
     }
     @at-root .mappedJS.bottom {
-        .tooltip-container {
+        .sidebar-container {
             left: -100%;
             height: 100%;
             bottom: -100%;
             transition: bottom .15s ease;
         }
-        &.tooltip-open .tooltip-container {
+        &.sidebar-open .sidebar-container {
             left: 0;
             bottom: 0;
         }
     }
-    .tooltip-content {
+    .sidebar-content {
         height: 100%;
         padding: (3*$gutter) (3*$gutter) (3*$gutter);
         overflow-y: auto;
@@ -78,11 +78,11 @@ $icon-height: (7*$gutter);
         > * {
             width: 100%;
         }
-        @import "_tooltip_caption.scss";
-        @import "_tooltip_image.scss";
-        @import "_tooltip_text.scss";
-        @import "_tooltip_headline.scss";
-        @import "_tooltip_crossheading.scss";
-        @import "_tooltip_iframe.scss";
+        @import "_sidebar_caption.scss";
+        @import "_sidebar_image.scss";
+        @import "_sidebar_text.scss";
+        @import "_sidebar_headline.scss";
+        @import "_sidebar_crossheading.scss";
+        @import "_sidebar_iframe.scss";
     }
 }

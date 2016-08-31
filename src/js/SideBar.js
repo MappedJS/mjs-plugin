@@ -14,7 +14,7 @@ import {
  * @file represents an overlay showing detailed contents
  * @copyright Michael Duve 2016
  */
-export class ToolTip {
+export class SideBar {
 
     /**
      * checks if all templates were loaded
@@ -28,18 +28,21 @@ export class ToolTip {
      *
      * @constructor
      * @param  {String|HTMLElement} container - Container, either string or DOM object
+     * @param  {String} path = [] - path to templates
      * @param  {Array} templates = [] - defined templates
      * @param  {Number} id = 0 - if of parent instance
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     constructor({
         container,
         templates = [],
+        path = "./",
         id = 0
     }) {
         this.container = container;
         this.id = id;
         this.eventManager = new Publisher(this.id);
+        this.path = path;
         if (Handlebars === undefined) {
             Helper.loadScript("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js", () => {
                 this.boot(templates);
@@ -53,10 +56,10 @@ export class ToolTip {
     /**
      * initialize boot up after Handlebars is loaded
      * @param  {Array} templates = [] - defined templates
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     boot(templates) {
-        this.container.classList.add(Events.ToolTip.CLOSE);
+        this.container.classList.add(Events.SideBar.CLOSE);
         this.setupContainer();
 
         this.bindEvents();
@@ -67,18 +70,18 @@ export class ToolTip {
     }
 
     /**
-     * initialize all container and DOM objects for ToolTip
-     * @return {ToolTip} instance of ToolTip for chaining
+     * initialize all container and DOM objects for SideBar
+     * @return {SideBar} instance of SideBar for chaining
      */
     setupContainer() {
         this.close = document.createElement("div");
         this.close.classList.add("close-button");
 
         this.content = document.createElement("div");
-        this.content.classList.add("tooltip-content");
+        this.content.classList.add("sidebar-content");
 
         this.popup = document.createElement("div");
-        this.popup.classList.add("tooltip-container");
+        this.popup.classList.add("sidebar-container");
 
         this.popup.appendChild(this.close);
         this.popup.appendChild(this.content);
@@ -87,7 +90,7 @@ export class ToolTip {
 
     /**
      * register helpers for handlebars
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     registerHandlebarHelpers() {
         if (Handlebars || window.Handlebars) {
@@ -99,7 +102,7 @@ export class ToolTip {
     /**
      * initialize all templates
      * @param  {Object} templates = {} - all specified templates
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     initializeTemplates(templates) {
         this.templates = templates;
@@ -110,23 +113,23 @@ export class ToolTip {
 
     /**
      * bind all events
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     bindEvents() {
         Helper.addListener(window, Events.Handling.RESIZE, this.resizeHandler.bind(this));
         Helper.addListener(this.close, Events.Handling.CLICK, () => {
-            this.eventManager.publish(Events.ToolTip.CLOSE);
+            this.eventManager.publish(Events.SideBar.CLOSE);
         });
-        this.eventManager.subscribe(Events.ToolTip.OPEN, this.open.bind(this));
-        this.eventManager.subscribe(Events.ToolTip.CLOSE, () => {
-            this.closeTooltip();
+        this.eventManager.subscribe(Events.SideBar.OPEN, this.open.bind(this));
+        this.eventManager.subscribe(Events.SideBar.CLOSE, () => {
+            this.closeSidebar();
         });
         return this;
     }
 
     /**
-     * on resize check if tooltip is bottom or left position
-     * @return {ToolTip} instance of ToolTip for chaining
+     * on resize check if sidebar is bottom or left position
+     * @return {SideBar} instance of SideBar for chaining
      */
     resizeHandler() {
         this.setPosition();
@@ -134,9 +137,9 @@ export class ToolTip {
     }
 
     /**
-     * inserts content to ToolTip instance container
+     * inserts content to SideBar instance container
      * @param  {Object} content = {} - content object
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     insertContent(content = {}) {
         this.content.innerHTML = "";
@@ -150,40 +153,40 @@ export class ToolTip {
     }
 
     /**
-     * opens a tooltip
+     * opens a sidebar
      * @param  {Object} data - content object
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     open(data) {
         if (data) {
             this.insertContent(data);
         }
-        if (this.container.classList.contains(Events.ToolTip.CLOSE)) {
+        if (this.container.classList.contains(Events.SideBar.CLOSE)) {
             this.setPosition();
-            this.container.classList.remove(Events.ToolTip.CLOSE);
-            this.container.classList.add(Events.ToolTip.OPEN);
+            this.container.classList.remove(Events.SideBar.CLOSE);
+            this.container.classList.add(Events.SideBar.OPEN);
             this.eventManager.publish(Events.TileMap.RESIZE);
         }
         return this;
     }
 
     /**
-     * closes a tooltip
-     * @return {ToolTip} instance of ToolTip for chaining
+     * closes a sidebar
+     * @return {SideBar} instance of SideBar for chaining
      */
-    closeTooltip() {
-        if (this.container.classList.contains(Events.ToolTip.OPEN)) {
+    closeSidebar() {
+        if (this.container.classList.contains(Events.SideBar.OPEN)) {
             this.setPosition();
-            this.container.classList.remove(Events.ToolTip.OPEN);
-            this.container.classList.add(Events.ToolTip.CLOSE);
+            this.container.classList.remove(Events.SideBar.OPEN);
+            this.container.classList.add(Events.SideBar.CLOSE);
             this.eventManager.publish(Events.TileMap.RESIZE);
         }
         return this;
     }
 
     /**
-     * sets position of tooltip to left or bottom
-     * @return {ToolTip} instance of ToolTip for chaining
+     * sets position of sidebar to left or bottom
+     * @return {SideBar} instance of SideBar for chaining
      */
     setPosition() {
         if (this.container.clientWidth > this.container.clientHeight) {
@@ -198,11 +201,11 @@ export class ToolTip {
 
     /**
      * precompiles all Handlebars templates
-     * @return {ToolTip} instance of ToolTip for chaining
+     * @return {SideBar} instance of SideBar for chaining
      */
     compileTemplates() {
         Helper.forEach(this.templates, (template, type) => {
-            Helper.getFile(template, (html) => {
+            Helper.getFile(this.path + template, (html) => {
                 this.templates[type] = (Handlebars || window.Handlebars).compile(html);
                 this.loadedTemplates++;
                 if (this.allTemplatesLoaded) {

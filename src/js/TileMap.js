@@ -23,11 +23,8 @@ import {
     Marker
 } from './Marker.js';
 import {
-    DataEnrichment
-} from './DataEnrichment.js';
-import {
-    ToolTip
-} from './ToolTip.js';
+    SideBar
+} from './SideBar.js';
 import {
     MarkerClusterer
 } from './MarkerClusterer.js';
@@ -94,7 +91,7 @@ export class TileMap {
      * @constructor
      * @param  {HTMLElement} container = null - jQuery-object holding the container
      * @param  {String} path="./" - path to data
-     * @param  {Object} mapData = {} - json object representing data of TileMap
+     * @param  {Object} tilesData = {} - json object representing data of TileMap
      * @param  {Object} settings = {} - json object representing settings of TileMap
      * @param  {Number} id = 0 - id of parent instance
      * @return {TileMap} instance of TileMap for chaining
@@ -102,7 +99,7 @@ export class TileMap {
     constructor({
         container = null,
         path = "./",
-        mapData = {},
+        tilesData = {},
         markerData = {},
         settings = {},
         id
@@ -119,7 +116,7 @@ export class TileMap {
             bounds: this.settings.bounds
         });
 
-        this.initializeLevels(mapData);
+        this.initializeLevels(tilesData);
         this.bindEvents();
         this.resizeCanvas();
 
@@ -169,7 +166,7 @@ export class TileMap {
         this.markerData = markerData;
         this.levels = [];
         this.clusterHandlingTimeout = null;
-        this.templates = (this.settings.tooltip) ? this.settings.tooltip.templates : {};
+        this.templates = (this.settings.sidebar) ? this.settings.sidebar.templates : {};
         this.initial = {
             bounds: this.settings.bounds,
             center: this.settings.center,
@@ -230,7 +227,6 @@ export class TileMap {
      * @return {TileMap} instance of TileMap for chaining
      */
     initializeMarkers() {
-        this.markerData = this.enrichMarkerData(this.markerData);
         Helper.forEach(this.markerData, (markerSettings) => {
             const currentMarker = new Marker({
                 context: this.canvasContext,
@@ -273,21 +269,13 @@ export class TileMap {
     }
 
     /**
-     * enrich marker data
-     * @param  {Object} markerData - data of markers
-     * @return {Object} enriched marker data
-     */
-    enrichMarkerData(markerData) {
-        return DataEnrichment.marker(markerData);
-    }
-
-    /**
-     * creates an instance of ToolTip
+     * creates an instance of SideBar
      * @return {TileMap} instance of TileMap for chaining
      */
-    createTooltipContainer() {
-        this.tooltip = new ToolTip({
+    createSidebarContainer() {
+        this.sidebar = new SideBar({
             container: this.container.parentNode,
+            path: this.path,
             id: this.id,
             templates: this.templates
         });
@@ -358,7 +346,7 @@ export class TileMap {
         if (this.thumbsLoaded === this.levels.length) {
             this.initializeMarkers();
             window.requestAnimFrame(this.mainLoop.bind(this));
-            this.createTooltipContainer();
+            this.createSidebarContainer();
         }
         return this;
     }
