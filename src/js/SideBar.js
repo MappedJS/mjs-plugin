@@ -205,7 +205,6 @@ export class SideBar {
      */
     compileTemplates() {
         Helper.forEach(this.templates, (template, type) => {
-            console.log(this.path, template);
             Helper.getFile(this.path + template, (html) => {
                 this.templates[type] = (Handlebars || window.Handlebars).compile(html);
                 this.loadedTemplates++;
