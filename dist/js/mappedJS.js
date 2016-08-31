@@ -6976,7 +6976,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this4 = this;
 
 	        _Helper.Helper.forEach(this.templates, function (template, type) {
-	            console.log(_this4.path, template);
 	            _Helper.Helper.getFile(_this4.path + template, function (html) {
 	                _this4.templates[type] = (_Handlebars2.default || window.Handlebars).compile(html);
 	                _this4.loadedTemplates++;
