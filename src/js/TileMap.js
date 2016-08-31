@@ -161,6 +161,7 @@ export class TileMap {
         this.settings = settings;
         this.markers = [];
         this.thumbsLoaded = 0;
+        this.path = path;
         this.info = new MapInformation(this.id, path);
         this.eventManager = new Publisher(this.id);
         this.markerData = markerData;
@@ -272,7 +273,7 @@ export class TileMap {
      * creates an instance of SideBar
      * @return {TileMap} instance of TileMap for chaining
      */
-    createSidebarContainer() {
+    createSidebarContainer(path) {
         this.sidebar = new SideBar({
             container: this.container.parentNode,
             path: this.path,
