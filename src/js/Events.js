@@ -6,15 +6,15 @@
  */
 export const Events = {
     /**
-     * Eventnames for ToolTip class
+     * Eventnames for SideBar class
      * @type {Object}
      * @memberof Events
-     * @property {String} OPEN - when a tooltip should be openend
-     * @property {String} CLOSE - when a tooltip should be closed
+     * @property {String} OPEN - when a sidebar should be openend
+     * @property {String} CLOSE - when a sidebar should be closed
      */
-    ToolTip: {
-        OPEN: "tooltip-open",
-        CLOSE: "tooltip-close"
+    SideBar: {
+        OPEN: "sidebar-open",
+        CLOSE: "sidebar-close"
     },
     /**
      * Eventnames for Publisher class

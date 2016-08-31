@@ -36,36 +36,36 @@ export class MappedJS {
 
     /**
      * @constructor
-     * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
+     * @param  {String|Object} tilesData={} - data of map tiles, can be json or path to file
      * @param  {String|Object} markerData={} - data of markers, can be json or path to file
-     * @param  {Object} mapSettings={} - settings for map, must be json
+     * @param  {Object} settings={} - settings for map, must be json
      * @return {MappedJS} instance of MappedJS for chaining
      */
     constructor({
-        mapData = {},
+        tilesData = {},
         markerData = {},
-        mapSettings = {}
+        settings = {}
     }) {
-        this.initializeSettings(mapSettings);
+        this.initializeSettings(settings);
 
         this.id = this.generateUniqueID();
         MappedJS.count++;
 
         this.eventManager = new Publisher(this.id);
 
-        this.initializeData(mapData, (loadedMapData) => {
-            this.mapData = loadedMapData;
+        this.initializeData(tilesData, (loadedTilesData) => {
+            this.tilesData = loadedTilesData;
             this.initializeData(markerData, (loadedMarkerData) => {
-                this.markerData = loadedMarkerData;
+                this.markerData = DataEnrichment.marker(loadedMarkerData);
 
                 this.initializeMap();
                 this.addControls();
 
-                if (mapSettings.legend) {
-                    this.addInformationLayer("legend", mapSettings.legend);
+                if (settings.legend) {
+                    this.addInformationLayer("legend", settings.legend);
                 }
-                if (mapSettings.locator) {
-                    this.addInformationLayer("location", mapSettings.locator);
+                if (settings.locator) {
+                    this.addInformationLayer("location", settings.locator);
                 }
 
                 this.bindEvents();
@@ -129,11 +129,11 @@ export class MappedJS {
      * @return {MappedJS} instance of MappedJS for chaining
      */
     addControls() {
-        if (this.mapSettings.controls) {
+        if (this.settings.controls) {
             this.controls = document.createElement("div");
             this.controls.classList.add("control-container");
-            this.controls.classList.add(this.mapSettings.controls.theme);
-            this.controls.classList.add(this.mapSettings.controls.position);
+            this.controls.classList.add(this.settings.controls.theme);
+            this.controls.classList.add(this.settings.controls.position);
             this.zoomIn = document.createElement("div");
             this.zoomIn.classList.add("control");
             this.zoomIn.classList.add("zoom-in");
@@ -157,9 +157,9 @@ export class MappedJS {
      * @return {MappedJS} instance of MappedJS for chaining
      */
     initializeSettings(settings = {}) {
-        this.mapSettings = DataEnrichment.mapSettings(settings);
-        this.container = (typeof this.mapSettings.container === "string") ? Helper.find(this.mapSettings.container) : this.mapSettings.container;
-        this.path = this.mapSettings.path;
+        this.settings = DataEnrichment.settings(settings);
+        this.container = (typeof this.settings.container === "string") ? Helper.find(this.settings.container) : this.settings.container;
+        this.path = this.settings.path;
         this.container.classList.add("mappedJS");
         this.content = document.createElement("div");
         this.content.classList.add("map-content");
@@ -193,10 +193,10 @@ export class MappedJS {
         this.tileMap = new TileMap({
             container: this.content,
             path: this.path,
-            mapData: this.mapData,
+            tilesData: this.tilesData,
             markerData: this.markerData,
             id: this.id,
-            settings: this.mapSettings
+            settings: this.settings
         });
         return this;
     }

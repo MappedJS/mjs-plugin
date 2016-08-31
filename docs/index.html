@@ -62,6 +62,8 @@
 <dd></dd>
 <dt><a href="#Rectangle">Rectangle</a></dt>
 <dd></dd>
+<dt><a href="#SideBar">SideBar</a></dt>
+<dd></dd>
 <dt><a href="#StateHandler">StateHandler</a></dt>
 <dd></dd>
 <dt><a href="#Texture">Texture</a></dt>
@@ -69,8 +71,6 @@
 <dt><a href="#Tile">Tile</a></dt>
 <dd></dd>
 <dt><a href="#TileMap">TileMap</a></dt>
-<dd></dd>
-<dt><a href="#ToolTip">ToolTip</a></dt>
 <dd></dd>
 <dt><a href="#View">View</a></dt>
 <dd></dd>
@@ -86,11 +86,11 @@
 <p><a name="module_DataEnrichment"></a></p>
 <h2 id="dataenrichment">DataEnrichment</h2>
 <p>enriches delivered data with default values</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#109;&#100;&#x75;&#x76;&#x65;&#x40;&#x64;&#101;&#115;&#105;&#x67;&#110;&#109;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#x74;">&#109;&#100;&#x75;&#x76;&#x65;&#x40;&#x64;&#101;&#115;&#105;&#x67;&#110;&#109;&#x61;&#105;&#108;&#x2e;&#x6e;&#x65;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x6d;&#100;&#x75;&#x76;&#101;&#x40;&#100;&#x65;&#115;&#x69;&#103;&#x6e;&#109;&#x61;&#x69;&#x6c;&#46;&#x6e;&#101;&#116;">&#x6d;&#100;&#x75;&#x76;&#101;&#x40;&#100;&#x65;&#115;&#x69;&#103;&#x6e;&#109;&#x61;&#x69;&#x6c;&#46;&#x6e;&#101;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_DataEnrichment">DataEnrichment</a><ul>
 <li><a href="#module_DataEnrichment.marker">.marker(data)</a> ⇒ <code>Object</code></li>
-<li><a href="#module_DataEnrichment.mapSettings">.mapSettings(data)</a> ⇒ <code>Object</code></li>
+<li><a href="#module_DataEnrichment.settings">.settings(data)</a> ⇒ <code>Object</code></li>
 </ul>
 </li>
 </ul>
@@ -101,17 +101,17 @@
 <ul>
 <li>data <code>Object</code> - specified data for marker</li>
 </ul>
-<p><a name="module_DataEnrichment.mapSettings"></a></p>
-<h3 id="dataenrichment-mapsettings-data-code-object-code-">DataEnrichment.mapSettings(data) ⇒ <code>Object</code></h3>
+<p><a name="module_DataEnrichment.settings"></a></p>
+<h3 id="dataenrichment-settings-data-code-object-code-">DataEnrichment.settings(data) ⇒ <code>Object</code></h3>
 <p>enriches map data with all needed data</p>
-<p><strong>Kind</strong>: static method of <code><a href="#module_DataEnrichment">DataEnrichment</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched mapsettings data<br><strong>Params</strong></p>
+<p><strong>Kind</strong>: static method of <code><a href="#module_DataEnrichment">DataEnrichment</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched settings data<br><strong>Params</strong></p>
 <ul>
-<li>data <code>Object</code> - specified data for mapsettings</li>
+<li>data <code>Object</code> - specified data for settings</li>
 </ul>
 <p><a name="module_Helper"></a></p>
 <h2 id="helper">Helper</h2>
 <p>Helper for general purposes</p>
-<p><strong>Author:</strong> Michael Duve <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#109;&#100;&#117;&#x76;&#101;&#x40;&#x64;&#x65;&#115;&#105;&#x67;&#x6e;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x6e;&#x65;&#x74;">&#109;&#100;&#117;&#x76;&#101;&#x40;&#x64;&#x65;&#115;&#105;&#x67;&#x6e;&#x6d;&#97;&#105;&#x6c;&#x2e;&#x6e;&#x65;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Author:</strong> Michael Duve <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#109;&#x64;&#x75;&#118;&#x65;&#x40;&#x64;&#101;&#x73;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#x69;&#108;&#46;&#x6e;&#101;&#116;">&#109;&#x64;&#x75;&#118;&#x65;&#x40;&#x64;&#101;&#x73;&#x69;&#x67;&#x6e;&#x6d;&#x61;&#x69;&#108;&#46;&#x6e;&#101;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#module_Helper">Helper</a><ul>
 <li><a href="#module_Helper.requestJSON">.requestJSON(filename, callback)</a> ⇒ <code>Helper</code></li>
@@ -312,7 +312,7 @@
 <ul>
 <li>context <code>CanvasRenderingContext2D</code> - = null - context of canvas</li>
 <li>texture <code><a href="#Texture">Texture</a></code> - = null - texture of cluster</li>
-<li>font <code>Object</code> - = DataEnrichment.CLUSTER_FONT - style of font in cluster</li>
+<li>font <code>Object</code> - = {} - style of font in cluster</li>
 <li>id <code>Number</code> - = 0 - id of parent instance</li>
 </ul>
 <p><a name="Cluster+position"></a></p>
@@ -965,7 +965,7 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#MappedJS">MappedJS</a><ul>
-<li><a href="#new_MappedJS_new">new MappedJS(mapData, markerData, mapSettings)</a></li>
+<li><a href="#new_MappedJS_new">new MappedJS(tilesData, markerData, settings)</a></li>
 <li><em>instance</em><ul>
 <li><a href="#MappedJS+generateUniqueID">.generateUniqueID()</a> ⇒ <code>Number</code></li>
 <li><a href="#MappedJS+addInformationLayer">.addInformationLayer(type, settings)</a> ⇒ <code><a href="#MappedJS">MappedJS</a></code></li>
@@ -995,12 +995,12 @@
 </li>
 </ul>
 <p><a name="new_MappedJS_new"></a></p>
-<h3 id="new-mappedjs-mapdata-markerdata-mapsettings-">new MappedJS(mapData, markerData, mapSettings)</h3>
+<h3 id="new-mappedjs-tilesdata-markerdata-settings-">new MappedJS(tilesData, markerData, settings)</h3>
 <p><strong>Returns</strong>: <code><a href="#MappedJS">MappedJS</a></code> - instance of MappedJS for chaining<br><strong>Params</strong></p>
 <ul>
-<li>mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file</li>
+<li>tilesData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file</li>
 <li>markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file</li>
-<li>mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json</li>
+<li>settings <code>Object</code> <code> = {}</code> - settings for map, must be json</li>
 </ul>
 <p><a name="MappedJS+generateUniqueID"></a></p>
 <h3 id="mappedjs-generateuniqueid-code-number-code-">mappedJS.generateUniqueID() ⇒ <code>Number</code></h3>
@@ -1772,7 +1772,89 @@
 <ul>
 <li>rect <code><a href="#Rectangle">Rectangle</a></code> - specified Rectangle</li>
 </ul>
-<p><a name="StateHandler"></a></p>
+<p><a name="SideBar"></a></p>
+<h2 id="sidebar">SideBar</h2>
+<p><strong>Kind</strong>: global class  </p>
+<ul>
+<li><a href="#SideBar">SideBar</a><ul>
+<li><a href="#new_SideBar_new">new SideBar(container, path, templates, id)</a></li>
+<li><a href="#SideBar+allTemplatesLoaded">.allTemplatesLoaded</a> ⇒ <code>Boolean</code></li>
+<li><a href="#SideBar+boot">.boot(templates)</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+setupContainer">.setupContainer()</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+registerHandlebarHelpers">.registerHandlebarHelpers()</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+initializeTemplates">.initializeTemplates(templates)</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+bindEvents">.bindEvents()</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+resizeHandler">.resizeHandler()</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+insertContent">.insertContent(content)</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+open">.open(data)</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+closeSidebar">.closeSidebar()</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+setPosition">.setPosition()</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+<li><a href="#SideBar+compileTemplates">.compileTemplates()</a> ⇒ <code><a href="#SideBar">SideBar</a></code></li>
+</ul>
+</li>
+</ul>
+<p><a name="new_SideBar_new"></a></p>
+<h3 id="new-sidebar-container-path-templates-id-">new SideBar(container, path, templates, id)</h3>
+<p><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><strong>Params</strong></p>
+<ul>
+<li>container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object</li>
+<li>path <code>String</code> - = [] - path to templates</li>
+<li>templates <code>Array</code> - = [] - defined templates</li>
+<li>id <code>Number</code> - = 0 - if of parent instance</li>
+</ul>
+<p><a name="SideBar+allTemplatesLoaded"></a></p>
+<h3 id="sidebar-alltemplatesloaded-code-boolean-code-">sideBar.allTemplatesLoaded ⇒ <code>Boolean</code></h3>
+<p>checks if all templates were loaded</p>
+<p><strong>Kind</strong>: instance property of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code>Boolean</code> - wheter true if all templates were loaded or false<br><a name="SideBar+boot"></a></p>
+<h3 id="sidebar-boot-templates-code-sidebar-sidebar-code-">sideBar.boot(templates) ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>initialize boot up after Handlebars is loaded</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><strong>Params</strong></p>
+<ul>
+<li>templates <code>Array</code> - = [] - defined templates</li>
+</ul>
+<p><a name="SideBar+setupContainer"></a></p>
+<h3 id="sidebar-setupcontainer-code-sidebar-sidebar-code-">sideBar.setupContainer() ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>initialize all container and DOM objects for SideBar</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><a name="SideBar+registerHandlebarHelpers"></a></p>
+<h3 id="sidebar-registerhandlebarhelpers-code-sidebar-sidebar-code-">sideBar.registerHandlebarHelpers() ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>register helpers for handlebars</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><a name="SideBar+initializeTemplates"></a></p>
+<h3 id="sidebar-initializetemplates-templates-code-sidebar-sidebar-code-">sideBar.initializeTemplates(templates) ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>initialize all templates</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><strong>Params</strong></p>
+<ul>
+<li>templates <code>Object</code> - = {} - all specified templates</li>
+</ul>
+<p><a name="SideBar+bindEvents"></a></p>
+<h3 id="sidebar-bindevents-code-sidebar-sidebar-code-">sideBar.bindEvents() ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>bind all events</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><a name="SideBar+resizeHandler"></a></p>
+<h3 id="sidebar-resizehandler-code-sidebar-sidebar-code-">sideBar.resizeHandler() ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>on resize check if sidebar is bottom or left position</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><a name="SideBar+insertContent"></a></p>
+<h3 id="sidebar-insertcontent-content-code-sidebar-sidebar-code-">sideBar.insertContent(content) ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>inserts content to SideBar instance container</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><strong>Params</strong></p>
+<ul>
+<li>content <code>Object</code> - = {} - content object</li>
+</ul>
+<p><a name="SideBar+open"></a></p>
+<h3 id="sidebar-open-data-code-sidebar-sidebar-code-">sideBar.open(data) ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>opens a sidebar</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><strong>Params</strong></p>
+<ul>
+<li>data <code>Object</code> - content object</li>
+</ul>
+<p><a name="SideBar+closeSidebar"></a></p>
+<h3 id="sidebar-closesidebar-code-sidebar-sidebar-code-">sideBar.closeSidebar() ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>closes a sidebar</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><a name="SideBar+setPosition"></a></p>
+<h3 id="sidebar-setposition-code-sidebar-sidebar-code-">sideBar.setPosition() ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>sets position of sidebar to left or bottom</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><a name="SideBar+compileTemplates"></a></p>
+<h3 id="sidebar-compiletemplates-code-sidebar-sidebar-code-">sideBar.compileTemplates() ⇒ <code><a href="#SideBar">SideBar</a></code></h3>
+<p>precompiles all Handlebars templates</p>
+<p><strong>Kind</strong>: instance method of <code><a href="#SideBar">SideBar</a></code><br><strong>Returns</strong>: <code><a href="#SideBar">SideBar</a></code> - instance of SideBar for chaining<br><a name="StateHandler"></a></p>
 <h2 id="statehandler">StateHandler</h2>
 <p><strong>Kind</strong>: global class  </p>
 <ul>
@@ -1911,7 +1993,7 @@
 <p><strong>Kind</strong>: global class  </p>
 <ul>
 <li><a href="#TileMap">TileMap</a><ul>
-<li><a href="#new_TileMap_new">new TileMap(container, path, mapData, settings, id)</a></li>
+<li><a href="#new_TileMap_new">new TileMap(container, path, tilesData, settings, id)</a></li>
 <li><a href="#TileMap+width">.width</a> ⇒ <code>Number</code></li>
 <li><a href="#TileMap+height">.height</a> ⇒ <code>Number</code></li>
 <li><a href="#TileMap+viewport">.viewport</a> ⇒ <code><a href="#Rectangle">Rectangle</a></code></li>
@@ -1923,8 +2005,7 @@
 <li><a href="#TileMap+reset">.reset()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+initializeMarkers">.initializeMarkers()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+createViewFromData">.createViewFromData(data)</a> ⇒ <code><a href="#View">View</a></code></li>
-<li><a href="#TileMap+enrichMarkerData">.enrichMarkerData(markerData)</a> ⇒ <code>Object</code></li>
-<li><a href="#TileMap+createTooltipContainer">.createTooltipContainer()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
+<li><a href="#TileMap+createSidebarContainer">.createSidebarContainer()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+bindEvents">.bindEvents()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+zoomToBounds">.zoomToBounds(center, boundingBox)</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
 <li><a href="#TileMap+thumbLoaded">.thumbLoaded()</a> ⇒ <code><a href="#TileMap">TileMap</a></code></li>
@@ -1946,12 +2027,12 @@
 </li>
 </ul>
 <p><a name="new_TileMap_new"></a></p>
-<h3 id="new-tilemap-container-path-mapdata-settings-id-">new TileMap(container, path, mapData, settings, id)</h3>
+<h3 id="new-tilemap-container-path-tilesdata-settings-id-">new TileMap(container, path, tilesData, settings, id)</h3>
 <p><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><strong>Params</strong></p>
 <ul>
 <li>container <code>HTMLElement</code> - = null - jQuery-object holding the container</li>
 <li>path <code>String</code> <code> = &quot;./&quot;</code> - path to data</li>
-<li>mapData <code>Object</code> - = {} - json object representing data of TileMap</li>
+<li>tilesData <code>Object</code> - = {} - json object representing data of TileMap</li>
 <li>settings <code>Object</code> - = {} - json object representing settings of TileMap</li>
 <li>id <code>Number</code> - = 0 - id of parent instance</li>
 </ul>
@@ -2004,16 +2085,9 @@
 <ul>
 <li>data <code>Object</code> - specified data</li>
 </ul>
-<p><a name="TileMap+enrichMarkerData"></a></p>
-<h3 id="tilemap-enrichmarkerdata-markerdata-code-object-code-">tileMap.enrichMarkerData(markerData) ⇒ <code>Object</code></h3>
-<p>enrich marker data</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code>Object</code> - enriched marker data<br><strong>Params</strong></p>
-<ul>
-<li>markerData <code>Object</code> - data of markers</li>
-</ul>
-<p><a name="TileMap+createTooltipContainer"></a></p>
-<h3 id="tilemap-createtooltipcontainer-code-tilemap-tilemap-code-">tileMap.createTooltipContainer() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
-<p>creates an instance of ToolTip</p>
+<p><a name="TileMap+createSidebarContainer"></a></p>
+<h3 id="tilemap-createsidebarcontainer-code-tilemap-tilemap-code-">tileMap.createSidebarContainer() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
+<p>creates an instance of SideBar</p>
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+bindEvents"></a></p>
 <h3 id="tilemap-bindevents-code-tilemap-tilemap-code-">tileMap.bindEvents() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
 <p>bind all events</p>
@@ -2088,88 +2162,7 @@
 <p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="TileMap+drawMarkers"></a></p>
 <h3 id="tilemap-drawmarkers-code-tilemap-tilemap-code-">tileMap.drawMarkers() ⇒ <code><a href="#TileMap">TileMap</a></code></h3>
 <p>draw all markers</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="ToolTip"></a></p>
-<h2 id="tooltip">ToolTip</h2>
-<p><strong>Kind</strong>: global class  </p>
-<ul>
-<li><a href="#ToolTip">ToolTip</a><ul>
-<li><a href="#new_ToolTip_new">new ToolTip(container, templates, id)</a></li>
-<li><a href="#ToolTip+allTemplatesLoaded">.allTemplatesLoaded</a> ⇒ <code>Boolean</code></li>
-<li><a href="#ToolTip+boot">.boot(templates)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+setupContainer">.setupContainer()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+registerHandlebarHelpers">.registerHandlebarHelpers()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+initializeTemplates">.initializeTemplates(templates)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+bindEvents">.bindEvents()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+resizeHandler">.resizeHandler()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+insertContent">.insertContent(content)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+open">.open(data)</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+closeTooltip">.closeTooltip()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+setPosition">.setPosition()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-<li><a href="#ToolTip+compileTemplates">.compileTemplates()</a> ⇒ <code><a href="#ToolTip">ToolTip</a></code></li>
-</ul>
-</li>
-</ul>
-<p><a name="new_ToolTip_new"></a></p>
-<h3 id="new-tooltip-container-templates-id-">new ToolTip(container, templates, id)</h3>
-<p><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
-<ul>
-<li>container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object</li>
-<li>templates <code>Array</code> - = [] - defined templates</li>
-<li>id <code>Number</code> - = 0 - if of parent instance</li>
-</ul>
-<p><a name="ToolTip+allTemplatesLoaded"></a></p>
-<h3 id="tooltip-alltemplatesloaded-code-boolean-code-">toolTip.allTemplatesLoaded ⇒ <code>Boolean</code></h3>
-<p>checks if all templates were loaded</p>
-<p><strong>Kind</strong>: instance property of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code>Boolean</code> - wheter true if all templates were loaded or false<br><a name="ToolTip+boot"></a></p>
-<h3 id="tooltip-boot-templates-code-tooltip-tooltip-code-">toolTip.boot(templates) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>initialize boot up after Handlebars is loaded</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
-<ul>
-<li>templates <code>Array</code> - = [] - defined templates</li>
-</ul>
-<p><a name="ToolTip+setupContainer"></a></p>
-<h3 id="tooltip-setupcontainer-code-tooltip-tooltip-code-">toolTip.setupContainer() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>initialize all container and DOM objects for ToolTip</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+registerHandlebarHelpers"></a></p>
-<h3 id="tooltip-registerhandlebarhelpers-code-tooltip-tooltip-code-">toolTip.registerHandlebarHelpers() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>register helpers for handlebars</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+initializeTemplates"></a></p>
-<h3 id="tooltip-initializetemplates-templates-code-tooltip-tooltip-code-">toolTip.initializeTemplates(templates) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>initialize all templates</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
-<ul>
-<li>templates <code>Object</code> - = {} - all specified templates</li>
-</ul>
-<p><a name="ToolTip+bindEvents"></a></p>
-<h3 id="tooltip-bindevents-code-tooltip-tooltip-code-">toolTip.bindEvents() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>bind all events</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+resizeHandler"></a></p>
-<h3 id="tooltip-resizehandler-code-tooltip-tooltip-code-">toolTip.resizeHandler() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>on resize check if tooltip is bottom or left position</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+insertContent"></a></p>
-<h3 id="tooltip-insertcontent-content-code-tooltip-tooltip-code-">toolTip.insertContent(content) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>inserts content to ToolTip instance container</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
-<ul>
-<li>content <code>Object</code> - = {} - content object</li>
-</ul>
-<p><a name="ToolTip+open"></a></p>
-<h3 id="tooltip-open-data-code-tooltip-tooltip-code-">toolTip.open(data) ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>opens a tooltip</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><strong>Params</strong></p>
-<ul>
-<li>data <code>Object</code> - content object</li>
-</ul>
-<p><a name="ToolTip+closeTooltip"></a></p>
-<h3 id="tooltip-closetooltip-code-tooltip-tooltip-code-">toolTip.closeTooltip() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>closes a tooltip</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+setPosition"></a></p>
-<h3 id="tooltip-setposition-code-tooltip-tooltip-code-">toolTip.setPosition() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>sets position of tooltip to left or bottom</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="ToolTip+compileTemplates"></a></p>
-<h3 id="tooltip-compiletemplates-code-tooltip-tooltip-code-">toolTip.compileTemplates() ⇒ <code><a href="#ToolTip">ToolTip</a></code></h3>
-<p>precompiles all Handlebars templates</p>
-<p><strong>Kind</strong>: instance method of <code><a href="#ToolTip">ToolTip</a></code><br><strong>Returns</strong>: <code><a href="#ToolTip">ToolTip</a></code> - instance of ToolTip for chaining<br><a name="View"></a></p>
+<p><strong>Kind</strong>: instance method of <code><a href="#TileMap">TileMap</a></code><br><strong>Returns</strong>: <code><a href="#TileMap">TileMap</a></code> - instance of TileMap for chaining<br><a name="View"></a></p>
 <h2 id="view">View</h2>
 <p><strong>Kind</strong>: global class  </p>
 <ul>
@@ -2311,10 +2304,10 @@
 <p><strong>Kind</strong>: instance method of <code><a href="#View">View</a></code><br><strong>Returns</strong>: <code><a href="#View">View</a></code> - instance of View for chaining<br><a name="Events"></a></p>
 <h2 id="events-code-object-code-">Events : <code>object</code></h2>
 <p>Helper for naming events</p>
-<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#109;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#115;&#x69;&#x67;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#101;&#x74;">&#109;&#100;&#x75;&#118;&#x65;&#64;&#x64;&#101;&#115;&#x69;&#x67;&#110;&#x6d;&#x61;&#105;&#108;&#x2e;&#110;&#101;&#x74;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
+<p><strong>Kind</strong>: global namespace<br><strong>Author:</strong> Michael Duve <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#109;&#100;&#117;&#118;&#101;&#x40;&#x64;&#101;&#115;&#105;&#x67;&#110;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x6e;&#x65;&#116;">&#109;&#100;&#117;&#118;&#101;&#x40;&#x64;&#101;&#115;&#105;&#x67;&#110;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#x6e;&#x65;&#116;</a><br><strong>Copyright</strong>: Michael Duve 2016  </p>
 <ul>
 <li><a href="#Events">Events</a> : <code>object</code><ul>
-<li><a href="#Events.ToolTip">.ToolTip</a> : <code>Object</code></li>
+<li><a href="#Events.SideBar">.SideBar</a> : <code>Object</code></li>
 <li><a href="#Events.Publisher">.Publisher</a> : <code>Object</code></li>
 <li><a href="#Events.TileMap">.TileMap</a> : <code>Object</code></li>
 <li><a href="#Events.Handling">.Handling</a> : <code>Object</code></li>
@@ -2325,13 +2318,13 @@
 </ul>
 </li>
 </ul>
-<p><a name="Events.ToolTip"></a></p>
-<h3 id="events-tooltip-code-object-code-">Events.ToolTip : <code>Object</code></h3>
-<p>Eventnames for ToolTip class</p>
+<p><a name="Events.SideBar"></a></p>
+<h3 id="events-sidebar-code-object-code-">Events.SideBar : <code>Object</code></h3>
+<p>Eventnames for SideBar class</p>
 <p><strong>Kind</strong>: static property of <code><a href="#Events">Events</a></code><br><strong>Properties</strong></p>
 <ul>
-<li>OPEN <code>String</code> - when a tooltip should be openend  </li>
-<li>CLOSE <code>String</code> - when a tooltip should be closed  </li>
+<li>OPEN <code>String</code> - when a sidebar should be openend  </li>
+<li>CLOSE <code>String</code> - when a sidebar should be closed  </li>
 </ul>
 <p><a name="Events.Publisher"></a></p>
 <h3 id="events-publisher-code-object-code-">Events.Publisher : <code>Object</code></h3>

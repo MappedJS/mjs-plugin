@@ -1,0 +1,10 @@
+.caption {
+    display: block;
+    margin: (2*$gutter) auto (12*$gutter) auto;
+    font-size: 12px;
+    .credit {
+        display: block;
+        font-size: 85%;
+        color: map-get($dark-theme, border);
+    }
+}

@@ -395,7 +395,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var store  = __webpack_require__(46)('wks')
+	var store  = __webpack_require__(45)('wks')
 	  , uid    = __webpack_require__(32)
 	  , Symbol = __webpack_require__(9).Symbol;
 	module.exports = function(name){
@@ -651,15 +651,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	var Events = exports.Events = {
 	  /**
-	   * Eventnames for ToolTip class
+	   * Eventnames for SideBar class
 	   * @type {Object}
 	   * @memberof Events
-	   * @property {String} OPEN - when a tooltip should be openend
-	   * @property {String} CLOSE - when a tooltip should be closed
+	   * @property {String} OPEN - when a sidebar should be openend
+	   * @property {String} CLOSE - when a sidebar should be closed
 	   */
-	  ToolTip: {
-	    OPEN: "tooltip-open",
-	    CLOSE: "tooltip-close"
+	  SideBar: {
+	    OPEN: "sidebar-open",
+	    CLOSE: "sidebar-close"
 	  },
 	  /**
 	   * Eventnames for Publisher class
@@ -1533,7 +1533,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Publisher = __webpack_require__(14);
 
-	var _MapInformation = __webpack_require__(34);
+	var _MapInformation = __webpack_require__(33);
 
 	var _Rectangle2 = __webpack_require__(8);
 
@@ -1888,7 +1888,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// optional / simple context binding
-	var aFunction = __webpack_require__(41);
+	var aFunction = __webpack_require__(40);
 	module.exports = function(fn, that, length){
 	  aFunction(fn);
 	  if(that === undefined)return fn;
@@ -2040,183 +2040,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.DataEnrichment = undefined;
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-	var _Helper = __webpack_require__(1);
-
-	var _Point = __webpack_require__(4);
-
-	var _LatLng = __webpack_require__(19);
-
-	var _Bounds = __webpack_require__(38);
-
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file enriches delivered data with default values
-	 * @copyright Michael Duve 2016
-	 * @module DataEnrichment
-	 */
-	var DataEnrichment = exports.DataEnrichment = {
-	    /**
-	     * enriches marker data with all needed data
-	     * @function
-	     * @memberof module:DataEnrichment
-	     * @param  {Object} data - specified data for marker
-	     * @return {Object} enriched marker data
-	     */
-
-	    marker: function marker(data) {
-	        var enrichedData = [];
-
-	        _Helper.Helper.forEach(data, function (entry) {
-	            entry = Object.assign({}, DataEnrichment.DATA_MARKER, entry);
-
-	            if (entry.text) {
-	                entry.text = Object.assign({}, DataEnrichment.DATA_MARKER_TEXT, entry.text);
-	            }
-	            if (entry.icon) {
-	                entry.icon = Object.assign({}, DataEnrichment.DATA_MARKER_ICON, entry.icon);
-	            }
-
-	            if (typeof entry.position[0] === "number") {
-	                entry.position = new _LatLng.LatLng(entry.position[0], entry.position[1]);
-	            } else {
-	                _Helper.Helper.forEach(entry.position, function (pos, i) {
-	                    entry.position[i] = new _LatLng.LatLng(pos[0], pos[1]);
-	                });
-	            }
-
-	            if (entry.text) {
-	                entry.text.offset = new _Point.Point(entry.text.offset[0], entry.text.offset[1]);
-	            }
-	            if (entry.icon) {
-	                entry.icon.offset = new _Point.Point(entry.icon.offset[0], entry.icon.offset[1]);
-	            }
-	            if (entry.icon && typeof entry.icon.size !== "number") {
-	                entry.icon.size = new _Point.Point(entry.icon.size[0], entry.icon.size[1]);
-	            }
-
-	            enrichedData.push(entry);
-	        });
-
-	        return enrichedData;
-	    },
-
-	    /**
-	     * enriches map data with all needed data
-	     * @function
-	     * @memberof module:DataEnrichment
-	     * @param  {Object} data - specified data for mapsettings
-	     * @return {Object} enriched mapsettings data
-	     */
-	    mapSettings: function mapSettings() {
-	        var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	        var enrichedData = Object.assign({}, DataEnrichment.MAP_SETTINGS, data),
-	            bounds = new _Bounds.Bounds(new _LatLng.LatLng(enrichedData.bounds.northWest[0], enrichedData.bounds.northWest[1]), new _LatLng.LatLng(enrichedData.bounds.southEast[0], enrichedData.bounds.southEast[1])),
-	            center = new _LatLng.LatLng(enrichedData.center.lat, enrichedData.center.lng);
-
-	        if (_typeof(data.aoiBounds) === "object") {
-	            var boundsNW = new _LatLng.LatLng(data.aoiBounds.northWest[0], data.aoiBounds.northWest[1]);
-	            var boundsSE = new _LatLng.LatLng(data.aoiBounds.southEast[0], data.aoiBounds.southEast[1]);
-	            var boundsLimit = new _Bounds.Bounds(boundsNW, boundsSE);
-	            enrichedData.aoiBounds = boundsLimit;
-	        } else {
-	            enrichedData.aoiBounds = bounds;
-	        }
-
-	        enrichedData.clusterImage.size = new _Point.Point(enrichedData.clusterImage.size[0], enrichedData.clusterImage.size[1]);
-	        enrichedData.clusterImage.offset = new _Point.Point(enrichedData.clusterImage.offset[0], enrichedData.clusterImage.offset[1]);
-
-	        enrichedData.bounds = bounds;
-	        enrichedData.center = center;
-
-	        return enrichedData;
-	    }
-	};
-
-	/**
-	 * Default initial values for a Map
-	 * @type {Object}
-	 */
-	DataEnrichment.MAP_SETTINGS = {
-	    level: 0,
-	    path: "./",
-	    center: {
-	        "lat": 0,
-	        "lng": 0
-	    },
-	    bounds: {
-	        "northWest": [90, -180],
-	        "southEast": [-90, 180]
-	    },
-	    clusterImage: {
-	        path: null,
-	        size: [0, 0],
-	        offset: [0, 0]
-	    },
-	    controls: {
-	        zoom: false,
-	        home: false,
-	        position: "bottom-right",
-	        theme: "dark"
-	    }
-	};
-	/**
-	 * Default initial values for a marker
-	 * @type {Object}
-	 */
-	DataEnrichment.DATA_MARKER = {
-	    "position": [0, 0],
-	    "visibility": {
-	        "min": 0,
-	        "max": Number.MAX_VALUE
-	    }
-	};
-	/**
-	 * Default initial values for a marker with text
-	 * @type {Object}
-	 */
-	DataEnrichment.DATA_MARKER_TEXT = {
-	    "content": "",
-	    "color": "#333333",
-	    "offset": [0, 0],
-	    "align": "center",
-	    "baseline": "hanging",
-	    "font": "10pt Arial"
-	};
-	/**
-	 * Default initial values for a marker with an icon
-	 * @type {Object}
-	 */
-	DataEnrichment.DATA_MARKER_ICON = {
-	    "type": "circle",
-	    "size": [2, 2],
-	    "color": "#333333",
-	    "offset": [0, 0]
-	};
-	/**
-	 * Default initial values for cluster font
-	 * @type {Object}
-	 */
-	DataEnrichment.CLUSTER_FONT = {
-	    color: "#333",
-	    font: "bold 10px sans-serif",
-	    offset: [0, 0]
-		};
-
-/***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 	exports.MapInformation = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2229,7 +2052,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _LatLng = __webpack_require__(19);
 
-	var _Bounds = __webpack_require__(38);
+	var _Bounds = __webpack_require__(37);
 
 	var _Point = __webpack_require__(4);
 
@@ -2422,7 +2245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		MapInformation.instances = {};
 
 /***/ },
-/* 35 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 0 -> Array#forEach
@@ -2470,7 +2293,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 36 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
@@ -2480,7 +2303,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 37 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var def = __webpack_require__(2).setDesc
@@ -2492,7 +2315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 38 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2592,7 +2415,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 39 */
+/* 38 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2724,7 +2547,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 40 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2861,7 +2684,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		Texture.textures = [];
 
 /***/ },
-/* 41 */
+/* 40 */
 /***/ function(module, exports) {
 
 	module.exports = function(it){
@@ -2870,7 +2693,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 42 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
@@ -2891,7 +2714,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 43 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -2916,19 +2739,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 44 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	'use strict';
-	var LIBRARY        = __webpack_require__(45)
+	var LIBRARY        = __webpack_require__(44)
 	  , $export        = __webpack_require__(0)
 	  , redefine       = __webpack_require__(29)
 	  , hide           = __webpack_require__(17)
 	  , has            = __webpack_require__(25)
 	  , Iterators      = __webpack_require__(27)
 	  , $iterCreate    = __webpack_require__(76)
-	  , setToStringTag = __webpack_require__(37)
+	  , setToStringTag = __webpack_require__(36)
 	  , getProto       = __webpack_require__(2).getProto
 	  , ITERATOR       = __webpack_require__(3)('iterator')
 	  , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
@@ -2988,13 +2811,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 45 */
+/* 44 */
 /***/ function(module, exports) {
 
 	module.exports = false;
 
 /***/ },
-/* 46 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(9)
@@ -3005,7 +2828,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 47 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.5 Object.freeze(O)
@@ -3018,7 +2841,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 48 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.11 Object.isExtensible(O)
@@ -3031,7 +2854,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 49 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.12 Object.isFrozen(O)
@@ -3044,7 +2867,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 50 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.13 Object.isSealed(O)
@@ -3057,7 +2880,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 51 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.15 Object.preventExtensions(O)
@@ -3070,7 +2893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 52 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.17 Object.seal(O)
@@ -3081,6 +2904,184 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return $seal && isObject(it) ? $seal(it) : it;
 	  };
 	});
+
+/***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.DataEnrichment = undefined;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	var _Helper = __webpack_require__(1);
+
+	var _Point = __webpack_require__(4);
+
+	var _LatLng = __webpack_require__(19);
+
+	var _Bounds = __webpack_require__(37);
+
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file enriches delivered data with default values
+	 * @copyright Michael Duve 2016
+	 * @module DataEnrichment
+	 */
+	var DataEnrichment = exports.DataEnrichment = {
+	    /**
+	     * enriches marker data with all needed data
+	     * @function
+	     * @memberof module:DataEnrichment
+	     * @param  {Object} data - specified data for marker
+	     * @return {Object} enriched marker data
+	     */
+
+	    marker: function marker(data) {
+	        var enrichedData = [];
+
+	        _Helper.Helper.forEach(data, function (entry) {
+	            entry = Object.assign({}, DataEnrichment.DATA_MARKER, entry);
+
+	            if (entry.text) {
+	                entry.text = Object.assign({}, DataEnrichment.DATA_MARKER_TEXT, entry.text);
+	            }
+	            if (entry.icon) {
+	                entry.icon = Object.assign({}, DataEnrichment.DATA_MARKER_ICON, entry.icon);
+	            }
+
+	            if (typeof entry.position[0] === "number") {
+	                entry.position = new _LatLng.LatLng(entry.position[0], entry.position[1]);
+	            } else {
+	                _Helper.Helper.forEach(entry.position, function (pos, i) {
+	                    entry.position[i] = new _LatLng.LatLng(pos[0], pos[1]);
+	                });
+	            }
+
+	            if (entry.text) {
+	                entry.text.offset = new _Point.Point(entry.text.offset[0], entry.text.offset[1]);
+	            }
+	            if (entry.icon) {
+	                entry.icon.offset = new _Point.Point(entry.icon.offset[0], entry.icon.offset[1]);
+	            }
+	            if (entry.icon && typeof entry.icon.size !== "number") {
+	                entry.icon.size = new _Point.Point(entry.icon.size[0], entry.icon.size[1]);
+	            }
+
+	            enrichedData.push(entry);
+	        });
+
+	        return enrichedData;
+	    },
+
+	    /**
+	     * enriches map data with all needed data
+	     * @function
+	     * @memberof module:DataEnrichment
+	     * @param  {Object} data - specified data for settings
+	     * @return {Object} enriched settings data
+	     */
+	    settings: function settings() {
+	        var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	        var enrichedData = Object.assign({}, DataEnrichment.MAP_SETTINGS, data),
+	            bounds = new _Bounds.Bounds(new _LatLng.LatLng(enrichedData.bounds.northWest[0], enrichedData.bounds.northWest[1]), new _LatLng.LatLng(enrichedData.bounds.southEast[0], enrichedData.bounds.southEast[1])),
+	            center = new _LatLng.LatLng(enrichedData.center.lat, enrichedData.center.lng);
+
+	        if (_typeof(data.aoiBounds) === "object") {
+	            var boundsNW = new _LatLng.LatLng(data.aoiBounds.northWest[0], data.aoiBounds.northWest[1]);
+	            var boundsSE = new _LatLng.LatLng(data.aoiBounds.southEast[0], data.aoiBounds.southEast[1]);
+	            var boundsLimit = new _Bounds.Bounds(boundsNW, boundsSE);
+	            enrichedData.aoiBounds = boundsLimit;
+	        } else {
+	            enrichedData.aoiBounds = bounds;
+	        }
+
+	        enrichedData.clusterImage.size = new _Point.Point(enrichedData.clusterImage.size[0], enrichedData.clusterImage.size[1]);
+	        enrichedData.clusterImage.offset = new _Point.Point(enrichedData.clusterImage.offset[0], enrichedData.clusterImage.offset[1]);
+	        enrichedData.clusterImage.text = Object.assign({}, DataEnrichment.CLUSTER_FONT, enrichedData.clusterImage.text);
+
+	        enrichedData.bounds = bounds;
+	        enrichedData.center = center;
+
+	        return enrichedData;
+	    }
+	};
+
+	/**
+	 * Default initial values for a Map
+	 * @type {Object}
+	 */
+	DataEnrichment.MAP_SETTINGS = {
+	    level: 0,
+	    path: "./",
+	    center: {
+	        "lat": 0,
+	        "lng": 0
+	    },
+	    bounds: {
+	        "northWest": [90, -180],
+	        "southEast": [-90, 180]
+	    },
+	    clusterImage: {
+	        path: null,
+	        size: [0, 0],
+	        offset: [0, 0]
+	    },
+	    controls: {
+	        zoom: false,
+	        home: false,
+	        position: "bottom-right",
+	        theme: "dark"
+	    }
+	};
+	/**
+	 * Default initial values for a marker
+	 * @type {Object}
+	 */
+	DataEnrichment.DATA_MARKER = {
+	    "position": [0, 0],
+	    "visibility": {
+	        "min": 0,
+	        "max": Number.MAX_VALUE
+	    }
+	};
+	/**
+	 * Default initial values for a marker with text
+	 * @type {Object}
+	 */
+	DataEnrichment.DATA_MARKER_TEXT = {
+	    "content": "",
+	    "color": "#333333",
+	    "offset": [0, 0],
+	    "align": "center",
+	    "baseline": "hanging",
+	    "font": "10pt Arial"
+	};
+	/**
+	 * Default initial values for a marker with an icon
+	 * @type {Object}
+	 */
+	DataEnrichment.DATA_MARKER_ICON = {
+	    "type": "circle",
+	    "size": [2, 2],
+	    "color": "#333333",
+	    "offset": [0, 0]
+	};
+	/**
+	 * Default initial values for cluster font
+	 * @type {Object}
+	 */
+	DataEnrichment.CLUSTER_FONT = {
+	    color: "#333",
+	    font: "bold 10px sans-serif",
+	    offset: [0, 0]
+		};
 
 /***/ },
 /* 53 */
@@ -4194,7 +4195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Publisher = __webpack_require__(14);
 
-	var _StateHandler = __webpack_require__(39);
+	var _StateHandler = __webpack_require__(38);
 
 	var _Rectangle = __webpack_require__(8);
 
@@ -4202,13 +4203,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Marker = __webpack_require__(61);
 
-	var _DataEnrichment = __webpack_require__(33);
-
-	var _ToolTip = __webpack_require__(64);
+	var _SideBar = __webpack_require__(63);
 
 	var _MarkerClusterer = __webpack_require__(62);
 
-	var _MapInformation = __webpack_require__(34);
+	var _MapInformation = __webpack_require__(33);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4290,7 +4289,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @constructor
 	         * @param  {HTMLElement} container = null - jQuery-object holding the container
 	         * @param  {String} path="./" - path to data
-	         * @param  {Object} mapData = {} - json object representing data of TileMap
+	         * @param  {Object} tilesData = {} - json object representing data of TileMap
 	         * @param  {Object} settings = {} - json object representing settings of TileMap
 	         * @param  {Number} id = 0 - id of parent instance
 	         * @return {TileMap} instance of TileMap for chaining
@@ -4303,8 +4302,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var container = _ref$container === undefined ? null : _ref$container;
 	        var _ref$path = _ref.path;
 	        var path = _ref$path === undefined ? "./" : _ref$path;
-	        var _ref$mapData = _ref.mapData;
-	        var mapData = _ref$mapData === undefined ? {} : _ref$mapData;
+	        var _ref$tilesData = _ref.tilesData;
+	        var tilesData = _ref$tilesData === undefined ? {} : _ref$tilesData;
 	        var _ref$markerData = _ref.markerData;
 	        var markerData = _ref$markerData === undefined ? {} : _ref$markerData;
 	        var _ref$settings = _ref.settings;
@@ -4325,7 +4324,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            bounds: this.settings.bounds
 	        });
 
-	        this.initializeLevels(mapData);
+	        this.initializeLevels(tilesData);
 	        this.bindEvents();
 	        this.resizeCanvas();
 
@@ -4381,7 +4380,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.markerData = markerData;
 	        this.levels = [];
 	        this.clusterHandlingTimeout = null;
-	        this.templates = this.settings.tooltip ? this.settings.tooltip.templates : {};
+	        this.templates = this.settings.sidebar ? this.settings.sidebar.templates : {};
 	        this.initial = {
 	            bounds: this.settings.bounds,
 	            center: this.settings.center,
@@ -4448,7 +4447,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    TileMap.prototype.initializeMarkers = function initializeMarkers() {
 	        var _this2 = this;
 
-	        this.markerData = this.enrichMarkerData(this.markerData);
 	        _Helper.Helper.forEach(this.markerData, function (markerSettings) {
 	            var currentMarker = new _Marker.Marker({
 	                context: _this2.canvasContext,
@@ -4495,25 +4493,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
-	     * enrich marker data
-	     * @param  {Object} markerData - data of markers
-	     * @return {Object} enriched marker data
-	     */
-
-
-	    TileMap.prototype.enrichMarkerData = function enrichMarkerData(markerData) {
-	        return _DataEnrichment.DataEnrichment.marker(markerData);
-	    };
-
-	    /**
-	     * creates an instance of ToolTip
+	     * creates an instance of SideBar
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
 
-	    TileMap.prototype.createTooltipContainer = function createTooltipContainer() {
-	        this.tooltip = new _ToolTip.ToolTip({
+	    TileMap.prototype.createSidebarContainer = function createSidebarContainer() {
+	        this.sidebar = new _SideBar.SideBar({
 	            container: this.container.parentNode,
+	            path: this.path,
 	            id: this.id,
 	            templates: this.templates
 	        });
@@ -4592,7 +4580,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (this.thumbsLoaded === this.levels.length) {
 	            this.initializeMarkers();
 	            window.requestAnimFrame(this.mainLoop.bind(this));
-	            this.createTooltipContainer();
+	            this.createSidebarContainer();
 	        }
 	        return this;
 	    };
@@ -4897,12 +4885,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(87);
-	__webpack_require__(47);
-	__webpack_require__(52);
+	__webpack_require__(46);
 	__webpack_require__(51);
-	__webpack_require__(49);
 	__webpack_require__(50);
 	__webpack_require__(48);
+	__webpack_require__(49);
+	__webpack_require__(47);
 	__webpack_require__(105);
 	module.exports = __webpack_require__(11);
 
@@ -4930,12 +4918,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	__webpack_require__(100);
 	__webpack_require__(102);
 	__webpack_require__(103);
-	__webpack_require__(47);
-	__webpack_require__(52);
+	__webpack_require__(46);
 	__webpack_require__(51);
-	__webpack_require__(49);
 	__webpack_require__(50);
 	__webpack_require__(48);
+	__webpack_require__(49);
+	__webpack_require__(47);
 	__webpack_require__(97);
 	__webpack_require__(99);
 	__webpack_require__(101);
@@ -5208,8 +5196,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Helper = __webpack_require__(1);
 
-	var _DataEnrichment = __webpack_require__(33);
-
 	var _Point = __webpack_require__(4);
 
 	var _Rectangle = __webpack_require__(8);
@@ -5258,7 +5244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @constructor
 	         * @param {CanvasRenderingContext2D} context = null - context of canvas
 	         * @param {Texture} texture = null - texture of cluster
-	         * @param {Object} font = DataEnrichment.CLUSTER_FONT - style of font in cluster
+	         * @param {Object} font = {} - style of font in cluster
 	         * @param {Number} id = 0 - id of parent instance
 	         * @return {Cluster} instance of Cluster for chaining
 	         */
@@ -5273,7 +5259,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _ref$texture = _ref.texture;
 	        var texture = _ref$texture === undefined ? null : _ref$texture;
 	        var _ref$font = _ref.font;
-	        var font = _ref$font === undefined ? _DataEnrichment.DataEnrichment.CLUSTER_FONT : _ref$font;
+	        var font = _ref$font === undefined ? {} : _ref$font;
 	        var _ref$id = _ref.id;
 	        var id = _ref$id === undefined ? 0 : _ref$id;
 
@@ -5282,7 +5268,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _this = _possibleConstructorReturn(this, _Drawable.call(this, id));
 
 	        _this.markers = [];
-	        _this.textSettings = Object.assign({}, _DataEnrichment.DataEnrichment.CLUSTER_FONT, font);
+	        _this.textSettings = font;
 	        _this.texture = texture;
 	        _this.context = context;
 	        _this.isHovered = false;
@@ -5553,7 +5539,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _TileMap = __webpack_require__(54);
 
-	var _DataEnrichment = __webpack_require__(33);
+	var _DataEnrichment = __webpack_require__(52);
 
 	var _Interact = __webpack_require__(53);
 
@@ -5575,44 +5561,44 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * @constructor
-	     * @param  {String|Object} mapData={} - data of map tiles, can be json or path to file
+	     * @param  {String|Object} tilesData={} - data of map tiles, can be json or path to file
 	     * @param  {String|Object} markerData={} - data of markers, can be json or path to file
-	     * @param  {Object} mapSettings={} - settings for map, must be json
+	     * @param  {Object} settings={} - settings for map, must be json
 	     * @return {MappedJS} instance of MappedJS for chaining
 	     */
 
 	    function MappedJS(_ref) {
 	        var _this = this;
 
-	        var _ref$mapData = _ref.mapData;
-	        var mapData = _ref$mapData === undefined ? {} : _ref$mapData;
+	        var _ref$tilesData = _ref.tilesData;
+	        var tilesData = _ref$tilesData === undefined ? {} : _ref$tilesData;
 	        var _ref$markerData = _ref.markerData;
 	        var markerData = _ref$markerData === undefined ? {} : _ref$markerData;
-	        var _ref$mapSettings = _ref.mapSettings;
-	        var mapSettings = _ref$mapSettings === undefined ? {} : _ref$mapSettings;
+	        var _ref$settings = _ref.settings;
+	        var settings = _ref$settings === undefined ? {} : _ref$settings;
 
 	        _classCallCheck(this, MappedJS);
 
-	        this.initializeSettings(mapSettings);
+	        this.initializeSettings(settings);
 
 	        this.id = this.generateUniqueID();
 	        MappedJS.count++;
 
 	        this.eventManager = new _Publisher.Publisher(this.id);
 
-	        this.initializeData(mapData, function (loadedMapData) {
-	            _this.mapData = loadedMapData;
+	        this.initializeData(tilesData, function (loadedTilesData) {
+	            _this.tilesData = loadedTilesData;
 	            _this.initializeData(markerData, function (loadedMarkerData) {
-	                _this.markerData = loadedMarkerData;
+	                _this.markerData = _DataEnrichment.DataEnrichment.marker(loadedMarkerData);
 
 	                _this.initializeMap();
 	                _this.addControls();
 
-	                if (mapSettings.legend) {
-	                    _this.addInformationLayer("legend", mapSettings.legend);
+	                if (settings.legend) {
+	                    _this.addInformationLayer("legend", settings.legend);
 	                }
-	                if (mapSettings.locator) {
-	                    _this.addInformationLayer("location", mapSettings.locator);
+	                if (settings.locator) {
+	                    _this.addInformationLayer("location", settings.locator);
 	                }
 
 	                _this.bindEvents();
@@ -5684,11 +5670,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    MappedJS.prototype.addControls = function addControls() {
-	        if (this.mapSettings.controls) {
+	        if (this.settings.controls) {
 	            this.controls = document.createElement("div");
 	            this.controls.classList.add("control-container");
-	            this.controls.classList.add(this.mapSettings.controls.theme);
-	            this.controls.classList.add(this.mapSettings.controls.position);
+	            this.controls.classList.add(this.settings.controls.theme);
+	            this.controls.classList.add(this.settings.controls.position);
 	            this.zoomIn = document.createElement("div");
 	            this.zoomIn.classList.add("control");
 	            this.zoomIn.classList.add("zoom-in");
@@ -5716,9 +5702,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    MappedJS.prototype.initializeSettings = function initializeSettings() {
 	        var settings = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-	        this.mapSettings = _DataEnrichment.DataEnrichment.mapSettings(settings);
-	        this.container = typeof this.mapSettings.container === "string" ? _Helper.Helper.find(this.mapSettings.container) : this.mapSettings.container;
-	        this.path = this.mapSettings.path;
+	        this.settings = _DataEnrichment.DataEnrichment.settings(settings);
+	        this.container = typeof this.settings.container === "string" ? _Helper.Helper.find(this.settings.container) : this.settings.container;
+	        this.path = this.settings.path;
 	        this.container.classList.add("mappedJS");
 	        this.content = document.createElement("div");
 	        this.content.classList.add("map-content");
@@ -5756,10 +5742,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.tileMap = new _TileMap.TileMap({
 	            container: this.content,
 	            path: this.path,
-	            mapData: this.mapData,
+	            tilesData: this.tilesData,
 	            markerData: this.markerData,
 	            id: this.id,
-	            settings: this.mapSettings
+	            settings: this.settings
 	        });
 	        return this;
 	    };
@@ -6081,7 +6067,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Rectangle = __webpack_require__(8);
 
-	var _Texture = __webpack_require__(40);
+	var _Texture = __webpack_require__(39);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6255,7 +6241,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    Marker.prototype.action = function action(point) {
 	        if (this.visible && this.isActive(point)) {
-	            this.eventManager.publish(_Events.Events.ToolTip.OPEN, this.content);
+	            this.eventManager.publish(_Events.Events.SideBar.OPEN, this.content);
 	            this.active = true;
 	        }
 	    };
@@ -6269,10 +6255,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Marker.prototype.bindEvents = function bindEvents() {
 	        var _this3 = this;
 
-	        this.eventManager.subscribe(_Events.Events.ToolTip.OPEN, function () {
+	        this.eventManager.subscribe(_Events.Events.SideBar.OPEN, function () {
 	            return _this3.active = false;
 	        });
-	        this.eventManager.subscribe(_Events.Events.ToolTip.CLOSE, function () {
+	        this.eventManager.subscribe(_Events.Events.SideBar.CLOSE, function () {
 	            return _this3.active = false;
 	        });
 	        return this;
@@ -6459,9 +6445,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Rectangle = __webpack_require__(8);
 
-	var _Texture = __webpack_require__(40);
+	var _Texture = __webpack_require__(39);
 
-	var _MapInformation = __webpack_require__(34);
+	var _MapInformation = __webpack_require__(33);
 
 	var _Cluster = __webpack_require__(59);
 
@@ -6729,6 +6715,290 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.SideBar = undefined;
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Handlebars = __webpack_require__(107);
+
+	var _Handlebars2 = _interopRequireDefault(_Handlebars);
+
+	var _Events = __webpack_require__(6);
+
+	var _Helper = __webpack_require__(1);
+
+	var _Publisher = __webpack_require__(14);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	/**
+	 * @author Michael Duve <mduve@designmail.net>
+	 * @file represents an overlay showing detailed contents
+	 * @copyright Michael Duve 2016
+	 */
+
+	var SideBar = exports.SideBar = function () {
+	    _createClass(SideBar, [{
+	        key: 'allTemplatesLoaded',
+
+
+	        /**
+	         * checks if all templates were loaded
+	         * @return {Boolean} wheter true if all templates were loaded or false
+	         */
+	        get: function get() {
+	            return this.loadedTemplates === Object.keys(this.templates).length;
+	        }
+
+	        /**
+	         *
+	         * @constructor
+	         * @param  {String|HTMLElement} container - Container, either string or DOM object
+	         * @param  {String} path = [] - path to templates
+	         * @param  {Array} templates = [] - defined templates
+	         * @param  {Number} id = 0 - if of parent instance
+	         * @return {SideBar} instance of SideBar for chaining
+	         */
+
+	    }]);
+
+	    function SideBar(_ref) {
+	        var _this = this;
+
+	        var container = _ref.container;
+	        var _ref$templates = _ref.templates;
+	        var templates = _ref$templates === undefined ? [] : _ref$templates;
+	        var _ref$path = _ref.path;
+	        var path = _ref$path === undefined ? "./" : _ref$path;
+	        var _ref$id = _ref.id;
+	        var id = _ref$id === undefined ? 0 : _ref$id;
+
+	        _classCallCheck(this, SideBar);
+
+	        this.container = container;
+	        this.id = id;
+	        this.eventManager = new _Publisher.Publisher(this.id);
+	        this.path = path;
+	        if (_Handlebars2.default === undefined) {
+	            _Helper.Helper.loadScript("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js", function () {
+	                _this.boot(templates);
+	            });
+	        } else {
+	            this.boot(templates);
+	        }
+	        return this;
+	    }
+
+	    /**
+	     * initialize boot up after Handlebars is loaded
+	     * @param  {Array} templates = [] - defined templates
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.boot = function boot(templates) {
+	        this.container.classList.add(_Events.Events.SideBar.CLOSE);
+	        this.setupContainer();
+
+	        this.bindEvents();
+	        this.registerHandlebarHelpers();
+
+	        this.setPosition().initializeTemplates(templates);
+	        return this;
+	    };
+
+	    /**
+	     * initialize all container and DOM objects for SideBar
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.setupContainer = function setupContainer() {
+	        this.close = document.createElement("div");
+	        this.close.classList.add("close-button");
+
+	        this.content = document.createElement("div");
+	        this.content.classList.add("sidebar-content");
+
+	        this.popup = document.createElement("div");
+	        this.popup.classList.add("sidebar-container");
+
+	        this.popup.appendChild(this.close);
+	        this.popup.appendChild(this.content);
+	        return this;
+	    };
+
+	    /**
+	     * register helpers for handlebars
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.registerHandlebarHelpers = function registerHandlebarHelpers() {
+	        if (_Handlebars2.default || window.Handlebars) {
+	            (_Handlebars2.default || window.Handlebars).registerHelper('getRatio', function (w, h) {
+	                return h / w * 100 + "%";
+	            });
+	        }
+	        return this;
+	    };
+
+	    /**
+	     * initialize all templates
+	     * @param  {Object} templates = {} - all specified templates
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.initializeTemplates = function initializeTemplates(templates) {
+	        this.templates = templates;
+	        this.loadedTemplates = 0;
+	        this.compileTemplates();
+	        return this;
+	    };
+
+	    /**
+	     * bind all events
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.bindEvents = function bindEvents() {
+	        var _this2 = this;
+
+	        _Helper.Helper.addListener(window, _Events.Events.Handling.RESIZE, this.resizeHandler.bind(this));
+	        _Helper.Helper.addListener(this.close, _Events.Events.Handling.CLICK, function () {
+	            _this2.eventManager.publish(_Events.Events.SideBar.CLOSE);
+	        });
+	        this.eventManager.subscribe(_Events.Events.SideBar.OPEN, this.open.bind(this));
+	        this.eventManager.subscribe(_Events.Events.SideBar.CLOSE, function () {
+	            _this2.closeSidebar();
+	        });
+	        return this;
+	    };
+
+	    /**
+	     * on resize check if sidebar is bottom or left position
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.resizeHandler = function resizeHandler() {
+	        this.setPosition();
+	        return this;
+	    };
+
+	    /**
+	     * inserts content to SideBar instance container
+	     * @param  {Object} content = {} - content object
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.insertContent = function insertContent() {
+	        var _this3 = this;
+
+	        var content = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	        this.content.innerHTML = "";
+	        _Helper.Helper.forEach(content, function (data) {
+	            if (_this3.templates[data.type]) {
+	                var html = _this3.templates[data.type](data.content);
+	                _this3.content.innerHTML += html;
+	            }
+	        });
+	        return this;
+	    };
+
+	    /**
+	     * opens a sidebar
+	     * @param  {Object} data - content object
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.open = function open(data) {
+	        if (data) {
+	            this.insertContent(data);
+	        }
+	        if (this.container.classList.contains(_Events.Events.SideBar.CLOSE)) {
+	            this.setPosition();
+	            this.container.classList.remove(_Events.Events.SideBar.CLOSE);
+	            this.container.classList.add(_Events.Events.SideBar.OPEN);
+	            this.eventManager.publish(_Events.Events.TileMap.RESIZE);
+	        }
+	        return this;
+	    };
+
+	    /**
+	     * closes a sidebar
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.closeSidebar = function closeSidebar() {
+	        if (this.container.classList.contains(_Events.Events.SideBar.OPEN)) {
+	            this.setPosition();
+	            this.container.classList.remove(_Events.Events.SideBar.OPEN);
+	            this.container.classList.add(_Events.Events.SideBar.CLOSE);
+	            this.eventManager.publish(_Events.Events.TileMap.RESIZE);
+	        }
+	        return this;
+	    };
+
+	    /**
+	     * sets position of sidebar to left or bottom
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.setPosition = function setPosition() {
+	        if (this.container.clientWidth > this.container.clientHeight) {
+	            this.container.classList.add("left");
+	            this.container.classList.remove("bottom");
+	        } else {
+	            this.container.classList.add("bottom");
+	            this.container.classList.remove("left");
+	        }
+	        return this;
+	    };
+
+	    /**
+	     * precompiles all Handlebars templates
+	     * @return {SideBar} instance of SideBar for chaining
+	     */
+
+
+	    SideBar.prototype.compileTemplates = function compileTemplates() {
+	        var _this4 = this;
+
+	        _Helper.Helper.forEach(this.templates, function (template, type) {
+	            _Helper.Helper.getFile(_this4.path + template, function (html) {
+	                _this4.templates[type] = (_Handlebars2.default || window.Handlebars).compile(html);
+	                _this4.loadedTemplates++;
+	                if (_this4.allTemplatesLoaded) {
+	                    _this4.container.appendChild(_this4.popup);
+	                }
+	            });
+	        });
+	        return this;
+	    };
+
+	    return SideBar;
+	}();
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	exports.Tile = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -6737,7 +7007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Helper = __webpack_require__(1);
 
-	var _StateHandler = __webpack_require__(39);
+	var _StateHandler = __webpack_require__(38);
 
 	var _Drawable2 = __webpack_require__(18);
 
@@ -6873,286 +7143,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		}];
 
 /***/ },
-/* 64 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.ToolTip = undefined;
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _Handlebars = __webpack_require__(107);
-
-	var _Handlebars2 = _interopRequireDefault(_Handlebars);
-
-	var _Events = __webpack_require__(6);
-
-	var _Helper = __webpack_require__(1);
-
-	var _Publisher = __webpack_require__(14);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	/**
-	 * @author Michael Duve <mduve@designmail.net>
-	 * @file represents an overlay showing detailed contents
-	 * @copyright Michael Duve 2016
-	 */
-
-	var ToolTip = exports.ToolTip = function () {
-	    _createClass(ToolTip, [{
-	        key: 'allTemplatesLoaded',
-
-
-	        /**
-	         * checks if all templates were loaded
-	         * @return {Boolean} wheter true if all templates were loaded or false
-	         */
-	        get: function get() {
-	            return this.loadedTemplates === Object.keys(this.templates).length;
-	        }
-
-	        /**
-	         *
-	         * @constructor
-	         * @param  {String|HTMLElement} container - Container, either string or DOM object
-	         * @param  {Array} templates = [] - defined templates
-	         * @param  {Number} id = 0 - if of parent instance
-	         * @return {ToolTip} instance of ToolTip for chaining
-	         */
-
-	    }]);
-
-	    function ToolTip(_ref) {
-	        var _this = this;
-
-	        var container = _ref.container;
-	        var _ref$templates = _ref.templates;
-	        var templates = _ref$templates === undefined ? [] : _ref$templates;
-	        var _ref$id = _ref.id;
-	        var id = _ref$id === undefined ? 0 : _ref$id;
-
-	        _classCallCheck(this, ToolTip);
-
-	        this.container = container;
-	        this.id = id;
-	        this.eventManager = new _Publisher.Publisher(this.id);
-	        if (_Handlebars2.default === undefined) {
-	            _Helper.Helper.loadScript("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js", function () {
-	                _this.boot(templates);
-	            });
-	        } else {
-	            this.boot(templates);
-	        }
-	        return this;
-	    }
-
-	    /**
-	     * initialize boot up after Handlebars is loaded
-	     * @param  {Array} templates = [] - defined templates
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.boot = function boot(templates) {
-	        this.container.classList.add(_Events.Events.ToolTip.CLOSE);
-	        this.setupContainer();
-
-	        this.bindEvents();
-	        this.registerHandlebarHelpers();
-
-	        this.setPosition().initializeTemplates(templates);
-	        return this;
-	    };
-
-	    /**
-	     * initialize all container and DOM objects for ToolTip
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.setupContainer = function setupContainer() {
-	        this.close = document.createElement("div");
-	        this.close.classList.add("close-button");
-
-	        this.content = document.createElement("div");
-	        this.content.classList.add("tooltip-content");
-
-	        this.popup = document.createElement("div");
-	        this.popup.classList.add("tooltip-container");
-
-	        this.popup.appendChild(this.close);
-	        this.popup.appendChild(this.content);
-	        return this;
-	    };
-
-	    /**
-	     * register helpers for handlebars
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.registerHandlebarHelpers = function registerHandlebarHelpers() {
-	        if (_Handlebars2.default || window.Handlebars) {
-	            (_Handlebars2.default || window.Handlebars).registerHelper('getRatio', function (w, h) {
-	                return h / w * 100 + "%";
-	            });
-	        }
-	        return this;
-	    };
-
-	    /**
-	     * initialize all templates
-	     * @param  {Object} templates = {} - all specified templates
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.initializeTemplates = function initializeTemplates(templates) {
-	        this.templates = templates;
-	        this.loadedTemplates = 0;
-	        this.compileTemplates();
-	        return this;
-	    };
-
-	    /**
-	     * bind all events
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.bindEvents = function bindEvents() {
-	        var _this2 = this;
-
-	        _Helper.Helper.addListener(window, _Events.Events.Handling.RESIZE, this.resizeHandler.bind(this));
-	        _Helper.Helper.addListener(this.close, _Events.Events.Handling.CLICK, function () {
-	            _this2.eventManager.publish(_Events.Events.ToolTip.CLOSE);
-	        });
-	        this.eventManager.subscribe(_Events.Events.ToolTip.OPEN, this.open.bind(this));
-	        this.eventManager.subscribe(_Events.Events.ToolTip.CLOSE, function () {
-	            _this2.closeTooltip();
-	        });
-	        return this;
-	    };
-
-	    /**
-	     * on resize check if tooltip is bottom or left position
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.resizeHandler = function resizeHandler() {
-	        this.setPosition();
-	        return this;
-	    };
-
-	    /**
-	     * inserts content to ToolTip instance container
-	     * @param  {Object} content = {} - content object
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.insertContent = function insertContent() {
-	        var _this3 = this;
-
-	        var content = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	        this.content.innerHTML = "";
-	        _Helper.Helper.forEach(content, function (data) {
-	            if (_this3.templates[data.type]) {
-	                var html = _this3.templates[data.type](data.content);
-	                _this3.content.innerHTML += html;
-	            }
-	        });
-	        return this;
-	    };
-
-	    /**
-	     * opens a tooltip
-	     * @param  {Object} data - content object
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.open = function open(data) {
-	        if (data) {
-	            this.insertContent(data);
-	        }
-	        if (this.container.classList.contains(_Events.Events.ToolTip.CLOSE)) {
-	            this.setPosition();
-	            this.container.classList.remove(_Events.Events.ToolTip.CLOSE);
-	            this.container.classList.add(_Events.Events.ToolTip.OPEN);
-	            this.eventManager.publish(_Events.Events.TileMap.RESIZE);
-	        }
-	        return this;
-	    };
-
-	    /**
-	     * closes a tooltip
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.closeTooltip = function closeTooltip() {
-	        if (this.container.classList.contains(_Events.Events.ToolTip.OPEN)) {
-	            this.setPosition();
-	            this.container.classList.remove(_Events.Events.ToolTip.OPEN);
-	            this.container.classList.add(_Events.Events.ToolTip.CLOSE);
-	            this.eventManager.publish(_Events.Events.TileMap.RESIZE);
-	        }
-	        return this;
-	    };
-
-	    /**
-	     * sets position of tooltip to left or bottom
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.setPosition = function setPosition() {
-	        if (this.container.clientWidth > this.container.clientHeight) {
-	            this.container.classList.add("left");
-	            this.container.classList.remove("bottom");
-	        } else {
-	            this.container.classList.add("bottom");
-	            this.container.classList.remove("left");
-	        }
-	        return this;
-	    };
-
-	    /**
-	     * precompiles all Handlebars templates
-	     * @return {ToolTip} instance of ToolTip for chaining
-	     */
-
-
-	    ToolTip.prototype.compileTemplates = function compileTemplates() {
-	        var _this4 = this;
-
-	        _Helper.Helper.forEach(this.templates, function (template, type) {
-	            _Helper.Helper.getFile(template, function (html) {
-	                _this4.templates[type] = (_Handlebars2.default || window.Handlebars).compile(html);
-	                _this4.loadedTemplates++;
-	                if (_this4.allTemplatesLoaded) {
-	                    _this4.container.appendChild(_this4.popup);
-	                }
-	            });
-	        });
-	        return this;
-	    };
-
-	    return ToolTip;
-	}();
-
-/***/ },
 /* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -7174,7 +7164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Rectangle = __webpack_require__(8);
 
-	var _Tile = __webpack_require__(63);
+	var _Tile = __webpack_require__(64);
 
 	var _Drawable2 = __webpack_require__(18);
 
@@ -7696,7 +7686,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
 	var isObject = __webpack_require__(5)
-	  , isArray  = __webpack_require__(36)
+	  , isArray  = __webpack_require__(35)
 	  , SPECIES  = __webpack_require__(3)('species');
 	module.exports = function(original, length){
 	  var C;
@@ -7807,7 +7797,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	var $              = __webpack_require__(2)
 	  , descriptor     = __webpack_require__(28)
-	  , setToStringTag = __webpack_require__(37)
+	  , setToStringTag = __webpack_require__(36)
 	  , IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
@@ -8024,7 +8014,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var classof   = __webpack_require__(42)
+	var classof   = __webpack_require__(41)
 	  , ITERATOR  = __webpack_require__(3)('iterator')
 	  , Iterators = __webpack_require__(27);
 	module.exports = __webpack_require__(11).getIteratorMethod = function(it){
@@ -8050,7 +8040,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , invoke            = __webpack_require__(73)
 	  , fails             = __webpack_require__(12)
 	  , anObject          = __webpack_require__(20)
-	  , aFunction         = __webpack_require__(41)
+	  , aFunction         = __webpack_require__(40)
 	  , isObject          = __webpack_require__(5)
 	  , toObject          = __webpack_require__(10)
 	  , toIObject         = __webpack_require__(13)
@@ -8059,7 +8049,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , toLength          = __webpack_require__(15)
 	  , IObject           = __webpack_require__(26)
 	  , IE_PROTO          = __webpack_require__(32)('__proto__')
-	  , createArrayMethod = __webpack_require__(35)
+	  , createArrayMethod = __webpack_require__(34)
 	  , arrayIndexOf      = __webpack_require__(68)(false)
 	  , ObjectProto       = Object.prototype
 	  , ArrayProto        = Array.prototype
@@ -8226,7 +8216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	// 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
-	$export($export.S, 'Array', {isArray: __webpack_require__(36)});
+	$export($export.S, 'Array', {isArray: __webpack_require__(35)});
 
 	var createArrayReduce = function(isRight){
 	  return function(callbackfn, memo){
@@ -8345,7 +8335,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 	var $export = __webpack_require__(0)
-	  , $find   = __webpack_require__(35)(6)
+	  , $find   = __webpack_require__(34)(6)
 	  , KEY     = 'findIndex'
 	  , forced  = true;
 	// Shouldn't skip holes
@@ -8365,7 +8355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	// 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 	var $export = __webpack_require__(0)
-	  , $find   = __webpack_require__(35)(5)
+	  , $find   = __webpack_require__(34)(5)
 	  , KEY     = 'find'
 	  , forced  = true;
 	// Shouldn't skip holes
@@ -8435,7 +8425,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	module.exports = __webpack_require__(44)(Array, 'Array', function(iterated, kind){
+	module.exports = __webpack_require__(43)(Array, 'Array', function(iterated, kind){
 	  this._t = toIObject(iterated); // target
 	  this._i = 0;                   // next index
 	  this._k = kind;                // kind
@@ -8519,7 +8509,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// 19.1.2.7 Object.getOwnPropertyNames(O)
 	__webpack_require__(7)('getOwnPropertyNames', function(){
-	  return __webpack_require__(43).get;
+	  return __webpack_require__(42).get;
 	});
 
 /***/ },
@@ -8571,7 +8561,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	"use strict";
 	'use strict';
 	// 19.1.3.6 Object.prototype.toString()
-	var classof = __webpack_require__(42)
+	var classof = __webpack_require__(41)
 	  , test    = {};
 	test[__webpack_require__(3)('toStringTag')] = 'z';
 	if(test + '' != '[object z]'){
@@ -8589,7 +8579,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var $at  = __webpack_require__(84)(true);
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	__webpack_require__(44)(String, 'String', function(iterated){
+	__webpack_require__(43)(String, 'String', function(iterated){
 	  this._t = String(iterated); // target
 	  this._i = 0;                // next index
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -8630,14 +8620,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , $export        = __webpack_require__(0)
 	  , redefine       = __webpack_require__(29)
 	  , $fails         = __webpack_require__(12)
-	  , shared         = __webpack_require__(46)
-	  , setToStringTag = __webpack_require__(37)
+	  , shared         = __webpack_require__(45)
+	  , setToStringTag = __webpack_require__(36)
 	  , uid            = __webpack_require__(32)
 	  , wks            = __webpack_require__(3)
 	  , keyOf          = __webpack_require__(79)
-	  , $names         = __webpack_require__(43)
+	  , $names         = __webpack_require__(42)
 	  , enumKeys       = __webpack_require__(71)
-	  , isArray        = __webpack_require__(36)
+	  , isArray        = __webpack_require__(35)
 	  , anObject       = __webpack_require__(20)
 	  , toIObject      = __webpack_require__(13)
 	  , createDesc     = __webpack_require__(28)
@@ -8780,7 +8770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  $.getNames   = $names.get = $getOwnPropertyNames;
 	  $.getSymbols = $getOwnPropertySymbols;
 
-	  if(DESCRIPTORS && !__webpack_require__(45)){
+	  if(DESCRIPTORS && !__webpack_require__(44)){
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
 	  }
 	}

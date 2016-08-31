@@ -5,9 +5,6 @@ import {
     Helper
 } from './Helper.js';
 import {
-    DataEnrichment
-} from './DataEnrichment.js';
-import {
     Point
 } from './Point.js';
 import {
@@ -48,19 +45,19 @@ export class Cluster extends Drawable {
      * @constructor
      * @param {CanvasRenderingContext2D} context = null - context of canvas
      * @param {Texture} texture = null - texture of cluster
-     * @param {Object} font = DataEnrichment.CLUSTER_FONT - style of font in cluster
+     * @param {Object} font = {} - style of font in cluster
      * @param {Number} id = 0 - id of parent instance
      * @return {Cluster} instance of Cluster for chaining
      */
     constructor({
         context = null,
         texture = null,
-        font = DataEnrichment.CLUSTER_FONT,
+        font = {},
         id = 0
     }) {
         super(id);
         this.markers = [];
-        this.textSettings = Object.assign({}, DataEnrichment.CLUSTER_FONT, font);
+        this.textSettings = font;
         this.texture = texture;
         this.context = context;
         this.isHovered = false;

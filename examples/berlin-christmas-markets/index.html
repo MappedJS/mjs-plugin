@@ -45,9 +45,9 @@
         <script src="../../dist/js/mappedJS.js"></script>
         <script>
             var mappedJS = new de.MappedJS({
-                mapData: "mapData.json",
+                tilesData: "mapData.json",
                 markerData: "marker.json",
-                mapSettings: {
+                settings: {
                     "center": {
                         "lat": 52.5215,
                         "lng": 13.427
@@ -60,7 +60,7 @@
                     "path": "./",
                     "level": 1,
                     "zoom": 1,
-                    "tooltip": {
+                    "sidebar": {
                         "templates": {
                             "image": "../../hbs/image.hbs",
                             "crossheading": "../../hbs/crossheading.hbs",

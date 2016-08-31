@@ -36,6 +36,8 @@
 <dd></dd>
 <dt><a href="#Rectangle">Rectangle</a></dt>
 <dd></dd>
+<dt><a href="#SideBar">SideBar</a></dt>
+<dd></dd>
 <dt><a href="#StateHandler">StateHandler</a></dt>
 <dd></dd>
 <dt><a href="#Texture">Texture</a></dt>
@@ -43,8 +45,6 @@
 <dt><a href="#Tile">Tile</a></dt>
 <dd></dd>
 <dt><a href="#TileMap">TileMap</a></dt>
-<dd></dd>
-<dt><a href="#ToolTip">ToolTip</a></dt>
 <dd></dd>
 <dt><a href="#View">View</a></dt>
 <dd></dd>
@@ -68,7 +68,7 @@ enriches delivered data with default values
 
 * [DataEnrichment](#module_DataEnrichment)
     * [.marker(data)](#module_DataEnrichment.marker) ⇒ <code>Object</code>
-    * [.mapSettings(data)](#module_DataEnrichment.mapSettings) ⇒ <code>Object</code>
+    * [.settings(data)](#module_DataEnrichment.settings) ⇒ <code>Object</code>
 
 <a name="module_DataEnrichment.marker"></a>
 
@@ -81,16 +81,16 @@ enriches marker data with all needed data
 
 - data <code>Object</code> - specified data for marker
 
-<a name="module_DataEnrichment.mapSettings"></a>
+<a name="module_DataEnrichment.settings"></a>
 
-### DataEnrichment.mapSettings(data) ⇒ <code>Object</code>
+### DataEnrichment.settings(data) ⇒ <code>Object</code>
 enriches map data with all needed data
 
 **Kind**: static method of <code>[DataEnrichment](#module_DataEnrichment)</code>  
-**Returns**: <code>Object</code> - enriched mapsettings data  
+**Returns**: <code>Object</code> - enriched settings data  
 **Params**
 
-- data <code>Object</code> - specified data for mapsettings
+- data <code>Object</code> - specified data for settings
 
 <a name="module_Helper"></a>
 
@@ -383,7 +383,7 @@ string representation
 
 - context <code>CanvasRenderingContext2D</code> - = null - context of canvas
 - texture <code>[Texture](#Texture)</code> - = null - texture of cluster
-- font <code>Object</code> - = DataEnrichment.CLUSTER_FONT - style of font in cluster
+- font <code>Object</code> - = {} - style of font in cluster
 - id <code>Number</code> - = 0 - id of parent instance
 
 <a name="Cluster+position"></a>
@@ -1354,7 +1354,7 @@ Creates a LatLng from specified LatLng
 **Kind**: global class  
 
 * [MappedJS](#MappedJS)
-    * [new MappedJS(mapData, markerData, mapSettings)](#new_MappedJS_new)
+    * [new MappedJS(tilesData, markerData, settings)](#new_MappedJS_new)
     * _instance_
         * [.generateUniqueID()](#MappedJS+generateUniqueID) ⇒ <code>Number</code>
         * [.addInformationLayer(type, settings)](#MappedJS+addInformationLayer) ⇒ <code>[MappedJS](#MappedJS)</code>
@@ -1379,13 +1379,13 @@ Creates a LatLng from specified LatLng
 
 <a name="new_MappedJS_new"></a>
 
-### new MappedJS(mapData, markerData, mapSettings)
+### new MappedJS(tilesData, markerData, settings)
 **Returns**: <code>[MappedJS](#MappedJS)</code> - instance of MappedJS for chaining  
 **Params**
 
-- mapData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file
+- tilesData <code>String</code> | <code>Object</code> <code> = {}</code> - data of map tiles, can be json or path to file
 - markerData <code>String</code> | <code>Object</code> <code> = {}</code> - data of markers, can be json or path to file
-- mapSettings <code>Object</code> <code> = {}</code> - settings for map, must be json
+- settings <code>Object</code> <code> = {}</code> - settings for map, must be json
 
 <a name="MappedJS+generateUniqueID"></a>
 
@@ -2552,6 +2552,137 @@ Creates a Rectangle from specified Rectangle
 
 - rect <code>[Rectangle](#Rectangle)</code> - specified Rectangle
 
+<a name="SideBar"></a>
+
+## SideBar
+**Kind**: global class  
+
+* [SideBar](#SideBar)
+    * [new SideBar(container, path, templates, id)](#new_SideBar_new)
+    * [.allTemplatesLoaded](#SideBar+allTemplatesLoaded) ⇒ <code>Boolean</code>
+    * [.boot(templates)](#SideBar+boot) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.setupContainer()](#SideBar+setupContainer) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.registerHandlebarHelpers()](#SideBar+registerHandlebarHelpers) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.initializeTemplates(templates)](#SideBar+initializeTemplates) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.bindEvents()](#SideBar+bindEvents) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.resizeHandler()](#SideBar+resizeHandler) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.insertContent(content)](#SideBar+insertContent) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.open(data)](#SideBar+open) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.closeSidebar()](#SideBar+closeSidebar) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.setPosition()](#SideBar+setPosition) ⇒ <code>[SideBar](#SideBar)</code>
+    * [.compileTemplates()](#SideBar+compileTemplates) ⇒ <code>[SideBar](#SideBar)</code>
+
+<a name="new_SideBar_new"></a>
+
+### new SideBar(container, path, templates, id)
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+**Params**
+
+- container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object
+- path <code>String</code> - = [] - path to templates
+- templates <code>Array</code> - = [] - defined templates
+- id <code>Number</code> - = 0 - if of parent instance
+
+<a name="SideBar+allTemplatesLoaded"></a>
+
+### sideBar.allTemplatesLoaded ⇒ <code>Boolean</code>
+checks if all templates were loaded
+
+**Kind**: instance property of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>Boolean</code> - wheter true if all templates were loaded or false  
+<a name="SideBar+boot"></a>
+
+### sideBar.boot(templates) ⇒ <code>[SideBar](#SideBar)</code>
+initialize boot up after Handlebars is loaded
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+**Params**
+
+- templates <code>Array</code> - = [] - defined templates
+
+<a name="SideBar+setupContainer"></a>
+
+### sideBar.setupContainer() ⇒ <code>[SideBar](#SideBar)</code>
+initialize all container and DOM objects for SideBar
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+<a name="SideBar+registerHandlebarHelpers"></a>
+
+### sideBar.registerHandlebarHelpers() ⇒ <code>[SideBar](#SideBar)</code>
+register helpers for handlebars
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+<a name="SideBar+initializeTemplates"></a>
+
+### sideBar.initializeTemplates(templates) ⇒ <code>[SideBar](#SideBar)</code>
+initialize all templates
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+**Params**
+
+- templates <code>Object</code> - = {} - all specified templates
+
+<a name="SideBar+bindEvents"></a>
+
+### sideBar.bindEvents() ⇒ <code>[SideBar](#SideBar)</code>
+bind all events
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+<a name="SideBar+resizeHandler"></a>
+
+### sideBar.resizeHandler() ⇒ <code>[SideBar](#SideBar)</code>
+on resize check if sidebar is bottom or left position
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+<a name="SideBar+insertContent"></a>
+
+### sideBar.insertContent(content) ⇒ <code>[SideBar](#SideBar)</code>
+inserts content to SideBar instance container
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+**Params**
+
+- content <code>Object</code> - = {} - content object
+
+<a name="SideBar+open"></a>
+
+### sideBar.open(data) ⇒ <code>[SideBar](#SideBar)</code>
+opens a sidebar
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+**Params**
+
+- data <code>Object</code> - content object
+
+<a name="SideBar+closeSidebar"></a>
+
+### sideBar.closeSidebar() ⇒ <code>[SideBar](#SideBar)</code>
+closes a sidebar
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+<a name="SideBar+setPosition"></a>
+
+### sideBar.setPosition() ⇒ <code>[SideBar](#SideBar)</code>
+sets position of sidebar to left or bottom
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
+<a name="SideBar+compileTemplates"></a>
+
+### sideBar.compileTemplates() ⇒ <code>[SideBar](#SideBar)</code>
+precompiles all Handlebars templates
+
+**Kind**: instance method of <code>[SideBar](#SideBar)</code>  
+**Returns**: <code>[SideBar](#SideBar)</code> - instance of SideBar for chaining  
 <a name="StateHandler"></a>
 
 ## StateHandler
@@ -2741,7 +2872,7 @@ States of a tile
 **Kind**: global class  
 
 * [TileMap](#TileMap)
-    * [new TileMap(container, path, mapData, settings, id)](#new_TileMap_new)
+    * [new TileMap(container, path, tilesData, settings, id)](#new_TileMap_new)
     * [.width](#TileMap+width) ⇒ <code>Number</code>
     * [.height](#TileMap+height) ⇒ <code>Number</code>
     * [.viewport](#TileMap+viewport) ⇒ <code>[Rectangle](#Rectangle)</code>
@@ -2753,8 +2884,7 @@ States of a tile
     * [.reset()](#TileMap+reset) ⇒ <code>[TileMap](#TileMap)</code>
     * [.initializeMarkers()](#TileMap+initializeMarkers) ⇒ <code>[TileMap](#TileMap)</code>
     * [.createViewFromData(data)](#TileMap+createViewFromData) ⇒ <code>[View](#View)</code>
-    * [.enrichMarkerData(markerData)](#TileMap+enrichMarkerData) ⇒ <code>Object</code>
-    * [.createTooltipContainer()](#TileMap+createTooltipContainer) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.createSidebarContainer()](#TileMap+createSidebarContainer) ⇒ <code>[TileMap](#TileMap)</code>
     * [.bindEvents()](#TileMap+bindEvents) ⇒ <code>[TileMap](#TileMap)</code>
     * [.zoomToBounds(center, boundingBox)](#TileMap+zoomToBounds) ⇒ <code>[TileMap](#TileMap)</code>
     * [.thumbLoaded()](#TileMap+thumbLoaded) ⇒ <code>[TileMap](#TileMap)</code>
@@ -2775,13 +2905,13 @@ States of a tile
 
 <a name="new_TileMap_new"></a>
 
-### new TileMap(container, path, mapData, settings, id)
+### new TileMap(container, path, tilesData, settings, id)
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 **Params**
 
 - container <code>HTMLElement</code> - = null - jQuery-object holding the container
 - path <code>String</code> <code> = &quot;./&quot;</code> - path to data
-- mapData <code>Object</code> - = {} - json object representing data of TileMap
+- tilesData <code>Object</code> - = {} - json object representing data of TileMap
 - settings <code>Object</code> - = {} - json object representing settings of TileMap
 - id <code>Number</code> - = 0 - id of parent instance
 
@@ -2878,21 +3008,10 @@ creates a View from specified parameters
 
 - data <code>Object</code> - specified data
 
-<a name="TileMap+enrichMarkerData"></a>
+<a name="TileMap+createSidebarContainer"></a>
 
-### tileMap.enrichMarkerData(markerData) ⇒ <code>Object</code>
-enrich marker data
-
-**Kind**: instance method of <code>[TileMap](#TileMap)</code>  
-**Returns**: <code>Object</code> - enriched marker data  
-**Params**
-
-- markerData <code>Object</code> - data of markers
-
-<a name="TileMap+createTooltipContainer"></a>
-
-### tileMap.createTooltipContainer() ⇒ <code>[TileMap](#TileMap)</code>
-creates an instance of ToolTip
+### tileMap.createSidebarContainer() ⇒ <code>[TileMap](#TileMap)</code>
+creates an instance of SideBar
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
@@ -3037,136 +3156,6 @@ draw all markers
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
-<a name="ToolTip"></a>
-
-## ToolTip
-**Kind**: global class  
-
-* [ToolTip](#ToolTip)
-    * [new ToolTip(container, templates, id)](#new_ToolTip_new)
-    * [.allTemplatesLoaded](#ToolTip+allTemplatesLoaded) ⇒ <code>Boolean</code>
-    * [.boot(templates)](#ToolTip+boot) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.setupContainer()](#ToolTip+setupContainer) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.registerHandlebarHelpers()](#ToolTip+registerHandlebarHelpers) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.initializeTemplates(templates)](#ToolTip+initializeTemplates) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.bindEvents()](#ToolTip+bindEvents) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.resizeHandler()](#ToolTip+resizeHandler) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.insertContent(content)](#ToolTip+insertContent) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.open(data)](#ToolTip+open) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.closeTooltip()](#ToolTip+closeTooltip) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.setPosition()](#ToolTip+setPosition) ⇒ <code>[ToolTip](#ToolTip)</code>
-    * [.compileTemplates()](#ToolTip+compileTemplates) ⇒ <code>[ToolTip](#ToolTip)</code>
-
-<a name="new_ToolTip_new"></a>
-
-### new ToolTip(container, templates, id)
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-**Params**
-
-- container <code>String</code> | <code>HTMLElement</code> - Container, either string or DOM object
-- templates <code>Array</code> - = [] - defined templates
-- id <code>Number</code> - = 0 - if of parent instance
-
-<a name="ToolTip+allTemplatesLoaded"></a>
-
-### toolTip.allTemplatesLoaded ⇒ <code>Boolean</code>
-checks if all templates were loaded
-
-**Kind**: instance property of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>Boolean</code> - wheter true if all templates were loaded or false  
-<a name="ToolTip+boot"></a>
-
-### toolTip.boot(templates) ⇒ <code>[ToolTip](#ToolTip)</code>
-initialize boot up after Handlebars is loaded
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-**Params**
-
-- templates <code>Array</code> - = [] - defined templates
-
-<a name="ToolTip+setupContainer"></a>
-
-### toolTip.setupContainer() ⇒ <code>[ToolTip](#ToolTip)</code>
-initialize all container and DOM objects for ToolTip
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-<a name="ToolTip+registerHandlebarHelpers"></a>
-
-### toolTip.registerHandlebarHelpers() ⇒ <code>[ToolTip](#ToolTip)</code>
-register helpers for handlebars
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-<a name="ToolTip+initializeTemplates"></a>
-
-### toolTip.initializeTemplates(templates) ⇒ <code>[ToolTip](#ToolTip)</code>
-initialize all templates
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-**Params**
-
-- templates <code>Object</code> - = {} - all specified templates
-
-<a name="ToolTip+bindEvents"></a>
-
-### toolTip.bindEvents() ⇒ <code>[ToolTip](#ToolTip)</code>
-bind all events
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-<a name="ToolTip+resizeHandler"></a>
-
-### toolTip.resizeHandler() ⇒ <code>[ToolTip](#ToolTip)</code>
-on resize check if tooltip is bottom or left position
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-<a name="ToolTip+insertContent"></a>
-
-### toolTip.insertContent(content) ⇒ <code>[ToolTip](#ToolTip)</code>
-inserts content to ToolTip instance container
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-**Params**
-
-- content <code>Object</code> - = {} - content object
-
-<a name="ToolTip+open"></a>
-
-### toolTip.open(data) ⇒ <code>[ToolTip](#ToolTip)</code>
-opens a tooltip
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-**Params**
-
-- data <code>Object</code> - content object
-
-<a name="ToolTip+closeTooltip"></a>
-
-### toolTip.closeTooltip() ⇒ <code>[ToolTip](#ToolTip)</code>
-closes a tooltip
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-<a name="ToolTip+setPosition"></a>
-
-### toolTip.setPosition() ⇒ <code>[ToolTip](#ToolTip)</code>
-sets position of tooltip to left or bottom
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
-<a name="ToolTip+compileTemplates"></a>
-
-### toolTip.compileTemplates() ⇒ <code>[ToolTip](#ToolTip)</code>
-precompiles all Handlebars templates
-
-**Kind**: instance method of <code>[ToolTip](#ToolTip)</code>  
-**Returns**: <code>[ToolTip](#ToolTip)</code> - instance of ToolTip for chaining  
 <a name="View"></a>
 
 ## View
@@ -3393,7 +3382,7 @@ Helper for naming events
 **Copyright**: Michael Duve 2016  
 
 * [Events](#Events) : <code>object</code>
-    * [.ToolTip](#Events.ToolTip) : <code>Object</code>
+    * [.SideBar](#Events.SideBar) : <code>Object</code>
     * [.Publisher](#Events.Publisher) : <code>Object</code>
     * [.TileMap](#Events.TileMap) : <code>Object</code>
     * [.Handling](#Events.Handling) : <code>Object</code>
@@ -3402,16 +3391,16 @@ Helper for naming events
     * [.MapInformation](#Events.MapInformation) : <code>Object</code>
     * [.General](#Events.General) : <code>Object</code>
 
-<a name="Events.ToolTip"></a>
+<a name="Events.SideBar"></a>
 
-### Events.ToolTip : <code>Object</code>
-Eventnames for ToolTip class
+### Events.SideBar : <code>Object</code>
+Eventnames for SideBar class
 
 **Kind**: static property of <code>[Events](#Events)</code>  
 **Properties**
 
-- OPEN <code>String</code> - when a tooltip should be openend  
-- CLOSE <code>String</code> - when a tooltip should be closed  
+- OPEN <code>String</code> - when a sidebar should be openend  
+- CLOSE <code>String</code> - when a sidebar should be closed  
 
 <a name="Events.Publisher"></a>
 

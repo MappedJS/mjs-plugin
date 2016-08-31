@@ -97,7 +97,7 @@ $light-theme: map-get($themes, light);
     @import "_marker.scss";
     @import "_cluster.scss";
     @import "_controls.scss";
-    @import "_tooltip.scss";
+    @import "_sidebar.scss";
 }
 
 @keyframes flyIn {
