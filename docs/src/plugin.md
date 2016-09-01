@@ -2911,7 +2911,7 @@ States of a tile
     * [.drawView()](#TileMap+drawView) ⇒ <code>[TileMap](#TileMap)</code>
     * [.checkBoundaries()](#TileMap+checkBoundaries) ⇒ <code>[TileMap](#TileMap)</code>
     * [.calculateDeltaTiming()](#TileMap+calculateDeltaTiming) ⇒ <code>[TileMap](#TileMap)</code>
-    * [.calculateVelocity()](#TileMap+calculateVelocity) ⇒ <code>[TileMap](#TileMap)</code>
+    * [.calculateVelocity(dT)](#TileMap+calculateVelocity) ⇒ <code>[TileMap](#TileMap)</code>
     * [.checkAoIBoundaries()](#TileMap+checkAoIBoundaries) ⇒ <code>[TileMap](#TileMap)</code>
     * [.drawClusters()](#TileMap+drawClusters) ⇒ <code>[TileMap](#TileMap)</code>
     * [.drawMarkers()](#TileMap+drawMarkers) ⇒ <code>[TileMap](#TileMap)</code>
@@ -3178,11 +3178,15 @@ calculates current delta timing
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
 <a name="TileMap+calculateVelocity"></a>
 
-### tileMap.calculateVelocity() ⇒ <code>[TileMap](#TileMap)</code>
+### tileMap.calculateVelocity(dT) ⇒ <code>[TileMap](#TileMap)</code>
 calculates current velocity
 
 **Kind**: instance method of <code>[TileMap](#TileMap)</code>  
 **Returns**: <code>[TileMap](#TileMap)</code> - instance of TileMap for chaining  
+**Params**
+
+- dT - deltaTiming
+
 <a name="TileMap+checkAoIBoundaries"></a>
 
 ### tileMap.checkAoIBoundaries() ⇒ <code>[TileMap](#TileMap)</code>

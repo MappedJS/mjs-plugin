@@ -505,10 +505,16 @@ export class TileMap {
      * main draw call
      */
     mainLoop() {
-        this.calculateDeltaTiming();
-        this.calculateVelocity();
+        const dT = this.calculateDeltaTiming();
+        const v = this.calculateVelocity(dT);
+
+        if (!v.equals(new Point(0, 0))) {
+            this.moveView(v);
+        }
+
         this.checkAoIBoundaries();
         this.checkBoundaries();
+
         if (this.drawIsNeeded) {
             this.clearCanvas();
             this.drawView();
@@ -516,6 +522,7 @@ export class TileMap {
             this.drawClusters();
             this.drawIsNeeded = false;
         }
+
         window.requestAnimFrame(() => this.mainLoop());
     }
 
@@ -553,20 +560,17 @@ export class TileMap {
         const currentMillisecs = Date.now();
         const deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
         this.lastFrameMillisecs = currentMillisecs;
-        this.deltaTiming = Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
-        return this;
+        return Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
     }
 
     /**
      * calculates current velocity
+     * @param dT - deltaTiming
      * @return {TileMap} instance of TileMap for chaining
      */
-    calculateVelocity() {
-        this.moveByVelocity = this.velocity.multiply(0.96).clone.multiply(this.deltaTiming);
-        if (this.velocity.length >= 0.2) {
-            this.moveView(this.moveByVelocity);
-        }
-        return this;
+    calculateVelocity(dT) {
+        this.moveByVelocity = this.velocity.multiply(0.94).clone.multiply(this.deltaTiming);
+        return (this.velocity.length >= 0.2) ? this.moveByVelocity : new Point(0, 0);
     }
 
     /**
