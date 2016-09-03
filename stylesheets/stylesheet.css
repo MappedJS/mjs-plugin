@@ -52,7 +52,14 @@ a:hover {
     margin-left: 1rem;
 }
 .btn span {
-    font-size: 2rem;
+    font-size: 1rem;
+}
+.github {
+    margin-top: 30px;
+    display: block;
+}
+.btn span:before {
+    font-size: 1.2rem;
     margin-right: 10px;
 }
 .btn:hover {
@@ -74,8 +81,6 @@ a:hover {
 }
 @media screen and (max-width: 42em) {
     .btn {
-        display: block;
-        width: 100%;
         padding: 0.75rem;
         font-size: 0.9rem;
     }
