@@ -9,6 +9,7 @@ $icon-height: (7*$gutter);
     width: 100%;
     z-index: 200;
     background: #fff;
+    cursor: default;
     .close-button {
         position: absolute;
         z-index: 1000;
@@ -84,5 +85,6 @@ $icon-height: (7*$gutter);
         @import "_sidebar_headline.scss";
         @import "_sidebar_crossheading.scss";
         @import "_sidebar_iframe.scss";
+        @import "_sidebar_list.scss";
     }
 }

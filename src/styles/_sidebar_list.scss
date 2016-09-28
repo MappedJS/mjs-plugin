@@ -1,0 +1,12 @@
+.mjs-listitem {
+    margin: (5 * $gutter) 0 0 (5 * $gutter);
+    span {
+        font-weight: 700;
+        &:after {
+            content: ": "
+        }
+    }
+    & ~ .mjs-listitem {
+        margin-top: (2 * $gutter);
+    }
+}
