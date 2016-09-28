@@ -48,7 +48,6 @@
         <script src="../../dist/js/mappedJS.js"></script>
         <script>
             var mappedJS = new de.MappedJS({
-
                 tilesData: "mapData.json",
                 markerData: "marker.json",
                 settings: {
@@ -62,7 +61,12 @@
                         "southEast": [52.266, 13.938]
                     },
                     "level": 1,
-                    "zoom": 1
+                    "zoom": 1,
+                    "clusterImage": {
+                        "path": "./img/cluster-marker.png",
+                        "size": [64, 128],
+                        "offset": [-32, -64]
+                    }
                 }
             });
         </script>

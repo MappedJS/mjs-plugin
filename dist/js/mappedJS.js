@@ -4771,10 +4771,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    TileMap.prototype.mainLoop = function mainLoop() {
 	        var _this5 = this;
 
-	        this.calculateDeltaTiming();
-	        this.calculateVelocity();
+	        var dT = this.calculateDeltaTiming();
+	        var v = this.calculateVelocity(dT);
+
+	        if (!v.equals(new _Point.Point(0, 0))) {
+	            this.moveView(v);
+	        }
+
 	        this.checkAoIBoundaries();
 	        this.checkBoundaries();
+
 	        if (this.drawIsNeeded) {
 	            this.clearCanvas();
 	            this.drawView();
@@ -4782,6 +4788,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this.drawClusters();
 	            this.drawIsNeeded = false;
 	        }
+
 	        window.requestAnimFrame(function () {
 	            return _this5.mainLoop();
 	        });
@@ -4829,22 +4836,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var currentMillisecs = Date.now();
 	        var deltaMillisecs = currentMillisecs - this.lastFrameMillisecs;
 	        this.lastFrameMillisecs = currentMillisecs;
-	        this.deltaTiming = _Helper.Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
-	        return this;
+	        return _Helper.Helper.clamp(deltaMillisecs / this.bestDeltaTiming, 1, 4);
 	    };
 
 	    /**
 	     * calculates current velocity
+	     * @param dT - deltaTiming
 	     * @return {TileMap} instance of TileMap for chaining
 	     */
 
 
-	    TileMap.prototype.calculateVelocity = function calculateVelocity() {
-	        this.moveByVelocity = this.velocity.multiply(0.96).clone.multiply(this.deltaTiming);
-	        if (this.velocity.length >= 0.2) {
-	            this.moveView(this.moveByVelocity);
-	        }
-	        return this;
+	    TileMap.prototype.calculateVelocity = function calculateVelocity(dT) {
+	        this.moveByVelocity = this.velocity.multiply(0.94).clone.multiply(this.deltaTiming);
+	        return this.velocity.length >= 0.2 ? this.moveByVelocity : new _Point.Point(0, 0);
 	    };
 
 	    /**
@@ -5873,7 +5877,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    _this3.tileMap.zoom(data.difference * 3, _this3.getAbsolutePosition(data.positionMove));
 	                },
 	                flick: function flick(data) {
-	                    _this3.tileMap.velocity = data.velocity.multiply(_this3.tileMap.width * (1 / 30), _this3.tileMap.height * (1 / 30));
+	                    _this3.tileMap.velocity = data.velocity.multiply(_this3.tileMap.width * 0.05, _this3.tileMap.height * 0.05);
 	                }
 	            }
 	        });

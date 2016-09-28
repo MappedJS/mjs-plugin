@@ -21,7 +21,6 @@ import {
  */
 export class Cluster extends Drawable {
 
-
     /**
      * calculates the actual position of a cluster
      * @return {Point} calculated position

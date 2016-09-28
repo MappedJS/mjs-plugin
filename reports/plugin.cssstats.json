@@ -1,16 +1,16 @@
 {
     "fileSize": {
-        "size": "42.05 KB",
-        "gzipSize": "13.99 KB"
+        "size": "42.72 KB",
+        "gzipSize": "14.06 KB"
     },
     "selectorSpecifity": {
         "max": 51,
-        "average": 18.528169014084508
+        "average": 19.205479452054796
     },
     "totals": {
-        "rules": 132,
-        "selectors": 142,
-        "declarations": 430,
+        "rules": 136,
+        "selectors": 146,
+        "declarations": 435,
         "properties": 77,
         "vendorPrefixes": 120,
         "mediaQueries": 0,
@@ -24,11 +24,11 @@
         "background-color": 5
     },
     "selectors": {
-        "type": 12,
-        "class": 82,
+        "type": 14,
+        "class": 86,
         "id": 0,
         "pseudoClass": 6,
-        "pseudoElement": 9
+        "pseudoElement": 10
     },
     "propertyResets": {
         "padding": 1,
@@ -202,6 +202,10 @@
             40,
             50,
             51,
+            40,
+            41,
+            42,
+            50,
             1,
             1,
             1,
@@ -310,7 +314,7 @@
             2,
             1,
             1,
-            7,
+            8,
             13,
             1,
             8,
@@ -336,6 +340,10 @@
             2,
             6,
             7,
+            1,
+            1,
+            1,
+            1,
             2,
             2,
             2,

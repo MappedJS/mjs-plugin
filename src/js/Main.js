@@ -268,7 +268,7 @@ export class MappedJS {
                     this.tileMap.zoom(data.difference * 3, this.getAbsolutePosition(data.positionMove));
                 },
                 flick: (data) => {
-                    this.tileMap.velocity = data.velocity.multiply(this.tileMap.width * (1 / 30), this.tileMap.height * (1 / 30));
+                    this.tileMap.velocity = data.velocity.multiply(this.tileMap.width * 0.05, this.tileMap.height * 0.05);
                 }
             }
         });
